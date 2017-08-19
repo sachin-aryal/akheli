@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Client;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Image;
 
 class RegisterController extends Controller
 {
@@ -49,8 +50,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'shop_name' => 'required|string|max:255',
+            'phone_no' => 'required|number|max:9|min:7',
+            "location" => 'required|string',
+
         ]);
     }
 
@@ -67,10 +72,28 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        $user
+
+        $user->client= Client::create([
+            'name'=>$data['name'],
+            'shop_name'=>$data['shop_name'],
+            'phone_no'=>$data['phone'],
+            'location'=>$data['location'],
+            'email'=>$data['email'],
+            /*'photo'=>$data->file('profilePic'),*/
+            ]);
+        
+/*if(Input::hasFile('photo')){
+    $file = Input::file('photo');
+    $user=$file('photo');
+ }*/
+  /*      $user
             ->roles()
             ->attach(Role::where('name', 'client')->first());
-
+*/
         return $user;
+
+        
+        
+    
     }
 }

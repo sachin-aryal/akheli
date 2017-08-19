@@ -19,10 +19,10 @@ class CreateClientsTable extends Migration
             $table->string("shop_name");
             $table->string("phone_no");
             $table->string("location");
-            $table->string("email");
+            $table->string("email", 191);
             $table->string("photo");
             $table->integer("user_id")->unsigned();
-//            $table->timestamps();
+            //$table->timestamps();
         });
         Schema::table('clients', function($table) {
             $table->engine = 'InnoDB';

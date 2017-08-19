@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -60,8 +60,61 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('shop_name') ? ' has-error' : '' }}">
+                            <label for="shop_name" class="col-md-4 control-label">Shop Name</label>
+
+                            <div class="col-md-6">
+                                <input id="shop_name" type="text" class="form-control" name="shop_name" value="{{ old('shop_name') }}" required autofocus>
+
+                                @if ($errors->has('shop_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('shop_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+                            <label for="location" class="col-md-4 control-label">Location</label>
+
+                            <div class="col-md-6">
+                                <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required autofocus>
+
+                                @if ($errors->has('location'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+<div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="phone" class="col-md-4 control-label">Phone Number:</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+<div class="form-group">
+                            <label for="photoc" class="col-md-4 control-label">Profile Picture</label>
+
+                            <div class="col-md-6">
+                                <input id="photo" type="file" name="photo" required autofocus>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                            <input type="hidden" name="role" value="client">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
