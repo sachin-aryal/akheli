@@ -13,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('product/create');
+        $products= product::all();
+        return view('product/list',compact('products'));
     }
 
     /**
@@ -42,10 +43,12 @@ class ProductController extends Controller
         $product->min_order = $request->min_order;
         $product->price = $request->price;
         if($request->hasFile('image')){
-            $path = $request->image->store('public/uploads');
-            $product->image= $path;
+            $path= $request->image->store('public/uploads');
+
+            $product->image=$path;
         }
         $product->save();
+        return view('product/list');
     }
 
     /**
@@ -56,7 +59,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product= product::find($id);
+        return view('product/detail',compact('product'));
     }
 
     /**
