@@ -20,4 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test_admin')->name('home');
 
-Route::resource('product','ProductController');
+Route::get('product/create','ProductController@create');
+Route::get('product','ProductController@index');
+Route::get('product/edit','ProductController@edit');
+Route::get('product/detail','ProductController@detail');
