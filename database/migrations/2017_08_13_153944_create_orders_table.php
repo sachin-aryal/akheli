@@ -19,10 +19,13 @@ class CreateOrdersTable extends Migration
             $table->text("description");
             $table->dateTime("order_date");
             $table->integer('product_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->string("status");
         });
         Schema::table('orders', function($table) {
             $table->engine = 'InnoDB';
             $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
     }
