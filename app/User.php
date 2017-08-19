@@ -65,5 +65,9 @@ class User extends Authenticatable
         }
         return false;
     }
+    public function clientID()
+    {
+        return $this->hasOne(Client::class);
+    }
 
 }
