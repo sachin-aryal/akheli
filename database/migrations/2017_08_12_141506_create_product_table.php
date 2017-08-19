@@ -19,9 +19,10 @@ class CreateProductTable extends Migration
             $table->string('size');
             $table->string('color');
             $table->text('description');
-            $table->string('min-order');
+            $table->string('min_order');
             $table->string('price');
-//            $table->timestamps();
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
