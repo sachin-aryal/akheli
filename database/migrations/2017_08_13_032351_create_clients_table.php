@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string("email");
             $table->string("photo");
             $table->integer("user_id")->unsigned();
-//            $table->timestamps();
+            $table->timestamps();
         });
         Schema::table('clients', function($table) {
             $table->engine = 'InnoDB';

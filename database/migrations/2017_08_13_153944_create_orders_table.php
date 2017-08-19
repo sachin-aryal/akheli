@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string("status");
+            $table->timestamps();
         });
         Schema::table('orders', function($table) {
             $table->engine = 'InnoDB';
