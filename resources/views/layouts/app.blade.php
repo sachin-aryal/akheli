@@ -24,13 +24,15 @@
 
     </script>
     <meta charset="UTF-8">
-    <title>Admin LTE</title>
+    <title>AKHELI</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
     <script src="{{ asset('jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('jquery/jquery-ui.min.js') }}"></script>
@@ -47,9 +49,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>Ha</b>Ha</span>
+            <span class="logo-mini"><b>AKHELI</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>AKHELI</b></span>
         </a>
 
         <!-- Header Navbar -->
@@ -166,7 +168,12 @@
                             <!-- The user image in the navbar-->
                             <img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            @if (Auth::check())
+                                <span class="hidden-xs">Alexander Pierce</span>
+                                @if(auth()->user()->authorizeRoles(["admin"]))
+                                    <span>Admin Logged In</span>
+                                @endif
+                            @endif
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -244,28 +251,27 @@
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
+                <li class="header">MENU</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-user"></i> <span>User</span></a></li>
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+                    <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">Link in level 2</a></li>
-                        <li><a href="#">Link in level 2</a></li>
+                        <li><a href="/product/create">Add Product</a></li>
+                        <li><a href="/product">View Product</a></li>
                     </ul>
                 </li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Order</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
     </aside>
-    <div class="content-wrapper">
-
+    <div class="content-wrapper clearfix">
         @yield('content')
     </div>
 
