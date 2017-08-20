@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 use App\Client;
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Image;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -55,7 +57,6 @@ class RegisterController extends Controller
             'shop_name' => 'required|string|max:255',
             'phone_no' => 'required|number|max:9|min:7',
             "location" => 'required|string',
-
         ]);
     }
 
@@ -65,35 +66,35 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $data)
     {
         $user =  User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        $user->client= Client::create([
+        $path = "default.jpg";
+        if ($data->hasFile('photo')) {
+            $image = $data->file('photo');
+            $name = $data["email"].".jpg";
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+        }
+        $user->client=Client::create([
             'name'=>$data['name'],
             'shop_name'=>$data['shop_name'],
             'phone_no'=>$data['phone'],
             'location'=>$data['location'],
-            'email'=>$data['email'],
-            /*'photo'=>$data->file('profilePic'),*/
-            ]);
-        
-/*if(Input::hasFile('photo')){
-    $file = Input::file('photo');
-    $user=$file('photo');
- }*/
-  /*      $user
+            'user_id'=>$user->id,
+        ]);
+        $user
             ->roles()
             ->attach(Role::where('name', 'client')->first());
-*/
+
         return $user;
 
-        
-        
-    
+
+
+
     }
 }

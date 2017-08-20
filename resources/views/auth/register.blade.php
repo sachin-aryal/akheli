@@ -17,7 +17,7 @@
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
@@ -31,7 +31,7 @@
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
@@ -45,7 +45,7 @@
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
@@ -67,35 +67,35 @@
                                 <input id="shop_name" type="text" class="form-control" name="shop_name" value="{{ old('shop_name') }}" required autofocus>
 
                                 @if ($errors->has('shop_name'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                         <strong>{{ $errors->first('shop_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-<div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
                             <label for="location" class="col-md-4 control-label">Location</label>
 
                             <div class="col-md-6">
                                 <input id="location" type="text" class="form-control" name="location" value="{{ old('location') }}" required autofocus>
 
                                 @if ($errors->has('location'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                         <strong>{{ $errors->first('location') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-<div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone" class="col-md-4 control-label">Phone Number:</label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
 
                                 @if ($errors->has('phone'))
-                                    <span class="help-block">
+                                <span class="help-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
@@ -104,7 +104,7 @@
 
 
 
-<div class="form-group">
+                        <div class="form-group">
                             <label for="photoc" class="col-md-4 control-label">Profile Picture</label>
 
                             <div class="col-md-6">
@@ -114,7 +114,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                            <input type="hidden" name="role" value="client">
+                                <input type="hidden" name="role" value="client">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>

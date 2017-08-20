@@ -12,6 +12,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var loginElement = document.getElementById("loginButton");
+            console.log("URL"+loginElement.href);
+            var currentURL = window.location.pathname;
+            var logURL = loginElement.href+"?rd="+currentURL;
+            loginElement.href = logURL
+
+        }, false);
+
+    </script>
 </head>
 <body>
     <div id="app">
@@ -43,12 +54,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('login') }}" id="loginButton">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->clientID->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
