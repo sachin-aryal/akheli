@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
+use App\Client;
 
 class UserTableSeeder extends Seeder
 {
@@ -27,5 +28,12 @@ class UserTableSeeder extends Seeder
         $manager->password = bcrypt('admin');
         $manager->save();
         $manager->roles()->attach($role_admin);
+        $manager->client=Client::create([
+            'name'=>"Admin",
+            'shop_name'=>"NO",
+            'phone_no'=>"NO",
+            'location'=>"NO",
+            'user_id'=>$manager->id,
+        ]);
     }
 }

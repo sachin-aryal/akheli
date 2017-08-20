@@ -21,28 +21,12 @@ Auth::routes();
 
 Route::get("/login",[ 'as' => 'login',function (Request $request){
     $requested_from = $request->rd;
+    if($requested_from == "/register"){
+        $requested_from = "/home";
+    }
     $request->session()->put('url.intended',$requested_from."/");
     return View::make('auth/login')->with('rpath', $requested_from);
 }]);
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test', 'HomeController@test_admin')->name('home');
-
-Route::post('user/{id}', function (Request $request, $id) {
-    // Get the file from the request
-    $file = $request->file('image');
-
-    // Get the contents of the file
-    $contents = $file->openFile()->fread($file->getSize());
-
-    // Store the contents to the database
-    $user = App\User::find($id);
-    $user->avatar = $contents;
-    $user->save();
-});
-
 Route::resource('product','ProductController');
-
-Route::get('product/create','ProductController@create');
-Route::get('product','ProductController@index');
-Route::get('product/edit','ProductController@edit');
-Route::get('product/detail','ProductController@detail');
+Route::get('user', 'UserController@index');

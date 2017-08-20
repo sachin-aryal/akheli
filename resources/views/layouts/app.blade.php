@@ -27,9 +27,17 @@
     <title>Admin LTE</title>
     <link rel="stylesheet" href="{{ asset('dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('jquery/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+
 </head>
 <body class="skin-blue sidebar-mini">
 
@@ -271,10 +279,5 @@
     <!-- This div must placed right after the sidebar for it to work-->
     <div class="control-sidebar-bg">asdfadsf</div>
 </div>
-
-<script src="jquery/jquery-ui.min.js"></script>
-<script src="jquery/jquery.min.js"></script>
-<script src="dist/js/adminlte.min.js"></script>
-<script src="bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
