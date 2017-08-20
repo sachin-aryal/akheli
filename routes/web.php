@@ -1,7 +1,9 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
+
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -17,6 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get("/login",[ 'as' => 'login',function (Request $request){
+    $requested_from = $request->rd;
+    $request->session()->put('url.intended',$requested_from."/");
+    return View::make('auth/login')->with('rpath', $requested_from);
+}]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test', 'HomeController@test_admin')->name('home');
 
