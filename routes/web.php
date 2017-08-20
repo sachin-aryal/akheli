@@ -30,3 +30,4 @@ Route::get("/login",[ 'as' => 'login',function (Request $request){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('product','ProductController');
 Route::get('user', 'UserController@index');
+Route::post('user/status', 'UserController@userStatus');

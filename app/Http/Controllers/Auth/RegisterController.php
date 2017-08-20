@@ -71,6 +71,7 @@ class RegisterController extends Controller
         $user =  User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'enabled' => true,
         ]);
 
         $path = "default.jpg";
