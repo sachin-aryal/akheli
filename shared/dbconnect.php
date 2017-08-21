@@ -6,18 +6,12 @@
  
  define('DBHOST', 'localhost');
  define('DBUSER', 'root');
- define('DBPASS', '');
+ define('DBPASS', 'root');
  define('DBNAME', 'akheli');
  
- $conn = mysql_connect(DBHOST,DBUSER,DBPASS);
- $dbcon = mysql_select_db(DBNAME);
- global $conn;
- 
+ $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
+
  if ( !$conn ) {
-  die("Connection failed : " . mysql_error());
- }
- 
- if ( !$dbcon ) {
-  die("Database Connection failed : " . mysql_error());
+  die("Connection failed : " . $conn->error);
  }
  ?>
