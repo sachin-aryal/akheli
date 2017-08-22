@@ -5,7 +5,7 @@
     <title>Create a product</title>
 </head>
 <body>
-<form action="../controller/product.php" enctype="multipart/form-data">
+<form action="../controller/product.php" enctype="multipart/form-data" method="post">
     <label for="category">Category:</label>
     <input type="text" name="category">
 

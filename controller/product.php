@@ -8,20 +8,21 @@
 include "../shared/common.php";
 include "../shared/dbconnect.php";
 
-if(isset($_REQUEST['submit'])) {
-    $category= $_REQUEST['category'];
-    $size = $_REQUEST['size'];
-    $color = $_REQUEST['color'];
-    $description = $_REQUEST['description'];
-    $min_order = $_REQUEST['min_order'];
-    $price = $_REQUEST['price'];
-    if (isset($_REQUEST['product_image'])) {
-        $target_dir = "assets/images/";
+if(isset($_POST['submit'])) {
+    $category= $_POST['category'];
+    $size = $_POST['size'];
+    $color = $_POST['color'];
+    $description = $_POST['description'];
+    $min_order = $_POST['min_order'];
+    $price = $_POST['price'];
+    $imageName = "Not Available";
+    if (isset($_FILES['product_image'])) {
+        $target_dir = "../assets/images/";
 
         $uploadOk = 1;
+        $imageName = getRandomString(25).".jpg";
+        $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-        echo $imageFileType;
-        $target_file = $target_dir.getRandomString().$imageFileType;
 
 
 
@@ -55,15 +56,13 @@ if(isset($_REQUEST['submit'])) {
 
     $stmt= $conn->prepare('Insert into products(category,size,color,description,min_order,price,image) VALUES (?,?,?,?,?,?,?)');
 
-    $stmt->bind_param('sssssss', $category,$size,$color,$description,$min_order,$price,$image);
+    $stmt->bind_param('sssssss', $category,$size,$color,$description,$min_order,$price,$imageName);
 
     if($stmt->execute()){
         echo "data inserted";
     }else{
         echo "data not inserted";
     }
-    echo $this->db->conn->error_list;
-
 
 
 }
