@@ -37,10 +37,10 @@ function checkEmail($conn,$email){
     if($result->num_rows > 0){
         return true;
     }
-    return true;
+    return false;
 }
 
-function checkEmailEdit($conn,$email,$user_id){
+function checkEmailEdit($conn,$email,$user_id) {
     $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ? and id != ?");
     $stmt->bind_param('si',$email,$user_id);
     $stmt->execute();
@@ -48,5 +48,19 @@ function checkEmailEdit($conn,$email,$user_id){
     if($result->num_rows > 0){
         return true;
     }
-    return true;
+    return false;
+}
+
+function checkUser($conn,$username,$password) {
+    $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ? and password = ?");
+    $stmt->bind_param("ss", $username, $password);
+    if ($stmt->execute()) {
+        $user = $stmt->get_result();
+        if ($user->num_rows > 0) {
+            return $user;
+        } else {
+            return false;
+        }
+    }
+    return false;
 }

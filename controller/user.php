@@ -8,8 +8,12 @@
 
 include '../shared/dbconnect.php';
 include '../shared/common.php';
+session_start();
 if (isset($_POST["register"])) {
-
+    if(!isset($_POST["name"])){
+        header("Location:../user/register.php");
+        return;
+    }
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
@@ -78,5 +82,32 @@ if (isset($_POST["register"])) {
         return;
     }
 
+}else if($_POST["login"]){
+    if(!isset($_POST["username"])){
+        header("Location:../user/login.php");
+        return;
+    }
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $password = hash("sha256",$password);
+    $userResult = checkUser($conn,$username,$password);
+    if($userResult){
+        $user = mysqli_fetch_assoc($userResult);
+        if($user["enabled"] == 0){
+            header("Location:../user/login.php?message = user is disabled.");
+            return;
+        }
+        $_SESSION["username"] = $user["email"];
+        $_SESSION["role"] = $user["role"];
+        $_SESSION["user_id"] = $user["id"];
+        header("Location:../index.php");
+        return;
+    }
+    header("Location:../user/login.php?message = username and password did not match.");
+    return;
+}else if($_POST["logout"]){
+    session_destroy();
+    header("Location:../index.php");
+    return;
 }
 ?>
