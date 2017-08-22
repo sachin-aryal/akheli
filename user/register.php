@@ -9,7 +9,6 @@
     include '_client_form.php';
     ?>
 <input type="submit" name="register" value="Register">
-<input type="reset" name="reset" value="Reset">
 </form>
 </body>
 </html>

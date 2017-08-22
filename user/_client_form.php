@@ -7,19 +7,19 @@
  */
 ?>
 <label>Name:</label>
-<input type="text" name="name" required />
+<input type="text" name="name" required value="<?php echo $client["name"] ?>" />
 
 <label>Email:</label>
-<input type="Email" name="email" required />
+<input type="Email" name="email" required  value="<?php echo $user["email"] ?>"/>
 
 <label>Password:</label>
-<input type="Password" name="password" required />
+<input type="Password" name="password" required"/>
 
 <label>Shop Name:</label>
-<input type="text" name="shop_name" required />
+<input type="text" name="shop_name" required value="<?php echo $client["shop_name"] ?>"/>
 
 <label>Contact Number:</label>
-<input type="number" name="phone_no" required />
+<input type="text" name="phone_no" required value="<?php echo $client["phone_no"] ?>"/>
 
 <label>Location:</label>
-<input type="text" name="location" required />
+<input type="text" name="location" required value="<?php echo $client["location"] ?>"/>

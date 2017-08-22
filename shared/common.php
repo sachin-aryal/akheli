@@ -20,3 +20,33 @@ function getClient($conn,$user_id){
     }
     return [];
 }
+
+function getUser($conn,$condition){
+    $user = $conn->query("SELECT *FROM USERS WHERE $condition");
+    if($user->num_rows > 0){
+        return mysqli_fetch_assoc($user);
+    }
+    return [];
+}
+
+function checkEmail($conn,$email){
+    $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ?");
+    $stmt->bind_param('s',$email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows > 0){
+        return true;
+    }
+    return true;
+}
+
+function checkEmailEdit($conn,$email,$user_id){
+    $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ? and id != ?");
+    $stmt->bind_param('si',$email,$user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows > 0){
+        return true;
+    }
+    return true;
+}
