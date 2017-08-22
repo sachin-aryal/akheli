@@ -9,7 +9,8 @@
 include "../shared/common.php";
 include "../shared/dbconnect.php";
 include "../shared/resource.php";
-
+include "../shared/auth.php";
+redirectIfNotAdmin("../index.php");
 $usersList = getUserList($conn);
 $clientList = [];
 $i=0;
@@ -27,6 +28,7 @@ foreach ($usersList as $user){
 </script>
 </head>
 <body>
+<?php include "../shared/_header.php"?>
 <table id="userList">
     <thead>
     <tr>

@@ -47,6 +47,17 @@ if (isset($_POST["register"])) {
     }
 
 }else if($_POST["update"]){
+    $user_id = $_POST["id"];
+    $allowed = false;
+    if(isset($_SESSION["user_id"])){
+        if($_SESSION["user_id"] == $user_id){
+            $allowed = true;
+        }
+    }
+    if(!$allowed){
+        header("Location:../index.php");
+        return;
+    }
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
@@ -54,7 +65,6 @@ if (isset($_POST["register"])) {
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
 
-    $user_id = $_POST["id"];
     if(checkEmailEdit($conn,$email,$user_id)){
         header("Location:../user/edit.php?message=email address already used.");
         return;
