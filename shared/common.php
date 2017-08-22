@@ -37,10 +37,10 @@ function checkEmail($conn,$email){
     if($result->num_rows > 0){
         return true;
     }
-    return false;
+    return true;
 }
 
-function checkEmailEdit($conn,$email,$user_id) {
+function checkEmailEdit($conn,$email,$user_id){
     $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ? and id != ?");
     $stmt->bind_param('si',$email,$user_id);
     $stmt->execute();
@@ -63,4 +63,12 @@ function checkUser($conn,$username,$password) {
         }
     }
     return false;
+}
+function getRandomString(){
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $result = '';
+    for ($i = 0; $i < 5; $i++){
+        $result .= $characters[mt_rand(0, 61)];
+    }
+    return $result;
 }
