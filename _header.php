@@ -1,23 +1,3 @@
-<header>
-    <a href="index.php">Home</a>
-    <?php
-    include "shared/auth.php";
-    if(isset($_SESSION["username"])) {
-        ?>
-        <h2>Welcome <?php echo $_SESSION["username"] ?></h2>
-        <form action="controller/user.php" method="post">
-            <input type="submit" name="logout" value="Logout"/>
-        </form>
-        <?php if(checkIfAdmin()){ ?>
-        <a href="controller/user.php">User List</a>
-        <a href="controller/product.php">Product List</a>
-    <?php }} else { ?>
-        <form action="controller/user.php" method="post">
-            <input type="submit" name="login" value="Login"/>
-            <input type="submit" name="register" value="Register"/>
-        </form>
-    <?php } ?>
-</header>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,33 +12,33 @@
 </head>
 <body>
 <div class="top-info-bar clearfix">
-<div class="container">
-    <div class="pull-left">
-        <span>9860068421</span>
-    </div>
-    <div class="pull-right">
+    <div class="container">
+        <div class="pull-left">
+            <span>9860068421</span>
+        </div>
+        <div class="pull-right">
 
-        <?php
-        /**
-         * Created by PhpStorm.
-         * User: sachin
-         * Date: 8/21/17
-         * Time: 10:05 AM
-         */
-        if(isset($_SESSION["username"])) {
-            ?>
-            <h2>Welcome <?php echo $_SESSION["username"] ?></h2>
-            <form action="controller/user.php" method="post">
-                <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
-            </form>
-        <?php } else { ?>
-            <form action="controller/user.php" method="post">
-                <input class="btn-form-input" type="submit" name="login" value="Login"/>
-                <input class="btn-form-input" type="submit" name="register" value="Register"/>
-            </form>
-        <?php } ?>
+            <?php
+            /**
+             * Created by PhpStorm.
+             * User: sachin
+             * Date: 8/21/17
+             * Time: 10:05 AM
+             */
+            if(isset($_SESSION["username"])) {
+                ?>
+                <h2>Welcome <?php echo $_SESSION["username"] ?></h2>
+                <form action="controller/user.php" method="post">
+                    <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
+                </form>
+            <?php } else { ?>
+                <form action="controller/user.php" method="post">
+                    <input class="btn-form-input" type="submit" name="login" value="Login"/>
+                    <input class="btn-form-input" type="submit" name="register" value="Register"/>
+                </form>
+            <?php } ?>
+        </div>
     </div>
-</div>
 </div>
 <nav class="navbar main-menu">
     <div class="container">
@@ -177,9 +157,9 @@
     </div>
 </div>
 
-    <div class="new-section bg-gray">
-        <h2 class="title">New Arrival</h2>
-        <div class="container">
+<div class="new-section bg-gray">
+    <h2 class="title">New Arrival</h2>
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="product-wrapper">
@@ -314,8 +294,8 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
+</div>
 
 
 </body>
