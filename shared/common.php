@@ -89,3 +89,23 @@ function getProductInfo($conn,$id){
     }
     return [] ;
 }
+
+function deleteProduct($conn,$id){
+    $imageLocation= getImageLocation($conn,$id);
+    $imageName = $imageLocation['image'];
+    if(unlink($imageName)) {
+
+        $sql = "DELETE FROM products WHERE id=$id";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully";
+        } else {
+            echo "Error deleting record: " . $conn->error;
+        }
+    }else{
+        echo 'image could not be deleted';
+    }
+    $conn->close();
+    return;
+
+}

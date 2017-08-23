@@ -77,6 +77,12 @@ if(isset($_POST['edit_product'])){
     header("Location:../product/edit.php?id=$id");
     return;
 }
+if(isset($_GET['delete'])){
+    $id=$_GET['id'];
+    deleteProduct($conn,$id);
+    header("Location:../product/list.php");
+
+}
 
 if(isset($_POST['update_product'])) {
 
