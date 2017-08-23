@@ -8,7 +8,7 @@
 function getUserList($conn){
     $users = $conn->query("SELECT *FROM USERS");
     if ($users->num_rows > 0) {
-       return mysqli_fetch_all($users,MYSQLI_ASSOC);
+        return mysqli_fetch_all($users,MYSQLI_ASSOC);
     }
     return [];
 }
@@ -37,7 +37,7 @@ function checkEmail($conn,$email){
     if($result->num_rows > 0){
         return true;
     }
-    return true;
+    return false;
 }
 
 function checkEmailEdit($conn,$email,$user_id){
@@ -71,4 +71,34 @@ function getRandomString($l = 15){
         $result .= $characters[mt_rand(0, 61)];
     }
     return $result;
+}
+function getProductList($conn){
+    $products = $conn->query("SELECT * FROM products");
+    if ($products->num_rows > 0) {
+        return mysqli_fetch_all($products,MYSQLI_ASSOC);
+    }
+    return [];
+}
+function getProductInfo($conn,$id){
+    $product= $conn->query("Select * FROM products where id=$id");
+
+    if($product->num_rows > 0){
+
+        return mysqli_fetch_assoc($product);
+
+    }
+    return [] ;
+}
+
+function deleteProduct($conn,$id){
+    $imageLocation= getProductInfo($conn,$id);
+    $imageName = $imageLocation['image'];
+    $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+        unlink("../assets/images/".$imageName);
+        return true;
+    }
+    return false;
+
 }
