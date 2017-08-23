@@ -5,12 +5,13 @@
  * Date: 8/21/17
  * Time: 10:38 PM
  */
+session_start();
+include "../shared/auth.php";
+redirectIfNotAdmin("../index.php");
 
 include "../shared/common.php";
 include "../shared/dbconnect.php";
 include "../shared/resource.php";
-include "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
 $usersList = getUserList($conn);
 $clientList = [];
 $i=0;

@@ -6,6 +6,10 @@
  * Time: 10:03 AM
  */
 
+session_start();
+include "../shared/auth.php";
+redirectIfNotAdmin("../index.php");
+
 include '../shared/dbconnect.php';
 include '../shared/common.php';
 session_start();
@@ -24,7 +28,8 @@ if (isset($_POST["register"])) {
     $role = "akheli_client";
     $enabled = 1;
     if(checkEmail($conn,$email)){
-        header("Location:../user/register.php?message=email address already used.");
+        $_SESSION["message"] = "Email address already used.";
+        header("Location:../user/register.php");
         return;
     }
     $stmt = $conn->prepare('INSERT INTO USERS(email,password,role,enabled) VALUES (?,?,?,?)');
@@ -39,10 +44,12 @@ if (isset($_POST["register"])) {
             $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
             $stmt->bind_param('s',$email);
             $stmt->execute();
-            header("Location:../user/register.php?message=message while creating user.");
+            $_SESSION["message"] = "Error while creating user.";
+            header("Location:../user/register.php");
         }
     }else{
-        header("Location:../user/register.php?message=$conn->error");
+        $_SESSION["message"] = $conn->error;
+        header("Location:../user/register.php");
         return;
     }
 
@@ -66,7 +73,8 @@ if (isset($_POST["register"])) {
     $location=$_POST['location'];
 
     if(checkEmailEdit($conn,$email,$user_id)){
-        header("Location:../user/edit.php?message=email address already used.");
+        $_SESSION["message"] = "Email address already used.";
+        header("Location:../user/edit.php");
         return;
     }
     $user = getUser($conn,$user_id);
@@ -81,14 +89,17 @@ if (isset($_POST["register"])) {
         $stmt = $conn->prepare("UPDATE CLIENTS set name = ?, shop_name = ?, phone_no = ?, location = ? WHERE user_id = ?");
         $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id);
         if($stmt->execute()){
-            header("Location:../user/edit.php?message=user information updated successfully.");
+            $_SESSION["message"] = "User information updated successfully.";
+            header("Location:../user/edit.php");
             return;
         }else{
-            header("Location:../user/edit.php?message=some error occurred updating user information.");
+            $_SESSION["message"] = "Some error occurred updating user information.";
+            header("Location:../user/edit.php");
             return;
         }
     }else{
-        header("Location:../user/edit.php?message=some error occurred updating user information.");
+        $_SESSION["message"] = "Some error occurred updating user information.";
+        header("Location:../user/edit.php");
         return;
     }
 
@@ -104,7 +115,8 @@ if (isset($_POST["register"])) {
     if($userResult){
         $user = mysqli_fetch_assoc($userResult);
         if($user["enabled"] == 0){
-            header("Location:../user/login.php?message = user is disabled.");
+            $_SESSION["message"] = "User is disabled.";
+            header("Location:../user/login.php");
             return;
         }
         $_SESSION["username"] = $user["email"];
@@ -113,11 +125,14 @@ if (isset($_POST["register"])) {
         header("Location:../index.php");
         return;
     }
-    header("Location:../user/login.php?message = username and password did not match.");
+    $_SESSION["message"] = "username and password did not match.";
+    header("Location:../user/login.php");
     return;
 }else if($_POST["logout"]){
     session_destroy();
     header("Location:../index.php");
     return;
+}else{
+    header("Location:../user/index.php");
 }
 ?>

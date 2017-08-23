@@ -7,7 +7,10 @@ if(isset($_SESSION["username"])) {
     <form action="../controller/user.php" method="post">
         <input type="submit" name="logout" value="Logout"/>
     </form>
-<?php } else { ?>
+    <?php if(checkIfAdmin()){ ?>
+    <a href="../controller/user.php">User List</a>
+    <a href="../controller/product.php">Product List</a>
+<?php }} else { ?>
     <form action="../controller/user.php" method="post">
         <input type="submit" name="login" value="Login"/>
         <input type="submit" name="register" value="Register"/>

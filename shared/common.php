@@ -37,7 +37,7 @@ function checkEmail($conn,$email){
     if($result->num_rows > 0){
         return true;
     }
-    return true;
+    return false;
 }
 
 function checkEmailEdit($conn,$email,$user_id){
@@ -88,13 +88,4 @@ function getProductInfo($conn,$id){
 
     }
     return [] ;
-}
-
-function getImageLocation($conn,$id){
-    $product=$conn->query("Select image from products where id=$id");
-
-    if($product->num_rows>0){
-        return mysqli_fetch_assoc($product);
-    }
-    return [];
 }
