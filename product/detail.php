@@ -23,7 +23,7 @@ $product=getProductInfo($conn,$_GET['id']);
 </head>
 <body>
 <?php include "../shared/_header.php"?>
-
+<a href="create.php">Create Product</a>
 <h2>Product Detail</h2>
 <ul style="list-style: none">
     <img src="../assets/images/<?php echo $product['image'] ?>" height="200" width="200">

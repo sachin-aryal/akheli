@@ -77,10 +77,14 @@ if(isset($_POST['edit_product'])){
     header("Location:../product/edit.php?id=$id");
     return;
 }
-if(isset($_GET['delete'])){
-    $id=$_GET['id'];
-    deleteProduct($conn,$id);
-    header("Location:../product/list.php");
+if(isset($_POST['delete_product'])){
+    $id = $_POST['id'];
+    if(deleteProduct($conn,$id)){
+        $_SESSION["message"] = "Product Deleted successfully.";
+    }else{
+        $_SESSION["message"] = "Error while deleting product.";
+    }
+    header("Location:../product/index.php");
 
 }
 

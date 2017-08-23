@@ -23,6 +23,7 @@ $product=getProductInfo($conn,$_GET['id']);
 </head>
 <body>
 <?php include "../shared/_header.php"?>
+<a href="create.php">Create Product</a>
 <h2>Edit Product Detail</h2>
 <form action="../controller/product.php" enctype="multipart/form-data" method="post">
     <?php include "_product_form.php"?>

@@ -8,7 +8,7 @@
 function getUserList($conn){
     $users = $conn->query("SELECT *FROM USERS");
     if ($users->num_rows > 0) {
-       return mysqli_fetch_all($users,MYSQLI_ASSOC);
+        return mysqli_fetch_all($users,MYSQLI_ASSOC);
     }
     return [];
 }
@@ -91,21 +91,14 @@ function getProductInfo($conn,$id){
 }
 
 function deleteProduct($conn,$id){
-    $imageLocation= getImageLocation($conn,$id);
+    $imageLocation= getProductInfo($conn,$id);
     $imageName = $imageLocation['image'];
-    if(unlink($imageName)) {
-
-        $sql = "DELETE FROM products WHERE id=$id";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
-            echo "Error deleting record: " . $conn->error;
-        }
-    }else{
-        echo 'image could not be deleted';
+    $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+        unlink("../assets/images/".$imageName);
+        return true;
     }
-    $conn->close();
-    return;
+    return false;
 
 }

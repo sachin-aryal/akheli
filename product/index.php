@@ -21,7 +21,7 @@ $productList=getProductList($conn);
 </head>
 <body>
 <?php include "../shared/_header.php"?>
-
+<a href="create.php">Create Product</a>
 <h2>Product List</h2>
 <?php
 foreach ($productList as $product){
