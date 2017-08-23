@@ -72,3 +72,29 @@ function getRandomString($l = 15){
     }
     return $result;
 }
+function getProductList($conn){
+    $products = $conn->query("SELECT * FROM products");
+    if ($products->num_rows > 0) {
+        return mysqli_fetch_all($products,MYSQLI_ASSOC);
+    }
+    return [];
+}
+function getProductInfo($conn,$id){
+    $product= $conn->query("Select * FROM products where id=$id");
+
+    if($product->num_rows > 0){
+
+        return mysqli_fetch_assoc($product);
+
+    }
+    return [] ;
+}
+
+function getImageLocation($conn,$id){
+    $product=$conn->query("Select image from products where id=$id");
+
+    if($product->num_rows>0){
+        return mysqli_fetch_assoc($product);
+    }
+    return [];
+}
