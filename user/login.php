@@ -23,9 +23,9 @@ redirectIfLoggedIn("../index.php")
 
 
     <div class="absolute-center">
-        <div class="col-md-6 no-padding">
-            <img src="../public/img/ecommerce.jpg" alt="">
-        </div>
+<!--        <div class="col-md-6 no-padding">-->
+<!--            <img src="../public/img/ecommerce.jpg" alt="">-->
+<!--        </div>-->
         <div class="col-md-6 clearfix">
             <div class="absolute-center">
             <h2 class="title">Akheli</h2>
@@ -42,7 +42,7 @@ redirectIfLoggedIn("../index.php")
                         <input class="form-control" type="password" name="password" id="password"/>
                     </div>
                 </div>
-                <input class="btn btn-view btn-block" type="submit" name="login" value="Login"/>
+                <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
             </form>
                 <div class="pull-left">
                     <a href="#">Forgot Password</a>

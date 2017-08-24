@@ -34,11 +34,17 @@ body, h1, h2, h3, h4, h5, h6, a{
     position: relative;
    height: 500px;
     color: #fff;
-    background-color: rgba(28, 28, 29, 0.9);
+    background-color: rgba(28, 28, 29, 0.5);
 }
 
 .login-wrapper .absolute-center .col-md-6 label{
     font-size: 20px;
+}
+
+.btn-login{
+    border: 2px solid #fcfcfc;
+    border-radius: 0;
+    background-color: transparent;
 }
 
 .login-wrapper .absolute-center .col-md-6 input{
