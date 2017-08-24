@@ -5,7 +5,7 @@
  * Date: 8/21/17
  * Time: 10:32 PM
  */
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 redirectIfLoggedIn("../index.php")
 ?>

@@ -1,7 +1,11 @@
 <?php
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfLoggedIn("../index.php")
+redirectIfLoggedIn("../index.php");
+ini_set('display_errors','Off');
+ini_set('error_reporting', E_ALL );
+define('WP_DEBUG', false);
+define('WP_DEBUG_DISPLAY', false);
 ?>
 <!DOCTYPE html>
 <html>

@@ -5,7 +5,7 @@
  * Date: 8/22/2017
  * Time: 11:00 PM
  */
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
