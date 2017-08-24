@@ -19,19 +19,13 @@
         <div class="pull-right">
 
             <?php
-            /**
-             * Created by PhpStorm.
-             * User: sachin
-             * Date: 8/21/17
-             * Time: 10:05 AM
-             */
             if(isset($_SESSION["username"])) {
                 ?>
                 <h2>Welcome <?php echo $_SESSION["username"] ?></h2>
                 <form action="controller/user.php" method="post">
                     <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
                 </form>
-            <?php } else { ?>
+                <?php } else { ?>
                 <form action="controller/user.php" method="post">
                     <input class="btn-form-input" type="submit" name="login" value="Login"/>
                     <input class="btn-form-input" type="submit" name="register" value="Register"/>
@@ -61,8 +55,10 @@
                         <li><a href="#">Page 1-3</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <?php if(checkIfAdmin()) { ?>
+                    <li><a href="controller/user.php">User List</a></li>
+                    <li><a href="controller/product.php">Product List</a></li>
+                    <?php } ?>
             </ul>
         </div>
     </div>

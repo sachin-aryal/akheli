@@ -11,7 +11,6 @@ redirectIfNotAdmin("../index.php");
 
 include "../shared/common.php";
 include "../shared/dbconnect.php";
-include "../shared/resource.php";
 $usersList = getUserList($conn);
 $clientList = [];
 $i=0;
@@ -22,14 +21,27 @@ foreach ($usersList as $user){
 
 <html>
 <head>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#userList").DataTable();
-    })
-</script>
+    <script type="text/javascript">
+        (function defer() {
+            if (window.jQuery) {
+                if (!$.fn.dataTableExt) {
+                    setTimeout(function() { defer() }, 50);
+                } else {
+                    $("#userList").DataTable();
+                }
+            } else {
+                setTimeout(function() { defer() }, 50);
+            }
+        })();
+
+    </script>
 </head>
 <body>
-<?php include "../shared/_header.php"?>
+<?php
+include "../shared/_header.php";
+include "../shared/datatable.php";
+?>
+
 <table id="userList">
     <thead>
     <tr>
@@ -42,13 +54,13 @@ foreach ($usersList as $user){
     <?php
     $i = 0;
     foreach ($usersList as $user){
-    ?>
+        ?>
         <tr>
             <td><?php echo $user["email"] ?></td>
             <td><?php echo $clientList[$i]["name"] ?></td>
             <td><?php echo $clientList[$i++]["shop_name"] ?></td>
         </tr>
-    <?php
+        <?php
     }
     ?>
     </tbody>

@@ -11,7 +11,7 @@ include "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
 include '../shared/dbconnect.php';
-include '../shared/resource.php';
+include '../shared/datatable.php';
 include '../shared/common.php';
 
 $product=getProductInfo($conn,$_GET['id']);
