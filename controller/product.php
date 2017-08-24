@@ -5,13 +5,13 @@
  * Date: 8/22/2017
  * Time: 4:28 PM
  */
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
 include_once "../shared/common.php";
 include_once "../shared/dbconnect.php";
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 
 if(isset($_POST['save_product'])) {
     $category= $_POST['category'];

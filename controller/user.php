@@ -6,13 +6,13 @@
  * Time: 10:03 AM
  */
 
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
-session_start();
+if(!isset($_SESSION)){session_start();} ;
 if (isset($_POST["register"])) {
     if(!isset($_POST["name"])){
         header("Location:../user/register.php");
