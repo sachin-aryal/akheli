@@ -5,7 +5,9 @@
  * Date: 8/21/17
  * Time: 10:38 PM
  */
-if(!isset($_SESSION)){session_start();} ;
+if (!isset($_SESSION)) {
+    session_start();
+};
 include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
@@ -13,9 +15,9 @@ include_once "../shared/common.php";
 include_once "../shared/dbconnect.php";
 $usersList = getUserList($conn);
 $clientList = [];
-$i=0;
-foreach ($usersList as $user){
-    $clientList[$i++] = getClient($conn,$user["id"]);
+$i = 0;
+foreach ($usersList as $user) {
+    $clientList[$i++] = getClient($conn, $user["id"]);
 }
 ?>
 
@@ -25,12 +27,16 @@ foreach ($usersList as $user){
         (function defer() {
             if (window.jQuery) {
                 if (!$.fn.dataTableExt) {
-                    setTimeout(function() { defer() }, 50);
+                    setTimeout(function () {
+                        defer()
+                    }, 50);
                 } else {
                     $("#userList").DataTable();
                 }
             } else {
-                setTimeout(function() { defer() }, 50);
+                setTimeout(function () {
+                    defer()
+                }, 50);
             }
         })();
 
@@ -53,7 +59,7 @@ include_once "../shared/datatable.php";
     <tbody>
     <?php
     $i = 0;
-    foreach ($usersList as $user){
+    foreach ($usersList as $user) {
         ?>
         <tr>
             <td><?php echo $user["email"] ?></td>

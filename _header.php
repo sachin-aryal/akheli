@@ -3,6 +3,7 @@ ini_set('display_errors','Off');
 ini_set('error_reporting', E_ALL );
 define('WP_DEBUG', false);
 define('WP_DEBUG_DISPLAY', false);
+if(!isset($_SESSION)){session_start();}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,24 +28,25 @@ define('WP_DEBUG_DISPLAY', false);
     </script>
 </head>
 <?php
-if(!isset($_SESSION)){session_start();}
 include_once "shared/auth.php";
 ?>
 <body>
-<div class="top-info-bar clearfix">
-    <div class="container">
+<div class="top-info-bar">
+    <div class="container clearfix">
         <div class="pull-left">
             <span>9860068421</span>
         </div>
-        <div class="pull-right">
+        <div class="pull-right clearfix">
 
             <?php
             if(isset($_SESSION["username"])) {
                 ?>
-                <h2>Welcome <?php echo $_SESSION["username"] ?></h2>
-                <form action="controller/user.php" method="post">
+                <form class="pull-right" action="controller/user.php" method="post">
                     <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
                 </form>
+
+                <span class="pull-right">Welcome <?php echo $_SESSION["username"] ?></span>
+
                 <?php } else { ?>
                 <form action="controller/user.php" method="post">
                     <input class="btn-form-input" type="submit" name="login" value="Login"/>

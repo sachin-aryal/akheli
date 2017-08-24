@@ -130,6 +130,13 @@ if (isset($_POST["register"])) {
         $_SESSION["username"] = $user["email"];
         $_SESSION["role"] = $user["role"];
         $_SESSION["user_id"] = $user["id"];
+        if($user["role"] == ROLE_CLIENT){
+            header("Location:../dashboard.php");
+            return;
+        }else if($user["role"] == ROLE_ADMIN){
+            header("Location:../admin.php");
+            return;
+        }
         header("Location:../index.php");
         return;
     }
