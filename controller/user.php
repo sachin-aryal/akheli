@@ -7,11 +7,11 @@
  */
 
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
-include '../shared/dbconnect.php';
-include '../shared/common.php';
+include_once '../shared/dbconnect.php';
+include_once '../shared/common.php';
 session_start();
 if (isset($_POST["register"])) {
     if(!isset($_POST["name"])){
@@ -28,6 +28,7 @@ if (isset($_POST["register"])) {
     $role = "akheli_client";
     $enabled = 1;
     if(checkEmail($conn,$email)){
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Email address already used.";
         header("Location:../user/register.php");
         return;
@@ -44,10 +45,12 @@ if (isset($_POST["register"])) {
             $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
             $stmt->bind_param('s',$email);
             $stmt->execute();
+            $_SESSION["messageType"] = "error";
             $_SESSION["message"] = "Error while creating user.";
             header("Location:../user/register.php");
         }
     }else{
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = $conn->error;
         header("Location:../user/register.php");
         return;
@@ -73,6 +76,7 @@ if (isset($_POST["register"])) {
     $location=$_POST['location'];
 
     if(checkEmailEdit($conn,$email,$user_id)){
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Email address already used.";
         header("Location:../user/edit.php");
         return;
@@ -89,15 +93,18 @@ if (isset($_POST["register"])) {
         $stmt = $conn->prepare("UPDATE CLIENTS set name = ?, shop_name = ?, phone_no = ?, location = ? WHERE user_id = ?");
         $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id);
         if($stmt->execute()){
+            $_SESSION["messageType"] = "success";
             $_SESSION["message"] = "User information updated successfully.";
             header("Location:../user/edit.php");
             return;
         }else{
+            $_SESSION["messageType"] = "error";
             $_SESSION["message"] = "Some error occurred updating user information.";
             header("Location:../user/edit.php");
             return;
         }
     }else{
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Some error occurred updating user information.";
         header("Location:../user/edit.php");
         return;
@@ -115,6 +122,7 @@ if (isset($_POST["register"])) {
     if($userResult){
         $user = mysqli_fetch_assoc($userResult);
         if($user["enabled"] == 0){
+            $_SESSION["messageType"] = "error";
             $_SESSION["message"] = "User is disabled.";
             header("Location:../user/login.php");
             return;
@@ -125,6 +133,7 @@ if (isset($_POST["register"])) {
         header("Location:../index.php");
         return;
     }
+    $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "username and password did not match.";
     header("Location:../user/login.php");
     return;

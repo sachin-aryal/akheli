@@ -6,11 +6,11 @@
  * Time: 10:38 PM
  */
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
-include "../shared/common.php";
-include "../shared/dbconnect.php";
+include_once "../shared/common.php";
+include_once "../shared/dbconnect.php";
 $usersList = getUserList($conn);
 $clientList = [];
 $i=0;
@@ -38,8 +38,8 @@ foreach ($usersList as $user){
 </head>
 <body>
 <?php
-include "../shared/_header.php";
-include "../shared/datatable.php";
+include_once "../shared/_header.php";
+include_once "../shared/datatable.php";
 ?>
 
 <table id="userList">

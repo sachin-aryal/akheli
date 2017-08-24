@@ -6,12 +6,12 @@
  * Time: 11:00 PM
  */
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
-include '../shared/dbconnect.php';
-include '../shared/datatable.php';
-include '../shared/common.php';
+include_once '../shared/dbconnect.php';
+include_once '../shared/datatable.php';
+include_once '../shared/common.php';
 
 $productList=getProductList($conn);
 ?>
@@ -20,7 +20,7 @@ $productList=getProductList($conn);
 
 </head>
 <body>
-<?php include "../shared/_header.php"?>
+<?php include_once "../shared/_header.php"?>
 <a href="create.php">Create Product</a>
 <h2>Product List</h2>
 <?php

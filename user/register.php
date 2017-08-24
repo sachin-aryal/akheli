@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfLoggedIn("../index.php")
 ?>
 <!DOCTYPE html>
@@ -9,10 +9,10 @@ redirectIfLoggedIn("../index.php")
 	<title>Register</title>
 </head>
 <body>
-<?php include "../shared/_header.php"?>
+<?php include_once "../shared/_header.php"?>
 <form method="post" action="../controller/user.php" enctype="multipart/form-data">
     <?php
-    include '_client_form.php';
+    include_once '_client_form.php';
     ?>
 <input type="submit" name="register" value="Register">
 </form>

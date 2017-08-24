@@ -6,7 +6,7 @@
  * Time: 10:32 PM
  */
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfLoggedIn("../index.php")
 ?>
 <html>

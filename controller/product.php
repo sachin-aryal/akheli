@@ -6,11 +6,11 @@
  * Time: 4:28 PM
  */
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 
-include "../shared/common.php";
-include "../shared/dbconnect.php";
+include_once "../shared/common.php";
+include_once "../shared/dbconnect.php";
 session_start();
 
 if(isset($_POST['save_product'])) {
@@ -51,6 +51,7 @@ if(isset($_POST['save_product'])) {
         $errorMessage = "Image not found";
     }
     if($errorMessage !="no error"){
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = $errorMessage;
         header("Location:../product/create.php");
         return;
@@ -61,10 +62,12 @@ if(isset($_POST['save_product'])) {
     $stmt->bind_param('sssssss', $category,$size,$color,$description,$min_order,$price,$imageName);
 
     if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "New Product Created Successfully.";
         header("Location:../product/create.php");
         return;
     }else{
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Error while creating new product.";
         header("Location:../product/create.php");
         return;
@@ -80,8 +83,10 @@ if(isset($_POST['edit_product'])){
 if(isset($_POST['delete_product'])){
     $id = $_POST['id'];
     if(deleteProduct($conn,$id)){
+        $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "Product Deleted successfully.";
     }else{
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Error while deleting product.";
     }
     header("Location:../product/index.php");
@@ -130,6 +135,7 @@ if(isset($_POST['update_product'])) {
         $errorMessage = "Image not found";
     }
     if($errorMessage !="no error"){
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = $errorMessage;
         $imageName = $imageLocation["image"];
     }else{
@@ -140,10 +146,12 @@ if(isset($_POST['update_product'])) {
     $stmt->bind_param('sssssssi', $category,$size,$color,$description,$min_order,$price,$imageName,$id);
 
     if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "Product Updated Successfully.";
         header("Location:../product/edit.php?id=$id");
         return;
     }else{
+        $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Error while updating product.";
         header("Location:../product/edit.php?id=$id");
         return;
