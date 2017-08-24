@@ -10,6 +10,10 @@
     <script src="../public/jquery/jquery-ui.min.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
+<?php
+session_start();
+include "../shared/auth.php";
+?>
 <body>
 <div class="top-info-bar clearfix">
     <div class="container">
