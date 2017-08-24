@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once "../shared/auth.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +13,17 @@
     <script src="../public/jquery/jquery.min.js"></script>
     <script src="../public/jquery/jquery-ui.min.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/notify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if(isset($_SESSION["message"])){?>
+            $.notify('<?php echo $_SESSION["message"] ?>','<?php echo $_SESSION['messageType'] ?>');
+
+            <?php unset($_SESSION["message"]);unset($_SESSION["messageType"]); } ?>
+
+        });
+    </script>
 </head>
-<?php
-session_start();
-include "../shared/auth.php";
-?>
 <body>
 <div class="top-info-bar clearfix">
     <div class="container">

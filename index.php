@@ -6,4 +6,4 @@
  * Time: 10:04 AM
  */
 session_start();
-include "_header.php";
+include_once "_header.php";

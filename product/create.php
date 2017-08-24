@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../shared/auth.php";
+include_once "../shared/auth.php";
 redirectIfNotAdmin("../index.php");
 ?>
 
@@ -10,9 +10,9 @@ redirectIfNotAdmin("../index.php");
     <title>Create a product</title>
 </head>
 <body>
-<?php include "../shared/_header.php"?>
+<?php include_once "../shared/_header.php"?>
 <form action="../controller/product.php" enctype="multipart/form-data" method="post">
-    <?php include "_product_form.php"?>
+    <?php include_once "_product_form.php"?>
     <input type="submit" name="save_product" value="Save">
 </form>
 </body>
