@@ -9,7 +9,6 @@
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 include_once '../shared/dbconnect.php';
-include_once '../shared/datatable.php';
 include_once '../shared/common.php';
 
 $product_info_details = getProductInfo($conn,$_GET['id']);
