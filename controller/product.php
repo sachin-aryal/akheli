@@ -98,16 +98,13 @@ if(isset($_POST['delete_product'])){
 if(isset($_POST['update_product'])) {
     redirectIfNotAdmin();
     $id = $_POST['id'];
-
     $imageLocation= getProductInfo($conn,$id);
     $category= $_POST['category'];
-    $size = $_POST['size'];
-    $color = $_POST['color'];
     $description = $_POST['description'];
     $min_order = $_POST['min_order'];
-    $price = $_POST['price'];
     $imageName = $imageLocation['image'];
     $errorMessage = "no error";
+
     if (isset($_FILES['product_image'])) {
         $target_dir = "../assets/images/";
 
@@ -115,6 +112,7 @@ if(isset($_POST['update_product'])) {
         $imageName = getRandomString(25).".jpg";
         $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        echo $imageFileType;
         if (file_exists($target_file)) {
             $errorMessage =  "Sorry, file already exists.";
             $uploadOk = 0;
@@ -143,25 +141,38 @@ if(isset($_POST['update_product'])) {
     }else{
         unlink("../assets/images/".$imageLocation["image"]);
     }
-    $stmt= $conn->prepare('Update products set category=?,size=?,color=?,description=?,min_order=?,price=?,image=? WHERE id= ?');
 
-    $stmt->bind_param('sssssssi', $category,$size,$color,$description,$min_order,$price,$imageName,$id);
 
-    if($stmt->execute()){
-        $_SESSION["messageType"] = "success";
-        $_SESSION["message"] = "Product Updated Successfully.";
-        header("Location:../product/edit.php?id=$id");
-        return;
-    }else{
-        $_SESSION["messageType"] = "error";
-        $_SESSION["message"] = "Error while updating product.";
-        header("Location:../product/edit.php?id=$id");
-        return;
+    $stmt= $conn->prepare('Update products set category=?,description=?,min_order=?,image=? WHERE id= ?');
+    $stmt->bind_param('ssssi', $category,$description,$min_order,$imageName,$id);
+
+    if($stmt->execute()) {
+        $length=count($_POST['detail_id']);
+        $detail_id=$_POST['detail_id'];
+        $size = $_POST['size'];
+        $color = $_POST['color'];
+        $price = $_POST['price'];
+
+        for($i=0;$i<$length;$i++){
+            $stmt = $conn->prepare('Update product_details set size=?,color=?,price=? WHERE id= ?');
+            $stmt->bind_param('sssi',$size[$i],$color[$i],$price[$i],$detail_id[$i]);
+            if ($stmt->execute()) {
+                $_SESSION["messageType"] = "success";
+                $_SESSION["message"] = "Product Updated Successfully.";
+                header("Location:../product/edit.php?id=$id");
+                return;
+            }
+        }
+
     }
 
-}else{
-    header("Location:../product/index.php");
+
+    $_SESSION["messageType"] = "error";
+    $_SESSION["message"] = "Error while updating product.";
+    header("Location:../product/edit.php?id=$id");
     return;
 }
+
+
 ?>
 

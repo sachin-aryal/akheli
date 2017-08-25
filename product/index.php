@@ -24,8 +24,16 @@ $productList=getProductList($conn);
 <?php
 foreach ($productList as $product){
     ?>
-    <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img src="../assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
-
+    <a href="detail.php?id=<?php echo $product['id'] ?>"><img src="../assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
+    <?php $productdetails=getProductDetails($conn,$product['id']);
+    foreach ($productdetails as $product_detail){
+        ?>
+        <ul>
+        <li><?php echo $product_detail['size'] ?></li>
+        </ul>
+        <?php
+    }
+    ?>
 <?php } ?>
 
 
