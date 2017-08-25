@@ -12,7 +12,7 @@ include_once '../shared/dbconnect.php';
 include_once '../shared/datatable.php';
 include_once '../shared/common.php';
 
-$product=getProductInfo($conn,$_GET['id']);
+$product_info=getProductInfo($conn,$_GET['id']);
 $productDetails=getProductDetails($conn,$_GET['id']);
 
 ?>
@@ -26,9 +26,9 @@ $productDetails=getProductDetails($conn,$_GET['id']);
 <h2>Product Detail</h2>
 <ul style="list-style: none">
     <img src="assets/images/<?php echo $product['image'] ?>" height="200" width="200">
-    <li><?php echo $product['category'] ?></li>
-    <li><?php echo $product['min_order'] ?></li>
-    <li><?php echo $product['description'] ?></li>
+    <li><?php echo $product_info['category'] ?></li>
+    <li><?php echo $product_info['min_order'] ?></li>
+    <li><?php echo $product_info['description'] ?></li>
     <?php
         foreach ($productDetails as $productDetail){
     ?>
@@ -39,7 +39,7 @@ $productDetails=getProductDetails($conn,$_GET['id']);
 
 </ul>
 <form method="post" action="controller/product.php">
-    <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
+    <input type="hidden" name="id" value="<?php echo $product_info['id'] ?>"/>
     <input type="submit" name="edit_product" value="Edit"/>
     <input type="submit" name="delete_product" value="Delete"/>
 </form>

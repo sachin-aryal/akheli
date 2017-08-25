@@ -9,7 +9,7 @@
 
 <hr>
 <?php
-
+if(sizeof($productDetails) != 0){
 foreach ($productDetails as $productDetail){
     ?>
     <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id']?>">
@@ -23,6 +23,16 @@ foreach ($productDetails as $productDetail){
     <label for="price">Price:</label>
     <input type="text" name="price[]" value="<?php echo $productDetail['price']?>">
     <hr>
-<?php } ?>
+<?php }}else{ ?>
+    <input type="hidden" name="detail_id[]">
 
+    <label for="size">Size:</label>
+    <input type="text" name="size[]">
+
+    <label for="color">Color:</label>
+    <input type="text" name="color[]">
+
+    <label for="price">Price:</label>
+    <input type="text" name="price[]">
+<?php } ?>
 <input type="file" name="product_image">

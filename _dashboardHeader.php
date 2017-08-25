@@ -1,5 +1,8 @@
 <?php
 define("BASE_URL","http://localhost/~sachin/akheli/");
+define("PROJECT_PATH",__DIR__);
+include_once PROJECT_PATH."/shared/dbconnect.php";
+include_once PROJECT_PATH."/shared/common.php";
 ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -19,7 +22,7 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
     <link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="public/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="public/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="public/css/style.css" type="text/css">
+    <link rel="stylesheet" href="publxic/css/style.css" type="text/css">
 
     <script src="public/jquery/jquery.min.js"></script>
     <script src="public/jquery/jquery-ui.min.js"></script>
@@ -29,24 +32,29 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            var page_id = $("#page_id").val();
-            if(page_id.indexOf("product") !== -1){
-                $("#product_li").addClass("active");
-                $("#user_li").removeClass("active");
-                $("#order_li").removeClass("active");
-            }else if(page_id.indexOf("order") !== -1){
-                $("#product_li").removeClass("active");
-                $("#user_li").removeClass("active");
-                $("#order_li").addClass("active");
-            }else if(page_id.indexOf("user") !== -1){
-                $("#product_li").removeClass("active");
-                $("#user_li").addClass("active");
-                $("#order_li").removeClass("active");
-            }else{
-                $("#product_li").removeClass("active");
-                $("#user_li").addClass("active");
-                $("#order_li").removeClass("active");
+            var page_id = $("#page_id");
+            if(page_id.length !== 0){
+                page_id = $("#page_id").val();
+                if(page_id.indexOf("product") !== -1){
+                    $("#product_li").addClass("active");
+                    $("#user_li").removeClass("active");
+                    $("#order_li").removeClass("active");
+                    return;
+                }else if(page_id.indexOf("order") !== -1){
+                    $("#product_li").removeClass("active");
+                    $("#user_li").removeClass("active");
+                    $("#order_li").addClass("active");
+                    return;
+                }else if(page_id.indexOf("user") !== -1){
+                    $("#product_li").removeClass("active");
+                    $("#user_li").addClass("active");
+                    $("#order_li").removeClass("active");
+                    return;
+                }
             }
+            $("#product_li").removeClass("active");
+            $("#user_li").removeClass("active");
+            $("#order_li").removeClass("active");
         });
     </script>
     <script type="text/javascript">
@@ -188,9 +196,9 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
                             <img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <?php
                             if(isset($_SESSION["username"])) {
-                                ?>
-                                <span><?php echo $_SESSION["username"] ?></span>
-                            <?php } ?>
+                            $clientInfo = getClient($conn,$_SESSION["user_id"]);
+                            ?>
+                            <span><?php echo $_SESSION["username"] ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -198,8 +206,10 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
                                 <img src="https://almsaeedstudio.com/themes/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Pratik Budhathoki - Shop Name
-                                    <small>Kathmandu</small>
+                                    <?php
+                                    echo $clientInfo["name"].'-'.$clientInfo["shop_name"]
+                                    ?>
+                                    <small><?php echo $clientInfo["location"] ?></small>
                                 </p>
                             </li>
                             <li class="user-footer">
@@ -210,6 +220,7 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
                                 </div>
                             </li>
                         </ul>
+                        <?php } ?>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
                     <li>
@@ -281,12 +292,12 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
                         <ul class="treeview-menu">
                             <li><a href="products.php">View Product</a></li>
                             <?php
-                                $products = getProductByCategory($conn);
-                                foreach ($products as $product) {
-                                    ?>
-                                    <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
-                                    <?php
-                                }
+                            $products = getProductByCategory($conn);
+                            foreach ($products as $product) {
+                                ?>
+                                <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                                <?php
+                            }
                             ?>
                         </ul>
                     </li>

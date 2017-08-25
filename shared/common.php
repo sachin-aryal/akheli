@@ -92,7 +92,7 @@ function getProductDetails($conn,$id){
 
 }
 function getProductInfo($conn,$id){
-    $stmt= $conn->prepare("Select * FROM products where id=?");
+    $stmt= $conn->prepare("Select *FROM products where id=?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();

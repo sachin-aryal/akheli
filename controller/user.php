@@ -130,6 +130,7 @@ if (isset($_POST["register"])) {
         $_SESSION["role"] = $user["role"];
         $_SESSION["user_id"] = $user["id"];
         redirectToDash();
+        return;
     }
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "username and password did not match.";
