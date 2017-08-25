@@ -84,10 +84,10 @@ function getProductDetails($conn,$id){
         if ($product_details->num_rows > 0) {
             return $product_details;
         } else {
-            return false;
+            return [];
         }
     }
-    return false;
+    return [];
 
 
 }

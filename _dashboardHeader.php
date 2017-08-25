@@ -31,6 +31,7 @@ include_once PROJECT_PATH."/shared/auth.php";
     <script src="public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.min.js"></script>
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
+    <script src="assets/js/app.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var page_id = $("#page_id");
@@ -269,10 +270,10 @@ include_once PROJECT_PATH."/shared/auth.php";
                         <li><a href="product/create.php">Add Product</a></li>
                         <li><a href="product/">View Product</a></li>
                         <?php
-                        $products = getProductByCategory($conn);
-                        foreach ($products as $product) {
+                        $products_header = getProductByCategory($conn);
+                        foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>
@@ -290,10 +291,10 @@ include_once PROJECT_PATH."/shared/auth.php";
                     <ul class="treeview-menu">
                         <li><a href="products.php">View Product</a></li>
                         <?php
-                        $products = getProductByCategory($conn);
-                        foreach ($products as $product) {
+                        $products_header = getProductByCategory($conn);
+                        foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>
@@ -306,6 +307,5 @@ include_once PROJECT_PATH."/shared/auth.php";
     </section>
     <!-- /.sidebar -->
 </aside>
-
 </body>
 </html>
