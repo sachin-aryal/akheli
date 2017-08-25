@@ -120,3 +120,12 @@ function deleteProduct($conn,$id){
     return false;
 
 }
+
+function getProductByCategory($conn){
+    $productCategory = $conn->query("SELECT distinct(category) from products");
+    if($productCategory->num_rows > 0){
+        return mysqli_fetch_all($productCategory,MYSQLI_ASSOC);
+    }
+    return [];
+
+}

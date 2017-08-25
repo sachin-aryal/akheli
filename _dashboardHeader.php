@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/project/akheli/");
+define("BASE_URL","http://localhost/~sachin/akheli/");
 ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -239,19 +239,48 @@ define("BASE_URL","http://localhost/project/akheli/");
                 <li class="header">MENU</li>
                 <!-- Optionally, you can add icons to the links -->
                 <?php if(checkIfAdmin()){ ?>
-                <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
-                <li class="treeview" id="product_li">
-                    <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
-                        <span class="pull-right-container">
-                <i class="fa fa-angle-right pull-right"></i>
-              </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="product/create.php">Add Product</a></li>
-                        <li><a href="product/">View Product</a></li>
-                    </ul>
-                </li>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Order</span></a></li>
+                    <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
+                    <li class="treeview" id="product_li">
+                        <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="product/create.php">Add Product</a></li>
+                            <li><a href="product/">View Product</a></li>
+                            <?php
+                            $products = getProductByCategory($conn);
+                            foreach ($products as $product) {
+                                ?>
+                                <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                    <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span></a></li>
+                <?php } ?>
+                <?php if(isOrderAllowed()){ ?>
+                    <li class="treeview" id="product_li">
+                        <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="products.php">View Product</a></li>
+                            <?php
+                                $products = getProductByCategory($conn);
+                                foreach ($products as $product) {
+                                    ?>
+                                    <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                                    <?php
+                                }
+                            ?>
+                        </ul>
+                    </li>
+                    <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i>My Orders</span></a></li>
                 <?php } ?>
             </ul>
             <!-- /.sidebar-menu -->
