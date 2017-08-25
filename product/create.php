@@ -18,13 +18,13 @@ redirectIfNotAdmin();
         <div class="page-title">
             <h3><span class="fa fa-plus"></span> Add Product <small>Add new products here</small></h3>
         </div>
-        <div id="page_content" class="page-content">
+        <div id="page_content" class="page-content clearfix">
             <form action="controller/product.php" class="custom-form" enctype="multipart/form-data" method="post">
                 <?php
                 $productDetails = [];
                 include_once "_product_form.php";
                 ?>
-                <input type="submit" name="save_product" value="Save">
+                <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_product" value="Save">
             </form>
         </div>
     </div>
