@@ -31,6 +31,7 @@ include_once PROJECT_PATH."/shared/auth.php";
     <script src="public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.min.js"></script>
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
+    <script src="assets/js/app.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var page_id = $("#page_id");
@@ -74,9 +75,9 @@ include_once PROJECT_PATH."/shared/auth.php";
     <!-- Logo -->
     <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>AKHELI</b></span>
+        <span class="logo-mini"><b>A</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>AKHELI</b></span>
+        <span class="logo-lg"><b>A</b>KHELI</span>
     </a>
 
     <!-- Header Navbar -->
@@ -258,6 +259,7 @@ include_once PROJECT_PATH."/shared/auth.php";
             <li class="header">MENU</li>
             <!-- Optionally, you can add icons to the links -->
             <?php if(checkIfAdmin()){ ?>
+                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span></a></li>
                 <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
                 <li class="treeview" id="product_li">
                     <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
@@ -267,18 +269,17 @@ include_once PROJECT_PATH."/shared/auth.php";
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="product/create.php">Add Product</a></li>
-                        <li><a href="product/">View Product</a></li>
                         <?php
-                        $products = getProductByCategory($conn);
-                        foreach ($products as $product) {
+                        $products_header = getProductByCategory($conn);
+                        foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>
                     </ul>
                 </li>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span></a></li>
+
             <?php } ?>
             <?php if(isOrderAllowed()){ ?>
                 <li class="treeview" id="product_li">
@@ -290,10 +291,10 @@ include_once PROJECT_PATH."/shared/auth.php";
                     <ul class="treeview-menu">
                         <li><a href="products.php">View Product</a></li>
                         <?php
-                        $products = getProductByCategory($conn);
-                        foreach ($products as $product) {
+                        $products_header = getProductByCategory($conn);
+                        foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product["category"] ?>"><?php echo $product["category"] ?></a></li>
+                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>

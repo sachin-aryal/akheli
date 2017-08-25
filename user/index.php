@@ -47,12 +47,17 @@ foreach ($usersList as $user) {
     ?>
     <div class="content-wrapper clearfix" id="main_content">
         <div id="page_content">
-            <table id="userList">
+            <div class="page-title">
+               <h3><span class="fa fa-user"></span> User List <small>List of all users</small></h3>
+            </div>
+
+            <table id="userList" class="table table-responsive table-bordered custom-table bg-white shadow">
                 <thead>
                 <tr>
                     <th>Email</th>
                     <th>Name</th>
                     <th>Shop Name</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,6 +69,7 @@ foreach ($usersList as $user) {
                         <td><?php echo $user["email"] ?></td>
                         <td><?php echo $clientList[$i]["name"] ?></td>
                         <td><?php echo $clientList[$i++]["shop_name"] ?></td>
+                        <td><span class="fa fa-pencil-square-o"></span> &nbsp; <span class="fa fa-user-times"></span></td>
                     </tr>
                     <?php
                 }

@@ -18,26 +18,38 @@ $productList=getProductList($conn);
 
 </head>
 <body>
-<?php include_once "../_dashboardHeader.php"?>
-<a href="product/create.php">Create Product</a>
-<h2>Product List</h2>
-<?php
-foreach ($productList as $product){
-
+<div class="wrapper">
+    <?php
+    include_once "../_dashboardHeader.php";
     ?>
-    <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img src="assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
-    <?php $productdetails=getProductDetails($conn,$product['id']);
-    foreach ($productdetails as $product_detail){
-        ?>
-        <ul>
-        <li><?php echo $product_detail['size'] ?></li>
-        </ul>
+    <div class="content-wrapper clearfix" id="main_content">
+        <a href="product/create.php">Create Product</a>
+        <h2>Product List</h2>
         <?php
-    }
-    ?>
-<?php } ?>
-
-
+        foreach ($productList as $product){
+            ?>
+            <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img src="assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
+            <span>Product: <?php echo $product["product_name"] ?></span><br>
+            <span>Size Available:</span><br>
+            <?php $productDetails = getProductDetails($conn,$product['id']);
+            while ($productDetail  = mysqli_fetch_assoc($productDetails)){
+                ?>
+                <ul>
+                    <li><?php echo $productDetail['size'] ?></li>
+                </ul>
+                <?php
+            }
+            ?>
+        <?php } ?>
+    </div>
+    <!-- The Right Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Content of the sidebar goes here -->
+    </aside>
+    <!-- The sidebar's background -->
+    <!-- This div must placed right after the sidebar for it to work-->
+    <div class="control-sidebar-bg">asdfadsf</div>
+</div>
 
 </body>
 </html>
