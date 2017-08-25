@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/~sachin/akheli/");
+define("BASE_URL","http://localhost/akheli/");
 define("PROJECT_PATH",__DIR__);
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";
@@ -259,6 +259,7 @@ include_once PROJECT_PATH."/shared/auth.php";
             <li class="header">MENU</li>
             <!-- Optionally, you can add icons to the links -->
             <?php if(checkIfAdmin()){ ?>
+                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span></a></li>
                 <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
                 <li class="treeview" id="product_li">
                     <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
@@ -268,7 +269,6 @@ include_once PROJECT_PATH."/shared/auth.php";
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="product/create.php">Add Product</a></li>
-                        <li><a href="product/">View Product</a></li>
                         <?php
                         $products_header = getProductByCategory($conn);
                         foreach ($products_header as $product_header) {
@@ -279,7 +279,7 @@ include_once PROJECT_PATH."/shared/auth.php";
                         ?>
                     </ul>
                 </li>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span></a></li>
+
             <?php } ?>
             <?php if(isOrderAllowed()){ ?>
                 <li class="treeview" id="product_li">

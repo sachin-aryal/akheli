@@ -7,7 +7,7 @@
  */
 define("ROLE_ADMIN","akheli_admin");
 define("ROLE_CLIENT","akheli_client");
-define("ROOT_URL","http://localhost/~sachin/akheli");
+define("ROOT_URL","http://localhost/akheli");
 define ("CLIENT_DASHBOARD",ROOT_URL."/dashboard.php");
 define ("ADMIN_DASHBOARD",ROOT_URL."/admin.php");
 define ("NOLOGIN_DASHBOARD",ROOT_URL."/index.php");

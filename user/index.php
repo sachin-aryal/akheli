@@ -47,7 +47,11 @@ foreach ($usersList as $user) {
     ?>
     <div class="content-wrapper clearfix" id="main_content">
         <div id="page_content">
-            <table id="userList">
+            <div class="page-title">
+               <span class="fa fa-user"></span> User List
+            </div>
+
+            <table id="userList" class="table table-responsive custom-table bg-white shadow">
                 <thead>
                 <tr>
                     <th>Email</th>
