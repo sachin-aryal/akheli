@@ -1,13 +1,15 @@
 function addMoreProductDetails(){
     var uuid = makeId(25);
-    $("#product_details_form").append("<div id='"+uuid+"'><label for=\"size\">Size:</label>\n" +
-        "    <input type=\"text\" name=\"size[]\">\n" +
+    $("#product_details_form").append("<div id='"+uuid+"'>" +
+
+        "<div class='form-group col-md-6'><label for=\"size\">Size:</label>\n" +
+        "    <input class='form-control' type=\"text\" name=\"size[]\"></div>\n" +
         "\n" +
-        "    <label for=\"color\">Color:</label>\n" +
-        "    <input type=\"text\" name=\"color[]\">\n" +
+        "    <div class='form-group col-md-6'><label for=\"color\">Color:</label>\n" +
+        "    <input class='form-control' type=\"text\" name=\"color[]\"></div>\n" +
         "\n" +
-        "    <button type=\"button\" onclick=\"removeDiv('"+uuid+"')\">Remove</button>\n" +
-        "    <hr></div>");
+        "    <span class='remove-description-option' type=\"button\" onclick=\"removeDiv('"+uuid+"')\"><span class='fa fa-close'></span></span>\n" +
+        "    </div>");
 }
 
 function removeDiv(id){
