@@ -75,9 +75,9 @@ include_once PROJECT_PATH."/shared/auth.php";
     <!-- Logo -->
     <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>AKHELI</b></span>
+        <span class="logo-mini"><b>A</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>AKHELI</b></span>
+        <span class="logo-lg"><b>A</b>KHELI</span>
     </a>
 
     <!-- Header Navbar -->
@@ -307,5 +307,6 @@ include_once PROJECT_PATH."/shared/auth.php";
     </section>
     <!-- /.sidebar -->
 </aside>
+
 </body>
 </html>
