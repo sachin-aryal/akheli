@@ -57,6 +57,7 @@ foreach ($usersList as $user) {
                     <th>Email</th>
                     <th>Name</th>
                     <th>Shop Name</th>
+                    <th>Phone No</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -68,7 +69,8 @@ foreach ($usersList as $user) {
                     <tr>
                         <td><?php echo $user["email"] ?></td>
                         <td><?php echo $clientList[$i]["name"] ?></td>
-                        <td><?php echo $clientList[$i++]["shop_name"] ?></td>
+                        <td><?php echo $clientList[$i]["shop_name"] ?></td>
+                        <td><?php echo $clientList[$i++]["phone_no"] ?></td>
                         <td><span class="fa fa-pencil-square-o"></span> &nbsp; <span class="fa fa-user-times"></span></td>
                     </tr>
                     <?php
