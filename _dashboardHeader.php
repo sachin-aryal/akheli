@@ -26,6 +26,7 @@ define("BASE_URL","http://localhost/project/akheli/");
     <script src="public/dist/js/adminlte.min.js"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var page_id = $("#page_id").val();
@@ -46,9 +47,18 @@ define("BASE_URL","http://localhost/project/akheli/");
                 $("#user_li").addClass("active");
                 $("#order_li").removeClass("active");
             }
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if(isset($_SESSION["message"])){?>
+            $.notify('<?php echo $_SESSION["message"] ?>','<?php echo $_SESSION['messageType'] ?>');
+
+            <?php unset($_SESSION["message"]);unset($_SESSION["messageType"]); } ?>
 
         });
     </script>
+
 </head>
 <body class="skin-blue sidebar-mini">
 
@@ -239,19 +249,19 @@ define("BASE_URL","http://localhost/project/akheli/");
                 <li class="header">MENU</li>
                 <!-- Optionally, you can add icons to the links -->
                 <?php if(checkIfAdmin()){ ?>
-                <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
-                <li class="treeview" id="product_li">
-                    <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
-                        <span class="pull-right-container">
+                    <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
+                    <li class="treeview" id="product_li">
+                        <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
+                            <span class="pull-right-container">
                 <i class="fa fa-angle-right pull-right"></i>
               </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="product/create.php">Add Product</a></li>
-                        <li><a href="product/">View Product</a></li>
-                    </ul>
-                </li>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Order</span></a></li>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="product/create.php">Add Product</a></li>
+                            <li><a href="product/">View Product</a></li>
+                        </ul>
+                    </li>
+                    <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Order</span></a></li>
                 <?php } ?>
             </ul>
             <!-- /.sidebar-menu -->
