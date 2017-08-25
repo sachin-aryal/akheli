@@ -15,7 +15,10 @@ redirectIfNotAdmin();
     include_once "../_dashboardHeader.php";
     ?>
     <div class="content-wrapper clearfix" id="main_content">
-        <div id="page_content">
+        <div class="page-title">
+            <h3><span class="fa fa-plus"></span> Add Product <small>Add new products here</small></h3>
+        </div>
+        <div id="page_content" class="page-content">
             <form action="controller/product.php" enctype="multipart/form-data" method="post">
                 <?php
                 $productDetails = [];
