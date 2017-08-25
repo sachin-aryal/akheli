@@ -74,8 +74,8 @@ include_once "../shared/auth.php";
                     </ul>
                 </li>
                 <?php if(checkIfAdmin()) { ?>
-                    <li><a href="../controller/user.php">User List</a></li>
-                    <li><a href="../controller/product.php">Product List</a></li>
+                    <li><a href="controller/user.php">User List</a></li>
+                    <li><a href="controller/product.php">Product List</a></li>
                 <?php } ?>
             </ul>
         </div>

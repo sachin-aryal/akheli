@@ -43,7 +43,6 @@ foreach ($usersList as $user) {
 <body>
 <?php
 include_once "../_dashboardHeader.php";
-include_once "../shared/datatable.php";
 ?>
 
 <table id="userList">

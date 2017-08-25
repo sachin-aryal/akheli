@@ -17,11 +17,11 @@ $product=getProductInfo($conn,$_GET['id']);
 ?>
 <html>
 <head>
-
+<title>Product Detail</title>
 </head>
 <body>
-<?php include_once "../shared/_header.php"?>
-<a href="create.php">Product Details</a>
+<?php include_once "../_dashboardHeader.php"?>
+<a href="product/create.php">Crete Product</a>
 <h2>Product Detail</h2>
 <ul style="list-style: none">
     <img src="../assets/images/<?php echo $product['image'] ?>" height="200" width="200">
@@ -33,13 +33,11 @@ $product=getProductInfo($conn,$_GET['id']);
     <li><?php echo $product['description'] ?></li>
 
 </ul>
-<form method="post" action="../controller/product.php">
+<form method="post" action="controller/product.php">
     <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
     <input type="submit" name="edit_product" value="Edit"/>
     <input type="submit" name="delete_product" value="Delete"/>
 </form>
-
-
-
+<input type="text" id="page_id" value="product_details"/>
 </body>
 </html>

@@ -15,7 +15,7 @@ $product=getProductInfo($conn,$_GET['id']);
 </head>
 <body>
 <?php include_once "../_dashboardHeader.php"?>
-<a href="create.php">Create Product</a>
+<a href="product/create.php">Create Product</a>
 <h2>Edit Product Detail</h2>
 <form action="controller/product.php" enctype="multipart/form-data" method="post">
     <?php include_once "_product_form.php"?>

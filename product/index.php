@@ -18,13 +18,13 @@ $productList=getProductList($conn);
 
 </head>
 <body>
-<?php include_once "../shared/_header.php"?>
-<a href="create.php">Create Product</a>
+<?php include_once "../_dashboardHeader.php"?>
+<a href="product/create.php">Create Product</a>
 <h2>Product List</h2>
 <?php
 foreach ($productList as $product){
     ?>
-    <a href="detail.php?id=<?php echo $product['id'] ?>"><img src="../assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
+    <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img src="../assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
 
 <?php } ?>
 
