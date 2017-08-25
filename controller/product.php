@@ -7,13 +7,13 @@
  */
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
 
 include_once "../shared/common.php";
 include_once "../shared/dbconnect.php";
 if(!isset($_SESSION)){session_start();} ;
 
 if(isset($_POST['save_product'])) {
+    redirectIfNotAdmin();
     $category= $_POST['category'];
     $size = $_POST['size'];
     $color = $_POST['color'];
@@ -76,11 +76,13 @@ if(isset($_POST['save_product'])) {
     return;
 }
 if(isset($_POST['edit_product'])){
+    redirectIfNotAdmin();
     $id = $_POST['id'];
     header("Location:../product/edit.php?id=$id");
     return;
 }
 if(isset($_POST['delete_product'])){
+    redirectIfNotAdmin();
     $id = $_POST['id'];
     if(deleteProduct($conn,$id)){
         $_SESSION["messageType"] = "success";
@@ -94,7 +96,7 @@ if(isset($_POST['delete_product'])){
 }
 
 if(isset($_POST['update_product'])) {
-
+    redirectIfNotAdmin();
     $id = $_POST['id'];
     $imageLocation= getProductInfo($conn,$id);
     $category= $_POST['category'];

@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)){session_start();}
+define("BASE_URL","http://localhost/~sachin/akheli/");
 ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -7,7 +7,7 @@ if(!isset($_SESSION)){session_start();}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <base href="<?php echo BASE_URL ?>"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

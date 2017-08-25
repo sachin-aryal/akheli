@@ -1,10 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sachin
- * Date: 8/21/17
- * Time: 10:03 AM
- */
+define("ROLE_ADMIN","akheli_admin");
+define("ROLE_CLIENT","akheli_client");
+define("HOST_BASE", __DIR__);
+define("BASE_URL","http://localhost/~sachin/akheli/");
+
 function getUserList($conn){
     $users = $conn->query("SELECT *FROM USERS");
     if ($users->num_rows > 0) {

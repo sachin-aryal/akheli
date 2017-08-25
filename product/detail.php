@@ -8,8 +8,6 @@
 
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
-
 include_once '../shared/dbconnect.php';
 include_once '../shared/datatable.php';
 include_once '../shared/common.php';
@@ -24,7 +22,7 @@ $productDetails=getProductDetails($conn,$_GET['id']);
 </head>
 <body>
 <?php include_once "../shared/_header.php"?>
-<a href="create.php">Create Product</a>
+<a href="create.php">Product Details</a>
 <h2>Product Detail</h2>
 <ul style="list-style: none">
     <img src="../assets/images/<?php echo $product['image'] ?>" height="200" width="200">
