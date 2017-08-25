@@ -95,7 +95,9 @@ function deleteProduct($conn,$id){
     $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
-        unlink("../assets/images/".$imageName);
+        if(file_exists("../assets/images/")){
+            unlink("../assets/images/".$imageName);
+        }
         return true;
     }
     return false;
