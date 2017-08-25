@@ -5,13 +5,15 @@
  * Date: 8/22/2017
  * Time: 11:00 PM
  */
-if(!isset($_SESSION)){session_start();} ;
+if (!isset($_SESSION)) {
+    session_start();
+};
 include_once "../shared/auth.php";
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
-if(isset($_GET["category"])){
-    $productList = getProductsByCategory($conn,$_GET["category"]);
-}else{
+if (isset($_GET["category"])) {
+    $productList = getProductsByCategory($conn, $_GET["category"]);
+} else {
     $productList = getProductList($conn);
 }
 
@@ -26,33 +28,52 @@ if(isset($_GET["category"])){
     include_once "../_dashboardHeader.php";
     ?>
     <div class="content-wrapper clearfix" id="main_content">
-        <a href="product/create.php">Create Product</a>
-        <h2>Product List</h2>
+        <div class="page-title">
+            <h3><span class="fa fa-tag"></span>Product List
+                <small>Available products</small>
+            </h3>
+        </div>
         <?php
-        foreach ($productList as $product){
+        foreach ($productList as $product) {
             ?>
-            <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img src="assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
-            <span>Product: <?php echo $product["product_name"] ?></span><br>
-            <?php $productDetails = getProductDetails($conn,$product['id']);
-            if(sizeof($productDetails)){
-                echo "<span>Size Available:</span><br>";
-                foreach ($productDetails as $productDetail){
+
+
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                <div class="product-image">
+                <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img
+                            src="assets/images/<?php echo $product['image'] ?>"> </a>
+            </div>
+                <div class="product-description">
+                <h4 class="product-name"><?php echo $product["product_name"] ?></h4>
+                    <ol class="breadcrumb text-center">
+                <?php $productDetails = getProductDetails($conn, $product['id']);
+                    if (sizeof($productDetails)) {
+                    echo "<span>Size Available:</span><br>";
+                    foreach ($productDetails as $productDetail) {
+                        ?>
+
+                        <li>
+                            <a href="#"><?php echo $productDetail['size'] ?></a>
+                        </li>
+
+                        <?php
+                    }
                     ?>
-                    <ul>
-                        <li><?php echo $productDetail['size'] ?></li>
-                    </ul>
-                    <?php
-                }
-                ?>
-            <?php }} ?>
+                    </ol>
+                    <p>
+                        <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                    </p>
+                    <div class="text-center">
+                        <button class="btn btn-view">View</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <?php }
+        } ?>
     </div>
-    <!-- The Right Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Content of the sidebar goes here -->
-    </aside>
-    <!-- The sidebar's background -->
-    <!-- This div must placed right after the sidebar for it to work-->
-    <div class="control-sidebar-bg">asdfadsf</div>
 </div>
 
 </body>

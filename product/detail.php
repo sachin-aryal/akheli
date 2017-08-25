@@ -19,10 +19,12 @@ $productDetails_details = getProductDetails($conn,$_GET['id']);
     include_once "../_dashboardHeader.php";
     ?>
     <div class="content-wrapper clearfix" id="main_content">
-        <?php if(checkIfAdmin()){ ?>
-        <a href="product/create.php">Crete Product</a>
-        <?php } ?>
-        <h2>Product Detail</h2>
+
+        <div class="page-title">
+            <h3><span class="fa fa-eye"></span> Product Detail <small>View detail and order produce</small></h3>
+        </div>
+
+        <div class="page-content">
         <ul style="list-style: none">
             <img src="assets/images/<?php echo $product_info_details['image'] ?>" height="200" width="200">
             <li>Category: <?php echo $product_info_details['category'] ?></li>
@@ -50,6 +52,8 @@ $productDetails_details = getProductDetails($conn,$_GET['id']);
         </form>
         <?php }?>
         <input type="hidden" id="page_id" value="product_details"/>
+
+        </div>
         <!-- The Right Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Content of the sidebar goes here -->
