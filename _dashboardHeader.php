@@ -26,6 +26,7 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
     <script src="public/dist/js/adminlte.min.js"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var page_id = $("#page_id").val();
@@ -46,9 +47,18 @@ define("BASE_URL","http://localhost/~sachin/akheli/");
                 $("#user_li").addClass("active");
                 $("#order_li").removeClass("active");
             }
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if(isset($_SESSION["message"])){?>
+            $.notify('<?php echo $_SESSION["message"] ?>','<?php echo $_SESSION['messageType'] ?>');
+
+            <?php unset($_SESSION["message"]);unset($_SESSION["messageType"]); } ?>
 
         });
     </script>
+
 </head>
 <body class="skin-blue sidebar-mini">
 

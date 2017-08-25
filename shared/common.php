@@ -1,6 +1,5 @@
 <?php
-define("ROLE_ADMIN","akheli_admin");
-define("ROLE_CLIENT","akheli_client");
+
 
 function getUserList($conn){
     $users = $conn->query("SELECT *FROM USERS");
