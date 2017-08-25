@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/~sachin/akheli/");
+define("BASE_URL","http://localhost/project/akheli/");
 ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">

@@ -25,7 +25,7 @@ $productDetails=getProductDetails($conn,$_GET['id']);
 <a href="create.php">Product Details</a>
 <h2>Product Detail</h2>
 <ul style="list-style: none">
-    <img src="../assets/images/<?php echo $product['image'] ?>" height="200" width="200">
+    <img src="assets/images/<?php echo $product['image'] ?>" height="200" width="200">
     <li><?php echo $product['category'] ?></li>
     <li><?php echo $product['min_order'] ?></li>
     <li><?php echo $product['description'] ?></li>

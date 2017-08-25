@@ -23,7 +23,7 @@ $productDetails=getProductDetails($conn,$_GET['id']);
     <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
     <input type="submit" name="update_product" value="Update">
 </form>
-<img src="../assets/images/<?php echo $product["image"] ?>" width="200" height="200"/>
+<img src="assets/images/<?php echo $product["image"] ?>" width="200" height="200"/>
 
 
 

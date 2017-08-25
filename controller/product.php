@@ -112,6 +112,7 @@ if(isset($_POST['update_product'])) {
         $imageName = getRandomString(25).".jpg";
         $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        echo $imageFileType;
         if (file_exists($target_file)) {
             $errorMessage =  "Sorry, file already exists.";
             $uploadOk = 0;
