@@ -13,8 +13,7 @@ redirectIfNotAdmin();
 <body>
 <?php
 include_once "_dashboardHeader.php";
-echo $_SERVER['DOCUMENT_ROOT'];
-echo __DIR__;
+
 ?>
 </body>
 </html>

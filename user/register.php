@@ -9,6 +9,16 @@ define('WP_DEBUG_DISPLAY', false);
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="../assets/js/javascript.js"></script>
+    <style>
+        .valid{
+            color:red;
+            background-color: pink;
+        }
+        .invalid{
+            display:none;
+        }
+    </style>
 	<title>Register</title>
 </head>
 <body>

@@ -23,12 +23,20 @@
         foreach ($productDetails as $productDetail) {
             ?>
             <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id'] ?>">
+            <div id="<?php echo $productDetail['id'] ?>">
+                <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id']?>">
 
             <div class="form-group col-md-6">
                 <label for="size">Size:</label>
                 <input class="form-control" type="text" name="size[]" value="<?php echo $productDetail['size'] ?>">
             </div>
 
+                <label for="color">Color:</label>
+                <input type="text" name="color[]"  value="<?php echo $productDetail['color']?>">
+                <button type="button" onclick="removeDiv('<?php echo $productDetail['id'] ?>')">Remove</button>
+                <hr>
+            </div>
+        <?php }}else{ ?>
             <div class="form-group col-md-6">
                 <label for="color">Color:</label>
                 <input class="form-control" type="text" name="color[]" value="<?php echo $productDetail['color'] ?>">
@@ -56,3 +64,4 @@
 </div>
 
 <input type="file" name="product_image">
+<button type="button" class="btn btn-primary" onclick="addMoreProductDetails()">Add Detail</button>

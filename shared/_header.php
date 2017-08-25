@@ -15,6 +15,7 @@ include_once "../shared/auth.php";
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
     <script src="../public/jquery/jquery.min.js"></script>
+    <script src="../assets/js/javascript.js"></script>
     <script src="../public/jquery/jquery-ui.min.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../assets/js/notify.min.js" type="text/javascript"></script>
