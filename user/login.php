@@ -13,9 +13,19 @@ redirectIfLoggedIn("../index.php")
 <head>
     <title>Login - Akheli</title>
     <link href="https://fonts.googleapis.com/css?family=Cagliostro|Open+Sans+Condensed:300" rel="stylesheet">
-
+    <script src="../public/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
+    <script src="../assets/js/notify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if(isset($_SESSION["message"])){?>
+            $.notify('<?php echo $_SESSION["message"] ?>','<?php echo $_SESSION['messageType'] ?>');
+
+            <?php unset($_SESSION["message"]);unset($_SESSION["messageType"]); } ?>
+
+        });
+    </script>
 </head>
 <body>
 <div class="login-wrapper">

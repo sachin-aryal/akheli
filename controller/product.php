@@ -23,7 +23,7 @@ if(isset($_POST['save_product'])) {
     $imageName = "Not Available";
     $errorMessage = "no error";
     if (isset($_FILES['product_image'])) {
-        $target_dir = "../assets/images/";
+        $target_dir = "../assets/images";
 
         $uploadOk = 1;
         $imageName = getRandomString(25).".jpg";
@@ -57,23 +57,23 @@ if(isset($_POST['save_product'])) {
         return;
     }
 
-    $stmt= $conn->prepare('Insert into products(category,size,color,description,min_order,price,image) VALUES (?,?,?,?,?,?,?)');
-
-    $stmt->bind_param('sssssss', $category,$size,$color,$description,$min_order,$price,$imageName);
-
+    $stmt= $conn->prepare('Insert into products(category,description,min_order,image) VALUES (?,?,?,?)');
+    $stmt->bind_param('ssss', $category,$description,$min_order,$imageName);
     if($stmt->execute()){
-        $_SESSION["messageType"] = "success";
-        $_SESSION["message"] = "New Product Created Successfully.";
-        header("Location:../product/create.php");
-        return;
-    }else{
-        $_SESSION["messageType"] = "error";
-        $_SESSION["message"] = "Error while creating new product.";
-        header("Location:../product/create.php");
-        return;
+        $product_id = $conn->insert_id;
+        $stmt= $conn->prepare('Insert into product_details(size,color,product_id,price) VALUES (?,?,?,?)');
+        $stmt->bind_param('ssis', $size,$color,$product_id,$price);
+        if($stmt->execute()){
+            $_SESSION["messageType"] = "success";
+            $_SESSION["message"] = "New Product Created Successfully.";
+            header("Location:../product/create.php");
+            return;
+        }
     }
-
-
+    $_SESSION["messageType"] = "error";
+    $_SESSION["message"] = "Error while creating new product.";
+    header("Location:../product/create.php");
+    return;
 }
 if(isset($_POST['edit_product'])){
     $id = $_POST['id'];
