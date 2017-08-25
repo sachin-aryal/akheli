@@ -5,11 +5,9 @@
  * Date: 8/21/17
  * Time: 10:38 PM
  */
-if (!isset($_SESSION)) {
-    session_start();
-};
+if (!isset($_SESSION)) {session_start();};
 include_once "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
+redirectIfNotAdmin();
 
 include_once "../shared/common.php";
 include_once "../shared/dbconnect.php";
@@ -44,7 +42,7 @@ foreach ($usersList as $user) {
 </head>
 <body>
 <?php
-include_once "../shared/_header.php";
+include_once "../_dashboardHeader.php";
 include_once "../shared/datatable.php";
 ?>
 

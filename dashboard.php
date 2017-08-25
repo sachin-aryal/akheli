@@ -1,11 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Pratik
- * Date: 8/24/2017
- * Time: 10:57 PM
- */
-
-@include_once ("_dashboardHeader.php");
-
-
+if(!isset($_SESSION)){session_start();} ;
+include_once "shared/auth.php";
+redirectIfNotClient();
+include_once "_dashboardHeader.php";

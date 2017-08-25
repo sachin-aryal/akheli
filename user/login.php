@@ -7,7 +7,7 @@
  */
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfLoggedIn("../index.php")
+redirectToDash();
 ?>
 <html>
 <head>
@@ -41,7 +41,7 @@ redirectIfLoggedIn("../index.php")
             <h2 class="title">Akheli</h2>
             <form method="post" action="../controller/user.php">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Email</label>
                     <div>
                         <input class="form-control" type="text" name="username" id="username"/>
                     </div>

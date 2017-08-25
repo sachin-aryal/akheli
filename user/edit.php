@@ -19,8 +19,8 @@ $client = getClient($conn,$user["id"]);
     <title>Edit User</title>
 </head>
 <body>
-<?php include_once "../shared/_header.php"?>
-<form method="post" action="../controller/user.php" enctype="multipart/form-data">
+<?php include_once "../_dashboardHeader.php"?>
+<form method="post" action="controller/user.php" enctype="multipart/form-data">
     <?php
     include_once '_client_form.php';
     ?>

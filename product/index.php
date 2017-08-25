@@ -7,8 +7,6 @@
  */
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
-
 include_once '../shared/dbconnect.php';
 include_once '../shared/datatable.php';
 include_once '../shared/common.php';

@@ -1,14 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Samsung
- * Date: 8/22/2017
- * Time: 11:00 PM
- */
-
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
+redirectIfNotAdmin();
 
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
@@ -21,10 +14,10 @@ $product=getProductInfo($conn,$_GET['id']);
 
 </head>
 <body>
-<?php include_once "../shared/_header.php"?>
+<?php include_once "../_dashboardHeader.php"?>
 <a href="create.php">Create Product</a>
 <h2>Edit Product Detail</h2>
-<form action="../controller/product.php" enctype="multipart/form-data" method="post">
+<form action="controller/product.php" enctype="multipart/form-data" method="post">
     <?php include_once "_product_form.php"?>
     <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
     <input type="submit" name="update_product" value="Update">

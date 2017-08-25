@@ -8,11 +8,10 @@
 
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfNotAdmin("../index.php");
-
+redirectIfLoggedIn();
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
-if(!isset($_SESSION)){session_start();} ;
+
 if (isset($_POST["register"])) {
     if(!isset($_POST["name"])){
         header("Location:../user/register.php");
@@ -130,15 +129,7 @@ if (isset($_POST["register"])) {
         $_SESSION["username"] = $user["email"];
         $_SESSION["role"] = $user["role"];
         $_SESSION["user_id"] = $user["id"];
-        if($user["role"] == ROLE_CLIENT){
-            header("Location:../dashboard.php");
-            return;
-        }else if($user["role"] == ROLE_ADMIN){
-            header("Location:../admin.php");
-            return;
-        }
-        header("Location:../index.php");
-        return;
+        redirectToDash();
     }
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "username and password did not match.";
