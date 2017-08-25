@@ -7,7 +7,6 @@
  */
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectToDash();
 ?>
 <html>
 <head>
