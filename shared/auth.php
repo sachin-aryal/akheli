@@ -69,3 +69,10 @@ function isOrderAllowed(){
     }
     return false;
 }
+
+function redirectIfNotLoggedIn(){
+    if(!isset($_SESSION["username"])) {
+        redirectToDash();
+        return;
+    }
+}

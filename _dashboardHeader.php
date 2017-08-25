@@ -270,10 +270,10 @@ include_once PROJECT_PATH."/shared/auth.php";
                     <ul class="treeview-menu">
                         <li><a href="product/create.php">Add Product</a></li>
                         <?php
-                        $products_header = getProductByCategory($conn);
+                        $products_header = getDistinctCategory($conn);
                         foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
+                            <li><a href="product/index.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>
@@ -291,7 +291,7 @@ include_once PROJECT_PATH."/shared/auth.php";
                     <ul class="treeview-menu">
                         <li><a href="product/">View Product</a></li>
                         <?php
-                        $products_header = getProductByCategory($conn);
+                        $products_header = getDistinctCategory($conn);
                         foreach ($products_header as $product_header) {
                             ?>
                             <li><a href="product/index.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
@@ -300,7 +300,7 @@ include_once PROJECT_PATH."/shared/auth.php";
                         ?>
                     </ul>
                 </li>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i>My Orders</span></a></li>
+                <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i>My Orders</span></a></li>
             <?php } ?>
         </ul>
         <!-- /.sidebar-menu -->

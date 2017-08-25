@@ -121,7 +121,7 @@ function deleteProduct($conn,$id){
 
 }
 
-function getProductByCategory($conn){
+function getDistinctCategory($conn){
     $productCategory = $conn->query("SELECT distinct(category) from products");
     if($productCategory->num_rows > 0){
         return mysqli_fetch_all($productCategory,MYSQLI_ASSOC);
@@ -135,4 +135,41 @@ function removeProductDetailsByPId($conn,$product_id){
     $stmt->bind_param("i",$product_id);
     $stmt->execute();
 
+}
+
+function getMyOrders($conn){
+    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE user_id = ?");
+    $stmt->bind_param("i",$_SESSION["user_id"]);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return [];
+}
+
+function getAllOrders($conn){
+    $stmt = $conn->prepare("SELECT *FROM ORDERS");
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return [];
+}
+
+function getProductsByCategory($conn,$category){
+    $stmt= $conn->prepare("Select *FROM products where category=?");
+    $stmt->bind_param("s", $category);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
+    return [];
 }

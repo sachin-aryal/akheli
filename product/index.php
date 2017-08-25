@@ -9,8 +9,12 @@ if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
+if(isset($_GET["category"])){
+    $productList = getProductsByCategory($conn,$_GET["category"]);
+}else{
+    $productList = getProductList($conn);
+}
 
-$productList=getProductList($conn);
 ?>
 <html>
 <head>
