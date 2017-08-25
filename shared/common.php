@@ -1,5 +1,5 @@
 <?php
-
+if(!isset($_SESSION)){session_start();} ;
 
 function getUserList($conn){
     $users = $conn->query("SELECT *FROM USERS");
@@ -108,7 +108,7 @@ function getProductInfo($conn,$id){
 function deleteProduct($conn,$id){
     $product= getProductInfo($conn,$id);
     $imageName = $product['image'];
-    removeProductDetailsByPId($conn,$id);
+
     $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {

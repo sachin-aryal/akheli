@@ -58,7 +58,7 @@ if(isset($_POST['save_product'])) {
         return;
     }
 
-    $stmt= $conn->prepare('Insert into products(product_name,category,description,min_order,image,price) VALUES (?,?,?,?,?)');
+    $stmt= $conn->prepare('Insert into products(product_name,category,description,min_order,image,price) VALUES (?,?,?,?,?,?)');
     $stmt->bind_param('ssssss', $product_name,$category,$description,$min_order,$imageName,$price);
     if($stmt->execute()){
         $product_id = $conn->insert_id;

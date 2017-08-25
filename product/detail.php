@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Samsung
- * Date: 8/22/2017
- * Time: 11:00 PM
- */
 
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
@@ -25,7 +19,9 @@ $productDetails_details = getProductDetails($conn,$_GET['id']);
     include_once "../_dashboardHeader.php";
     ?>
     <div class="content-wrapper clearfix" id="main_content">
+        <?php if(checkIfAdmin()){ ?>
         <a href="product/create.php">Crete Product</a>
+        <?php } ?>
         <h2>Product Detail</h2>
         <ul style="list-style: none">
             <img src="assets/images/<?php echo $product_info_details['image'] ?>" height="200" width="200">
@@ -40,11 +36,19 @@ $productDetails_details = getProductDetails($conn,$_GET['id']);
             <?php } ?>
 
         </ul>
+        <?php if(checkIfAdmin()){ ?>
         <form method="post" action="controller/product.php">
             <input type="hidden" name="id" value="<?php echo $product_info_details['id'] ?>"/>
             <input type="submit" name="edit_product" value="Edit"/>
             <input type="submit" name="delete_product" value="Delete"/>
         </form>
+        <?php } ?>
+        <?php if (isOrderAllowed()){?>
+        <form action="order/create.php" method="post">
+            <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>" />
+            <button>Order</button>
+        </form>
+        <?php }?>
         <input type="hidden" id="page_id" value="product_details"/>
         <!-- The Right Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

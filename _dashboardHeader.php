@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/akheli/");
+define("BASE_URL","http://localhost/~sachin/akheli/");
 define("PROJECT_PATH",__DIR__);
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";
@@ -289,12 +289,12 @@ include_once PROJECT_PATH."/shared/auth.php";
                             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="products.php">View Product</a></li>
+                        <li><a href="product/">View Product</a></li>
                         <?php
                         $products_header = getProductByCategory($conn);
                         foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
+                            <li><a href="product/index.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>

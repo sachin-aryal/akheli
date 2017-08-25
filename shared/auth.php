@@ -11,6 +11,8 @@ define("ROOT_URL","http://localhost/akheli/");
 define ("CLIENT_DASHBOARD",ROOT_URL."dashboard.php");
 define ("ADMIN_DASHBOARD",ROOT_URL."admin.php");
 define ("NOLOGIN_DASHBOARD",ROOT_URL."index.php");
+define("ORDER_STATUS_REQUESTED","REQUESTED");
+if(!isset($_SESSION)){session_start();} ;
 
 function redirectIfLoggedIn(){
     if(isset($_SESSION["username"])){
