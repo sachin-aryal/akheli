@@ -11,7 +11,7 @@
 <input type="text" name="min_order" value="<?php echo $product['min_order']?>">
 
 <label for="price">Price:</label>
-<input type="text" name="price[]" value="<?php echo $product['price']?>">
+<input type="text" name="price" value="<?php echo $product['price']?>">
 
 <hr>
 <div id="product_details_form">
@@ -19,14 +19,17 @@
     if(sizeof($productDetails) != 0){
         foreach ($productDetails as $productDetail){
             ?>
-            <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id']?>">
+            <div id="<?php echo $productDetail['id'] ?>">
+                <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id']?>">
 
-            <label for="size">Size:</label>
-            <input type="text" name="size[]"  value="<?php echo $productDetail['size']?>">
+                <label for="size">Size:</label>
+                <input type="text" name="size[]"  value="<?php echo $productDetail['size']?>">
 
-            <label for="color">Color:</label>
-            <input type="text" name="color[]"  value="<?php echo $productDetail['color']?>">
-            <hr>
+                <label for="color">Color:</label>
+                <input type="text" name="color[]"  value="<?php echo $productDetail['color']?>">
+                <button type="button" onclick="removeDiv('<?php echo $productDetail['id'] ?>')">Remove</button>
+                <hr>
+            </div>
         <?php }}else{ ?>
 
         <label for="size">Size:</label>
@@ -38,3 +41,4 @@
     <?php } ?>
 </div>
 <input type="file" name="product_image">
+<button type="button" class="btn btn-primary" onclick="addMoreProductDetails()">Add Detail</button>

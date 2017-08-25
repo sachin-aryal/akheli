@@ -111,8 +111,9 @@ if(isset($_POST['update_product'])) {
     $price = $_POST['price'];
     $errorMessage = "no error";
 
-    if (isset($_FILES['product_image'])) {
-
+    if (!file_exists($_FILES['product_image']['tmp_name']) || !is_uploaded_file($_FILES['product_image']['tmp_name'])) {
+        $imageName = $imageLocation["image"];
+    }else{
         $target_dir = "../assets/images/";
 
         $uploadOk = 1;
@@ -137,30 +138,32 @@ if(isset($_POST['update_product'])) {
                 $errorMessage =  "Sorry, there was an error uploading your file.";
             }
         }
+        if($errorMessage !="no error"){
+            $_SESSION["messageType"] = "error";
+            $_SESSION["message"] = $errorMessage;
+            header("Location:../product/edit.php?id=$product_id");
+            return;
+        }else{
+            try{
+                if(file_exists("../assets/images/".$imageLocation["image"])){
+                    unlink("../assets/images/".$imageLocation["image"]);
+                }
+            }catch (Exception $exception){
 
-    } else {
-        $errorMessage = "Image not found";
-    }
-    if($errorMessage !="no error"){
-        $_SESSION["messageType"] = "error";
-        $_SESSION["message"] = $errorMessage;
-        $imageName = $imageLocation["image"];
-        header("Location:../product/edit.php?id=$product_id");
-        return;
-    }else{
-        unlink("../assets/images/".$imageLocation["image"]);
+            }
+        }
     }
 
     $stmt= $conn->prepare('Update products set product_name = ?, category=?, description=?, min_order=?, image=?, price = ? WHERE id= ?');
     $stmt->bind_param('ssssssi', $product_name,$category,$description,$min_order,$imageName,$price,$product_id);
 
     if($stmt->execute()) {
-        $length=count($_POST['detail_id']);
-        $detail_id=$_POST['detail_id'];
 
+        $length = count($_POST['size']);
+        $detail_id = $_POST['detail_id'];
         $size = $_POST['size'];
         $color = $_POST['color'];
-
+        removeProductDetailsByPId($conn,$product_id);
         for($i=0;$i<$length;$i++){
             $stmt= $conn->prepare('Insert into product_details(size,color,product_id) VALUES (?,?,?)');
             $stmt->bind_param('ssi', $size[$i],$color[$i],$product_id);

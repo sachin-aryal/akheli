@@ -30,17 +30,18 @@ $productList=getProductList($conn);
             ?>
             <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img src="assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
             <span>Product: <?php echo $product["product_name"] ?></span><br>
-            <span>Size Available:</span><br>
             <?php $productDetails = getProductDetails($conn,$product['id']);
-            while ($productDetail  = mysqli_fetch_assoc($productDetails)){
+            if(sizeof($productDetails)){
+                echo "<span>Size Available:</span><br>";
+                foreach ($productDetails as $productDetail){
+                    ?>
+                    <ul>
+                        <li><?php echo $productDetail['size'] ?></li>
+                    </ul>
+                    <?php
+                }
                 ?>
-                <ul>
-                    <li><?php echo $productDetail['size'] ?></li>
-                </ul>
-                <?php
-            }
-            ?>
-        <?php } ?>
+            <?php }} ?>
     </div>
     <!-- The Right Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

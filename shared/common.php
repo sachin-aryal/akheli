@@ -82,7 +82,7 @@ function getProductDetails($conn,$id){
     if ($stmt->execute()) {
         $product_details = $stmt->get_result();
         if ($product_details->num_rows > 0) {
-            return $product_details;
+            return mysqli_fetch_all($product_details,MYSQLI_ASSOC);
         } else {
             return [];
         }
@@ -99,15 +99,16 @@ function getProductInfo($conn,$id){
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_assoc($productInfo);
         } else {
-            return false;
+            return [];
         }
     }
-    return false;
+    return [];
 }
 
 function deleteProduct($conn,$id){
-    $imageLocation= getProductInfo($conn,$id);
-    $imageName = $imageLocation['image'];
+    $product= getProductInfo($conn,$id);
+    $imageName = $product['image'];
+    removeProductDetailsByPId($conn,$id);
     $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
@@ -126,5 +127,12 @@ function getProductByCategory($conn){
         return mysqli_fetch_all($productCategory,MYSQLI_ASSOC);
     }
     return [];
+
+}
+
+function removeProductDetailsByPId($conn,$product_id){
+    $stmt = $conn->prepare("DELETE FROM product_details where product_id = ?");
+    $stmt->bind_param("i",$product_id);
+    $stmt->execute();
 
 }

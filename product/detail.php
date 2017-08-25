@@ -12,37 +12,49 @@ include_once '../shared/dbconnect.php';
 include_once '../shared/datatable.php';
 include_once '../shared/common.php';
 
-$product_info=getProductInfo($conn,$_GET['id']);
-$productDetails=getProductDetails($conn,$_GET['id']);
+$product_info_details = getProductInfo($conn,$_GET['id']);
+$productDetails_details = getProductDetails($conn,$_GET['id']);
 
 ?>
 <html>
 <head>
-<title>Product Detail</title>
+    <title>Product Detail</title>
 </head>
 <body>
-<?php include_once "../_dashboardHeader.php"?>
-<a href="product/create.php">Crete Product</a>
-<h2>Product Detail</h2>
-<ul style="list-style: none">
-    <img src="assets/images/<?php echo $product['image'] ?>" height="200" width="200">
-    <li><?php echo $product_info['category'] ?></li>
-    <li><?php echo $product_info['min_order'] ?></li>
-    <li><?php echo $product_info['description'] ?></li>
+<div class="wrapper">
     <?php
-        foreach ($productDetails as $productDetail){
+    include_once "../_dashboardHeader.php";
     ?>
-    <li><?php echo $productDetail['size'] ?></li>
-    <li><?php echo $productDetail['price'] ?></li>
-    <li><?php echo $productDetail['color'] ?></li>
-    <?php } ?>
+    <div class="content-wrapper clearfix" id="main_content">
+        <a href="product/create.php">Crete Product</a>
+        <h2>Product Detail</h2>
+        <ul style="list-style: none">
+            <img src="assets/images/<?php echo $product_info_details['image'] ?>" height="200" width="200">
+            <li>Category: <?php echo $product_info_details['category'] ?></li>
+            <li>Minimum Order:<?php echo $product_info_details['min_order'] ?></li>
+            <li>Description: <?php echo $product_info_details['description'] ?></li>
+            <li>Price: <?php echo $product_info_details['price'] ?></li>
+            <?php
+            foreach ($productDetails_details as $productDetail){
+                ?>
+                <li>Size: <?php echo $productDetail['size']." Color:".$productDetail['color'] ?></li>
+            <?php } ?>
 
-</ul>
-<form method="post" action="controller/product.php">
-    <input type="hidden" name="id" value="<?php echo $product_info['id'] ?>"/>
-    <input type="submit" name="edit_product" value="Edit"/>
-    <input type="submit" name="delete_product" value="Delete"/>
-</form>
-<input type="text" id="page_id" value="product_details"/>
+        </ul>
+        <form method="post" action="controller/product.php">
+            <input type="hidden" name="id" value="<?php echo $product_info_details['id'] ?>"/>
+            <input type="submit" name="edit_product" value="Edit"/>
+            <input type="submit" name="delete_product" value="Delete"/>
+        </form>
+        <input type="hidden" id="page_id" value="product_details"/>
+        <!-- The Right Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Content of the sidebar goes here -->
+        </aside>
+        <!-- The sidebar's background -->
+        <!-- This div must placed right after the sidebar for it to work-->
+        <div class="control-sidebar-bg">asdfadsf</div>
+    </div>
+</div>
 </body>
 </html>

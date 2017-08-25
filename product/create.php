@@ -24,7 +24,6 @@ redirectIfNotAdmin();
                 <input type="submit" name="save_product" value="Save">
             </form>
         </div>
-        <button class="btn btn-primary" onclick="addMoreProductDetails()">Add Detail</button>
     </div>
     <!-- The Right Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
