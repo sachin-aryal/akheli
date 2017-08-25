@@ -73,21 +73,40 @@ function getRandomString($l = 15){
     return $result;
 }
 function getProductList($conn){
+
     $products = $conn->query("SELECT * FROM products");
     if ($products->num_rows > 0) {
         return mysqli_fetch_all($products,MYSQLI_ASSOC);
     }
     return [];
 }
-function getProductInfo($conn,$id){
-    $product= $conn->query("Select * FROM products where id=$id");
-
-    if($product->num_rows > 0){
-
-        return mysqli_fetch_assoc($product);
-
+function getProductDetails($conn,$id){
+    $stmt=$conn->prepare("Select * from product_details where product_id=?");
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+        $product_details = $stmt->get_result();
+        if ($product_details->num_rows > 0) {
+            return $product_details;
+        } else {
+            return false;
+        }
     }
-    return [] ;
+    return false;
+
+
+}
+function getProductInfo($conn,$id){
+    $stmt= $conn->prepare("Select * FROM products where id=?");
+    $stmt->bind_param("i", $id);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_assoc($productInfo);
+        } else {
+            return false;
+        }
+    }
+    return false;
 }
 
 function deleteProduct($conn,$id){

@@ -14,6 +14,7 @@ include_once '../shared/datatable.php';
 include_once '../shared/common.php';
 
 $productList=getProductList($conn);
+
 ?>
 <html>
 <head>
@@ -27,7 +28,15 @@ $productList=getProductList($conn);
 foreach ($productList as $product){
     ?>
     <a href="detail.php?id=<?php echo $product['id'] ?>"><img src="../assets/images/<?php echo $product['image'] ?>" height="100" width="100"> </a>
-
+    <?php $productdetails=getProductDetails($conn,$product['id']);
+    foreach ($productdetails as $product_detail){
+        ?>
+        <ul>
+        <li><?php echo $product_detail['size'] ?></li>
+        </ul>
+        <?php
+    }
+    ?>
 <?php } ?>
 
 

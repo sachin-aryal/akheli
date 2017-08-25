@@ -14,6 +14,7 @@ include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
 
 $product=getProductInfo($conn,$_GET['id']);
+$productDetails=getProductDetails($conn,$_GET['id']);
 
 ?>
 <html>
