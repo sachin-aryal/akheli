@@ -15,7 +15,7 @@
 <span class="error_email" id="error_email"></span>
 
 <label>Password:</label>
-<input type="Password" name="password" id="password" required/>
+<input type="Password" name="password" id="password"/>
 <span id="error_password"></span>
 
 <label>Shop Name:</label>

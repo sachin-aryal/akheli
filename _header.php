@@ -13,6 +13,7 @@ if(!isset($_SESSION)){session_start();}
     <title>Akheli</title>
     <link href="https://fonts.googleapis.com/css?family=Cagliostro|Open+Sans+Condensed:300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="public/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="public/font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
     <script src="public/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="public/jquery/jquery-ui.min.js" type="text/javascript"></script>
@@ -37,6 +38,7 @@ include_once "shared/auth.php";
         <div class="pull-left">
             <span>9860068421</span>
         </div>
+
         <div class="pull-right clearfix">
 
             <?php
@@ -48,11 +50,76 @@ include_once "shared/auth.php";
 
                 <span class="pull-right">Welcome <?php echo $_SESSION["username"] ?></span>
 
-                <?php } else { ?>
-                <form action="controller/user.php" method="post">
-                    <input class="btn-form-input" type="submit" name="login" value="Login"/>
-                    <input class="btn-form-input" type="submit" name="register" value="Register"/>
-                </form>
+                    <?php } else { ?>
+<!--                <form action="controller/user.php" method="post">-->
+<!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
+<!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
+<!--                </form>-->
+
+                <ul class="list-inline top-bar-login-register no-margin">
+                    <li class="btn-form-input dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+                        <ul class="dropdown-menu login-wrapper">
+                            <div>
+                                    <h2 class="title">Akheli - Login</h2>
+                                    <form method="post" action="../controller/user.php">
+                                        <div class="form-group">
+                                            <label for="username">Email</label>
+                                            <div>
+                                                <input class="form-control" type="text" name="username" id="username"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <div>
+                                                <input class="form-control" type="password" name="password" id="password"/>
+                                            </div>
+                                        </div>
+                                        <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
+                                    </form>
+                                    <div class="pull-left">
+                                        <a href="#">Forgot Password</a>
+                                    </div>
+<!--                                    <div class="pull-right">-->
+<!--                                        <a href="#">Register</a>-->
+<!--                                    </div>-->
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="btn-form-input dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                        <ul class="dropdown-menu login-wrapper">
+                            <div>
+                                <h2 class="title">Akheli - Login</h2>
+                                <form method="post" action="../controller/user.php">
+                                    <div class="form-group">
+                                        <label for="username">Email</label>
+                                        <div>
+                                            <input class="form-control" type="text" name="username" id="username"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <div>
+                                            <input class="form-control" type="password" name="password" id="password"/>
+                                        </div>
+                                    </div>
+                                    <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
+                                </form>
+                                <div class="pull-left">
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#">Register</a>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+
+<!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
+<!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
+                </ul>
             <?php } ?>
         </div>
     </div>
@@ -69,6 +136,17 @@ include_once "shared/auth.php";
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
                 <li class="active"><a href="#">Home</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
@@ -122,57 +200,68 @@ include_once "shared/auth.php";
 </div>
 
 <div class="container">
-    <div class="row margin-vertical">
-        <div class="col-md-6">
-            <div class="feature main-feature">
-                <img src="public/img/1.jpg" alt="">
-                <div class="overlay">
-                    <h2 class="overlay-title">Mens Clothing</h2>
+    <div class="row margin-vertical shadow">
+<!--        <div class="col-md-6">-->
+<!--            <div class="feature main-feature">-->
+<!--                <img src="public/img/1.jpg" alt="">-->
+<!--                <div class="overlay">-->
+<!--                    <h2 class="overlay-title">Mens Clothing</h2>-->
+<!--                </div>-->
+<!--                <div class="absolute-center offer">-->
+<!--                    50%-->
+<!--                    Off-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <div class="feature sub-feature">-->
+<!--                <img src="public/img/2.jpg" alt="">-->
+<!--                <div class="overlay">-->
+<!--                    <h2 class="overlay-title">Mens Clothing</h2>-->
+<!--                </div>-->
+<!--                <div class="absolute-center offer">-->
+<!--                    50%-->
+<!--                    Off-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="clearfix sub-feature-wrapper">-->
+<!--                <div class="col-md-6">-->
+<!--                    <div class="feature sub-feature">-->
+<!--                        <img src="public/img/3.jpg" alt="">-->
+<!--                        <div class="overlay">-->
+<!--                            <h2 class="overlay-title">Mens Clothing</h2>-->
+<!--                        </div>-->
+<!--                        <div class="absolute-center offer">-->
+<!--                            50%-->
+<!--                            Off-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                    <div class="feature sub-feature">-->
+<!--                        <img src="public/img/3.jpg" alt="">-->
+<!--                        <div class="overlay">-->
+<!--                            <h2 class="overlay-title">Mens Clothing</h2>-->
+<!--                        </div>-->
+<!--                        <div class="absolute-center offer">-->
+<!--                            50%-->
+<!--                            Off-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="col-md-11 no-padding">
+            <form class="general-search-form" action="#">
+                <div class="form-group no-margin">
+                    <input type="search" class="form-control text-center" placeholder="Search product here...">
                 </div>
-                <div class="absolute-center offer">
-                    50%
-                    Off
-                </div>
-            </div>
+            </form>
         </div>
-        <div class="col-md-6">
-            <div class="feature sub-feature">
-                <img src="public/img/2.jpg" alt="">
-                <div class="overlay">
-                    <h2 class="overlay-title">Mens Clothing</h2>
-                </div>
-                <div class="absolute-center offer">
-                    50%
-                    Off
-                </div>
-            </div>
-            <div class="clearfix sub-feature-wrapper">
-                <div class="col-md-6">
-                    <div class="feature sub-feature">
-                        <img src="public/img/3.jpg" alt="">
-                        <div class="overlay">
-                            <h2 class="overlay-title">Mens Clothing</h2>
-                        </div>
-                        <div class="absolute-center offer">
-                            50%
-                            Off
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="feature sub-feature">
-                        <img src="public/img/3.jpg" alt="">
-                        <div class="overlay">
-                            <h2 class="overlay-title">Mens Clothing</h2>
-                        </div>
-                        <div class="absolute-center offer">
-                            50%
-                            Off
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-md-1 bg-white no-padding text-center"><span class="fa fa-search general-search-icon"></span></div>
+
+
     </div>
 </div>
 

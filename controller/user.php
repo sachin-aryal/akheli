@@ -8,11 +8,12 @@
 
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
-redirectIfLoggedIn();
+
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
 
 if (isset($_POST["register"])) {
+    redirectIfLoggedIn();
     if(!isset($_POST["name"])){
         header("Location:../user/register.php");
         return;
@@ -118,7 +119,7 @@ if (isset($_POST["register"])) {
         header("Location:../user/edit.php");
         return;
     }
-    $user = getUser($conn,$user_id);
+    $user = getUser($conn,"id=".$user_id);
     if($password == ""){
         $password = $user["password"];
     }else{
@@ -148,6 +149,7 @@ if (isset($_POST["register"])) {
     }
 
 }else if($_POST["login"]){
+    redirectIfLoggedIn();
     if(!isset($_POST["username"])){
         header("Location:../user/login.php");
         return;
