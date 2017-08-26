@@ -3,6 +3,10 @@ body, h1, h2, h3, h4, h5, h6, a {
     font-family: 'Raleway', sans-serif;
 }
 
+body{
+    background-color: #efefef;
+}
+
 .content-wrapper {
     background-color: #f4f4f4;
 }
@@ -12,37 +16,26 @@ body, h1, h2, h3, h4, h5, h6, a {
 }
 
 .login-wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+    /*position: relative;*/
+    left: -136px;
+    width: 300px;
+    background-color: rgba(57, 57, 57, 0.9);
+    padding: 15px;
+    /*top: 0;*/
+    /*left: 0;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
     /*background-image: url("../../public/img/login-back.png");*/
-    background-size: contain;
+    /*background-size: contain;*/
 }
 
-.login-wrapper img {
-    height: 100%;
-    width: 100%;
-}
 
 .new-section {
     padding: 30px 0;
 }
 
-.login-wrapper .absolute-center {
-    width: 80%;
-}
-
-.login-wrapper .absolute-center .col-md-6 {
-    position: relative;
-    height: 500px;
-    color: #fff;
-    background-color: rgba(28, 28, 29, 0.5);
-}
-
-.login-wrapper .absolute-center .col-md-6 label {
-    font-size: 20px;
+.login-wrapper label {
+    font-size: 12px;
 }
 
 .btn-login {
@@ -51,15 +44,20 @@ body, h1, h2, h3, h4, h5, h6, a {
     background-color: transparent;
 }
 
-.login-wrapper .absolute-center .col-md-6 input {
-    border-radius: 0;
-    height: 50px;
-    font-size: 20px;
+.btn.focus, .btn:focus, .btn:hover {
+    color: #efecec;
+    text-decoration: none;
 }
 
-.login-wrapper .absolute-center .col-md-6 a {
+.login-wrapper input {
+    border-radius: 0;
+    /*height: 50px;*/
+    font-size: 13px;
+}
+
+.login-wrapper a {
     color: inherit;
-    font-size: 16px;
+    font-size: 10px;
 }
 
 .title {
@@ -121,7 +119,7 @@ body, h1, h2, h3, h4, h5, h6, a {
 }
 
 .main-menu {
-    background-color: transparent;
+    background-color: rgba(57, 57, 57, 0.57);
     color: #fff;
     padding: 1em;
     width: 100%;
@@ -418,4 +416,30 @@ body, h1, h2, h3, h4, h5, h6, a {
 
 .form-half-width{
     width:50%;
+}
+
+.general-search-form .form-control{
+    border: 1px solid transparent !important;
+    line-height: 35px;
+    font-size: 24px;
+    border-radius: 0 !important;
+    padding: 32px;
+}
+
+.general-search-icon{
+    font-size: 24px;
+    line-height: 66px;
+}
+
+.no-margin{
+    margin: 0 !important;
+}
+
+
+.top-bar-login-register li a{
+    color: inherit;
+}
+
+.top-bar-login-register li a:hover{
+    text-decoration: none;
 }
