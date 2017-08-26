@@ -31,4 +31,5 @@
 <span id="error"></span>
 
 <label>Image:</label>
-<input type="file" name="user_image">
+<input type="file" name="user_image" required>
+

@@ -29,6 +29,7 @@ redirectIfNotLoggedIn();
    <br>
    Email: <?php echo $user[email]; ?>
    <br>
+        Profile: <img src="assets/upload/<?php echo $client['user_image'] ?>" >
    <form method='post' action='user/edit.php'>
     <input type='submit' value='Edit Profile' />
     </form>

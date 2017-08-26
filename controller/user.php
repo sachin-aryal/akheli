@@ -42,6 +42,7 @@ if (isset($_POST["register"])) {
         $imageName = getRandomString(25).".jpg";
         $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        $errorMessage="no error";
         echo $target_file;
         if (file_exists($target_file)) {
             $errorMessage =  "Sorry, file already exists.";
@@ -76,7 +77,7 @@ if (isset($_POST["register"])) {
     if($stmt->execute()){
         $user_id = $conn->insert_id;
         $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
+        $stmt->bind_param("ssssis",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
         if($stmt->execute()){
             header("Location:../user/login.php");
         }else{
@@ -125,11 +126,49 @@ if (isset($_POST["register"])) {
     }else{
         $password = hash('sha256', $password);
     }
+    if (isset($_FILES['user_image'])) {
+
+        $target_dir = "../assets/upload/";
+
+        $uploadOk = 1;
+        $imageName = getRandomString(25).".jpg";
+        $target_file = $target_dir.$imageName;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        $errorMessage="no error";
+        echo $target_file;
+        if (file_exists($target_file)) {
+            $errorMessage =  "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        if ($_FILES["user_image"]["size"] > 500000) {
+            $errorMessage =  "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            $errorMessage =  "Sorry, your file was not uploaded.";
+
+        } else {
+            if (!move_uploaded_file($_FILES["user_image"]["tmp_name"], $target_file)) {
+                $errorMessage =  "Sorry, there was an error uploading your file.";
+            }
+        }
+
+    } else {
+        $errorMessage = "Image not found";
+    }
+    if($errorMessage !="no error"){
+        $_SESSION["messageType"] = "error";
+        $_SESSION["message"] = $errorMessage;
+        header("Location:../user/register.php");
+        return;
+    }
+
     $stmt = $conn->prepare("UPDATE USERS SET email = ?, password = ? WHERE id = ?");
     $stmt->bind_param('ssi',$email,$password,$user_id);
     if($stmt->execute()){
-        $stmt = $conn->prepare("UPDATE CLIENTS set name = ?, shop_name = ?, phone_no = ?, location = ? WHERE user_id = ?");
-        $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id);
+        $stmt = $conn->prepare("UPDATE CLIENTS set name = ?, shop_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
+        $stmt->bind_param("sssssi",$name,$shop_name,$phone_no,$location,$imageName,$user_id);
         if($stmt->execute()){
             $_SESSION["messageType"] = "success";
             $_SESSION["message"] = "User information updated successfully.";
