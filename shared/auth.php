@@ -7,10 +7,12 @@
  */
 define("ROLE_ADMIN","akheli_admin");
 define("ROLE_CLIENT","akheli_client");
-define("ROOT_URL","http://localhost/project/akheli");
-define ("CLIENT_DASHBOARD",ROOT_URL."/dashboard.php");
-define ("ADMIN_DASHBOARD",ROOT_URL."/admin.php");
-define ("NOLOGIN_DASHBOARD",ROOT_URL."/index.php");
+define("ROOT_URL","http://localhost/akheli/");
+define ("CLIENT_DASHBOARD",ROOT_URL."dashboard.php");
+define ("ADMIN_DASHBOARD",ROOT_URL."admin.php");
+define ("NOLOGIN_DASHBOARD",ROOT_URL."index.php");
+define("ORDER_STATUS_REQUESTED","REQUESTED");
+if(!isset($_SESSION)){session_start();} ;
 
 function redirectIfLoggedIn(){
     if(isset($_SESSION["username"])){
@@ -66,4 +68,11 @@ function isOrderAllowed(){
         }
     }
     return false;
+}
+
+function redirectIfNotLoggedIn(){
+    if(!isset($_SESSION["username"])) {
+        redirectToDash();
+        return;
+    }
 }

@@ -7,7 +7,6 @@
  */
 include_once "../shared/common.php";
 include_once "../shared/dbconnect.php";
-include_once "../shared/datatable.php";
 
 $user = getUser($conn,"id=9");
 $client = getClient($conn,$user["id"]);

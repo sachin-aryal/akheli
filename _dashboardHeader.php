@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/project/akheli/");
+define("BASE_URL","http://localhost/akheli/");
 define("PROJECT_PATH",__DIR__);
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";
@@ -272,10 +272,10 @@ getOrderCount($conn);
                     <ul class="treeview-menu">
                         <li><a href="product/create.php">Add Product</a></li>
                         <?php
-                        $products_header = getProductByCategory($conn);
+                        $products_header = getDistinctCategory($conn);
                         foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
+                            <li><a href="product/index.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>
@@ -291,18 +291,18 @@ getOrderCount($conn);
                             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="products.php">View Product</a></li>
+                        <li><a href="product/">View Product</a></li>
                         <?php
-                        $products_header = getProductByCategory($conn);
+                        $products_header = getDistinctCategory($conn);
                         foreach ($products_header as $product_header) {
                             ?>
-                            <li><a href="products.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
+                            <li><a href="product/index.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
                             <?php
                         }
                         ?>
                     </ul>
                 </li>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i>My Orders</span></a></li>
+                <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i>My Orders</span></a></li>
             <?php } ?>
         </ul>
         <!-- /.sidebar-menu -->

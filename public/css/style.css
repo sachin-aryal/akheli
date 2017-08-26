@@ -69,7 +69,7 @@ body, h1, h2, h3, h4, h5, h6, a {
 
 .content-wrapper {
     padding: 15px;
-    background-color: #efefef;
+    background-color: #cef3f3;
 }
 
 .content-wrapper .inner-wrapper {
@@ -86,12 +86,6 @@ body, h1, h2, h3, h4, h5, h6, a {
     height: 3px;
     border-radius: 30px;
     background-color: #00a157;
-}
-
-.form-control {
-    background-color: #efefef;
-    border: none;
-    outline: none;
 }
 
 .primary-btn {
@@ -390,4 +384,35 @@ body, h1, h2, h3, h4, h5, h6, a {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
     background: white !important;
+}
+
+.custom-form .form-group label{
+    font-weight: 100;
+    color: #2b3131;
+}
+
+.custom-form .form-control {
+    background-color: #fbfdfd;
+    outline: none;
+    color: #000;
+}
+
+.custom-form textarea{
+    background-color: #fbfdfd;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #D2D6DF;
+}
+
+.remove-description-option{
+    position: absolute;
+    right: -5px;
+}
+
+.custom-form .row{
+    position: relative;
+}
+
+.form-half-width{
+    width:50%;
 }
