@@ -83,10 +83,8 @@ if (isset($_POST["register"])) {
     }
     $user = getUser($conn,"id=".$user_id);
     if($password == ""){
-        echo "Inside.....";
         $password = $user["password"];
     }else{
-        echo "2nd Inside";
         $password = hash('sha256', $password);
     }
     $stmt = $conn->prepare("UPDATE USERS SET email = ?, password = ? WHERE id = ?");
