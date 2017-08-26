@@ -418,21 +418,13 @@ include_once "shared/auth.php";
                     <div class="product-description">
                         <h4 class="product-name"><?php echo $productInfo['product_name'] ?></h4>
                         <ol class="breadcrumb text-center">
+                            <?php $sizeArray=explode(',',$latestProductDetaills['size']);
+                            foreach ($sizeArray as $size){
+                            ?>
                             <li>
-                                <a href="#"><?php echo $latestProductDetaills['size'] ?></a>
+                                <a href="#"><?php echo $size  ?></a>
                             </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
+                            <?php } ?>
                         </ol>
                         <p>
                             <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs <?php echo $productInfo['price'] ?>/-</b>
