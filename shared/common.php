@@ -222,6 +222,17 @@ function getOrder($conn,$id){
     }
     return [];
 }
+function getSearchProducts($conn,$product_name,$description){
+    $stmt=$conn->prepare("Select * from products where product_name like %?% OR description like %?%");
+    $stmt=bind_param("ss",$product_name,$description);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return[];
+}
 
 
 
