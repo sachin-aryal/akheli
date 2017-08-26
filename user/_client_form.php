@@ -6,29 +6,47 @@
  * Time: 9:54 PM
  */
 ?>
-<label>Name:</label>
-<input type="text" name="name" id="name" required value="<?php echo $client["name"] ?>" />
-<span class="error_name" id="error_name"></span>
+<div class="form-group">
+    <label>Name:</label>
+    <input class="form-control" type="text" name="name" id="name" required value="<?php echo $client["name"] ?>"/>
+    <span class="error_name" id="error_name"></span>
+</div>
 
-<label>Email:</label>
-<input type="Email" name="email" id="email" required  value="<?php echo $user["email"] ?>"/>
-<span class="error_email" id="error_email"></span>
+<div class="form-group">
+    <label>Email:</label>
+    <input class="form-control" type="Email" name="email" id="email" required value="<?php echo $user["email"] ?>"/>
+    <span class="error_email" id="error_email"></span>
+</div>
 
-<label>Password:</label>
-<input type="Password" name="password" id="password"/>
-<span id="error_password"></span>
+<div class="form-group">
+    <label>Password:</label>
+    <input class="form-control" type="Password" name="password" id="password"/>
+    <span id="error_password"></span>
+</div>
 
-<label>Shop Name:</label>
-<input type="text" name="shop_name" id="shop_name" required value="<?php echo $client["shop_name"] ?>"/>
-<span id="error_shop"></span>
 
-<label>Contact Number:</label>
-<input type="text" name="phone_no" id="phone_no" required value="<?php echo $client["phone_no"] ?>"/>
-<span id="error_phone"></span>
+<div class="form-group">
+    <label>Shop Name:</label>
+    <input class="form-control" type="text" name="shop_name" id="shop_name" required
+           value="<?php echo $client["shop_name"] ?>"/>
+    <span id="error_shop"></span>
+</div>
+
+<div class="form-group">
+    <label>Contact Number:</label>
+    <input class="form-control" type="text" name="phone_no" id="phone_no" required
+           value="<?php echo $client["phone_no"] ?>"/>
+    <span id="error_phone"></span>
+</div>
+
+<div class="form-group"></div>
 
 <label>Location:</label>
-<input type="text" name="location" required value="<?php echo $client["location"] ?>"/>
+<input class="form-control" type="text" name="location" required value="<?php echo $client["location"] ?>"/>
 <span id="error"></span>
+</div>
 
-<label>Image:</label>
-<input type="file" name="user_image">
+<div class="form-group">
+    <label>Image:</label>
+    <input type="file" name="user_image">
+</div>

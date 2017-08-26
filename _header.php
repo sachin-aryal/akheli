@@ -265,7 +265,7 @@ include_once "shared/auth.php";
     </div>
 </div>
 
-<div class="new-section bg-gray">
+<div class="new-section bg-gray shadow">
     <h2 class="title">New Arrival</h2>
     <div class="container">
         <div class="row">
@@ -405,7 +405,145 @@ include_once "shared/auth.php";
     </div>
 </div>
 
-
+<div class="new-section bg-white shadow">
+    <h2 class="title">Best Seller</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant1.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant2.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant3.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant4.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 
