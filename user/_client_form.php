@@ -29,3 +29,6 @@
 <label>Location:</label>
 <input type="text" name="location" required value="<?php echo $client["location"] ?>"/>
 <span id="error"></span>
+
+<label>Image:</label>
+<input type="file" name="user_image">

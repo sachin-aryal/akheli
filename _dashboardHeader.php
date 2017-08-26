@@ -1,5 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/akheli/");
+define("BASE_URL","http://localhost/project/akheli/");
 define("PROJECT_PATH",__DIR__);
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";

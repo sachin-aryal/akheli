@@ -5,7 +5,7 @@
  // but I strongly suggest you to use PDO or MySQLi.
  
  define('DBHOST', 'localhost');
-// define('DBHOST', '192.168.1.5');
+
  define('DBUSER', 'root');
  define('DBPASS', '');
  define('DBNAME', 'akheli');
