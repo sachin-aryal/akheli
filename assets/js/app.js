@@ -25,3 +25,7 @@ function makeId(len) {
 
     return text;
 }
+
+function submitForm(id){
+    $("#"+id).submit();
+}
