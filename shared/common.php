@@ -190,12 +190,12 @@ function getOrderCount($conn)
     }
     return 0;
 }
-function getLatestProduct($conn,$limit){
-    $stmt=$conn->prepare("Select * from product ORDER BY id DESC LIMIT $limit ");
+function getLatestProduct($conn){
+    $stmt=$conn->prepare("Select * from products ORDER BY id DESC limit 8");
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
-            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+            return mysqli_fetch_all($result,MYSQLI_ASSOC) ;
         }
         return[];
     }
