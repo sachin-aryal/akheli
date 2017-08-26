@@ -298,6 +298,7 @@ body{
 }
 
 .page-content {
+    position: relative;
     background-color: white;
     padding: 15px;
     -webkit-box-shadow: 0px 23px 68px -33px rgba(0, 0, 0, 0.75);
@@ -457,4 +458,30 @@ body{
 
 .register-page-wrapper{
     margin-top: 100px;
+}
+
+
+.detail-component{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.detail-component .title{
+    margin: 0;
+    text-align: left;
+    font-family: 'Raleway', sans-serif;
+}
+
+.profile-img{
+    width: 100%;
+}
+
+.btn-edit-profile{
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+.btn{
+    border-radius: 0;
 }
