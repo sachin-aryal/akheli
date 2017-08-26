@@ -128,3 +128,24 @@ function getProductByCategory($conn){
     return [];
 
 }
+function changeViewStatus($conn,$id){
+    $stmt=$conn->prepare('Update orders set view=? where id=?');
+    $stmt=bind_param('ii',1,$id);
+    if($stmt->execute()){
+
+    }
+}
+function getOrderCount($conn)
+{
+    $query = "select COUNT(*) from orders where viewed=0";
+    $result = $conn->query($query);
+    if($result->num_rows >0){
+        $tCount = mysqli_fetch_assoc($result);
+        return $tCount['count'];
+    }
+    return 0;
+}
+
+
+
+
