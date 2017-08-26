@@ -266,7 +266,7 @@ getOrderCount($conn);
             <li class="header">MENU</li>
             <!-- Optionally, you can add icons to the links -->
             <?php if(checkIfAdmin()){ ?>
-                <li id="order_li"><a href="#"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span><?php echo getOrderCount($conn); ?></a></li>
+                <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span><?php echo getOrderCount($conn); ?></a></li>
                 <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
                 <li class="treeview" id="product_li">
                     <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>

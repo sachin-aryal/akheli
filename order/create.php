@@ -1,5 +1,6 @@
 <?php
 include_once "../shared/auth.php";
+redirectIfNotClient();
 if(isset($_POST["product_id"])){
     $productId = $_POST["product_id"];
 }else if(isset($_GET["product_id"])){
@@ -27,26 +28,7 @@ if(isset($_POST["product_id"])){
         <li>Description: <?php echo $order_product['description'] ?></li>
         <li>Price: <?php echo $order_product['price'] ?></li>
         <form action="controller/order.php" method="post">
-            <label for="description">Description</label>
-            <input type="text" name="description" id="description"/><br>
-            <label for="size">Size</label>
-            <?php
-            foreach ($order_product_details as $order_product_detail) {
-                $size = explode(",",$order_product_detail["size"]);
-                $color = explode(",",$order_product_detail["color"]);
-                foreach ($size as $s) {
-                    ?>
-                    <?php echo $s; ?>&nbsp;<input type="checkbox" id="size" name="size[]" value="<?php echo $s; ?>"/>
-                <?php } ?>
-                <br><label for="color">Color</label>
-                <?php
-                foreach ($color as $c){
-                    ?>
-                    <?php echo $c; ?>&nbsp;<input type="checkbox" id="color" name="color[]" value="<?php echo $c; ?>"/>
-                <?php } }?>
-            <br><label for="quantity">Quantity</label>
-            <input type="text" name="quantity" id="quantity"/>
-            <input type="hidden" name="product_id" id="product_id" value="<?php echo $productId ?>"/>
+            <?php include_once "_order_form.php" ?>
             <input type="submit" name="save_order" value="Order"/>
         </form>
     </div>

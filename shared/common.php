@@ -211,6 +211,18 @@ function getMostViewProduct($conn){
     }
 }
 
+function getOrder($conn,$id){
+    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE id = ?");
+    $stmt->bind_param("i",$id);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return [];
+}
+
 
 
 

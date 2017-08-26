@@ -12,6 +12,8 @@ define ("CLIENT_DASHBOARD",ROOT_URL."dashboard.php");
 define ("ADMIN_DASHBOARD",ROOT_URL."admin.php");
 define ("NOLOGIN_DASHBOARD",ROOT_URL."index.php");
 define("ORDER_STATUS_REQUESTED","REQUESTED");
+define("ORDER_STATUS_PROCESSING","PROCESSING");
+define("ORDER_STATUS_COMPLETED","COMPLETED");
 if(!isset($_SESSION)){session_start();} ;
 
 function redirectIfLoggedIn(){
