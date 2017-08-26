@@ -190,6 +190,38 @@ function getOrderCount($conn)
     }
     return 0;
 }
+function getLatestProduct($conn,$limit){
+    $stmt=$conn->prepare("Select * from product ORDER BY id DESC LIMIT $limit ");
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+        return[];
+    }
+}
+function getMostViewProduct($conn){
+    $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from orders GROUP by product_id ORDER BY total_quantity DESC");
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+        return[];
+    }
+}
+
+function getOrder($conn,$id){
+    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE id = ?");
+    $stmt->bind_param("i",$id);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return [];
+}
 
 
 

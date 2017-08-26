@@ -13,7 +13,7 @@ redirectIfNotLoggedIn();
                         defer()
                     }, 50);
                 } else {
-                    $("#userList").DataTable();
+                    $("#orderList").DataTable();
                 }
             } else {
                 setTimeout(function () {
@@ -52,6 +52,7 @@ redirectIfNotLoggedIn();
                     <th>Status</th>
                     <th>Quantity</th>
                     <th>Total Price(NRs)</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,7 +70,13 @@ redirectIfNotLoggedIn();
                         <td><?php echo $order["status"] ?></td>
                         <td><?php echo $order["quantity"] ?></td>
                         <td><?php echo $order["quantity"]*$product_info["price"] ?></td>
-                        <td><span class="fa fa-pencil-square-o"></span> &nbsp; <span class="fa fa-user-times"></span></td>
+                        <td>
+                            <?php if($order["status"] == ORDER_STATUS_REQUESTED && isOrderAllowed()){
+                                include_once '_edit_action.php';
+                            }else if(checkIfAdmin()){
+                                include_once '_edit_action.php';
+                            }?>
+                        </td>
                     </tr>
                     <?php
                 }

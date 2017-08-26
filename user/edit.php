@@ -1,9 +1,12 @@
 <?php
-include_once "../shared/common.php";
 include_once "../shared/dbconnect.php";
-
-$user = getUser($conn,$_POST["user_id"]);
+include_once "../shared/common.php";
+include_once "../shared/auth.php";
+redirectIfNotLoggedIn();
+$user = getUser($conn,"id=".$_SESSION['user_id']);
 $client = getClient($conn,$user["id"]);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +23,7 @@ $client = getClient($conn,$user["id"]);
         ?>
         <input type="hidden" name="id" value="<?php echo $user["id"] ?>"/>
         <input type="submit" name="update" value="Update">
+
     </form>
 </div>
 

@@ -15,7 +15,7 @@
 <span class="error_email" id="error_email"></span>
 
 <label>Password:</label>
-<input type="Password" name="password" id="password" required/>
+<input type="Password" name="password" id="password"/>
 <span id="error_password"></span>
 
 <label>Shop Name:</label>
@@ -29,3 +29,6 @@
 <label>Location:</label>
 <input type="text" name="location" required value="<?php echo $client["location"] ?>"/>
 <span id="error"></span>
+
+<label>Image:</label>
+<input type="file" name="user_image">
