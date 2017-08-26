@@ -82,7 +82,7 @@ function getProductDetails($conn,$id){
     if ($stmt->execute()) {
         $product_details = $stmt->get_result();
         if ($product_details->num_rows > 0) {
-            return mysqli_fetch_all($product_details,MYSQLI_ASSOC);
+            return mysqli_fetch_assoc($product_details)  ;
         } else {
             return [];
         }

@@ -399,6 +399,154 @@ include_once "shared/auth.php";
         </div>
     </div>
 </div>
+<div class="new-section bg-white">
+    <h2 class="title">Most Popular</h2>
+    <div class="container">
+        <div class="row">
+            <?php $latest_productList=getMostViewProduct($conn);
+            foreach ($latest_productList as $latestProduct){
+
+                $productInfo=getProductInfo($conn,$latestProduct['product_id']);
+
+                $latestProductDetaills=getProductDetails($conn,$latestProduct['product_id']);
+            ?>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="assets/images/.'<?php echo $productInfo['image'] ?>'" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name"><?php echo $productInfo['product_name'] ?></h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#"><?php echo $latestProductDetaills['size'] ?></a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs <?php echo $productInfo['price'] ?>/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant2.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant3.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-wrapper">
+                    <div class="product-image">
+                        <img src="public/img/pant4.jpg" alt="">
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name">Korean Pant</h4>
+                        <ol class="breadcrumb text-center">
+                            <li>
+                                <a href="#">S</a>
+                            </li>
+                            <li>
+                                <a href="#">M</a>
+                            </li>
+                            <li>
+                                <a href="#">L</a>
+                            </li>
+                            <li>
+                                <a href="#">XL</a>
+                            </li>
+                            <li>
+                                <a href="#">XXL</a>
+                            </li>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 </body>
