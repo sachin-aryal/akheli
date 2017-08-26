@@ -64,7 +64,7 @@ include_once "shared/auth.php";
                         <ul class="dropdown-menu login-wrapper">
                             <div>
                                     <h2 class="title">Akheli - Login</h2>
-                                    <form method="post" action="../controller/user.php">
+                                    <form method="post" action="controller/user.php">
                                         <div class="form-group">
                                             <label for="username">Email</label>
                                             <div>

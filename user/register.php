@@ -27,13 +27,19 @@ define('WP_DEBUG_DISPLAY', false);
 <body>
 <?php include_once "../shared/_header.php" ?>
 
+
+<div class="page-title-wrapper register-page-wrapper padding">
+    <h3 class="page-title">Register <small>Create your account here</small></h3>
+</div>
 <div class="container">
-    <form class="custom-form" method="post" action="../controller/user.php" enctype="multipart/form-data">
-        <?php
-        include_once '_client_form.php';
-        ?>
-        <input type="submit" name="register" value="Register">
-    </form>
+    <div class="bg-white shadow padding">
+        <form class="custom-form" method="post" action="../controller/user.php" enctype="multipart/form-data">
+            <?php
+            include_once '_client_form.php';
+            ?>
+            <input type="submit" class="btn btn-primary" name="register" value="Register">
+        </form>
+    </div>
 </div>
 </body>
 </html>

@@ -397,6 +397,7 @@ body{
     background-color: #fbfdfd;
     outline: none;
     color: #000;
+    border-radius: 0 !important;
 }
 
 .custom-form textarea{
@@ -443,4 +444,17 @@ body{
 
 .top-bar-login-register li a:hover{
     text-decoration: none;
+}
+
+.padding{
+    padding: 15px;
+}
+
+.register-wrappper{
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.register-page-wrapper{
+    margin-top: 100px;
 }
