@@ -79,7 +79,7 @@ if (isset($_POST["register"])) {
         $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
         $stmt->bind_param("ssssis",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
         if($stmt->execute()){
-            header("Location:../user/login.php");
+            header("Location:../login.php");
         }else{
             $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
             $stmt->bind_param('s',$email);
@@ -190,7 +190,7 @@ if (isset($_POST["register"])) {
 }else if($_POST["login"]){
     redirectIfLoggedIn();
     if(!isset($_POST["username"])){
-        header("Location:../user/login.php");
+        header("Location:../index.php");
         return;
     }
     $username = $_POST["username"];
@@ -202,7 +202,7 @@ if (isset($_POST["register"])) {
         if($user["enabled"] == 0){
             $_SESSION["messageType"] = "error";
             $_SESSION["message"] = "User is disabled.";
-            header("Location:../user/login.php");
+            header("Location:../index.php");
             return;
         }
         $_SESSION["username"] = $user["email"];
@@ -213,7 +213,7 @@ if (isset($_POST["register"])) {
     }
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "username and password did not match.";
-    header("Location:../user/login.php");
+    header("Location:../index.php");
     return;
 }else if($_POST["logout"]){
     session_destroy();

@@ -63,28 +63,28 @@ include_once "shared/auth.php";
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
                         <ul class="dropdown-menu login-wrapper">
                             <div>
-                                    <h2 class="title">Akheli - Login</h2>
-                                    <form method="post" action="controller/user.php">
-                                        <div class="form-group">
-                                            <label for="username">Email</label>
-                                            <div>
-                                                <input class="form-control" type="text" name="username" id="username"/>
-                                            </div>
+                                <h2 class="title">Akheli - Login</h2>
+                                <form method="post" action="controller/user.php">
+                                    <div class="form-group">
+                                        <label for="username">Email</label>
+                                        <div>
+                                            <input class="form-control" type="text" name="username" id="username"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <div>
-                                                <input class="form-control" type="password" name="password" id="password"/>
-                                            </div>
-                                        </div>
-                                        <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
-                                    </form>
-                                    <div class="pull-left">
-                                        <a href="#">Forgot Password</a>
                                     </div>
-<!--                                    <div class="pull-right">-->
-<!--                                        <a href="#">Register</a>-->
-<!--                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <div>
+                                            <input class="form-control" type="password" name="password" id="password"/>
+                                        </div>
+                                    </div>
+                                    <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
+                                </form>
+                                <div class="pull-left">
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                                <!--                                    <div class="pull-right">-->
+                                <!--                                        <a href="#">Register</a>-->
+                                <!--                                    </div>-->
                             </div>
                         </ul>
                     </li>
@@ -260,142 +260,10 @@ include_once "shared/auth.php";
     </div>
 </div>
 
-<div class="new-section bg-gray shadow">
+<div class="new-section bg-gray">
     <h2 class="title">New Arrival</h2>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant1.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant2.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant3.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant4.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-3">
                 <div class="product-wrapper">
                     <div class="product-image">
@@ -680,277 +548,7 @@ include_once "shared/auth.php";
 </div>
 
 
-<div class="new-section bg-white shadow">
-    <h2 class="title">Best Seller</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant1.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant2.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant3.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant4.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant1.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant2.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant3.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-wrapper">
-                    <div class="product-image">
-                        <img src="public/img/pant4.jpg" alt="">
-                    </div>
-                    <div class="product-description">
-                        <h4 class="product-name">Korean Pant</h4>
-                        <ol class="breadcrumb text-center">
-                            <li>
-                                <a href="#">S</a>
-                            </li>
-                            <li>
-                                <a href="#">M</a>
-                            </li>
-                            <li>
-                                <a href="#">L</a>
-                            </li>
-                            <li>
-                                <a href="#">XL</a>
-                            </li>
-                            <li>
-                                <a href="#">XXL</a>
-                            </li>
-                        </ol>
-                        <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                        </p>
-                        <div class="text-center">
-                            <button class="btn btn-view">View</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 </body>
 </html>
 
