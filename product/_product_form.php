@@ -34,8 +34,6 @@
                     <label for="color">Color:</label>
                     <input class="form-control" type="text" name="color[]" value="<?php echo $productDetail['color'] ?>">
                 </div>
-                <button type="button" onclick="removeDiv('<?php echo $productDetail['id'] ?>')">Remove</button>
-                <hr>
             </div>
         <?php }}else{ ?>
 

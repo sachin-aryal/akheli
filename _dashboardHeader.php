@@ -214,6 +214,11 @@ getOrderCount($conn);
                             </p>
                         </li>
                         <li class="user-footer">
+                            <div class="pull-left">
+                                <form action="user/profile.php" method="post">
+                                    <input class="btn btn-primary" type="submit" name="profile" value="My Profile"/>
+                                </form>
+                            </div>
                             <div class="pull-right">
                                 <form action="controller/user.php" method="post">
                                     <input class="btn btn-primary" type="submit" name="logout" value="Logout"/>
