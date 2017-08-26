@@ -15,6 +15,7 @@ if(!isset($_SESSION)){session_start();} ;
 if(isset($_POST['save_product'])) {
     redirectIfNotAdmin();
     $product_name = $_POST["product_name"];
+    echo $product_name;
     $category= $_POST['category'];
     $size = $_POST['size'];
     $color = $_POST['color'];

@@ -33,12 +33,50 @@ if (isset($_POST["register"])) {
         header("Location:../user/register.php");
         return;
     }
+
+    if (isset($_FILES['user_image'])) {
+
+        $target_dir = "../assets/upload/";
+
+        $uploadOk = 1;
+        $imageName = getRandomString(25).".jpg";
+        $target_file = $target_dir.$imageName;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        echo $target_file;
+        if (file_exists($target_file)) {
+            $errorMessage =  "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        if ($_FILES["user_image"]["size"] > 500000) {
+            $errorMessage =  "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            $errorMessage =  "Sorry, your file was not uploaded.";
+
+        } else {
+            if (!move_uploaded_file($_FILES["user_image"]["tmp_name"], $target_file)) {
+                $errorMessage =  "Sorry, there was an error uploading your file.";
+            }
+        }
+
+    } else {
+        $errorMessage = "Image not found";
+    }
+    if($errorMessage !="no error"){
+        $_SESSION["messageType"] = "error";
+        $_SESSION["message"] = $errorMessage;
+        header("Location:../user/register.php");
+        return;
+    }
+
     $stmt = $conn->prepare('INSERT INTO USERS(email,password,role,enabled) VALUES (?,?,?,?)');
     $stmt->bind_param('sssi', $email,$password,$role,$enabled);
     if($stmt->execute()){
         $user_id = $conn->insert_id;
-        $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id) VALUES (?,?,?,?,?)");
-        $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id);
+        $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
+        $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
         if($stmt->execute()){
             header("Location:../user/login.php");
         }else{
