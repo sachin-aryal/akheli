@@ -5,6 +5,8 @@ ini_set('error_reporting', E_ALL );
 define('WP_DEBUG', false);
 define('WP_DEBUG_DISPLAY', false);
 if(!isset($_SESSION)){session_start();}
+include_once "shared/dbconnect.php";
+include_once "shared/common.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,18 +138,11 @@ include_once "shared/auth.php";
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
-                <li class="active"><a href="#">Home</a></li>
+                <?php $categoryList=getDistinctCategory($conn);
+                foreach ($categoryList as $category){
+                ?>
+                <li class="active"><a href="#"><?php echo $category['category'] ?></a></li>
+                <?php } ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
