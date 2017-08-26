@@ -52,39 +52,39 @@ include_once "shared/auth.php";
 
                 <span class="pull-right">Welcome <?php echo $_SESSION["username"] ?></span>
 
-                    <?php } else { ?>
-<!--                <form action="controller/user.php" method="post">-->
-<!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
-<!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
-<!--                </form>-->
+            <?php } else { ?>
+                <!--                <form action="controller/user.php" method="post">-->
+                <!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
+                <!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
+                <!--                </form>-->
 
                 <ul class="list-inline top-bar-login-register no-margin">
                     <li class="btn-form-input dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
                         <ul class="dropdown-menu login-wrapper">
                             <div>
-                                    <h2 class="title">Akheli - Login</h2>
-                                    <form method="post" action="../controller/user.php">
-                                        <div class="form-group">
-                                            <label for="username">Email</label>
-                                            <div>
-                                                <input class="form-control" type="text" name="username" id="username"/>
-                                            </div>
+                                <h2 class="title">Akheli - Login</h2>
+                                <form method="post" action="controller/user.php">
+                                    <div class="form-group">
+                                        <label for="username">Email</label>
+                                        <div>
+                                            <input class="form-control" type="text" name="username" id="username"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <div>
-                                                <input class="form-control" type="password" name="password" id="password"/>
-                                            </div>
-                                        </div>
-                                        <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
-                                    </form>
-                                    <div class="pull-left">
-                                        <a href="#">Forgot Password</a>
                                     </div>
-<!--                                    <div class="pull-right">-->
-<!--                                        <a href="#">Register</a>-->
-<!--                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <div>
+                                            <input class="form-control" type="password" name="password" id="password"/>
+                                        </div>
+                                    </div>
+                                    <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
+                                </form>
+                                <div class="pull-left">
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                                <!--                                    <div class="pull-right">-->
+                                <!--                                        <a href="#">Register</a>-->
+                                <!--                                    </div>-->
                             </div>
                         </ul>
                     </li>
@@ -119,8 +119,8 @@ include_once "shared/auth.php";
                         </ul>
                     </li>
 
-<!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
-<!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
+                    <!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
+                    <!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
                 </ul>
             <?php } ?>
         </div>
@@ -140,8 +140,8 @@ include_once "shared/auth.php";
             <ul class="nav navbar-nav navbar-right">
                 <?php $categoryList=getDistinctCategory($conn);
                 foreach ($categoryList as $category){
-                ?>
-                <li class="active"><a href="#"><?php echo $category['category'] ?></a></li>
+                    ?>
+                    <li class="active"><a href="#"><?php echo $category['category'] ?></a></li>
                 <?php } ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
@@ -154,7 +154,7 @@ include_once "shared/auth.php";
                 <?php if(checkIfAdmin()) { ?>
                     <li><a href="controller/user.php">User List</a></li>
                     <li><a href="controller/product.php">Product List</a></li>
-                    <?php } ?>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -196,56 +196,56 @@ include_once "shared/auth.php";
 
 <div class="container">
     <div class="row margin-vertical shadow">
-<!--        <div class="col-md-6">-->
-<!--            <div class="feature main-feature">-->
-<!--                <img src="public/img/1.jpg" alt="">-->
-<!--                <div class="overlay">-->
-<!--                    <h2 class="overlay-title">Mens Clothing</h2>-->
-<!--                </div>-->
-<!--                <div class="absolute-center offer">-->
-<!--                    50%-->
-<!--                    Off-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-md-6">-->
-<!--            <div class="feature sub-feature">-->
-<!--                <img src="public/img/2.jpg" alt="">-->
-<!--                <div class="overlay">-->
-<!--                    <h2 class="overlay-title">Mens Clothing</h2>-->
-<!--                </div>-->
-<!--                <div class="absolute-center offer">-->
-<!--                    50%-->
-<!--                    Off-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="clearfix sub-feature-wrapper">-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="feature sub-feature">-->
-<!--                        <img src="public/img/3.jpg" alt="">-->
-<!--                        <div class="overlay">-->
-<!--                            <h2 class="overlay-title">Mens Clothing</h2>-->
-<!--                        </div>-->
-<!--                        <div class="absolute-center offer">-->
-<!--                            50%-->
-<!--                            Off-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-6">-->
-<!--                    <div class="feature sub-feature">-->
-<!--                        <img src="public/img/3.jpg" alt="">-->
-<!--                        <div class="overlay">-->
-<!--                            <h2 class="overlay-title">Mens Clothing</h2>-->
-<!--                        </div>-->
-<!--                        <div class="absolute-center offer">-->
-<!--                            50%-->
-<!--                            Off-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="col-md-6">-->
+        <!--            <div class="feature main-feature">-->
+        <!--                <img src="public/img/1.jpg" alt="">-->
+        <!--                <div class="overlay">-->
+        <!--                    <h2 class="overlay-title">Mens Clothing</h2>-->
+        <!--                </div>-->
+        <!--                <div class="absolute-center offer">-->
+        <!--                    50%-->
+        <!--                    Off-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="col-md-6">-->
+        <!--            <div class="feature sub-feature">-->
+        <!--                <img src="public/img/2.jpg" alt="">-->
+        <!--                <div class="overlay">-->
+        <!--                    <h2 class="overlay-title">Mens Clothing</h2>-->
+        <!--                </div>-->
+        <!--                <div class="absolute-center offer">-->
+        <!--                    50%-->
+        <!--                    Off-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="clearfix sub-feature-wrapper">-->
+        <!--                <div class="col-md-6">-->
+        <!--                    <div class="feature sub-feature">-->
+        <!--                        <img src="public/img/3.jpg" alt="">-->
+        <!--                        <div class="overlay">-->
+        <!--                            <h2 class="overlay-title">Mens Clothing</h2>-->
+        <!--                        </div>-->
+        <!--                        <div class="absolute-center offer">-->
+        <!--                            50%-->
+        <!--                            Off-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <div class="col-md-6">-->
+        <!--                    <div class="feature sub-feature">-->
+        <!--                        <img src="public/img/3.jpg" alt="">-->
+        <!--                        <div class="overlay">-->
+        <!--                            <h2 class="overlay-title">Mens Clothing</h2>-->
+        <!--                        </div>-->
+        <!--                        <div class="absolute-center offer">-->
+        <!--                            50%-->
+        <!--                            Off-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
         <div class="col-md-11 no-padding">
             <form class="general-search-form" action="#">
@@ -405,10 +405,9 @@ include_once "shared/auth.php";
         <div class="row">
             <?php $latest_productList=getMostViewProduct($conn);
             foreach ($latest_productList as $latestProduct){
+            $productInfo=getProductInfo($conn,$latestProduct['product_id']);
 
-                $productInfo=getProductInfo($conn,$latestProduct['product_id']);
-
-                $latestProductDetaills=getProductDetails($conn,$latestProduct['product_id']);
+            $latestProductDetaills=getProductDetails($conn,$latestProduct['product_id']);
             ?>
             <div class="col-md-3">
                 <div class="product-wrapper">
