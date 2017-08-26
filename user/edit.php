@@ -17,14 +17,20 @@ $client = getClient($conn,$user["id"]);
 <body>
 <?php include_once "../_dashboardHeader.php"?>
 <div class="content-wrapper clearfix" id="main_content">
-    <form method="post" action="controller/user.php" enctype="multipart/form-data">
+
+    <div class="page-title">
+        <h3><span class="fa fa-pencil"></span> Edit Profile <small>change your profile details</small></h3>
+    </div>
+    <div class="page-content">
+    <form class="custom-forms" method="post" action="controller/user.php" enctype="multipart/form-data">
         <?php
         include_once '_client_form.php';
         ?>
         <input type="hidden" name="id" value="<?php echo $user["id"] ?>"/>
-        <input type="submit" name="update" value="Update">
+        <input class="btn btn-primary" type="submit" name="update" value="Update">
 
     </form>
+    </div>
 </div>
 
 <!-- The Right Sidebar -->
