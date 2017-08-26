@@ -99,7 +99,7 @@ body, h1, h2, h3, h4, h5, h6, a {
 }
 
 .top-info-bar {
-    background-color: #1565c0;
+    background-color: #393939;
     color: #fff;
     font-size: 1em;
     line-height: 30px;
@@ -121,11 +121,14 @@ body, h1, h2, h3, h4, h5, h6, a {
 }
 
 .main-menu {
-    background-color: #0d59af;
+    background-color: transparent;
     color: #fff;
     padding: 1em;
+    width: 100%;
     border-radius: 0;
+    position: absolute;
     margin-bottom: 0;
+    z-index: 10;
 }
 
 .navbar-brand {
