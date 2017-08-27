@@ -31,11 +31,8 @@ $productDetails_details = getProductDetails($conn,$_GET['id']);
             <li>Minimum Order:<?php echo $product_info_details['min_order'] ?></li>
             <li>Description: <?php echo $product_info_details['description'] ?></li>
             <li>Price: <?php echo $product_info_details['price'] ?></li>
-            <?php
-            foreach ($productDetails_details as $productDetail){
-                ?>
-                <li>Size: <?php echo $productDetail['size']." Color:".$productDetail['color'] ?></li>
-            <?php } ?>
+                <li>Size: <?php echo $productDetails_details['size']." Color:".$productDetails_details['color'] ?></li>
+            <?php  ?>
 
         </ul>
         <?php if(checkIfAdmin()){ ?>

@@ -1,0 +1,8 @@
+.valid {
+    color: red;
+    background-color: pink;
+}
+
+.invalid {
+    display: none;
+}

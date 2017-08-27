@@ -21,8 +21,8 @@
 
 <div class="form-group">
     <label>Password:</label>
-    <input class="form-control" type="Password" name="password" id="password"/>
-    <span id="error_password"></span>
+    <input class="form-control" type="Password" name="password" id="register_password"/>
+    <span id="error_register_password"></span>
 </div>
 
 
