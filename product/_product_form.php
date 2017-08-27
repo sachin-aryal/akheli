@@ -24,22 +24,20 @@
 <div id="product_details_form" class="row clearfix">
     <?php
     if (sizeof($productDetails) != 0) {
-        foreach ($productDetails as $productDetail) {
             ?>
-            <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id'] ?>">
             <div id="<?php echo $productDetail['id'] ?>">
-                <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetail['id']?>">
+                <input type="hidden" name="detail_id[]" value=value="<?php echo $productDetails['id']?>">
 
                 <div class="form-group col-md-6">
                     <label for="size">Size:</label>
-                    <input class="form-control" type="text" name="size[]" value="<?php echo $productDetail['size'] ?>">
+                    <input class="form-control" type="text" name="size[]" value="<?php echo $productDetails['size'] ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="color">Color:</label>
-                    <input class="form-control" type="text" name="color[]" value="<?php echo $productDetail['color'] ?>">
+                    <input class="form-control" type="text" name="color[]" value="<?php echo $productDetails['color'] ?>">
                 </div>
             </div>
-        <?php }}else{ ?>
+        <?php }else{ ?>
 
         <div class="form-group col-md-6">
             <label for="size">Size:</label>
