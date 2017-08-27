@@ -5,12 +5,17 @@
  * Date: 8/22/17
  * Time: 9:31 PM
  */
+if(file_exists("base_url.php")){
+    include_once 'base_url.php';
+}else{
+    include_once '../base_url.php';
+}
+
 define("ROLE_ADMIN","akheli_admin");
 define("ROLE_CLIENT","akheli_client");
-define("ROOT_URL","http://localhost/akheli/");
-define ("CLIENT_DASHBOARD",ROOT_URL."dashboard.php");
-define ("ADMIN_DASHBOARD",ROOT_URL."admin.php");
-define ("NOLOGIN_DASHBOARD",ROOT_URL."index.php");
+define ("CLIENT_DASHBOARD",BASE_URL."dashboard.php");
+define ("ADMIN_DASHBOARD",BASE_URL."admin.php");
+define ("NOLOGIN_DASHBOARD",BASE_URL."index.php");
 define("ORDER_STATUS_REQUESTED","REQUESTED");
 define("ORDER_STATUS_PROCESSING","PROCESSING");
 define("ORDER_STATUS_COMPLETED","COMPLETED");
