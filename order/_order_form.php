@@ -1,5 +1,10 @@
+
+<div class="form-group">
 <label for="description">Description</label>
-<input type="text" name="description" id="description" value="<?php echo $edit_order["description"] ?>"/><br>
+<input class="form-control" type="text" name="description" id="description" value="<?php echo $edit_order["description"] ?>"/>
+</div>
+
+<div class="form-group">
 <label for="size">Size</label>
 <?php
 foreach ($order_product_details as $order_product_detail) {
@@ -15,6 +20,11 @@ foreach ($order_product_details as $order_product_detail) {
         ?>
         <?php echo $c; ?>&nbsp;<input type="checkbox" id="color" name="color[]" value="<?php echo $c; ?>"/>
     <?php } }?>
-<br><label for="quantity">Quantity</label>
-<input type="text" name="quantity" id="quantity" value="<?php echo $edit_order['quantity'] ?>"/>
+
+</div>
+
+<div class="form-group">
+<label for="quantity">Quantity</label>
+<input class="form-control" type="text" name="quantity" id="quantity" value="<?php echo $edit_order['quantity'] ?>"/>
+</div>
 <input type="hidden" name="product_id" id="product_id" value="<?php echo $productId ?>"/>

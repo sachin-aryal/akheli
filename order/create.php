@@ -22,6 +22,70 @@ if(isset($_POST["product_id"])){
     $order_product_details = getProductDetails($conn,$order_product["id"]);
     ?>
     <div class="content-wrapper clearfix" id="main_content">
+
+        <div class="page-title">
+            <h3><span class="fa fa-eye"></span>Order Product
+                <small>View detail and order produce</small>
+            </h3>
+        </div>
+
+        <div class="page-content">
+            <div class="row">
+                <div class="col-md-4 product-image-wrapper">
+                    <img src="assets/images/<?php echo $order_product['image'] ?>">
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="col-lg-4">
+                        <div class="detail-component">
+                            <h6 class="title">Price</h6>
+                            <h4 title="Name"><?php echo $order_product['price'] ?></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="detail-component">
+                            <h6 class="title">Category</h6>
+                            <h4 title="Category"><?php echo $order_product['category'] ?></h4>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="detail-component">
+                            <h6 class="title">Minimum Order</h6>
+                            <h4 title="Category"><?php echo $order_product['min_order'] ?></h4>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-12">
+                        <div class="detail-component">
+                            <h6 class="title">Description</h6>
+                            <h4 title="Category"><?php echo $order_product['description'] ?></h4>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+
+                        <form action="controller/order.php" class="custom-form" method="post">
+                            <?php include_once "_order_form.php" ?>
+                            <input class="btn btn-primary" type="submit" name="save_order" value="Order"/>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
         <img src="assets/images/<?php echo $order_product['image'] ?>" height="200" width="200">
         <li>Category: <?php echo $order_product['category'] ?></li>
         <li>Minimum Order:<?php echo $order_product['min_order'] ?></li>

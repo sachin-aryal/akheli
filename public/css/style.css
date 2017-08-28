@@ -476,6 +476,10 @@ body{
     width: 100%;
 }
 
+.product-image-wrapper img{
+    width: 100%;
+}
+
 .btn-edit-profile{
     position: absolute;
     top:0;
@@ -485,3 +489,4 @@ body{
 .btn{
     border-radius: 0;
 }
+
