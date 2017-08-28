@@ -56,7 +56,8 @@
 
 <div class="form-group">
     <label for="description">Description:</label>
-    <textarea name="description" id="" cols="30" rows="10" value="<?php echo $product['description'] ?>"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10" value="<?php echo $product['description'] ?>"></textarea>
+    <span class="error_description" id="error_description"></span>
 </div>
 
 <input type="file" name="product_image">

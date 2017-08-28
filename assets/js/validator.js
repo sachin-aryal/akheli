@@ -33,15 +33,15 @@ function validateRegister() {
     $('#register_password').on('input',function () {
         var input=$(this);
         var is_password=input.val();
-            if(is_password === ''){
-                $("#error_register_password").text("Please enter the password").addClass("valid");
+        if(is_password === ''){
+            $("#error_register_password").text("Please enter the password").addClass("valid");
+        }else{
+            if(is_password.length <= 8){
+                $("#error_register_password").text("Password length should be more than 8").addClass("valid")
             }else{
-                if(is_password.length <= 8){
-                    $("#error_register_password").text("Password length should be more than 8").addClass("valid")
-                }else{
-                    $("#error_register_password").text("");
-                }
+                $("#error_register_password").text("");
             }
+        }
     });
 
     $('#shop_name').on('input',function () {
@@ -131,9 +131,9 @@ function validateProduct(){
         var is_val = input.val();
 
         if(is_val ===''){
-            $("#error_color").text("Please enter size").addClass("valid");
+            $("#error_size").text("Please enter size").addClass("valid");
         }else{
-            $("#error_color").text("");
+            $("#error_size").text("");
         }
     });
     $('#color').on('input', function() {
@@ -146,5 +146,84 @@ function validateProduct(){
         }else{
             $("#error_color").text("");
         }
+    });
+
+    $('#description').on('input', function() {
+
+        var input=$(this);
+        var is_val = input.val();
+
+        if(is_val ===''){
+            $("#error_description").text("Please enter description").addClass("valid");
+        }else{
+            $("#error_description").text("");
+        }
+    });
+
+    $("#product_form_1").on("submit",function(){
+
+        var input=$("#product_name");
+        var is_val = input.val();
+        if(is_val ===''){
+            $("#error_product_name").text("Please enter product name").addClass("valid");
+            return false;
+        }else{
+            $("#error_product_name").text("");
+        }
+
+        input=$('#category');
+        is_val = input.val();
+        if(is_val ===''){
+            $("#error_category").text("Please enter category").addClass("valid");
+            return false;
+        }else{
+            $("#error_category").text("");
+        }
+
+        input=$('#min_order');
+        is_val = input.val();
+        if(is_val ===''){
+            $("#error_min_order").text("Please enter minimum order").addClass("valid");
+            return false;
+        }else{
+            $("#error_min_order").text("");
+        }
+
+        input=$('#price');
+        is_val = input.val();
+        if(is_val ===''){
+            $("#error_price").text("Please enter price").addClass("valid");
+            return false;
+        }else{
+            $("#error_price").text("");
+        }
+
+        input=$('#size');
+        is_val = input.val();
+        if(is_val ===''){
+            $("#error_size").text("Please enter size").addClass("valid");
+            return false;
+        }else{
+            $("#error_size").text("");
+        }
+
+        input=$('#color');
+        is_val = input.val();
+        if(is_val ===''){
+            $("#error_color").text("Please enter color").addClass("valid");
+            return false
+        }else{
+            $("#error_color").text("");
+        }
+
+        input=$('#description');
+        is_val = input.val();
+        if(is_val ===''){
+            $("#error_description").text("Please enter description").addClass("valid");
+            return false
+        }else{
+            $("#error_description").text("");
+        }
+        return true;
     });
 }

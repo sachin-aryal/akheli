@@ -21,6 +21,11 @@ $productDetails = getProductDetails($conn, $_GET['id']);
     <?php
     include_once "../_dashboardHeader.php";
     ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            validateProduct();
+        });
+    </script>
     <div class="content-wrapper clearfix" id="main_content">
         <div class="page-title">
             <h3><span class="fa fa-pencil-square-o"></span> Edit Product Detail
@@ -29,7 +34,7 @@ $productDetails = getProductDetails($conn, $_GET['id']);
         </div>
 
         <div id="page_content" class="page-content clearfix">
-            <form action="controller/product.php" class="custom-form" enctype="multipart/form-data" method="post">
+            <form action="controller/product.php" id="product_form_1" class="custom-form" enctype="multipart/form-data" method="post">
                 <?php include_once "_product_form.php" ?>
                 <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
                 <input type="submit" name="update_product" class="btn btn-primary margin" value="Update">
