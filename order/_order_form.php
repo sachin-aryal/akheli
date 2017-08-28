@@ -7,9 +7,8 @@
 <div class="form-group">
 <label for="size">Size</label>
 <?php
-foreach ($order_product_details as $order_product_detail) {
-    $size = explode(",",$order_product_detail["size"]);
-    $color = explode(",",$order_product_detail["color"]);
+    $size = explode(",",$order_product_details["size"]);
+    $color = explode(",",$order_product_details["color"]);
     foreach ($size as $s) {
         ?>
         <?php echo $s; ?>&nbsp;<input type="checkbox" id="size" name="size[]" value="<?php echo $s; ?>"/>
@@ -27,4 +26,7 @@ foreach ($order_product_details as $order_product_detail) {
 <label for="quantity">Quantity</label>
 <input class="form-control" type="text" name="quantity" id="quantity" value="<?php echo $edit_order['quantity'] ?>"/>
 </div>
+    <?php } ?>
+<br><label for="quantity">Quantity</label>
+<input type="text" name="quantity" id="quantity" value="<?php echo $edit_order['quantity'] ?>"/>
 <input type="hidden" name="product_id" id="product_id" value="<?php echo $productId ?>"/>

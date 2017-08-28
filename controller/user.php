@@ -43,7 +43,6 @@ if (isset($_POST["register"])) {
         $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         $errorMessage="no error";
-        echo $target_file;
         if (file_exists($target_file)) {
             $errorMessage =  "Sorry, file already exists.";
             $uploadOk = 0;
@@ -79,7 +78,7 @@ if (isset($_POST["register"])) {
         $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
         $stmt->bind_param("ssssis",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
         if($stmt->execute()){
-            header("Location:../login.php");
+            header("Location:../index.php");
         }else{
             $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
             $stmt->bind_param('s',$email);
@@ -135,7 +134,6 @@ if (isset($_POST["register"])) {
         $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         $errorMessage="no error";
-        echo $target_file;
         if (file_exists($target_file)) {
             $errorMessage =  "Sorry, file already exists.";
             $uploadOk = 0;

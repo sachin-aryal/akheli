@@ -11,7 +11,6 @@ define('WP_DEBUG_DISPLAY', false);
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="../assets/js/javascript.js"></script>
     <style>
         .valid {
             color: red;
@@ -26,7 +25,11 @@ define('WP_DEBUG_DISPLAY', false);
 </head>
 <body>
 <?php include_once "../shared/_header.php" ?>
-
+<script type="text/javascript">
+    $(document).ready(function(){
+        validateRegister();
+    });
+</script>
 
 <div class="page-title-wrapper register-page-wrapper padding">
     <h3 class="page-title">Register <small>Create your account here</small></h3>

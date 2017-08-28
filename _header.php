@@ -90,7 +90,7 @@ include_once "shared/auth.php";
                     </li>
 
                     <li class="btn-form-input dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                        <a class="dropdown-toggle" href="user/register.php">Register</a>
                         <ul class="dropdown-menu login-wrapper">
                             <div>
                                 <h2 class="title">Akheli - Login</h2>

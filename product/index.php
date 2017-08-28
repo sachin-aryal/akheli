@@ -47,14 +47,11 @@ if (isset($_GET["category"])) {
                 <div class="product-description">
                 <h4 class="product-name"><?php echo $product["product_name"] ?></h4>
                     <ol class="breadcrumb text-center">
-                <?php $productDetails = getProductDetails($conn, $product['id']);
-                    if (sizeof($productDetails)) {
-                    echo "<span>Size Available:</span><br>";
-                    foreach ($productDetails as $productDetail) {
-                        ?>
-
+                <?php $productDetails_index = getProductDetails($conn, $product['id']);
+                    if (sizeof($productDetails_index) > 0) {
+                    ?>
                         <li>
-                            <a href="#"><?php echo $productDetail['size'] ?></a>
+                            <a href="#"><?php echo $productDetails_index['size'] ?></a>
                         </li>
 
                         <?php
@@ -72,7 +69,7 @@ if (isset($_GET["category"])) {
             </div>
 
             <?php }
-        } ?>
+         ?>
     </div>
 </div>
 

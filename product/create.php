@@ -14,6 +14,11 @@ redirectIfNotAdmin();
     <?php
     include_once "../_dashboardHeader.php";
     ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            validateProduct();
+        });
+    </script>
     <div class="content-wrapper clearfix" id="main_content">
         <div class="page-title">
             <h3><span class="fa fa-plus"></span> Add Product <small>Add new products here</small></h3>

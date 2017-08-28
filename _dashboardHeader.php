@@ -1,6 +1,5 @@
 <?php
-define("BASE_URL","http://localhost/akheli/");
-define("PROJECT_PATH",__DIR__);
+include_once 'base_url.php';
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";
 include_once PROJECT_PATH."/shared/auth.php";
@@ -26,6 +25,7 @@ getOrderCount($conn);
     <link rel="stylesheet" href="public/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="public/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css">
 
     <script src="public/jquery/jquery.min.js"></script>
     <script src="public/jquery/jquery-ui.min.js"></script>
@@ -34,6 +34,7 @@ getOrderCount($conn);
     <script src="assets/js/jquery.dataTables.min.js"></script>
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script src="assets/js/app.js" type="text/javascript"></script>
+    <script src="assets/js/validator.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var page_id = $("#page_id");

@@ -28,7 +28,7 @@ if($stmt->execute()){
     $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id) VALUES (?,?,?,?,?)");
     $stmt->bind_param("ssssi",$name,$shop_name,$phone_no,$location,$user_id);
     if($stmt->execute()){
-        header("Location:../user/login.php");
+        header("Location:../index.php");
         return;
     }else{
         $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
@@ -37,7 +37,6 @@ if($stmt->execute()){
 
     }
 }else{
-    echo $conn->error;
-    header("Location:../user/register.php");
+    header("Location:../index.php");
     return;
 }

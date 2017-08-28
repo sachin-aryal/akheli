@@ -77,7 +77,7 @@ function getProductList($conn){
     return [];
 }
 function getProductDetails($conn,$id){
-    $stmt=$conn->prepare("Select * from product_details where product_id=?");
+    $stmt=$conn->prepare("SELECT *FROM product_details where product_id=?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         $product_details = $stmt->get_result();
