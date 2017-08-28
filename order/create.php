@@ -81,20 +81,6 @@ if(isset($_POST["product_id"])){
             </div>
 
         </div>
-
-
-
-
-
-        <img src="assets/images/<?php echo $order_product['image'] ?>" height="200" width="200">
-        <li>Category: <?php echo $order_product['category'] ?></li>
-        <li>Minimum Order:<?php echo $order_product['min_order'] ?></li>
-        <li>Description: <?php echo $order_product['description'] ?></li>
-        <li>Price: <?php echo $order_product['price'] ?></li>
-        <form action="controller/order.php" method="post">
-            <?php include_once "_order_form.php" ?>
-            <input type="submit" name="save_order" value="Order"/>
-        </form>
     </div>
 
     <!-- The Right Sidebar -->
