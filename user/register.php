@@ -36,7 +36,7 @@ define('WP_DEBUG_DISPLAY', false);
 </div>
 <div class="container">
     <div class="bg-white shadow padding">
-        <form class="custom-form" method="post" action="../controller/user.php" enctype="multipart/form-data">
+        <form class="custom-form" method="post" id="user_form_1" action="../controller/user.php" enctype="multipart/form-data">
             <?php
             include_once '_client_form.php';
             ?>
