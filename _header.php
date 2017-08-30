@@ -141,7 +141,12 @@ include_once "shared/auth.php";
                 <?php $categoryList=getDistinctCategory($conn);
                 foreach ($categoryList as $category){
                 ?>
-                <li class="active"><a href="#"><?php echo $category['category'] ?></a></li>
+                <li class="active">
+                    <form method="post" action="product.php">
+                        <input type="hidden" name="category" value="<?php echo $category['category'] ?>">
+                        <button type="submit"><?php echo $category['category'] ?></button>
+                    </form>
+                </li>
                 <?php } ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>

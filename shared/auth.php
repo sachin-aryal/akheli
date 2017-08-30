@@ -5,11 +5,7 @@
  * Date: 8/22/17
  * Time: 9:31 PM
  */
-if(file_exists("base_url.php")){
-    include_once 'base_url.php';
-}else{
-    include_once '../base_url.php';
-}
+
 
 define("ROLE_ADMIN","akheli_admin");
 define("ROLE_CLIENT","akheli_client");

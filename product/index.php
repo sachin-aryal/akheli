@@ -40,36 +40,34 @@ if (isset($_GET["category"])) {
 
             <div class="col-md-3">
                 <div class="product-wrapper">
-                <div class="product-image">
-                <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img
-                            src="assets/images/<?php echo $product['image'] ?>"> </a>
-            </div>
-                <div class="product-description">
-                <h4 class="product-name"><?php echo $product["product_name"] ?></h4>
-                    <ol class="breadcrumb text-center">
-                <?php $productDetails_index = getProductDetails($conn, $product['id']);
-                    if (sizeof($productDetails_index) > 0) {
-                    ?>
-                        <li>
-                            <a href="#"><?php echo $productDetails_index['size'] ?></a>
-                        </li>
-
-                        <?php
-                    }
-                    ?>
-                    </ol>
-                    <p>
-                        <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
-                    </p>
-                    <div class="text-center">
-                        <button class="btn btn-view">View</button>
+                    <div class="product-image">
+                        <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img
+                                    src="assets/images/<?php echo $product['image'] ?>"> </a>
+                    </div>
+                    <div class="product-description">
+                        <h4 class="product-name"><?php echo $product["product_name"] ?></h4>
+                        <ol class="breadcrumb text-center">
+                            <?php $productDetails_index = getProductDetails($conn, $product['id']);
+                            $sizeArray=explode(',',$productDetails_index['size']);
+                            foreach ($sizeArray as $size){
+                                ?>
+                                <li>
+                                    <a href="#"><?php echo $size  ?></a>
+                                </li>
+                            <?php } ?>
+                        </ol>
+                        <p>
+                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                        </p>
+                        <div class="text-center">
+                            <button class="btn btn-view">View</button>
+                        </div>
                     </div>
                 </div>
-                </div>
             </div>
 
-            <?php }
-         ?>
+        <?php }
+        ?>
     </div>
 </div>
 
