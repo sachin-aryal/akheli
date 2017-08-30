@@ -83,7 +83,7 @@ include_once "shared/auth.php";
                                     <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
                                 </form>
                                 <div class="pull-left">
-                                    <a href="#">Forgot Password</a>
+                                    <a href="user/reset_password.php">Forgot Password</a>
                                 </div>
                                 <!--                                    <div class="pull-right">-->
                                 <!--                                        <a href="#">Register</a>-->
@@ -113,7 +113,7 @@ include_once "shared/auth.php";
                                     <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
                                 </form>
                                 <div class="pull-left">
-                                    <a href="#">Forgot Password</a>
+                                    <a href="user/reset_password.php">Forgot Password</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="#">Register</a>

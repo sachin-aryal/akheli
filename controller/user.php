@@ -213,6 +213,23 @@ if (isset($_POST["register"])) {
     $_SESSION["message"] = "username and password did not match.";
     header("Location:../index.php");
     return;
+}
+if($_POST['changePassword']){
+    $email=$_POST['email'];
+    $randomPassword= randomPassword();
+    $stmt= $conn->prepare("update users set password = ? where email=?");
+    $stmt->bind_param("ss",$randomPassword, $email);
+    if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
+        $_SESSION["message"] = "Password successfully Reset!";
+        header("Location:../user/reset_password.php");
+        return;
+    }else{
+        $_SESSION["messageType"] = "error";
+        $_SESSION["message"] = "Email not Found! Password reset fail.";
+        header("Location:../user/reset_password.php");
+        return;
+    }
 }else if($_POST["logout"]){
     session_destroy();
     header("Location:../index.php");
@@ -220,4 +237,6 @@ if (isset($_POST["register"])) {
 }else{
     header("Location:../user/index.php");
 }
+
+
 ?>
