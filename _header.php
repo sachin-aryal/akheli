@@ -136,7 +136,6 @@ include_once "shared/auth.php";
                 <li><h1 class="brand">Akheli</h1></li>
                 <?php $categoryList = getDistinctCategory($conn);
 
-                for($i=0; $i<12; $i++){
                 foreach ($categoryList as $category) {
                     ?>
                     <li class="active">
@@ -145,7 +144,7 @@ include_once "shared/auth.php";
                             <input class="menu-btn" type="submit" value="<?php echo $category['category'] ?>">
                         </form>
                     </li>
-                <?php }
+                <?php
                 }?>
             </ul>
 
