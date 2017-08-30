@@ -7,6 +7,7 @@ ini_set('display_errors', 'Off');
 ini_set('error_reporting', E_ALL);
 define('WP_DEBUG', false);
 define('WP_DEBUG_DISPLAY', false);
+redirectIfLoggedIn();
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,7 @@ define('WP_DEBUG_DISPLAY', false);
     <div class="bg-white shadow padding">
         <form class="custom-form" method="post" id="user_form_1" action="../controller/user.php" enctype="multipart/form-data">
             <?php
+            $createUser = true;
             include_once '_client_form.php';
             ?>
             <input type="submit" class="btn btn-primary" name="register" value="Register">

@@ -13,7 +13,7 @@ include_once "../shared/dbconnect.php";
 if(!isset($_SESSION)){session_start();} ;
 
 if(isset($_POST['save_product'])) {
-    redirectIfNotAdmin();
+    redirectIfNotSeller();
     $product_name = $_POST["product_name"];
     $category= $_POST['category'];
     $size = $_POST['size'];
@@ -23,6 +23,7 @@ if(isset($_POST['save_product'])) {
     $price = $_POST['price'];
     $imageName = "Not Available";
     $errorMessage = "no error";
+    $user_id = $_SESSION["user_id"];
     if (isset($_FILES['product_image'])) {
         $target_dir = "../assets/images/";
 
@@ -58,8 +59,8 @@ if(isset($_POST['save_product'])) {
         return;
     }
 
-    $stmt= $conn->prepare('Insert into products(product_name,category,description,min_order,image,price) VALUES (?,?,?,?,?,?)');
-    $stmt->bind_param('ssssss', $product_name,$category,$description,$min_order,$imageName,$price);
+    $stmt= $conn->prepare('Insert into products(product_name,category,description,min_order,image,price,user_id) VALUES (?,?,?,?,?,?,?)');
+    $stmt->bind_param('ssssssi', $product_name,$category,$description,$min_order,$imageName,$price,$user_id);
     if($stmt->execute()){
         $product_id = $conn->insert_id;
         $length = count($_POST['size']);
@@ -80,14 +81,24 @@ if(isset($_POST['save_product'])) {
     return;
 }
 if(isset($_POST['edit_product'])){
-    redirectIfNotAdmin();
+    redirectIfNotSeller();
     $id = $_POST['id'];
+    $product = getProductInfo($conn,$id);
+    if($product["user_id"] != $_SESSION["user_id"]){
+        redirectToDash();
+        return;
+    }
     header("Location:../product/edit.php?id=$id");
     return;
 }
 if(isset($_POST['delete_product'])){
-    redirectIfNotAdmin();
+    redirectIfNotSeller();
     $id = $_POST['id'];
+    $product = getProductInfo($conn,$id);
+    if($product["user_id"] != $_SESSION["user_id"]){
+        redirectToDash();
+        return;
+    }
     if(deleteProduct($conn,$id)){
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "Product Deleted successfully.";
@@ -100,10 +111,14 @@ if(isset($_POST['delete_product'])){
 }
 
 if(isset($_POST['update_product'])) {
-    redirectIfNotAdmin();
+    redirectIfNotSeller();
     $product_id = $_POST['id'];
     $product_name = $_POST["product_name"];
     $imageLocation= getProductInfo($conn,$product_id);
+    if($imageLocation["user_id"] != $_SESSION["user_id"]){
+        redirectToDash();
+        return;
+    }
     $category= $_POST['category'];
     $description = $_POST['description'];
     $min_order = $_POST['min_order'];

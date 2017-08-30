@@ -1,11 +1,8 @@
 <?php
-define("BASE_URL","http://localhost/project/akheli/");
-define("PROJECT_PATH",__DIR__);
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";
 include_once PROJECT_PATH."/shared/auth.php";
 
-getOrderCount($conn);
 ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -266,31 +263,13 @@ getOrderCount($conn);
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree" id="side_menu">
             <li class="header">MENU</li>
-            <!-- Optionally, you can add icons to the links -->
-            <?php if(checkIfAdmin()){ ?>
-                <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span><?php echo getOrderCount($conn); ?></a></li>
-                <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
-                <li class="treeview" id="product_li">
-                    <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
-                        <span class="pull-right-container">
-                                <i class="fa fa-angle-right pull-right"></i>
-                            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="product/create.php">Add Product</a></li>
-                        <?php
-                        $products_header = getDistinctCategory($conn);
-                        foreach ($products_header as $product_header) {
-                            ?>
-                            <li><a href="product/index.php?category=<?php echo $product_header["category"] ?>"><?php echo $product_header["category"] ?></a></li>
-                            <?php
-                        }
-                        ?>
-                    </ul>
-                </li>
-
-            <?php } ?>
-            <?php if(isOrderAllowed()){ ?>
+            <?php if(isBuyer() || isSeller() || isAdmin()){ ?>
+                <?php if(isAdmin()){ ?>
+                    <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i> Orders</span><?php echo getOrderCount($conn); ?></a></li>
+                    <li class="active" id="user_li"><a href="user/index.php"><i class="fa fa-user"></i> <span>User</span></a></li>
+                <?php }else { ?>
+                    <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i>Orders</span></a></li>
+                <?php } ?>
                 <li class="treeview" id="product_li">
                     <a href="#"><i class="fa fa-cubes"></i> <span>Product</span>
                         <span class="pull-right-container">
@@ -299,6 +278,10 @@ getOrderCount($conn);
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="product/">View Product</a></li>
+                        <?php if (isSeller()) {?>
+                            <li><a href="product/create.php">Add Product</a></li>
+                            <li><a href="product/index.php?category=myp">My Product</a></li>
+                        <?php }?>
                         <?php
                         $products_header = getDistinctCategory($conn);
                         foreach ($products_header as $product_header) {
@@ -309,7 +292,6 @@ getOrderCount($conn);
                         ?>
                     </ul>
                 </li>
-                <li id="order_li"><a href="order/"><i class="fa fa-shopping-bag"></i> <span><i></i>My Orders</span></a></li>
             <?php } ?>
         </ul>
         <!-- /.sidebar-menu -->

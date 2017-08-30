@@ -12,11 +12,26 @@ if(isset($_POST["order_id"])){
     return;
 }
 $edit_order = getOrder($conn,$order_id);
-if(!checkIfAdmin()){
+$productId = $edit_order["product_id"];
+$order_product = getProductInfo($conn,$productId);
+$order_product_details = getProductDetails($conn,$order_product["id"]);
+
+if(isAdmin()){
+    redirectToDash();
+    return;
+}else if(isBuyer()){
     if($edit_order["user_id"] != $_SESSION["user_id"]){
         redirectToDash();
         return;
     }
+}else if(isSeller()){
+    if($order_product["user_id"] != $_SESSION["user_id"]){
+        redirectToDash();
+        return;
+    }
+}else{
+    redirectToDash();
+    return;
 }
 
 ?>
@@ -53,9 +68,6 @@ if(!checkIfAdmin()){
 <div class="wrapper">
     <?php
     include_once "../_dashboardHeader.php";
-    $productId = $edit_order["product_id"];
-    $order_product = getProductInfo($conn,$productId);
-    $order_product_details = getProductDetails($conn,$order_product["id"]);
     ?>
     <div class="content-wrapper clearfix" id="main_content">
         <img src="assets/images/<?php echo $order_product['image'] ?>" height="200" width="200">
@@ -64,7 +76,7 @@ if(!checkIfAdmin()){
         <li>Description: <?php echo $order_product['description'] ?></li>
         <li>Price: <?php echo $order_product['price'] ?></li>
         <li>Status: <?php echo $edit_order['status'] ?></li>
-        <?php if (isOrderAllowed()){?>
+        <?php if (isBuyer()){?>
             <form action="controller/order.php" method="post" id="edit_order_form">
                 <?php include_once '_order_form.php'?>
                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>"/>

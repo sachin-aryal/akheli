@@ -25,7 +25,16 @@ if (isset($_POST["register"])) {
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
     $password = hash('sha256', $password);
-    $role = "akheli_client";
+    if($_POST["role"] == "S"){
+        $role = ROLE_SELLER;
+    }else if($_POST["role"] == 'C'){
+        $role = ROLE_BUYER;
+    }else{
+        $_SESSION["messageType"] = "error";
+        $_SESSION["message"] = "Do not try to change the role.";
+        header("Location:../user/register.php");
+        return;
+    }
     $enabled = 1;
     if(checkEmail($conn,$email)){
         $_SESSION["messageType"] = "error";
@@ -33,9 +42,9 @@ if (isset($_POST["register"])) {
         header("Location:../user/register.php");
         return;
     }
-
-    if (isset($_FILES['user_image'])) {
-
+    if(!file_exists($_FILES['user_image']['tmp_name']) || !is_uploaded_file($_FILES['user_image']['tmp_name'])){
+        $errorMessage = "Image not found";
+    } else{
         $target_dir = "../assets/upload/";
 
         $uploadOk = 1;
@@ -61,8 +70,6 @@ if (isset($_POST["register"])) {
             }
         }
 
-    } else {
-        $errorMessage = "Image not found";
     }
     if($errorMessage !="no error"){
         $_SESSION["messageType"] = "error";
@@ -120,20 +127,21 @@ if (isset($_POST["register"])) {
         return;
     }
     $user = getUser($conn,"id=".$user_id);
+    $client = getClient($conn,$user["id"]);
     if($password == ""){
         $password = $user["password"];
     }else{
         $password = hash('sha256', $password);
     }
-    if (isset($_FILES['user_image'])) {
-
+    $errorMessage="no error";
+    if(!file_exists($_FILES['user_image']['tmp_name']) || !is_uploaded_file($_FILES['user_image']['tmp_name'])){
+        $imageName = $client["user_image"];
+    }else{
         $target_dir = "../assets/upload/";
-
         $uploadOk = 1;
         $imageName = getRandomString(25).".jpg";
         $target_file = $target_dir.$imageName;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-        $errorMessage="no error";
         if (file_exists($target_file)) {
             $errorMessage =  "Sorry, file already exists.";
             $uploadOk = 0;
@@ -152,13 +160,11 @@ if (isset($_POST["register"])) {
             }
         }
 
-    } else {
-        $errorMessage = "Image not found";
     }
-    if($errorMessage !="no error"){
+    if($errorMessage != "no error"){
         $_SESSION["messageType"] = "error";
         $_SESSION["message"] = $errorMessage;
-        header("Location:../user/register.php");
+        header("Location:../user/edit.php");
         return;
     }
 
@@ -166,7 +172,7 @@ if (isset($_POST["register"])) {
     $stmt->bind_param('ssi',$email,$password,$user_id);
     if($stmt->execute()){
         $stmt = $conn->prepare("UPDATE CLIENTS set name = ?, shop_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
-        $stmt->bind_param("sssssi",$name,$shop_name,$phone_no,$location,$imageName,$user_id);
+        $stmt->bind_param("sssssi",$name,$shop_name,$phone_no,$location,$imageName,$_SESSION["user_id"]);
         if($stmt->execute()){
             $_SESSION["messageType"] = "success";
             $_SESSION["message"] = "User information updated successfully.";

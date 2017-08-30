@@ -14,8 +14,14 @@ redirectIfNotLoggedIn();
 <div class="wrapper">
     <?php
     include_once "../_dashboardHeader.php";
-    $user = getUser($conn, "id=" . $_SESSION['user_id']);
-    $client = getClient($conn, $_SESSION['user_id']);
+    $user_id = $_SESSION["user_id"];
+    if(isAdmin()){
+        if(isset($_GET["user_id"])){
+            $user_id = $_GET["user_id"];
+        }
+    }
+    $user = getUser($conn, "id=" . $user_id);
+    $client = getClient($conn, $user_id);
 
     ?>
     <div class="content-wrapper clearfix" id="main_content">
@@ -74,10 +80,11 @@ redirectIfNotLoggedIn();
 
                 </div>
             </div>
-
+            <?php if($_SESSION["user_id"] == $user["id"]){ ?>
             <form method='post' action='user/edit.php'>
                 <input class="btn btn-primary btn-edit-profile" type='submit' value='Edit Profile'/>
             </form>
+            <?php } ?>
         </div>
 
 
