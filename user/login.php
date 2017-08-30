@@ -58,7 +58,7 @@ redirectIfLoggedIn();
                     <a href="#">Forgot Password</a>
                 </div>
                 <div class="pull-right">
-                    <a href="#">Register</a>
+                    <a href="user/register.php">Register</a>
                 </div>
             </div>
         </div>
