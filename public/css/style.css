@@ -490,3 +490,6 @@ body{
     border-radius: 0;
 }
 
+.main-wrapper{
+    margin-top: 80px;
+}
