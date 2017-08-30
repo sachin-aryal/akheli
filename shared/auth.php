@@ -1,18 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sachin
- * Date: 8/22/17
- * Time: 9:31 PM
- */
-
-
+if(file_exists("base_url.php")){
+    include_once "base_url.php";
+}else{
+    include_once "../base_url.php";
+}
 define("ROLE_ADMIN","akheli_admin");
-define("ROLE_CLIENT","akheli_client");
-define("ROOT_URL","http://localhost/project/akheli/");
-define ("CLIENT_DASHBOARD",ROOT_URL."dashboard.php");
-define ("ADMIN_DASHBOARD",ROOT_URL."admin.php");
-define ("NOLOGIN_DASHBOARD",ROOT_URL."index.php");
+define("ROLE_BUYER","akheli_buyer");
+define("ROLE_SELLER","akheli_seller");
+define ("CLIENT_DASHBOARD",BASE_URL."dashboard.php");
+define ("ADMIN_DASHBOARD",BASE_URL."admin.php");
+define ("NOLOGIN_DASHBOARD",BASE_URL."index.php");
 define("ORDER_STATUS_REQUESTED","REQUESTED");
 define("ORDER_STATUS_PROCESSING","PROCESSING");
 define("ORDER_STATUS_COMPLETED","COMPLETED");
@@ -23,7 +20,7 @@ function redirectIfLoggedIn(){
         redirectToDash();
     }
 }
-function checkIfAdmin(){
+function isAdmin(){
     if(isset($_SESSION["role"])){
         if($_SESSION["role"] == ROLE_ADMIN){
             return true;
@@ -34,7 +31,7 @@ function checkIfAdmin(){
 
 function redirectToDash(){
     if(isset($_SESSION["role"])){
-        if($_SESSION["role"] == ROLE_CLIENT){
+        if($_SESSION["role"] == ROLE_BUYER || $_SESSION["role"] == ROLE_SELLER){
             header("Location:".CLIENT_DASHBOARD);
             return;
         }else if($_SESSION["role"] == ROLE_ADMIN){
@@ -52,8 +49,20 @@ function redirectIfNotAdmin(){
     }
 }
 
-function redirectIfNotClient(){
-    if($_SESSION["role"] != ROLE_CLIENT){
+function redirectIfNotSeller(){
+    if($_SESSION["role"] != ROLE_SELLER){
+        redirectToDash();
+    }
+}
+
+function redirectIfNotBuyerOrSeller(){
+    if($_SESSION["role"] != ROLE_BUYER && $_SESSION["role"] != ROLE_SELLER){
+        redirectToDash();
+    }
+}
+
+function redirectIfNotBuyer(){
+    if($_SESSION["role"] != ROLE_BUYER){
         redirectToDash();
     }
 }
@@ -65,9 +74,18 @@ function isLoggedIn(){
     return false;
 }
 
-function isOrderAllowed(){
+function isBuyer(){
     if(isset($_SESSION["role"])){
-        if($_SESSION["role"] == ROLE_CLIENT){
+        if($_SESSION["role"] == ROLE_BUYER){
+            return true;
+        }
+    }
+    return false;
+}
+
+function isSeller(){
+    if(isset($_SESSION["role"])){
+        if($_SESSION["role"] == ROLE_SELLER){
             return true;
         }
     }

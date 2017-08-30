@@ -1,5 +1,5 @@
 <?php
 if(!isset($_SESSION)){session_start();} ;
 include_once "shared/auth.php";
-redirectIfNotClient();
+redirectIfNotBuyerOrSeller();
 include_once "_dashboardHeader.php";

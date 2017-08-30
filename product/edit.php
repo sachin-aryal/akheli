@@ -3,12 +3,16 @@ if (!isset($_SESSION)) {
     session_start();
 };
 include_once "../shared/auth.php";
-redirectIfNotAdmin();
+redirectIfNotSeller();
 
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
 
 $product = getProductInfo($conn, $_GET['id']);
+if($product["user_id"] != $_SESSION["user_id"]){
+    redirectToDash();
+    return;
+}
 $productDetails = getProductDetails($conn, $_GET['id']);
 
 ?>

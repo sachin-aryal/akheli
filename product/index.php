@@ -12,7 +12,12 @@ include_once "../shared/auth.php";
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
 if (isset($_GET["category"])) {
-    $productList = getProductsByCategory($conn, $_GET["category"]);
+    $category = $_GET["category"];
+    if($category == "myp" && isSeller()){
+        $productList = getSellersProducts($conn);
+    }else{
+        $productList = getProductsByCategory($conn, $_GET["category"]);
+    }
 } else {
     $productList = getProductList($conn);
 }
@@ -36,8 +41,6 @@ if (isset($_GET["category"])) {
         <?php
         foreach ($productList as $product) {
             ?>
-
-
             <div class="col-md-3">
                 <div class="product-wrapper">
                     <div class="product-image">

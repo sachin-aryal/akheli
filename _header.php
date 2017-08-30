@@ -156,7 +156,7 @@ include_once "shared/auth.php";
                         <li><a href="#">Page 1-3</a></li>
                     </ul>
                 </li>
-                <?php if(checkIfAdmin()) { ?>
+                <?php if(isAdmin()) { ?>
                     <li><a href="controller/user.php">User List</a></li>
                     <li><a href="controller/product.php">Product List</a></li>
                     <?php } ?>

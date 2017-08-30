@@ -1,6 +1,6 @@
 <?php
 include_once "../shared/auth.php";
-redirectIfNotClient();
+redirectIfNotBuyer();
 if(isset($_POST["product_id"])){
     $productId = $_POST["product_id"];
 }else if(isset($_GET["product_id"])){

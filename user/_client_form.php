@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: sachin
- * Date: 8/21/17
- * Time: 9:54 PM
- */
-?>
 
 <div class="form-group">
     <label>Name:</label>
@@ -42,10 +34,19 @@
 
 <div class="form-group">
     <label>Location:</label>
-    <input class="form-control" type="text" id="location" name="location" required value="<?php echo $client["location"] ?>"/>
+    <input class="form-control" type="text" name="location" required value="<?php echo $client["location"] ?>"/>
     <span id="error_location"></span>
 </div>
-
+<?php if ($createUser) {?>
+    <div class="form-group">
+        <label>User Type:</label>
+        <select name="role" class="form-control">
+            <option value="C">Buyer</option>
+            <option value="S">Seller</option>
+        </select>
+        <span id="error"></span>
+    </div>
+<?php } ?>
 <div class="form-group">
     <label>Image:</label>
     <input type="file" name="user_image">
