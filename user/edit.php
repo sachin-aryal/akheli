@@ -16,13 +16,18 @@ $client = getClient($conn,$user["id"]);
 </head>
 <body>
 <?php include_once "../_dashboardHeader.php"?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        validateRegister();
+    });
+</script>
 <div class="content-wrapper clearfix" id="main_content">
 
     <div class="page-title">
         <h3><span class="fa fa-pencil"></span> Edit Profile <small>change your profile details</small></h3>
     </div>
     <div class="page-content">
-    <form class="custom-forms" method="post" action="controller/user.php" enctype="multipart/form-data">
+    <form class="custom-forms" method="post" id="user_form_1" action="controller/user.php" enctype="multipart/form-data">
         <?php
         include_once '_client_form.php';
         ?>

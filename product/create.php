@@ -24,7 +24,7 @@ redirectIfNotAdmin();
             <h3><span class="fa fa-plus"></span> Add Product <small>Add new products here</small></h3>
         </div>
         <div id="page_content" class="page-content clearfix">
-            <form action="controller/product.php" class="custom-form" enctype="multipart/form-data" method="post">
+            <form action="controller/product.php" id="product_form_1" class="custom-form" enctype="multipart/form-data" method="post">
                 <?php
                 $productDetails = [];
                 include_once "_product_form.php";

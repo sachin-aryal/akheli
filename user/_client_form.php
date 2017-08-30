@@ -42,8 +42,8 @@
 
 <div class="form-group">
     <label>Location:</label>
-    <input class="form-control" type="text" name="location" required value="<?php echo $client["location"] ?>"/>
-    <span id="error"></span>
+    <input class="form-control" type="text" id="location" name="location" required value="<?php echo $client["location"] ?>"/>
+    <span id="error_location"></span>
 </div>
 
 <div class="form-group">
