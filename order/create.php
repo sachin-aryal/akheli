@@ -21,6 +21,11 @@ if(isset($_POST["product_id"])){
     $order_product = getProductInfo($conn,$productId);
     $order_product_details = getProductDetails($conn,$order_product["id"]);
     ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            validateOrder();
+        });
+    </script>
     <div class="content-wrapper clearfix" id="main_content">
 
         <div class="page-title">
@@ -36,6 +41,7 @@ if(isset($_POST["product_id"])){
                 </div>
 
                 <div class="col-md-8">
+
                     <div class="col-lg-4">
                         <div class="detail-component">
                             <h6 class="title">Price</h6>
@@ -69,8 +75,8 @@ if(isset($_POST["product_id"])){
 
 
                     <div class="col-md-12">
-                        <legend>Order Now</legend>
-                        <form action="controller/order.php" class="custom-form" method="post">
+
+                        <form action="controller/order.php" id="order_form_1" class="custom-form" method="post">
                             <?php include_once "_order_form.php" ?>
                             <input class="btn btn-primary" type="submit" name="save_order" value="Order"/>
                         </form>

@@ -1,4 +1,4 @@
-<div class="form-group"> 
+<div class="form-group">
 
     <div class="col-md-6">
     <label for="size">Size</label>
@@ -7,7 +7,7 @@
     $color = explode(",", $order_product_details["color"]);
     foreach ($size as $s) {
         ?>
-        <?php echo $s; ?>&nbsp;<input type="checkbox" id="size" name="size[]" value="<?php echo $s; ?>"/>
+        <?php echo $s; ?>&nbsp;<input type="checkbox" id="size" name="size[]"  value="<?php echo $s; ?>"/>
     <?php } ?>
     </div>
 
