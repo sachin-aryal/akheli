@@ -167,6 +167,7 @@ function getProductsByCategory($conn,$category){
         $productInfo = $stmt->get_result();
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+
         } else {
             return [];
         }
@@ -222,17 +223,24 @@ function getOrder($conn,$id){
     }
     return [];
 }
-function getSearchProducts($conn,$product_name,$description){
-    $stmt=$conn->prepare("Select * from products where product_name like %?% OR description like %?%");
-    $stmt=bind_param("ss",$product_name,$description);
-    if($stmt->execute()){
-        $result = $stmt->get_result();
-        if($result->num_rows > 0){
-            return mysqli_fetch_assoc($result);
+function getSearchProducts($conn,$product_name){
+    $search_name = "%".$product_name."%";
+
+    $stmt = $conn->prepare("SELECT * FROM products WHERE description like ? or product_name like ? ");
+    $stmt->bind_param("ss", $search_name,$search_name);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+
+        } else {
+            return [];
         }
     }
-    return[];
+    return [];
+
 }
+
 function randomPassword() {
     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
     $pass = array(); //remember to declare $pass as an array

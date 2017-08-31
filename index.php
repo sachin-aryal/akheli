@@ -89,11 +89,14 @@ include_once "_header.php";
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
-
+        <form method="post" action="product.php">
+            <input type="hidden" name="category" value="<?php echo $category['category'] ?>">
+            <button type="submit"><?php echo $category['category'] ?></button>
+        </form>
         <div class="col-md-11 no-padding">
-            <form class="general-search-form" action="#">
+            <form class="general-search-form" action="searchResult.php" method="post">
                 <div class="form-group no-margin">
-                    <input type="search" class="form-control text-center" placeholder="Search product here...">
+                    <input type="search" class="form-control text-center" id="search" name="search" placeholder="Search product here...">
                 </div>
             </form>
         </div>
