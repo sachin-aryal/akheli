@@ -300,4 +300,20 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
+function getAllMessages($conn,$user_id1,$user_id2){
+    $query = "SELECT *FROM chats where (sender = ? and receiver = ?) or (sender = ?  and receiver = ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("iiii", $user_id1,$user_id2,$user_id2,$user_id1);
+    if ($stmt->execute()) {
+        $chats = $stmt->get_result();
+        if ($chats->num_rows > 0) {
+            return mysqli_fetch_all($chats,MYSQLI_ASSOC);
+
+        } else {
+            return [];
+        }
+    }
+    return [];
+}
+
 

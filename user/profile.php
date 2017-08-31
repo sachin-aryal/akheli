@@ -3,26 +3,48 @@ if (!isset($_SESSION)) {
     session_start();
 };
 include_once "../shared/auth.php";
+include_once "../shared/common.php";
+include_once "../shared/dbconnect.php";
 redirectIfNotLoggedIn();
+
+$user_id = $_SESSION["user_id"];
+if(isset($_GET["user_id"])){
+    $user_id = $_GET["user_id"];
+}
+$user = getUser($conn, "id=" . $user_id);
+$client = getClient($conn, $user_id);
 ?>
 
 <html>
 <head>
     <title>My Profile</title>
+    <script type="text/javascript">
+        function sendMessage(){
+            var message = $("#message").val();
+            var receiver_id = '<?php echo $user["id"] ?>';
+            $.ajax({
+                type: 'POST',
+                url: 'controller/chat.php',
+                data: {message:message,receiver_id:receiver_id},
+                success:function(data){
+                    if(data === "success"){
+                        $("#messages_box").append("<?php echo $client['name'] ?>: "+message+"<br>")
+                    }else{
+                        $.notify('Error sending message','error');
+                    }
+                },error:function(err){
+                    $.notify('Error sending message','error');
+                }
+
+            })
+        }
+
+    </script>
 </head>
 <body>
 <div class="wrapper">
     <?php
     include_once "../_dashboardHeader.php";
-    $user_id = $_SESSION["user_id"];
-    if(isAdmin()){
-        if(isset($_GET["user_id"])){
-            $user_id = $_GET["user_id"];
-        }
-    }
-    $user = getUser($conn, "id=" . $user_id);
-    $client = getClient($conn, $user_id);
-
     ?>
     <div class="content-wrapper clearfix" id="main_content">
 
@@ -81,15 +103,36 @@ redirectIfNotLoggedIn();
                 </div>
             </div>
             <?php if($_SESSION["user_id"] == $user["id"]){ ?>
-            <form method='post' action='user/edit.php'>
-                <input class="btn btn-primary btn-edit-profile" type='submit' value='Edit Profile'/>
-            </form>
+                <form method='post' action='user/edit.php'>
+                    <input class="btn btn-primary btn-edit-profile" type='submit' value='Edit Profile'/>
+                </form>
+            <?php } ?>
+            <?php if($_SESSION["user_id"] != $user["id"]){
+
+                $allMessages = getAllMessages($conn,$_SESSION['user_id'],$user["id"]);
+                $user2 = getUser($conn,"id=".$_SESSION['user_id']);
+                $client2 = getClient($conn,$user2["id"]);
+                ?>
+                <div class="row">
+                    <h2>Conversation History</h2>
+                    <div id="messages_box">
+                        <?php
+                        foreach ($allMessages as $message) {
+                            if($message["sender"] == $user2["id"]){
+                                echo $client2["name"].": ".$message["message"]."<br>";
+                            }else{
+                                echo $client["name"].": ".$message["message"]."<br>";
+                            }
+                        } ?>
+                    </div>
+                    <div id="chat_field">
+                        <textarea name="messsage" id="message" class="form-control"></textarea>
+                        <button onclick="sendMessage()">Send Message</button>
+                    </div>
+                </div>
             <?php } ?>
         </div>
-
-
     </div>
-
     <!-- The Right Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Content of the sidebar goes here -->

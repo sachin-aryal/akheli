@@ -5,7 +5,7 @@
  * Date: 8/30/2017
  * Time: 8:08 PM
  */
-@include "_header.php";
+include_once "_header.php";
 if (isset($_POST['search']) && !empty($_POST['search'])) {
 
     $productList = getSearchProducts($conn,$_POST['search']);

@@ -1,11 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Samsung
- * Date: 8/25/2017
- * Time: 6:02 PM
- */
-session_start();
+
+if(!isset($_SESSION)){session_start();} ;
+
 include_once "../shared/auth.php";
 include_once "../shared/dbconnect.php";
 include_once "../shared/common.php";
