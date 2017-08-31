@@ -15,9 +15,11 @@ if (isset($_POST["category"])) {
 
 ?>
 
-    <div class="main-wrapper">
+    <div class="main-wrapper col-md-9">
 
-    <div class="new-section bg-gray">
+    <h2 class="title"><span><?php echo $_POST["category"]; ?></span></h2>
+
+    <div class="new-section">
     <div class="container">
     <div class="row">
         <?php

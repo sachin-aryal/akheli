@@ -137,7 +137,7 @@ function removeProductDetailsByPId($conn,$product_id){
 
 }
 
-function getMyOrders($conn){
+function getBuyersOrders($conn){
     $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE user_id = ?");
     $stmt->bind_param("i",$_SESSION["user_id"]);
     if($stmt->execute()){
@@ -149,12 +149,60 @@ function getMyOrders($conn){
     return [];
 }
 
+function getOrdersByProduct($conn,$product_id){
+    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE product_id = ?");
+    $stmt->bind_param("i",$product_id);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return [];
+}
+
+function getSellersOrders($conn){
+    $stmt= $conn->prepare("Select *FROM products where user_id=?");
+    $stmt->bind_param("i", $_SESSION["user_id"]);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            $sellerProducts =  mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+            $data = [];$index = 0;
+            foreach ($sellerProducts as $sellerP){
+                $orders = getOrdersByProduct($conn,$sellerP["id"]);
+                foreach ($orders as $order){
+                    $data[$index++] = $order;
+                }
+            }
+            return $data;
+        } else {
+            return [];
+        }
+    }
+    return [];
+}
+
 function getAllOrders($conn){
     $stmt = $conn->prepare("SELECT *FROM ORDERS");
     if($stmt->execute()){
         $result = $stmt->get_result();
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return [];
+}
+
+function getSellersProducts($conn){
+    $stmt= $conn->prepare("Select *FROM products where user_id=?");
+    $stmt->bind_param("i", $_SESSION["user_id"]);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+        } else {
+            return [];
         }
     }
     return [];

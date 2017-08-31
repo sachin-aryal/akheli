@@ -10,7 +10,7 @@ include_once "../shared/auth.php";
 include_once "../shared/dbconnect.php";
 include_once "../shared/common.php";
 if(isset($_POST['save_order'])){
-    redirectIfNotClient();
+    redirectIfNotBuyer();
     $description = $_POST["description"];
     $size = implode(",",$_POST["size"]);
     $color = implode(",",$_POST["color"]);
@@ -63,7 +63,7 @@ if(isset($_POST['save_order'])){
         return;
     }
 }else if(isset($_POST["edit_order_admin"])){
-    if(!checkIfAdmin()){
+    if(!isSeller()){
         redirectToDash();
         return;
     }
