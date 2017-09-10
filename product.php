@@ -15,7 +15,7 @@ if (isset($_POST["category"])) {
 
 ?>
 
-    <div class="main-wrapper col-md-9">
+    <div class="main-wrapper">
 
     <h2 class="title"><span><?php echo $_POST["category"]; ?></span></h2>
 

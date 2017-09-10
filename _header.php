@@ -38,11 +38,13 @@ include_once "shared/common.php";
 include_once "shared/auth.php";
 ?>
 <body>
+
 <div class="top-info-bar">
-    <div class="container clearfix">
+    <div class="container-fluid clearfix">
         <div class="pull-left">
-            <span>9860068421</span>
+            <span><i class="fa fa-bell-o"></i> 9860068421</span>
         </div>
+
 
         <div class="pull-right clearfix">
 
@@ -93,31 +95,17 @@ include_once "shared/auth.php";
                     </li>
 
                     <li class="btn-form-input dropdown">
-                        <a class="dropdown-toggle" href="user/register.php">Register</a>
-                        <ul class="dropdown-menu login-wrapper">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                        <ul class="dropdown-menu register-wrapper">
                             <div>
-                                <h2 class="title">Akheli - Login</h2>
-                                <form method="post" action="../controller/user.php">
-                                    <div class="form-group">
-                                        <label for="username">Email</label>
-                                        <div>
-                                            <input class="form-control" type="text" name="username" id="username"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <div>
-                                            <input class="form-control" type="password" name="password" id="password"/>
-                                        </div>
-                                    </div>
-                                    <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
+                                <h2 class="title">Akheli - Register</h2>
+                                <form class="custom-form" method="post" id="user_form_1" action="controller/user.php" enctype="multipart/form-data">
+                                    <?php
+                                    $createUser = true;
+                                    include_once 'user/_client_form.php';
+                                    ?>
+                                    <input type="submit" class="btn btn-primary" name="register" value="Register">
                                 </form>
-                                <div class="pull-left">
-                                    <a href="user/reset_password.php">Forgot Password</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="#">Register</a>
-                                </div>
                             </div>
                         </ul>
                     </li>
@@ -129,25 +117,67 @@ include_once "shared/auth.php";
         </div>
     </div>
 </div>
-<div class="clearfix">
-<div class="col-md-3">
 
-            <ul class="main-menu">
-                <li><h1 class="brand">Akheli</h1></li>
-                <?php $categoryList = getDistinctCategory($conn);
+<div class="bg-white shadow clearfix menu-wrapper">
+    <div class="col-md-9 clearfix">
+        <ul class="main-menu list-inline">
+            <li><h4 class="logo">Akheli</h4></li>
+            <?php $categoryList = getDistinctCategory($conn);
 
-                foreach ($categoryList as $category) {
-                    ?>
-                    <li class="active">
-                        <form method="post" action="product.php">
-                            <input type="hidden" name="category" value="<?php echo $category['category'] ?>">
-                            <input class="menu-btn" type="submit" value="<?php echo $category['category'] ?>">
-                        </form>
-                    </li>
+            foreach ($categoryList as $category) {
+                ?>
+                <li>
+                    <!--                <form method="post" action="product.php">-->
+                    <!--                    <input type="hidden" name="category" value="--><?php //echo $category['category'] ?><!--">-->
+                    <!--                    <input class="menu-btn" type="submit" value="--><?php //echo $category['category'] ?><!--">-->
+                    <!--                </form>-->
+
+                    <a href="#" class="menu">Menu 1</a>
+                </li>
+
+                <li>
+                    <a href="#" class="menu">Menu 2</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 3</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 4</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 5</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 6</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 7</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 8</a>
+                </li>
+                <li>
+                    <a href="#" class="menu">Menu 9</a>
+                </li>
+
                 <?php
-                }?>
-            </ul>
-
+            } ?>
+        </ul>
+    </div>
+    <div class="col-md-3 border-search">
+        <div class="col-md-11 no-padding">
+            <form class="general-search-form" action="#">
+                <div class="form-group no-margin">
+                    <input type="search" class="form-control text-center" placeholder="Search product here...">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-1 no-padding text-center bg-white"><span class="fa fa-search general-search-icon"></span>
+        </div>
+    </div>
 </div>
+
+
+<div class="clearfix">
 
 
