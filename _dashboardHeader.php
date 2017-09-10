@@ -249,11 +249,11 @@ include_once PROJECT_PATH."/shared/auth.php";
         </div>
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
+        <form action="searchResult.php" method="post" class="sidebar-form">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <input type="search" name="search" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              <button type="submit" name="q" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
             </div>

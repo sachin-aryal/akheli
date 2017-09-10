@@ -32,8 +32,10 @@ redirectIfNotLoggedIn();
         $orders = getBuyersOrders($conn);
     }else if(isSeller()){
         $orders = getSellersOrders($conn);
-    } else{
+    } else if(isAdmin()){
         $orders = getAllOrders($conn);
+    }else{
+        redirectToDash();
     }
     ?>
     <div class="content-wrapper clearfix" id="main_content">
@@ -54,10 +56,8 @@ redirectIfNotLoggedIn();
                     <th>Status</th>
                     <th>Quantity</th>
                     <th>Total Price(NRs)</th>
-                    <?php if(isAdmin()) { ?>
-                        <th>Product Owner</th>
-                        <th>Ordered By</th>
-                    <?php } ?>
+                    <th>Product Owner</th>
+                    <th>Ordered By</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -76,18 +76,18 @@ redirectIfNotLoggedIn();
                     <td><?php echo $order["status"] ?></td>
                     <td><?php echo $order["quantity"] ?></td>
                     <td><?php echo $order["quantity"]*$product_info["price"] ?></td>
-                    <?php if(isAdmin()) {
+                    <?php
                         $productOwner = getClient($conn,$product_info["user_id"]);
                         $orderBy = getClient($conn,$order["user_id"]);
                         ?>
                         <td><a href="user/profile.php?user_id=<?php echo $product_info['user_id']?>"><?php echo $productOwner["name"] ?></a></td>
                         <td><a href="user/profile.php?user_id=<?php echo $order['user_id']?>"><?php echo $orderBy["name"] ?></a></td>
-                    <?php } ?>
                     <td>
                         <?php if($order["status"] == ORDER_STATUS_REQUESTED && isBuyer()){
-                            include_once '_edit_action.php';
-                        }else if(isSeller() && $product_info["user_id"]){
-                            include_once '_edit_action.php';
+                            include '_edit_action.php';
+                        }else if(isSeller() && $product_info["user_id"] == $_SESSION["user_id"]){
+                            echo "There";
+                            include '_edit_action.php';
                         }else{?>
                         N/A
                         <?php } ?>
