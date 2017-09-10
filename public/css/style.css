@@ -8,7 +8,7 @@ body, h1, h2, h3, h4, h5, h6, a {
 }
 
 body{
-    background-color: #efefef;
+    background-color: #fffcec;
 }
 
 .content-wrapper {
@@ -651,3 +651,23 @@ body{
     text-decoration: none;
     color: #000;
 }
+
+.menu-wrapper{
+    margin-bottom: 30px;
+}
+
+.featured-product{
+    position: absolute;
+    bottom: 45px;
+    right: 45px;
+    width: 50%;
+    background-color: black;
+    padding: 45px;
+    background-color: rgba(6, 6, 6, 0.75);
+    color: #fff;
+}
+
+.featured-wrapper{
+    position: relative;
+}
+

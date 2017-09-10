@@ -178,6 +178,5 @@ include_once "shared/auth.php";
 </div>
 
 
-<div class="clearfix">
 
 
