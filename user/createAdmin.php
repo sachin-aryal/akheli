@@ -14,6 +14,7 @@ include_once '../shared/dbconnect.php';
 
 $email = "iamadmin";
 $password = hash("sha256","admin");
+echo $password;
 $role = ROLE_ADMIN;
 $enabled = 1;
 $name = "admin";
