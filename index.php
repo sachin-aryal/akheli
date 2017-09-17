@@ -2,8 +2,40 @@
 include_once "_header.php";
 ?>
 
-    <div class="container">
+    <div id="thumbnail-preview-indicators" class="carousel slide marginBtm40" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#thumbnail-preview-indicators" data-slide-to="0" class="active">
+            </li>
+            <li data-target="#thumbnail-preview-indicators" data-slide-to="1">
+            </li>
+            <li data-target="#thumbnail-preview-indicators" data-slide-to="2">
+            </li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item slides active">
+                <div class="slide-1"></div>
+                <div class="container">
+                    <!--<div class="carousel-caption">
+                        <p><a class="btn btn-lg btn-link" href="#" role="button">New Arrivals</a></p>
+                    </div>-->
+                </div>
+            </div>
+            <div class="item slides">
+                <div class="slide-2"></div>
+                <div class="container">
+                </div>
+            </div>
+            <div class="item slides">
+                <div class="slide-3"></div>
+                <div class="container">
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#thumbnail-preview-indicators" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#thumbnail-preview-indicators" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
 
+    <div class="container new-section">
         <div class="new-section col-lg-3 clearfix">
             <div class="container-flude">
                 <div class="row">
@@ -12,32 +44,32 @@ include_once "_header.php";
                         <ul class="list-unstyled">
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe.png" alt="">
+                                    <img src="public/img/men.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
-                                    <h4 class="item-name no-margin"><a href="#">Oakley Kickback</a></h4>
-                                    <span>Rs 15/-</span>
+                                    <h4 class="item-name no-margin"><a href="#">Sweater</a></h4>
+                                    <span>Rs 1275/-</span>
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe1.png" alt="">
+                                    <img src="public/img/2.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
-                                    <h4 class="item-name no-margin"><a href="#">Oakley Kickback</a></h4>
-                                    <span>Rs 15/-</span>
+                                    <h4 class="item-name no-margin"><a href="#">Korean Sweater</a></h4>
+                                    <span>Rs 1500/-</span>
                                 </div>
                             </li>
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe2.png" alt="">
+                                    <img src="public/img/3.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
                                     <h4 class="item-name no-margin"><a href="#">Oakley Kickback</a></h4>
-                                    <span>Rs 15/-</span>
+                                    <span>Rs 1545/-</span>
                                 </div>
                             </li>
                             <li>
@@ -45,12 +77,13 @@ include_once "_header.php";
                             </li>
                         </ul>
                     </div>
+                    <br>
                     <div class="item-list">
                         <legend>Best Seller</legend>
                         <ul class="list-unstyled">
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe.png" alt="">
+                                    <img src="public/img/1.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
@@ -60,7 +93,7 @@ include_once "_header.php";
                             </li>
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe1.png" alt="">
+                                    <img src="public/img/2.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
@@ -70,7 +103,7 @@ include_once "_header.php";
                             </li>
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe2.png" alt="">
+                                    <img src="public/img/3.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
@@ -83,12 +116,13 @@ include_once "_header.php";
                             </li>
                         </ul>
                     </div>
+                    <br>
                     <div class="item-list">
                         <legend>Random</legend>
                         <ul class="list-unstyled">
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe.png" alt="">
+                                    <img src="public/img/2.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
@@ -98,7 +132,7 @@ include_once "_header.php";
                             </li>
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe1.png" alt="">
+                                    <img src="public/img/3.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
@@ -108,7 +142,7 @@ include_once "_header.php";
                             </li>
                             <li class="clearfix">
                                 <div class="item-img has-img">
-                                    <img src="public/img/shoe2.png" alt="">
+                                    <img src="public/img/1.jpg" alt="">
                                 </div>
 
                                 <div class="item-info">
@@ -125,9 +159,518 @@ include_once "_header.php";
             </div>
         </div>
 
+        <h2 class="text-success text-center text-uppercase text-underline"><strong> New Arrival </strong></h2>
+        <hr>
         <div class="col-md-9 clearfix">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <article class="col-item">
+                            <div class="photo">
+                                <a href="#"> <img src="public/img/1.jpg" class="img-responsive" alt="" /> </a>
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price-details col-md-6">
+                                        <p class="details">
+                                        <ol class="breadcrumb text-center">
+                                            <li>
+                                                <a href="#">S</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">M</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">L</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">XXL</a>
+                                            </li>
+                                        </ol>
+                                        <h4 class="text-center">Shoes</h4>
+                                        <p class="price-new">
+                                            <strike>Rs 1700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 1500/-</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </article>
+                    </div>
 
-            <div class="col-md-12">
+
+                    <div class="col-sm-4">
+                        <article class="col-item">
+                            <div class="photo">
+                                <a href="#"> <img src="public/img/2.jpg" class="img-responsive" alt="Product Image" /> </a>
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price-details col-md-6">
+                                        <p class="details">
+                                        <ol class="breadcrumb text-center">
+                                            <li>
+                                                <a href="#">S</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">M</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">L</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">XXL</a>
+                                            </li>
+                                        </ol>
+                                        <h4 class="text-center">Skirt</h4>
+                                        <p class="price-new">
+                                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <article class="col-item">
+                            <div class="photo">
+                                <a href="#"> <img src="public/img/3.jpg" class="img-responsive" alt="Product Image" /> </a>
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price-details col-md-6">
+                                        <p class="details">
+                                        <ol class="breadcrumb text-center">
+                                            <li>
+                                                <a href="#">S</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">M</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">L</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">XXL</a>
+                                            </li>
+                                        </ol>
+                                        <h4 class="text-center">Korean Shop</h4>
+                                        <p class="price-new">
+                                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <article class="col-item">
+                            <div class="photo">
+                                <a href="#"> <img src="public/img/slider3.jpg" class="img-responsive" alt="Product Image" /> </a>
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price-details col-md-6">
+                                        <p class="details">
+                                        <ol class="breadcrumb text-center">
+                                            <li>
+                                                <a href="#">S</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">M</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">L</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">XXL</a>
+                                            </li>
+                                        </ol>
+                                        <h4 class="text-center">One Piece</h4>
+                                        <p class="price-new">
+                                            <strike>Rs 1000/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 800/-</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </article>
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <article class="col-item">
+                            <div class="photo">
+                                <a href="#"> <img src="public/img/slider2.jpg" class="img-responsive" alt="Product Image" /> </a>
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price-details col-md-6">
+                                        <p class="details">
+                                        <ol class="breadcrumb text-center">
+                                            <li>
+                                                <a href="#">S</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">M</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">L</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">XXL</a>
+                                            </li>
+                                        </ol>
+                                        <h4 class="text-center">Korean Set</h4>
+                                        <p class="price-new">
+                                            <strike>Rs 1700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 1200/-</b>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </article>
+                    </div>
+                </div> <!--row-->
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="item-list">
+                    <legend>Categories</legend>
+                    <ul class="list-unstyled">
+                        <li class="clearfix">
+                            <div class="item-img has-img">
+                                <img src="public/img/child.jpg" alt="">
+                            </div>
+
+                            <div class="item-info">
+                                <h4 class="item-name no-margin"><a href="#">Child</a></h4>
+                                <span>200 items</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="item-img has-img">
+                                <img src="public/img/women.jpg" alt="">
+                            </div>
+
+                            <div class="item-info">
+                                <h4 class="item-name no-margin"><a href="#">Women</a></h4>
+                                <span>150 items</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="item-img has-img">
+                                <img src="public/img/men.jpg" alt="">
+                            </div>
+
+                            <div class="item-info">
+                                <h4 class="item-name no-margin"><a href="#">Men</a></h4>
+                                <span>100 items</span>
+                            </div>
+                        </li>
+
+                        <li class="clearfix">
+                            <div class="item-img has-img">
+                                <img src="public/img/accessories.jpg" alt="">
+                            </div>
+
+                            <div class="item-info">
+                                <h4 class="item-name no-margin"><a href="#">Accessories</a></h4>
+                                <span>200 items</span>
+                            </div>
+                        </li>
+
+                        <li class="clearfix">
+                            <div class="item-img has-img">
+                                <img src="public/img/electronics.jpg" alt="">
+                            </div>
+
+                            <div class="item-info">
+                                <h4 class="item-name no-margin"><a href="#">Electronics</a></h4>
+                                <span>100 items</span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="item-img has-img">
+                                <img src="public/img/sports.jpg" alt="">
+                            </div>
+
+                            <div class="item-info">
+                                <h4 class="item-name no-margin"><a href="#">Sports</a></h4>
+                                <span>50 items</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                    <h2 class="text-success text-center text-uppercase text-underline"><strong> Most Popular</strong></h2>
+                    <hr>
+                    <div class="col-md-12 clearfix">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <article class="col-item">
+                                    <div class="photo">
+                                        <a href="#"> <img src="public/img/1.jpg" class="img-responsive" alt="" /> </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price-details col-md-6">
+                                                <p class="details">
+                                                <ol class="breadcrumb text-center">
+                                                    <li>
+                                                        <a href="#">S</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">M</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">L</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">XXL</a>
+                                                    </li>
+                                                </ol>
+                                                <h4 class="text-center">Shoes</h4>
+                                                <p class="price-new">
+                                                    <strike>Rs 1700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 1500/-</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                            </p>
+                                            <p class="btn-details">
+                                                <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </article>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <article class="col-item">
+                                    <div class="photo">
+                                        <a href="#"> <img src="public/img/2.jpg" class="img-responsive" alt="Product Image" /> </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price-details col-md-6">
+                                                <p class="details">
+                                                <ol class="breadcrumb text-center">
+                                                    <li>
+                                                        <a href="#">S</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">M</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">L</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">XXL</a>
+                                                    </li>
+                                                </ol>
+                                                <h4 class="text-center">Skirt</h4>
+                                                <p class="price-new">
+                                                    <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                            </p>
+                                            <p class="btn-details">
+                                                <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </article>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <article class="col-item">
+                                    <div class="photo">
+                                        <a href="#"> <img src="public/img/3.jpg" class="img-responsive" alt="Product Image" /> </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price-details col-md-6">
+                                                <p class="details">
+                                                <ol class="breadcrumb text-center">
+                                                    <li>
+                                                        <a href="#">S</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">M</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">L</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">XXL</a>
+                                                    </li>
+                                                </ol>
+                                                <h4 class="text-center">Korean Shop</h4>
+                                                <p class="price-new">
+                                                    <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                            </p>
+                                            <p class="btn-details">
+                                                <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <article class="col-item">
+                                    <div class="photo">
+                                        <a href="#"> <img src="public/img/slider3.jpg" class="img-responsive" alt="Product Image" /> </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price-details col-md-6">
+                                                <p class="details">
+                                                <ol class="breadcrumb text-center">
+                                                    <li>
+                                                        <a href="#">S</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">M</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">L</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">XXL</a>
+                                                    </li>
+                                                </ol>
+                                                <h4 class="text-center">One Piece</h4>
+                                                <p class="price-new">
+                                                    <strike>Rs 1000/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 800/-</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                            </p>
+                                            <p class="btn-details">
+                                                <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </article>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <article class="col-item">
+                                    <div class="photo">
+                                        <a href="#"> <img src="public/img/slider2.jpg" class="img-responsive" alt="Product Image" /> </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price-details col-md-6">
+                                                <p class="details">
+                                                <ol class="breadcrumb text-center">
+                                                    <li>
+                                                        <a href="#">S</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">M</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">L</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">XXL</a>
+                                                    </li>
+                                                </ol>
+                                                <h4 class="text-center">Korean Set</h4>
+                                                <p class="price-new">
+                                                    <strike>Rs 1700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 1200/-</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                            </p>
+                                            <p class="btn-details">
+                                                <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
+                                            </p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+                </div> <!--row-->
+           <!-- <div class="col-md-12">
                <div class="featured-wrapper"></div>
                     <div class="featured-product">
                         <div class="clearfix">
@@ -140,39 +683,37 @@ include_once "_header.php";
                     </div>
 
                 <div class="product-view-image new-section">
-                    <img src="public/img/pant1.jpg" alt="">
+                    <img src="public/img/1.jpg" alt="">
                 </div>
-            </div>
+            </div>-->
 
-            <div class="new-section">
+            <!--<div class="new-section">
                 <h2 class="title"><span>New Arrival</span></h2>
                 <div class="container-fluid">
                     <div class="row">
-                        <?php $latest_productList = getLatestProduct($conn);
+                        <?php /*$latest_productList = getLatestProduct($conn);
                         foreach ($latest_productList as $latestProduct) {
-
-
-                            $latestProductDetaills = getProductDetails($conn, $latestProduct['id']);
-                            ?>
+                                $latestProductDetaills = getProductDetails($conn, $latestProduct['id']);
+                            */?>
                             <div class="col-md-4">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <img src="assets/images/.'<?php echo $latestProduct['image'] ?>'" alt="">
+                                        <img src="assets/images/.'<?php /*echo $latestProduct['image'] */?>'" alt="">
                                     </div>
                                     <div class="product-description">
-                                        <h4 class="product-name"><?php echo $latestProduct['product_name'] ?></h4>
+                                        <h4 class="product-name"><?php /*echo $latestProduct['product_name'] */?></h4>
                                         <ol class="breadcrumb text-center">
-                                            <?php $sizeArray = explode(',', $latestProductDetaills['size']);
+                                            <?php /*$sizeArray = explode(',', $latestProductDetaills['size']);
                                             foreach ($sizeArray as $size) {
-                                                ?>
+                                                */?>
                                                 <li>
-                                                    <a href="#"><?php echo $size ?></a>
+                                                    <a href="#"><?php /*echo $size */?></a>
                                                 </li>
-                                            <?php } ?>
+                                            <?php /*} */?>
                                         </ol>
                                         <p>
                                             <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp;
-                                            <b>Rs <?php echo $latestProduct['price'] ?>/-</b>
+                                            <b>Rs <?php /*echo $latestProduct['price'] */?>/-</b>
                                         </p>
                                         <div class="text-center">
                                             <button class="btn btn-view">View</button>
@@ -180,11 +721,11 @@ include_once "_header.php";
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php /*} */?>
                         <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
-                                    <img src="public/img/pant2.jpg" alt="">
+                                    <img src="public/img/2.jpg" alt="">
                                 </div>
                                 <div class="product-description">
                                     <h4 class="product-name">Korean Pant</h4>
@@ -214,7 +755,7 @@ include_once "_header.php";
                         <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
-                                    <img src="public/img/pant3.jpg" alt="">
+                                    <img src="public/img/3.jpg" alt="">
                                 </div>
                                 <div class="product-description">
                                     <h4 class="product-name">Korean Pant</h4>
@@ -247,7 +788,7 @@ include_once "_header.php";
                         <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
-                                    <img src="public/img/pant4.jpg" alt="">
+                                    <img src="public/img/3.jpg" alt="">
                                 </div>
                                 <div class="product-description">
                                     <h4 class="product-name">Korean Pant</h4>
@@ -279,28 +820,28 @@ include_once "_header.php";
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="new-section">
+            </div>-->
+            <!--<div class="new-section">
                 <h2 class="title"><span>Most Popular</span></h2>
                 <div class="container-fluid">
                     <div class="row">
-                        <?php $latest_productList = getMostViewProduct($conn);
+                        <?php /*$latest_productList = getMostViewProduct($conn);
                         foreach ($latest_productList as $latestProduct) {
 
                             $productInfo = getProductInfo($conn, $latestProduct['product_id']);
 
                             $latestProductDetaills = getProductDetails($conn, $latestProduct['product_id']);
-                            ?>
+                            */?>
                             <div class="col-md-4">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <img src="assets/images/.'<?php echo $productInfo['image'] ?>'" alt="">
+                                        <img src="assets/images/.'<?php /*echo $productInfo['image'] */?>'" alt="">
                                     </div>
                                     <div class="product-description">
-                                        <h4 class="product-name"><?php echo $productInfo['product_name'] ?></h4>
+                                        <h4 class="product-name"><?php /*echo $productInfo['product_name'] */?></h4>
                                         <ol class="breadcrumb text-center">
                                             <li>
-                                                <a href="#"><?php echo $latestProductDetaills['size'] ?></a>
+                                                <a href="#"><?php /*echo $latestProductDetaills['size'] */?></a>
                                             </li>
                                             <li>
                                                 <a href="#">M</a>
@@ -317,7 +858,7 @@ include_once "_header.php";
                                         </ol>
                                         <p>
                                             <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp;
-                                            <b>Rs <?php echo $productInfo['price'] ?>/-</b>
+                                            <b>Rs <?php /*echo $productInfo['price'] */?>/-</b>
                                         </p>
                                         <div class="text-center">
                                             <button class="btn btn-view">View</button>
@@ -325,11 +866,11 @@ include_once "_header.php";
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php /*} */?>
                         <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
-                                    <img src="public/img/pant2.jpg" alt="">
+                                    <img src="public/img/2.jpg" alt="">
                                 </div>
                                 <div class="product-description">
                                     <h4 class="product-name">Korean Pant</h4>
@@ -362,7 +903,7 @@ include_once "_header.php";
                         <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
-                                    <img src="public/img/pant3.jpg" alt="">
+                                    <img src="public/img/3.jpg" alt="">
                                 </div>
                                 <div class="product-description">
                                     <h4 class="product-name">Korean Pant</h4>
@@ -395,7 +936,7 @@ include_once "_header.php";
                         <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
-                                    <img src="public/img/pant4.jpg" alt="">
+                                    <img src="public/img/1.jpg" alt="">
                                 </div>
                                 <div class="product-description">
                                     <h4 class="product-name">Korean Pant</h4>
@@ -427,8 +968,8 @@ include_once "_header.php";
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>-->
+
     </div>
 
 <?php

@@ -50,7 +50,6 @@ $client = getClient($conn, $user_id);
 
         <div class="page-title">
             <h3><span class="fa fa-user"></span> My Profile
-                <small>Profile details here</small>
             </h3>
         </div>
 
@@ -88,7 +87,7 @@ $client = getClient($conn, $user_id);
 
                     <div class="col-lg-6">
                         <div class="detail-component">
-                            <h6 class="title">Emai</h6>
+                            <h6 class="title">Email</h6>
                             <h4 title="Name"><?php echo $user[email]; ?></h4>
                         </div>
                     </div>
@@ -113,6 +112,7 @@ $client = getClient($conn, $user_id);
                 $user2 = getUser($conn,"id=".$_SESSION['user_id']);
                 $client2 = getClient($conn,$user2["id"]);
                 ?>
+                <div class="container">
                 <div class="row">
                     <h2>Conversation History</h2>
                     <div id="messages_box">
@@ -126,9 +126,10 @@ $client = getClient($conn, $user_id);
                         } ?>
                     </div>
                     <div id="chat_field">
-                        <textarea name="messsage" id="message" class="form-control"></textarea>
-                        <button onclick="sendMessage()">Send Message</button>
+                        <textarea name="messsage" id="message" class="form-control"></textarea><br>
+                        <button class="btn btn-success" onclick="sendMessage()">Send Message</button>
                     </div>
+                </div>
                 </div>
             <?php } ?>
         </div>

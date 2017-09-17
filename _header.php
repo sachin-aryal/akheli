@@ -28,7 +28,6 @@ include_once "shared/common.php";
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>
             $.notify('<?php echo $_SESSION["message"] ?>', '<?php echo $_SESSION['messageType'] ?>');
-
             <?php unset($_SESSION["message"]);unset($_SESSION["messageType"]); } ?>
 
         });
@@ -55,7 +54,7 @@ include_once "shared/auth.php";
                     <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
                 </form>
 
-                <span class="pull-right">Welcome <?php echo $_SESSION["username"] ?></span>
+                <span class="pull-right text-primary"><strong>Welcome <?php echo $_SESSION["username"]  ?> </strong></span>
 
             <?php } else { ?>
                 <!--                <form action="controller/user.php" method="post">-->
@@ -127,11 +126,6 @@ include_once "shared/auth.php";
             foreach ($categoryList as $category) {
                 ?>
                 <li>
-                    <!--                <form method="post" action="product.php">-->
-                    <!--                    <input type="hidden" name="category" value="--><?php //echo $category['category'] ?><!--">-->
-                    <!--                    <input class="menu-btn" type="submit" value="--><?php //echo $category['category'] ?><!--">-->
-                    <!--                </form>-->
-
                     <a href="#" class="menu">Menu 1</a>
                 </li>
 
