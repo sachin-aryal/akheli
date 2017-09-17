@@ -2,7 +2,7 @@
 if(!isset($_SESSION)){session_start();} ;
 
 function getUserList($conn){
-    $users = $conn->query("SELECT *FROM USERS");
+    $users = $conn->query("SELECT *FROM users");
     if ($users->num_rows > 0) {
         return mysqli_fetch_all($users,MYSQLI_ASSOC);
     }
@@ -10,7 +10,7 @@ function getUserList($conn){
 }
 
 function getClient($conn,$user_id){
-    $client = $conn->query("SELECT *FROM CLIENTS WHERE user_id = $user_id");
+    $client = $conn->query("SELECT *FROM clients WHERE user_id = $user_id");
     if($client->num_rows > 0){
         return mysqli_fetch_assoc($client);
     }
@@ -18,7 +18,7 @@ function getClient($conn,$user_id){
 }
 
 function getUser($conn,$condition){
-    $user = $conn->query("SELECT *FROM USERS WHERE $condition");
+    $user = $conn->query("SELECT *FROM users WHERE $condition");
     if($user->num_rows > 0){
         return mysqli_fetch_assoc($user);
     }
@@ -26,7 +26,7 @@ function getUser($conn,$condition){
 }
 
 function checkEmail($conn,$email){
-    $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ?");
+    $stmt = $conn->prepare("SELECT *FROM users WHERE email = ?");
     $stmt->bind_param('s',$email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -37,7 +37,7 @@ function checkEmail($conn,$email){
 }
 
 function checkEmailEdit($conn,$email,$user_id){
-    $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ? and id != ?");
+    $stmt = $conn->prepare("SELECT *FROM users WHERE email = ? and id != ?");
     $stmt->bind_param('si',$email,$user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -48,7 +48,7 @@ function checkEmailEdit($conn,$email,$user_id){
 }
 
 function checkUser($conn,$username,$password) {
-    $stmt = $conn->prepare("SELECT *FROM USERS WHERE email = ? and password = ?");
+    $stmt = $conn->prepare("SELECT *FROM users WHERE email = ? and password = ?");
     $stmt->bind_param("ss", $username, $password);
     if ($stmt->execute()) {
         $user = $stmt->get_result();
@@ -138,7 +138,7 @@ function removeProductDetailsByPId($conn,$product_id){
 }
 
 function getBuyersOrders($conn){
-    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT *FROM orders WHERE user_id = ?");
     $stmt->bind_param("i",$_SESSION["user_id"]);
     if($stmt->execute()){
         $result = $stmt->get_result();
@@ -150,7 +150,7 @@ function getBuyersOrders($conn){
 }
 
 function getOrdersByProduct($conn,$product_id){
-    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE product_id = ?");
+    $stmt = $conn->prepare("SELECT *FROM orders WHERE product_id = ?");
     $stmt->bind_param("i",$product_id);
     if($stmt->execute()){
         $result = $stmt->get_result();
@@ -184,7 +184,7 @@ function getSellersOrders($conn){
 }
 
 function getAllOrders($conn){
-    $stmt = $conn->prepare("SELECT *FROM ORDERS");
+    $stmt = $conn->prepare("SELECT *FROM orders");
     if($stmt->execute()){
         $result = $stmt->get_result();
         if($result->num_rows > 0){
@@ -261,7 +261,7 @@ function getMostViewProduct($conn){
 }
 
 function getOrder($conn,$id){
-    $stmt = $conn->prepare("SELECT *FROM ORDERS WHERE id = ?");
+    $stmt = $conn->prepare("SELECT *FROM orders WHERE id = ?");
     $stmt->bind_param("i",$id);
     if($stmt->execute()){
         $result = $stmt->get_result();
