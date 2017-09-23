@@ -1,0 +1,280 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Sep 23, 2017 at 02:30 PM
+-- Server version: 5.7.19
+-- PHP Version: 5.5.27
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `akheli`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_chats`
+--
+
+CREATE TABLE `akh_chats` (
+  `id` int(11) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `receiver` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `send_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akh_chats`
+--
+
+INSERT INTO `akh_chats` (`id`, `sender`, `receiver`, `message`, `send_date`) VALUES
+(1, 15, 16, 'Test Message', '2017-08-31 16:17:12'),
+(2, 16, 15, 'This is the message', '2017-08-31 17:00:32'),
+(6, 15, 16, 'new message', '2017-08-31 17:33:30'),
+(7, 15, 16, 'Testing', '2017-08-31 17:34:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_clients`
+--
+
+CREATE TABLE `akh_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shop_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_no` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_image` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `akh_clients`
+--
+
+INSERT INTO `akh_clients` (`id`, `name`, `shop_name`, `phone_no`, `location`, `user_id`, `user_image`, `created_at`, `updated_at`) VALUES
+(11, 'Buyer Name', 'Test Shop', '9861676916', 'Kathmandu', 15, 'RirfeKdHZxdb9CnZiFf5kWJpg.jpg', '2017-08-30 17:14:39', '2017-08-31 17:02:49'),
+(12, 'Seller Name', 'Test Admin', '9861676916', 'Pokhara', 16, 'vF8kds10a4BaoXeTLQNeRS9Kc.jpg', '2017-08-30 17:47:27', '2017-08-31 17:02:57'),
+(13, 'admin', 'admin', 'admin', 'admin', 23, 'test.jpg', '2017-08-30 18:48:33', '2017-08-30 18:48:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_orders`
+--
+
+CREATE TABLE `akh_orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` varchar(50) NOT NULL,
+  `color` varchar(50) NOT NULL,
+  `quantity` varchar(50) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `status` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `viewed` tinyint(1) NOT NULL DEFAULT '0',
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akh_orders`
+--
+
+INSERT INTO `akh_orders` (`id`, `description`, `size`, `color`, `quantity`, `user_id`, `status`, `created_at`, `updated_at`, `viewed`, `product_id`) VALUES
+(1, 'Please do it ASAP.', 'M,L', 'Red,Black', '20', 15, 'REQUESTED', '2017-08-30 18:33:06', '2017-08-30 18:33:06', 0, 3),
+(2, 'Please Deliver ', 'M,L', 'Red', '100', 15, 'REQUESTED', '2017-08-31 15:47:36', '2017-08-31 15:47:36', 0, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_products`
+--
+
+CREATE TABLE `akh_products` (
+  `id` int(11) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `category` varchar(191) DEFAULT NULL,
+  `description` text,
+  `min_order` varchar(191) DEFAULT NULL,
+  `price` varchar(20) NOT NULL,
+  `image` varchar(191) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `user_id` smallint(5) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akh_products`
+--
+
+INSERT INTO `akh_products` (`id`, `product_name`, `category`, `description`, `min_order`, `price`, `image`, `created_at`, `updated_at`, `user_id`) VALUES
+(3, 'Kurta', 'Ladies', 'General Description.', '10', '200', 'wlISBXpP5mWQLmDWMxv1HCybg.jpg', '2017-08-30 18:08:11', '2017-08-30 18:08:11', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_product_details`
+--
+
+CREATE TABLE `akh_product_details` (
+  `id` int(10) NOT NULL,
+  `size` varchar(50) DEFAULT NULL,
+  `color` varchar(50) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akh_product_details`
+--
+
+INSERT INTO `akh_product_details` (`id`, `size`, `color`, `product_id`) VALUES
+(9, 'M,L,S,XL', 'Red,Black', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_users`
+--
+
+CREATE TABLE `akh_users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT 'admin',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `akh_users`
+--
+
+INSERT INTO `akh_users` (`id`, `email`, `password`, `role`, `enabled`, `created_at`, `updated_at`) VALUES
+(15, 'buyers@example.com', '0e0e53f7c8fca96819ad752bcf86c13ccad02efac0cd307982bf6821a74dcdc8', 'akheli_buyer', 1, '2017-08-30 17:14:39', '2017-08-30 18:17:53'),
+(16, 'sellers@example.com', 'ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'akheli_seller', 1, '2017-08-30 17:47:27', '2017-08-30 18:08:50'),
+(23, 'iamadmin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'akheli_admin', 1, '2017-08-30 18:48:33', '2017-08-30 18:48:33');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `akh_chats`
+--
+ALTER TABLE `akh_chats`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `akh_clients`
+--
+ALTER TABLE `akh_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `clients_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `akh_orders`
+--
+ALTER TABLE `akh_orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `products_fk_2` (`product_id`);
+
+--
+-- Indexes for table `akh_products`
+--
+ALTER TABLE `akh_products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `akh_product_details`
+--
+ALTER TABLE `akh_product_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `akh_users`
+--
+ALTER TABLE `akh_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `akh_chats`
+--
+ALTER TABLE `akh_chats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `akh_clients`
+--
+ALTER TABLE `akh_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `akh_orders`
+--
+ALTER TABLE `akh_orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `akh_products`
+--
+ALTER TABLE `akh_products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `akh_product_details`
+--
+ALTER TABLE `akh_product_details`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `akh_users`
+--
+ALTER TABLE `akh_users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `akh_clients`
+--
+ALTER TABLE `akh_clients`
+  ADD CONSTRAINT `clients_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `akh_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `akh_orders`
+--
+ALTER TABLE `akh_orders`
+  ADD CONSTRAINT `akh_orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `akh_users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `products_fk_2` FOREIGN KEY (`product_id`) REFERENCES `akh_products` (`id`);
+
+--
+-- Constraints for table `akh_product_details`
+--
+ALTER TABLE `akh_product_details`
+  ADD CONSTRAINT `akh_product_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `akh_products` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
