@@ -59,14 +59,14 @@ if(isset($_POST['save_product'])) {
         return;
     }
 
-    $stmt= $conn->prepare('Insert into products(product_name,category,description,min_order,image,price,user_id) VALUES (?,?,?,?,?,?,?)');
+    $stmt= $conn->prepare('Insert into '.PRODUCT_TABLE.'(product_name,category,description,min_order,image,price,user_id) VALUES (?,?,?,?,?,?,?)');
     $stmt->bind_param('ssssssi', $product_name,$category,$description,$min_order,$imageName,$price,$user_id);
     if($stmt->execute()){
         $product_id = $conn->insert_id;
         $length = count($_POST['size']);
 
         for($i=0;$i<$length;$i++){
-            $stmt= $conn->prepare('Insert into product_details(size,color,product_id) VALUES (?,?,?)');
+            $stmt= $conn->prepare('Insert into '.PRODUCT_DETAIL_TABLE.'(size,color,product_id) VALUES (?,?,?)');
             $stmt->bind_param('ssi', $size[$i],$color[$i],$product_id);
             $stmt->execute();
         }
@@ -169,7 +169,7 @@ if(isset($_POST['update_product'])) {
         }
     }
 
-    $stmt= $conn->prepare('Update products set product_name = ?, category=?, description=?, min_order=?, image=?, price = ? WHERE id= ?');
+    $stmt= $conn->prepare('Update '.PRODUCT_TABLE.' set product_name = ?, category=?, description=?, min_order=?, image=?, price = ? WHERE id= ?');
     $stmt->bind_param('ssssssi', $product_name,$category,$description,$min_order,$imageName,$price,$product_id);
 
     if($stmt->execute()) {
@@ -180,7 +180,7 @@ if(isset($_POST['update_product'])) {
         $color = $_POST['color'];
         removeProductDetailsByPId($conn,$product_id);
         for($i=0;$i<$length;$i++){
-            $stmt= $conn->prepare('Insert into product_details(size,color,product_id) VALUES (?,?,?)');
+            $stmt= $conn->prepare('Insert into '.PRODUCT_DETAIL_TABLE.'(size,color,product_id) VALUES (?,?,?)');
             $stmt->bind_param('ssi', $size[$i],$color[$i],$product_id);
             $stmt->execute();
         }

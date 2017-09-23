@@ -7,7 +7,7 @@ redirectIfNotLoggedIn();
 if(isset($_POST["message"]) && isset($_POST["receiver_id"])){
    $message = $_POST["message"];
    $receiver_id = $_POST["receiver_id"];
-   $stmt = $conn->prepare("INSERT INTO chats(sender,receiver,message) VALUES (?,?,?)");
+   $stmt = $conn->prepare("INSERT INTO ".CHAT_TABLE."(sender,receiver,message) VALUES (?,?,?)");
    $stmt->bind_param("iis",$_SESSION["user_id"],$receiver_id,$message);
    if($stmt->execute()){
        echo "success";

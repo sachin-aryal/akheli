@@ -15,7 +15,7 @@ if(isset($_POST['save_order'])){
     $user_id = $_SESSION["user_id"];
     $viewed = 0;
     $status = ORDER_STATUS_REQUESTED;
-    $stmt = $conn->prepare("INSERT INTO orders(description,size,color,quantity,user_id,status,viewed,product_id) 
+    $stmt = $conn->prepare("INSERT INTO ".ORDER_TABLE."(description,size,color,quantity,user_id,status,viewed,product_id) 
                           VALUES(?,?,?,?,?,?,?,?) ");
     $stmt->bind_param("ssssisii",$description,$size,$color,$quantity,$user_id,$status,$viewed,$product_id);
     if($stmt->execute()){
@@ -45,7 +45,7 @@ if(isset($_POST['save_order'])){
     $user_id = $_SESSION["user_id"];
     $viewed = $order["viewed"];
     $status = $order["status"];
-    $stmt = $conn->prepare("UPDATE orders set description = ?, size = ?,color = ?,quantity = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE ".ORDER_TABLE." set description = ?, size = ?,color = ?,quantity = ? WHERE id = ?");
     $stmt->bind_param("ssssi",$description,$size,$color,$quantity,$order_id);
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
@@ -65,7 +65,7 @@ if(isset($_POST['save_order'])){
     }
     $order_id = $_POST["order_id"];
     $status = $_POST["status"];
-    $stmt = $conn->prepare("UPDATE orders set status = ? where id = ?");
+    $stmt = $conn->prepare("UPDATE ".ORDER_TABLE." set status = ? where id = ?");
     $stmt->bind_param("si",$status,$order_id);
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";

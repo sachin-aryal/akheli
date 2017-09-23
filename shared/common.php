@@ -2,7 +2,7 @@
 if(!isset($_SESSION)){session_start();} ;
 
 function getUserList($conn){
-    $users = $conn->query("SELECT *FROM users");
+    $users = $conn->query("SELECT *FROM ".USER_TABLE);
     if ($users->num_rows > 0) {
         return mysqli_fetch_all($users,MYSQLI_ASSOC);
     }
@@ -10,7 +10,7 @@ function getUserList($conn){
 }
 
 function getClient($conn,$user_id){
-    $client = $conn->query("SELECT *FROM clients WHERE user_id = $user_id");
+    $client = $conn->query("SELECT *FROM ".CLIENT_TABLE." WHERE user_id = $user_id");
     if($client->num_rows > 0){
         return mysqli_fetch_assoc($client);
     }
@@ -18,7 +18,7 @@ function getClient($conn,$user_id){
 }
 
 function getUser($conn,$condition){
-    $user = $conn->query("SELECT *FROM users WHERE $condition");
+    $user = $conn->query("SELECT *FROM ".USER_TABLE." WHERE $condition");
     if($user->num_rows > 0){
         return mysqli_fetch_assoc($user);
     }
@@ -26,7 +26,7 @@ function getUser($conn,$condition){
 }
 
 function checkEmail($conn,$email){
-    $stmt = $conn->prepare("SELECT *FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT *FROM ".USER_TABLE." WHERE email = ?");
     $stmt->bind_param('s',$email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -37,7 +37,7 @@ function checkEmail($conn,$email){
 }
 
 function checkEmailEdit($conn,$email,$user_id){
-    $stmt = $conn->prepare("SELECT *FROM users WHERE email = ? and id != ?");
+    $stmt = $conn->prepare("SELECT *FROM ".USER_TABLE." WHERE email = ? and id != ?");
     $stmt->bind_param('si',$email,$user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -48,7 +48,7 @@ function checkEmailEdit($conn,$email,$user_id){
 }
 
 function checkUser($conn,$username,$password) {
-    $stmt = $conn->prepare("SELECT *FROM users WHERE email = ? and password = ?");
+    $stmt = $conn->prepare("SELECT *FROM ".USER_TABLE." WHERE email = ? and password = ?");
     $stmt->bind_param("ss", $username, $password);
     if ($stmt->execute()) {
         $user = $stmt->get_result();
@@ -70,14 +70,14 @@ function getRandomString($l = 15){
 }
 function getProductList($conn){
 
-    $products = $conn->query("SELECT * FROM products");
+    $products = $conn->query("SELECT * FROM ".PRODUCT_TABLE);
     if ($products->num_rows > 0) {
         return mysqli_fetch_all($products,MYSQLI_ASSOC);
     }
     return [];
 }
 function getProductDetails($conn,$id){
-    $stmt=$conn->prepare("SELECT *FROM product_details where product_id=?");
+    $stmt=$conn->prepare("SELECT *FROM ".PRODUCT_DETAIL_TABLE." where product_id=?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         $product_details = $stmt->get_result();
@@ -92,7 +92,7 @@ function getProductDetails($conn,$id){
 
 }
 function getProductInfo($conn,$id){
-    $stmt= $conn->prepare("Select *FROM products where id=?");
+    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where id=?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -109,7 +109,7 @@ function deleteProduct($conn,$id){
     $product= getProductInfo($conn,$id);
     $imageName = $product['image'];
 
-    $stmt = $conn->prepare("DELETE FROM products WHERE id= ?");
+    $stmt = $conn->prepare("DELETE FROM ".PRODUCT_TABLE." WHERE id= ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
         if(file_exists("../assets/images/")){
@@ -122,7 +122,7 @@ function deleteProduct($conn,$id){
 }
 
 function getDistinctCategory($conn){
-    $productCategory = $conn->query("SELECT distinct(category) as category from products");
+    $productCategory = $conn->query("SELECT distinct(category) as category from ".PRODUCT_TABLE);
     if($productCategory->num_rows > 0){
         return mysqli_fetch_all($productCategory,MYSQLI_ASSOC);
     }
@@ -131,14 +131,14 @@ function getDistinctCategory($conn){
 }
 
 function removeProductDetailsByPId($conn,$product_id){
-    $stmt = $conn->prepare("DELETE FROM product_details where product_id = ?");
+    $stmt = $conn->prepare("DELETE FROM ".PRODUCT_DETAIL_TABLE." where product_id = ?");
     $stmt->bind_param("i",$product_id);
     $stmt->execute();
 
 }
 
 function getBuyersOrders($conn){
-    $stmt = $conn->prepare("SELECT *FROM orders WHERE user_id = ?");
+    $stmt = $conn->prepare("SELECT *FROM ".ORDER_TABLE." WHERE user_id = ?");
     $stmt->bind_param("i",$_SESSION["user_id"]);
     if($stmt->execute()){
         $result = $stmt->get_result();
@@ -150,7 +150,7 @@ function getBuyersOrders($conn){
 }
 
 function getOrdersByProduct($conn,$product_id){
-    $stmt = $conn->prepare("SELECT *FROM orders WHERE product_id = ?");
+    $stmt = $conn->prepare("SELECT *FROM ".ORDER_TABLE." WHERE product_id = ?");
     $stmt->bind_param("i",$product_id);
     if($stmt->execute()){
         $result = $stmt->get_result();
@@ -162,7 +162,7 @@ function getOrdersByProduct($conn,$product_id){
 }
 
 function getSellersOrders($conn){
-    $stmt= $conn->prepare("Select *FROM products where user_id=?");
+    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where user_id=?");
     $stmt->bind_param("i", $_SESSION["user_id"]);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -184,7 +184,7 @@ function getSellersOrders($conn){
 }
 
 function getAllOrders($conn){
-    $stmt = $conn->prepare("SELECT *FROM orders");
+    $stmt = $conn->prepare("SELECT *FROM ".ORDER_TABLE);
     if($stmt->execute()){
         $result = $stmt->get_result();
         if($result->num_rows > 0){
@@ -195,7 +195,7 @@ function getAllOrders($conn){
 }
 
 function getSellersProducts($conn){
-    $stmt= $conn->prepare("Select *FROM products where user_id=?");
+    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where user_id=?");
     $stmt->bind_param("i", $_SESSION["user_id"]);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -209,7 +209,7 @@ function getSellersProducts($conn){
 }
 
 function getProductsByCategory($conn,$category){
-    $stmt= $conn->prepare("Select *FROM products where category=?");
+    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where category=?");
     $stmt->bind_param("s", $category);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -223,7 +223,7 @@ function getProductsByCategory($conn,$category){
     return [];
 }
 function changeViewStatus($conn,$id){
-    $stmt=$conn->prepare('Update orders set view=? where id=?');
+    $stmt=$conn->prepare('Update '.ORDER_TABLE.' set view=? where id=?');
     $stmt=bind_param('ii',1,$id);
     if($stmt->execute()){
 
@@ -231,7 +231,7 @@ function changeViewStatus($conn,$id){
 }
 function getOrderCount($conn)
 {
-    $query = "select COUNT(*) from orders where viewed=0";
+    $query = "select COUNT(*) from ".ORDER_TABLE." where viewed=0";
     $result = $conn->query($query);
     if($result->num_rows >0){
         $tCount = mysqli_fetch_assoc($result);
@@ -240,7 +240,7 @@ function getOrderCount($conn)
     return 0;
 }
 function getLatestProduct($conn){
-    $stmt=$conn->prepare("Select * from products ORDER BY id DESC limit 8");
+    $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY id DESC limit 8");
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
@@ -250,7 +250,7 @@ function getLatestProduct($conn){
     }
 }
 function getMostViewProduct($conn){
-    $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from orders GROUP by product_id ORDER BY total_quantity DESC");
+    $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." GROUP by product_id ORDER BY total_quantity DESC");
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
@@ -261,7 +261,7 @@ function getMostViewProduct($conn){
 }
 
 function getOrder($conn,$id){
-    $stmt = $conn->prepare("SELECT *FROM orders WHERE id = ?");
+    $stmt = $conn->prepare("SELECT *FROM ".ORDER_TABLE." WHERE id = ?");
     $stmt->bind_param("i",$id);
     if($stmt->execute()){
         $result = $stmt->get_result();
@@ -274,7 +274,7 @@ function getOrder($conn,$id){
 function getSearchProducts($conn,$product_name){
     $search_name = "%".$product_name."%";
 
-    $stmt = $conn->prepare("SELECT * FROM products WHERE description like ? or product_name like ? ");
+    $stmt = $conn->prepare("SELECT * FROM ".PRODUCT_TABLE." WHERE description like ? or product_name like ? ");
     $stmt->bind_param("ss", $search_name,$search_name);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -301,7 +301,7 @@ function randomPassword() {
 }
 
 function getAllMessages($conn,$user_id1,$user_id2){
-    $query = "SELECT *FROM chats where (sender = ? and receiver = ?) or (sender = ?  and receiver = ?)";
+    $query = "SELECT *FROM ".CHAT_TABLE." where (sender = ? and receiver = ?) or (sender = ?  and receiver = ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("iiii", $user_id1,$user_id2,$user_id2,$user_id1);
     if ($stmt->execute()) {
