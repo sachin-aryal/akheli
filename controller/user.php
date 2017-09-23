@@ -78,16 +78,16 @@ if (isset($_POST["register"])) {
         return;
     }
 
-    $stmt = $conn->prepare('INSERT INTO USERS(email,password,role,enabled) VALUES (?,?,?,?)');
+    $stmt = $conn->prepare('INSERT INTO '.USER_TABLE.'(email,password,role,enabled) VALUES (?,?,?,?)');
     $stmt->bind_param('sssi', $email,$password,$role,$enabled);
     if($stmt->execute()){
         $user_id = $conn->insert_id;
-        $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
         $stmt->bind_param("ssssis",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
         if($stmt->execute()){
             header("Location:../index.php");
         }else{
-            $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
+            $stmt = $conn->prepare("DELETE FROM ".USER_TABLE." WHERE email = ?");
             $stmt->bind_param('s',$email);
             $stmt->execute();
             $_SESSION["messageType"] = "error";
@@ -168,10 +168,10 @@ if (isset($_POST["register"])) {
         return;
     }
 
-    $stmt = $conn->prepare("UPDATE USERS SET email = ?, password = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE ".USER_TABLE." SET email = ?, password = ? WHERE id = ?");
     $stmt->bind_param('ssi',$email,$password,$user_id);
     if($stmt->execute()){
-        $stmt = $conn->prepare("UPDATE CLIENTS set name = ?, shop_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
+        $stmt = $conn->prepare("UPDATE ".CLIENT_TABLE." set name = ?, shop_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
         $stmt->bind_param("sssssi",$name,$shop_name,$phone_no,$location,$imageName,$_SESSION["user_id"]);
         if($stmt->execute()){
             $_SESSION["messageType"] = "success";
@@ -223,7 +223,7 @@ if (isset($_POST["register"])) {
 if($_POST['changePassword']){
     $email=$_POST['email'];
     $randomPassword= randomPassword();
-    $stmt= $conn->prepare("update users set password = ? where email=?");
+    $stmt= $conn->prepare("update ".USER_TABLE." set password = ? where email=?");
     $stmt->bind_param("ss",$randomPassword, $email);
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";

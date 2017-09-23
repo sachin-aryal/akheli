@@ -23,17 +23,17 @@ $phone_no = "admin";
 $location = "admin";
 $imageName = "test.jpg";
 
-$stmt = $conn->prepare('INSERT INTO USERS(email,password,role,enabled) VALUES (?,?,?,?)');
+$stmt = $conn->prepare('INSERT INTO '.USER_TABLE.'(email,password,role,enabled) VALUES (?,?,?,?)');
 $stmt->bind_param('sssi', $email,$password,$role,$enabled);
 if($stmt->execute()){
     $user_id = $conn->insert_id;
-    $stmt = $conn->prepare("INSERT INTO CLIENTS(name,shop_name,phone_no,location,user_image,user_id) VALUES (?,?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,shop_name,phone_no,location,user_image,user_id) VALUES (?,?,?,?,?,?)");
     $stmt->bind_param("sssssi",$name,$shop_name,$phone_no,$location,$imageName,$user_id);
     if($stmt->execute()){
         header("Location:../index.php");
         return;
     }else{
-        $stmt = $conn->prepare("DELETE FROM USERS WHERE email = ?");
+        $stmt = $conn->prepare("DELETE FROM ".USER_TABLE." WHERE email = ?");
         $stmt->bind_param('s',$email);
         $stmt->execute();
 
