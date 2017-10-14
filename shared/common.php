@@ -122,8 +122,12 @@ function deleteProduct($conn,$id){
 
 }
 
-function getDistinctCategory($conn){
-    $productCategory = $conn->query("SELECT distinct(category) as category from ".PRODUCT_TABLE);
+function getDistinctCategory($conn, $limit = 0){
+    if($limit == 0){
+        $productCategory = $conn->query("SELECT distinct(category) as category from ".PRODUCT_TABLE);
+    }else{
+        $productCategory = $conn->query("SELECT distinct(category) as category from ".PRODUCT_TABLE." LIMIT $limit");
+    }
     if($productCategory->num_rows > 0){
         return mysqli_fetch_all($productCategory,MYSQLI_ASSOC);
     }

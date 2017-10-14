@@ -18,7 +18,7 @@ include_once "../shared/auth.php";
     <script src="../assets/js/validator.js"></script>
     <script src="../public/jquery/jquery-ui.min.js"></script>
     <script src="../public/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
+    <script src="../assets/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             <?php if(isset($_SESSION["message"])){?>

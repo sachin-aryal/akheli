@@ -23,7 +23,7 @@ include_once "shared/common.php";
     <script src="public/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="public/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
+    <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>
@@ -121,15 +121,13 @@ include_once "shared/auth.php";
     <div class="col-md-9 clearfix">
         <ul class="main-menu list-inline">
             <li><h4 class="logo">Akheli</h4></li>
-            <?php $categoryList = getDistinctCategory($conn);
+            <?php $categoryList = getDistinctCategory($conn, 10);
 
             foreach ($categoryList as $category) {
                 ?>
                 <li>
-                    <a href="#" class="menu">Menu 1</a>
+                    <a href="product/index.php?category=<?php echo $category["category"] ?>" class="menu"><?php echo $category["category"] ?></a>
                 </li>
-
-
 
                 <?php
             } ?>
