@@ -1,37 +1,19 @@
+
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
 <?php
-/**
- * Created by PhpStorm.
- * User: Samsung
- * Date: 8/22/2017
- * Time: 11:00 PM
- */
-if (!isset($_SESSION)) {
-    session_start();
-};
-include_once "../shared/auth.php";
-include_once '../shared/dbconnect.php';
-include_once '../shared/common.php';
+include_once "_header.php";
 if (isset($_GET["category"])) {
     $category = $_GET["category"];
-    if($category == "myp" && isSeller()){
-        $productList = getSellersProducts($conn);
-    }else{
-        $productList = getProductsByCategory($conn, $_GET["category"]);
-    }
+    $productList = getProductsByCategory($conn, $_GET["category"]);
 } else {
     $productList = getProductList($conn);
 }
-
 ?>
-<html>
-<head>
-
-</head>
-<body>
 <div class="wrapper">
-    <?php
-    include_once "../_dashboardHeader.php";
-    ?>
     <div class="content-wrapper clearfix" id="main_content">
         <div class="page-title">
             <h3><span class="fa fa-tag"></span> Product List
@@ -45,7 +27,7 @@ if (isset($_GET["category"])) {
             <div class="col-sm-4">
                 <article class="col-item">
                     <div class="photo">
-                        <a href="product/detail.php?id=<?php echo $product['id'] ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
+                        <a href="products_details.php?id=<?php echo $product['id'] ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
                     </div>
                     <div class="info">
                         <div class="row">
@@ -69,7 +51,7 @@ if (isset($_GET["category"])) {
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="product/detail.php?id=<?php echo $product['id'] ?>">View</a>
+                            <a href="products_details.php?id=<?php echo $product['id'] ?>">View</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -80,7 +62,9 @@ if (isset($_GET["category"])) {
             ?>
         </div>
     </div>
-
+</div>
+<?php
+include "_footer.php";
+?>
 </body>
 </html>
-

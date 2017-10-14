@@ -14,7 +14,6 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
     $productList = getProductList($conn);
 }
 
-
 ?>
 
     <div class="main-wrapper">
@@ -31,7 +30,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
             <div class="col-md-3">
                 <div class="product-wrapper">
                     <div class="product-image">
-                        <a href="product/detail.php?id=<?php echo $product['id'] ?>"><img
+                        <a href="<?php echo $pdetails ?>?id=<?php echo $product['id'] ?>"><img
                                 src="assets/images/<?php echo $product['image'] ?>"> </a>
                     </div>
                     <div class="product-description">
@@ -42,15 +41,15 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                             foreach ($sizeArray as $size){
                                 ?>
                                 <li>
-                                    <a href="#"><?php echo $size  ?></a>
+                                    <?php echo $size  ?>
                                 </li>
                             <?php } ?>
                         </ol>
                         <p>
-                            <strike>Rs 700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 500/-</b>
+                            <?php echo "Rs. ".$product["price"] ?>
                         </p>
                         <div class="text-center">
-                            <button class="btn btn-view">View</button>
+                            <a href="<?php echo $pdetails ?>?id=<?php echo $product['id'] ?>">View</a>
                         </div>
                     </div>
                 </div>

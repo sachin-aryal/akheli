@@ -48,7 +48,7 @@ include_once "_header.php";
                                 ?>
                                 <li class="clearfix">
                                     <div class="item-img has-img">
-                                        <img src="../assets/images/<?php echo $latestProduct["image"]?>" alt="">
+                                        <img src="assets/images/<?php echo $latestProduct["image"]?>" alt="">
                                     </div>
 
                                     <div class="item-info">
@@ -57,9 +57,10 @@ include_once "_header.php";
                                     </div>
                                 </li>
                             <?php } ?>
-
+                        </ul>
+                        <ul class="list-unstyled">
                             <li>
-                                <a href="#">See more...</a>
+                                <a href="<?php echo $purl ?>">See more..</a>
                             </li>
                         </ul>
                     </div>
@@ -67,14 +68,15 @@ include_once "_header.php";
                     <div class="item-list">
                         <legend>Best Seller</legend>
                         <ul class="list-unstyled">
-                            <?php $mostViewProducts=getMostViewProduct($conn,3);
+                            <?php
+                            $mostViewProducts=getMostViewProduct($conn,3);
                             foreach ($mostViewProducts as $mostViewProduct){
-                                $productDetail=getProductDetails($conn,$mostViewProduct['product_id'])
+                                $productDetail=getProductInfo($conn,$mostViewProduct['product_id'])
 
                                 ?>
                                 <li class="clearfix">
                                     <div class="item-img has-img">
-                                        <img src="../assets/images/<?php echo $productDetail["image"]?>" alt="">
+                                        <img src="assets/images/<?php echo $productDetail["image"]?>" alt="">
                                     </div>
 
                                     <div class="item-info">
@@ -434,17 +436,17 @@ include_once "_header.php";
                                             <div class="price-details col-md-6">
                                                 <p class="details">
                                                 <ol class="breadcrumb text-center">
-                            <?php
-                            $productDetail=getProductDetails($conn,$popularProduct['id']);
-                            $sizes = explode(',',$productDetail['size']);
+                                                    <?php
+                                                    $productDetail=getProductDetails($conn,$popularProduct['id']);
+                                                    $sizes = explode(',',$productDetail['size']);
 
-                            foreach ($sizes as $size){
+                                                    foreach ($sizes as $size){
 
-                                ?>
-                                                    <li>
-                                                        <a href="#"><?php echo $size ?></a>
-                                                    </li>
-<?php } ?>
+                                                        ?>
+                                                        <li>
+                                                            <a href="#"><?php echo $size ?></a>
+                                                        </li>
+                                                    <?php } ?>
                                                 </ol>
                                                 <h4 class="text-center"><?php echo $popularProduct['category'] ?></h4>
                                                 <p class="price-new">

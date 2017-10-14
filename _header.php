@@ -23,7 +23,7 @@ include_once "shared/common.php";
     <script src="public/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="public/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
+    <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>
@@ -35,6 +35,14 @@ include_once "shared/common.php";
 </head>
 <?php
 include_once "shared/auth.php";
+if(isLoggedIn()){
+    $purl = "product/index.php";
+    $pdetails = "product/detail.php";
+}else{
+    $purl = "products.php";
+    $pdetails = "products_details.php";
+
+}
 ?>
 <body>
 
@@ -120,16 +128,14 @@ include_once "shared/auth.php";
 <div class="bg-white shadow clearfix menu-wrapper">
     <div class="col-md-9 clearfix">
         <ul class="main-menu list-inline">
-            <li><h4 class="logo">Akheli</h4></li>
-            <?php $categoryList = getDistinctCategory($conn);
+            <li><h4 class="logo"><a href="index.php">Akheli</a></h4></li>
+            <?php $categoryList = getDistinctCategory($conn, 10);
 
             foreach ($categoryList as $category) {
                 ?>
                 <li>
-                    <a href="#" class="menu"><?php echo $category['category']?></a>
+                    <a href="<?php echo $purl ?>?category=<?php echo $category["category"] ?>" class="menu"><?php echo $category["category"] ?></a>
                 </li>
-
-
 
                 <?php
             } ?>
@@ -137,9 +143,9 @@ include_once "shared/auth.php";
     </div>
     <div class="col-md-3 border-search">
         <div class="col-md-11 no-padding">
-            <form class="general-search-form" action="#">
+            <form class="general-search-form" action="searchResult.php">
                 <div class="form-group no-margin">
-                    <input type="search" class="form-control text-center" placeholder="Search product here...">
+                    <input type="search" name="q" class="form-control text-center" placeholder="Search product here...">
                 </div>
             </form>
         </div>
