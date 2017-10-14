@@ -106,6 +106,7 @@ function getProductInfo($conn,$id){
 }
 
 function deleteProduct($conn,$id){
+    echo $id;
     $product= getProductInfo($conn,$id);
     $imageName = $product['image'];
 
@@ -239,8 +240,12 @@ function getOrderCount($conn)
     }
     return 0;
 }
-function getLatestProduct($conn){
-    $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY id DESC limit 8");
+function getLatestProduct($conn,$limit= 0){
+    if($limit == 0){
+        $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY id DESC");
+    }else{
+        $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY id DESC limit $limit");
+    }
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
@@ -249,8 +254,18 @@ function getLatestProduct($conn){
         return[];
     }
 }
-function getMostViewProduct($conn){
-    $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." GROUP by product_id ORDER BY total_quantity DESC");
+function getRandomProduct($conn,$limit){
+    $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY rand() DESC limit $limit");
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC) ;
+        }
+        return[];
+    }
+}
+function getMostViewProduct($conn,$limit){
+    $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." GROUP by product_id ORDER BY total_quantity DESC limit $limit");
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
@@ -259,6 +274,17 @@ function getMostViewProduct($conn){
         return[];
     }
 }
+function getCategoryItems($conn){
+    $stmt=$conn->prepare("Select count(category) as total_quantity,category,image from ".PRODUCT_TABLE." GROUP by category ORDER BY category DESC");
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+        return[];
+    }
+}
+
 
 function getOrder($conn,$id){
     $stmt = $conn->prepare("SELECT *FROM ".ORDER_TABLE." WHERE id = ?");

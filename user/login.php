@@ -16,7 +16,7 @@ redirectIfLoggedIn();
     <script src="../public/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
-    <script src="../assets/js/notify.min.js" type="text/javascript"></script>
+    <script src="../../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             <?php if(isset($_SESSION["message"])){?>

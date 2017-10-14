@@ -23,7 +23,7 @@ include_once "shared/common.php";
     <script src="public/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="public/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/notify.min.js" type="text/javascript"></script>
+    <script src="../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>
@@ -129,30 +129,7 @@ include_once "shared/auth.php";
                     <a href="#" class="menu">Menu 1</a>
                 </li>
 
-                <li>
-                    <a href="#" class="menu">Menu 2</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 3</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 4</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 5</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 6</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 7</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 8</a>
-                </li>
-                <li>
-                    <a href="#" class="menu">Menu 9</a>
-                </li>
+
 
                 <?php
             } ?>

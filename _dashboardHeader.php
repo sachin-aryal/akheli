@@ -30,7 +30,7 @@ include_once PROJECT_PATH."/shared/auth.php";
     <script src="public/dist/js/adminlte.min.js"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/notify.min.js" type="text/javascript"></script>
+    <script src="../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
     <script src="assets/js/app.js" type="text/javascript"></script>
     <script src="assets/js/validator.js"></script>
     <script type="text/javascript">
