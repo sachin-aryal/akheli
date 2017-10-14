@@ -13,7 +13,7 @@ error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 define('DBHOST', 'localhost');
 if ($_SERVER["HTTP_HOST"] == "localhost"){
     define('DBUSER', 'root');
-    define('DBPASS', '');
+    define('DBPASS', 'root');
     define('DBNAME', 'akheli');
 }else{
     define('DBUSER', 'akhely_production_user');

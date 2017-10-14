@@ -21,6 +21,7 @@ $client = getClient($conn, $user_id);
     <script type="text/javascript">
         function sendMessage(){
             var message = $("#message").val();
+            $("#message").val("");
             var receiver_id = '<?php echo $user["id"] ?>';
             $.ajax({
                 type: 'POST',
@@ -112,24 +113,36 @@ $client = getClient($conn, $user_id);
                 $user2 = getUser($conn,"id=".$_SESSION['user_id']);
                 $client2 = getClient($conn,$user2["id"]);
                 ?>
-                <div class="container">
-                <div class="row">
-                    <h2>Conversation History</h2>
-                    <div id="messages_box">
-                        <?php
-                        foreach ($allMessages as $message) {
-                            if($message["sender"] == $user2["id"]){
-                                echo $client2["name"].": ".$message["message"]."<br>";
-                            }else{
-                                echo $client["name"].": ".$message["message"]."<br>";
+                <script type="text/javascript">
+                    setInterval(function(){
+                        $.ajax({
+                            type: 'POST',
+                            url: 'controller/chat.php',
+                            data: {fetch_message: true,other_user: <?php echo $user["id"] ?>},
+                            success:function(data){
+                                $("#messages_box").empty();
+                                var json_data = $.parseJSON(data);
+                                for (var i = 0; i < json_data.length; i++) {
+                                    $("#messages_box").append(json_data[i]+"<br>");
+                                }
+                            },error:function(err){
+                                $.notify('Error sending message','error');
                             }
-                        } ?>
+
+                        })
+                    }, 5000);
+                </script>
+                <div class="container">
+                    <div class="row">
+                        <h2>Conversation History</h2>
+                        <div id="messages_box">
+
+                        </div>
+                        <div id="chat_field">
+                            <textarea name="messsage" id="message" class="form-control"></textarea><br>
+                            <button class="btn btn-success" onclick="sendMessage()">Send Message</button>
+                        </div>
                     </div>
-                    <div id="chat_field">
-                        <textarea name="messsage" id="message" class="form-control"></textarea><br>
-                        <button class="btn btn-success" onclick="sendMessage()">Send Message</button>
-                    </div>
-                </div>
                 </div>
             <?php } ?>
         </div>

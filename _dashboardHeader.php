@@ -30,7 +30,7 @@ include_once PROJECT_PATH."/shared/auth.php";
     <script src="public/dist/js/adminlte.min.js"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="../Front-Page-International-Consultancy/js/notify.min.js" type="text/javascript"></script>
+    <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script src="assets/js/app.js" type="text/javascript"></script>
     <script src="assets/js/validator.js"></script>
     <script type="text/javascript">
@@ -74,7 +74,7 @@ include_once PROJECT_PATH."/shared/auth.php";
 
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index.php" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -178,11 +178,11 @@ include_once PROJECT_PATH."/shared/auth.php";
     <section class="sidebar">
 
         <!-- Sidebar user panel (optional) -->
-        <!--<div class="user-panel">
+        <div class="user-panel">
             <div class="text-center">
-                <span><?php /*echo $_SESSION["username"] */?></span>
+                <span><?php echo $_SESSION["username"] ?></span>
             </div>
-        </div>-->
+        </div>
 
         <!-- search form (Optional) -->
         <form action="searchResult.php" method="post" class="sidebar-form">
