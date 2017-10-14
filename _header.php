@@ -126,7 +126,7 @@ include_once "shared/auth.php";
             foreach ($categoryList as $category) {
                 ?>
                 <li>
-                    <a href="#" class="menu">Menu 1</a>
+                    <a href="#" class="menu"><?php echo $category['category']?></a>
                 </li>
 
 

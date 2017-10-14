@@ -5,7 +5,7 @@ define("USER_TABLE","akh_users");
 define("CLIENT_TABLE","akh_clients");
 define("ORDER_TABLE","akh_orders");
 define("PRODUCT_TABLE","akh_products");
-define("PRODUCT_DETAIL_TABLE","akh_products_details");
+define("PRODUCT_DETAIL_TABLE","akh_product_details");
 define("CHAT_TABLE","akh_chats");
 
 error_reporting( ~E_DEPRECATED & ~E_NOTICE );

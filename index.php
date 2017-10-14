@@ -69,16 +69,17 @@ include_once "_header.php";
                         <ul class="list-unstyled">
                             <?php $mostViewProducts=getMostViewProduct($conn,3);
                             foreach ($mostViewProducts as $mostViewProduct){
+                                $productDetail=getProductDetails($conn,$mostViewProduct['product_id'])
 
                                 ?>
                                 <li class="clearfix">
                                     <div class="item-img has-img">
-                                        <img src="../assets/images/<?php echo $mostViewProduct["image"]?>" alt="">
+                                        <img src="../assets/images/<?php echo $productDetail["image"]?>" alt="">
                                     </div>
 
                                     <div class="item-info">
-                                        <h4 class="item-name no-margin"><a href="#"><?php echo $mostViewProduct["product_name"]?></a></h4>
-                                        <span>Rs <?php echo $mostViewProduct["price"]?>/-</span>
+                                        <h4 class="item-name no-margin"><a href="#"><?php echo $productDetail["product_name"]?></a></h4>
+                                        <span>Rs <?php echo $productDetail["price"]?>/-</span>
                                     </div>
                                 </li>
                             <?php } ?>
@@ -121,7 +122,7 @@ include_once "_header.php";
         <hr>
         <div class="col-md-9 clearfix">
             <div class="row">
-                <?php $latestProducts=getLatestProduct($conn,3);
+                <?php $latestProducts=getLatestProduct($conn,6);
                 foreach ($latestProducts as $latestProduct){
 
                     ?>
@@ -139,7 +140,8 @@ include_once "_header.php";
                                             $productDetail=getProductDetails($conn,$latestProduct['id']);
                                             $sizes = explode(',',$productDetail['size']);
 
-                                                foreach ($sizes as $size){
+                                            foreach ($sizes as $size){
+
                                                 ?>
                                                 <li>
                                                     <a href="#"><?php echo $size ?></a>
@@ -166,7 +168,7 @@ include_once "_header.php";
                     </div>
                 <?php } ?>
 
-                <div class="col-sm-4">
+                <!--<div class="col-sm-4">
                     <article class="col-item">
                         <div class="photo">
                             <a href="#"> <img src="public/img/2.jpg" class="img-responsive" alt="Product Image" /> </a>
@@ -335,7 +337,7 @@ include_once "_header.php";
                         </div>
                     </article>
                 </div>
-            </div> <!--row-->
+    -->            </div> <!--row-->
 
         </div>
         <div class="row">
@@ -418,50 +420,54 @@ include_once "_header.php";
                 <hr>
                 <div class="col-md-12 clearfix">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <article class="col-item">
-                                <div class="photo">
-                                    <a href="#"> <img src="public/img/1.jpg" class="img-responsive" alt="" /> </a>
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price-details col-md-6">
-                                            <p class="details">
-                                            <ol class="breadcrumb text-center">
-                                                <li>
-                                                    <a href="#">S</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">M</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">L</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">XXL</a>
-                                                </li>
-                                            </ol>
-                                            <h4 class="text-center">Shoes</h4>
-                                            <p class="price-new">
-                                                <strike>Rs 1700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs 1500/-</b>
+                        <?php $popularProducts=getMostViewProduct($conn,6);
+                        foreach ($popularProducts as $popularProduct){
+
+                            ?>
+                            <div class="col-sm-4">
+                                <article class="col-item">
+                                    <div class="photo">
+                                        <a href="#"> <img src="assets/images/<?php echo $popularProduct['image'] ?>" class="img-responsive" alt="" /> </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="row">
+                                            <div class="price-details col-md-6">
+                                                <p class="details">
+                                                <ol class="breadcrumb text-center">
+                            <?php
+                            $productDetail=getProductDetails($conn,$popularProduct['id']);
+                            $sizes = explode(',',$productDetail['size']);
+
+                            foreach ($sizes as $size){
+
+                                ?>
+                                                    <li>
+                                                        <a href="#"><?php echo $size ?></a>
+                                                    </li>
+<?php } ?>
+                                                </ol>
+                                                <h4 class="text-center"><?php echo $popularProduct['category'] ?></h4>
+                                                <p class="price-new">
+                                                    <strike>Rs 1700/-</strike>&nbsp;&nbsp;&nbsp; <b>Rs <?php echo $popularProduct['price']?>/-</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="separator clear-left">
+                                            <p class="btn-add">
+                                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                            </p>
+                                            <p class="btn-details">
+                                                <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
                                             </p>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="separator clear-left">
-                                        <p class="btn-add">
-                                            <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
-                                        </p>
-                                        <p class="btn-details">
-                                            <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="fa fa-heart"></i></a>
-                                        </p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </article>
-                        </div>
+                                </article>
+                            </div>
+                        <?php } ?>
 
 
-                        <div class="col-sm-4">
+                        <!--<div class="col-sm-4">
                             <article class="col-item">
                                 <div class="photo">
                                     <a href="#"> <img src="public/img/2.jpg" class="img-responsive" alt="Product Image" /> </a>
@@ -629,7 +635,7 @@ include_once "_header.php";
                                     <div class="clearfix"></div>
                                 </div>
                             </article>
-                        </div>
+                        </div>-->
 
                     </div>
                 </div>
@@ -651,8 +657,8 @@ include_once "_header.php";
                  <img src="public/img/1.jpg" alt="">
              </div>
          </div>-->
-
-        <!--<div class="new-section">
+        <!--
+        <div class="new-section">
                 <h2 class="title"><span>New Arrival</span></h2>
                 <div class="container-fluid">
                     <div class="row">
@@ -670,6 +676,7 @@ include_once "_header.php";
                                         <ol class="breadcrumb text-center">
                                             <?php /*$sizeArray = explode(',', $latestProductDetaills['size']);
                                             foreach ($sizeArray as $size) {
+
                                                 */?>
                                                 <li>
                                                     <a href="#"><?php /*echo $size */?></a>
@@ -785,8 +792,8 @@ include_once "_header.php";
                         </div>
                     </div>
                 </div>
-            </div>-->
-        <!--<div class="new-section">
+            </div>
+        <div class="new-section">
                 <h2 class="title"><span>Most Popular</span></h2>
                 <div class="container-fluid">
                     <div class="row">
@@ -832,7 +839,7 @@ include_once "_header.php";
                                 </div>
                             </div>
                         <?php /*} */?>
-                        <div class="col-md-4">
+                       <!-- <div class="col-md-4">
                             <div class="product-wrapper">
                                 <div class="product-image">
                                     <img src="public/img/2.jpg" alt="">
@@ -930,10 +937,10 @@ include_once "_header.php";
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
+                        </div>-->
+    </div>
+    </div>
+    </div>-->
 
     </div>
 
