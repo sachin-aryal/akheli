@@ -87,7 +87,7 @@ include_once "_header.php";
                             <?php } ?>
 
                             <li>
-                                <a href="#">See more...</a>
+                                <a href="popularProducts.php">See more...</a>
                             </li>
                         </ul>
                     </div>
@@ -112,7 +112,7 @@ include_once "_header.php";
                             <?php } ?>
 
                             <li>
-                                <a href="#">See more...</a>
+                                <a href="randProduct.php">See more...</a>
                             </li>
                         </ul>
                     </div>
