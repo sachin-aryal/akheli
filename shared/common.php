@@ -258,8 +258,12 @@ function getLatestProduct($conn,$limit= 0){
         return[];
     }
 }
-function getRandomProduct($conn,$limit){
-    $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY rand() DESC limit $limit");
+function getRandomProduct($conn,$limit=0){
+    if($limit==0){
+        $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY rand()");
+    }else{
+        $stmt=$conn->prepare("Select * from ".PRODUCT_TABLE." ORDER BY rand() DESC limit $limit");
+    }
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
@@ -268,8 +272,12 @@ function getRandomProduct($conn,$limit){
         return[];
     }
 }
-function getMostViewProduct($conn,$limit){
-    $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." GROUP by product_id ORDER BY total_quantity DESC limit $limit");
+function getMostViewProduct($conn,$limit=0){
+    if($limit==0){
+        $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." GROUP by product_id ORDER BY total_quantity DESC");
+    }else{
+        $stmt=$conn->prepare("Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." GROUP by product_id ORDER BY total_quantity DESC limit $limit");
+    }
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){
