@@ -1,46 +1,34 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-};
-include_once "../shared/auth.php";
-ini_set('display_errors', 'Off');
-ini_set('error_reporting', E_ALL);
-define('WP_DEBUG', false);
-define('WP_DEBUG_DISPLAY', false);
+include_once "../_header.php";
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        .valid {
-            color: red;
-            background-color: pink;
-        }
+<style>
+    .valid {
+        color: red;
+        background-color: pink;
+    }
 
-        .invalid {
-            display: none;
-        }
-    </style>
-
-    <title>Reset Password</title>
-</head>
-<body>
-<?php include_once "../shared/_header.php" ?>
-
-
-<div class="page-title-wrapper register-page-wrapper padding">
-    <h3 class="page-title">Reset Password<small>Change your password here</small></h3>
-</div>
-<div class="container">
-    <div class="bg-white shadow padding">
-        <form class="custom-form" method="post" id="user_form_1" action="../controller/user.php" enctype="multipart/form-data">
-            <div class="form-group">
-                <label>Email:</label>
-                <input class="form-control" type="Email" name="email" id="email" placeholder="Enter your email here" required />
+    .invalid {
+        display: none;
+    }
+</style>
+<div class="container" style="width: 100%;margin: 0 auto">
+    <div class="row" style="padding: 20px;height: 420px">
+        <div id="outer-categories-slider">
+            <?php include_once "../_dashsidebar.php"?>
+            <div class="col-md-10">
+                <div class="page-title">
+                    <h3><span class="fa fa-tag"></span> Reset Password
+                        <small>Change your password here</small>
+                    </h3>
+                </div>
+                <form class="custom-form" method="post" id="user_form_1" action="../controller/user.php" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" type="Email" name="email" id="email" placeholder="Enter your email here" required />
+                    </div>
+                    <input type="submit" class="btn btn-primary" name="changePassword" value="Change Password">
+                </form>
             </div>
-            <input type="submit" class="btn btn-primary" name="changePassword" value="Change Password">
-        </form>
+        </div>
     </div>
 </div>
-</body>
-</html>

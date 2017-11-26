@@ -2,44 +2,29 @@
 if(!isset($_SESSION)){session_start();} ;
 include_once "../shared/auth.php";
 redirectIfNotSeller();
+include_once "../_header.php";
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create a product</title>
-</head>
-<body>
-<div class="wrapper">
-    <?php
-    include_once "../_dashboardHeader.php";
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            validateProduct();
-        });
-    </script>
-    <div class="content-wrapper clearfix" id="main_content">
-        <div class="page-title">
-            <h3><span class="fa fa-plus"></span> Add Product <small>Add new products here</small></h3>
-        </div>
-        <div id="page_content" class="page-content clearfix">
-            <form action="controller/product.php" id="product_form_1" class="custom-form" enctype="multipart/form-data" method="post">
-                <?php
-                $productDetails = [];
-                include_once "_product_form.php";
-                ?>
-                <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_product" value="Save">
-            </form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        validateProduct();
+    });
+</script>
+<div class="container" style="width: 100%;margin: 0 auto">
+    <div class="row" style="padding: 20px;height: 420px">
+        <div id="outer-categories-slider">
+            <?php include_once "../_dashsidebar.php"?>
+            <div class="col-md-10">
+                <div class="page-title">
+                    <h3><span class="fa fa-plus"></span> Add Product <small>Add new products here</small></h3>
+                </div>
+                <form action="controller/product.php" id="product_form_1" class="custom-form" enctype="multipart/form-data" method="post">
+                    <?php
+                    $productDetails = [];
+                    include_once "_product_form.php";
+                    ?>
+                    <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_product" value="Save">
+                </form>
+            </div>
         </div>
     </div>
-    <!-- The Right Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Content of the sidebar goes here -->
-    </aside>
-    <!-- The sidebar's background -->
-    <!-- This div must placed right after the sidebar for it to work-->
-    <div class="control-sidebar-bg">asdfadsf</div>
 </div>
-</body>
-</html>

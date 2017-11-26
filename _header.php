@@ -1,5 +1,9 @@
 <?php
+ob_start();
 include_once 'base_url.php';
+include_once PROJECT_PATH."/shared/dbconnect.php";
+include_once PROJECT_PATH."/shared/common.php";
+include_once PROJECT_PATH."/shared/auth.php";
 ini_set('display_errors', 'Off');
 ini_set('error_reporting', E_ALL);
 define('WP_DEBUG', false);
@@ -7,29 +11,41 @@ define('WP_DEBUG_DISPLAY', false);
 if (!isset($_SESSION)) {
     session_start();
 }
-include_once "shared/dbconnect.php";
-include_once "shared/common.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Akheli</title>
+    <base href="<?php echo BASE_URL ?>"/>
     <link href="https://fonts.googleapis.com/css?family=Cagliostro|Open+Sans+Condensed:300" rel="stylesheet"
           type="text/css">
+    <link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="public/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="public/font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
+    <link rel="stylesheet" href="public/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
     <script src="public/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="public/jquery/jquery-ui.min.js" type="text/javascript"></script>
     <script src="public/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="public/dist/js/adminlte.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>
             $.notify('<?php echo $_SESSION["message"] ?>', '<?php echo $_SESSION['messageType'] ?>');
             <?php unset($_SESSION["message"]);unset($_SESSION["messageType"]); } ?>
 
+            $("#categories-header, #categories-on-hover").on("mouseover", function(){
+                $("#categories-on-hover").removeClass("hide");
+                $(".category-icon").css("color","#ff6a00");
+            });
+            $("#categories-header, #categories-on-hover").on("mouseout", function(){
+                $("#categories-on-hover").addClass("hide");
+                $(".category-icon").css("color","#A0A2AD");
+            })
         });
     </script>
 </head>
@@ -45,34 +61,48 @@ if(isLoggedIn()){
 }
 ?>
 <body>
-
-<div class="top-info-bar">
-    <div class="container-fluid clearfix">
-        <div class="pull-left">
-            <span><i class="fa fa-bell-o"></i> 9860068421</span>
-        </div>
-
-
-        <div class="pull-right clearfix">
-
-            <?php
-            if (isset($_SESSION["username"])) {
+<div id="main-row">
+    <div class="container-fluid" style="margin-bottom: 14px;">
+        <div class="navbar-header" style="width: 100%;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#"><img src="assets/images/Alibaba-logo.png" height="40px" width="200px">
+            </a>
+            <ul class="nav navbar-left" id="top-head-left-li">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <?php
+                    if(isLoggedIn()){
+                        echo "<li><a href='dashboard.php'>Dashboard</a></li>";
+                    }
                 ?>
-                <form class="pull-right" action="controller/user.php" method="post">
-                    <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
-                </form>
-
-                <span class="pull-right text-primary"><strong>Welcome <?php echo $_SESSION["username"]  ?> </strong></span>
-
-            <?php } else { ?>
-                <!--                <form action="controller/user.php" method="post">-->
-                <!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
-                <!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
-                <!--                </form>-->
-
-                <ul class="list-inline top-bar-login-register no-margin">
+            </ul>
+            <ul class="nav navbar-right" id="top-head-li">
+                <?php
+                if (isLoggedIn()) {
+                    ?>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["username"]  ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="user/profile.php">My Profile</a></li>
+                            <li>
+                                <form class="pull-right" action="controller/user.php" method="post">
+                                    <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                <?php } else { ?>
                     <li class="btn-form-input dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            Login
+                        </a>
                         <ul class="dropdown-menu login-wrapper">
                             <div>
                                 <h2 class="title">Akheli - Login</h2>
@@ -89,7 +119,7 @@ if(isLoggedIn()){
                                             <input class="form-control" type="password" name="password" id="password"/>
                                         </div>
                                     </div>
-                                    <input class="btn btn-login btn-block" type="submit" name="login" value="Login"/>
+                                    <input class="btn btn-primary btn-login btn-block" type="submit" name="login" value="Login"/>
                                 </form>
                                 <div class="pull-left">
                                     <a href="user/reset_password.php">Forgot Password</a>
@@ -100,59 +130,75 @@ if(isLoggedIn()){
                             </div>
                         </ul>
                     </li>
-
-                    <li class="btn-form-input dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
-                        <ul class="dropdown-menu register-wrapper">
-                            <div>
-                                <h2 class="title">Akheli - Register</h2>
-                                <form class="custom-form" method="post" id="user_form_1" action="controller/user.php" enctype="multipart/form-data">
-                                    <?php
-                                    $createUser = true;
-                                    include_once 'user/_client_form.php';
-                                    ?>
-                                    <input type="submit" class="btn btn-primary" name="register" value="Register">
-                                </form>
-                            </div>
-                        </ul>
+                    <li>
+                        <a href="user/register.php">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            Register
+                        </a>
                     </li>
-
-                    <!--                    <input class="btn-form-input" type="submit" name="login" value="Login"/>-->
-                    <!--                    <input class="btn-form-input" type="submit" name="register" value="Register"/>-->
-                </ul>
-            <?php } ?>
+                <?php }?>
+            </ul>
         </div>
-    </div>
-</div>
-
-<div class="bg-white shadow clearfix menu-wrapper">
-    <div class="col-md-9 clearfix">
-        <ul class="main-menu list-inline">
-            <li><h4 class="logo"><a href="index.php">Akheli</a></h4></li>
-            <?php $categoryList = getDistinctCategory($conn, 10);
-
-            foreach ($categoryList as $category) {
-                ?>
-                <li>
-                    <a href="<?php echo $purl ?>?category=<?php echo $category["category"] ?>" class="menu"><?php echo $category["category"] ?></a>
-                </li>
-
-                <?php
-            } ?>
-        </ul>
-    </div>
-    <div class="col-md-3 border-search">
-        <div class="col-md-11 no-padding">
-            <form class="general-search-form" action="searchResult.php">
-                <div class="form-group no-margin">
-                    <input type="search" name="q" class="form-control text-center" placeholder="Search product here...">
+        <div  class="navbar-collapse collapse" id="second-nav-bar">
+            <ul class="nav navbar-nav">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" id="categories-header">
+                                <div>
+                                    <i class="fa fa-list fa-lg category-icon" aria-hidden="true"></i>
+                                    <span>Categories</span>
+                                    <i class="fa fa-caret-down category-icon" aria-hidden="true"></i>
+                                </div>
+                                <div id="categories-on-hover" class="hide">
+                                    <div class="categories-link">
+                                        <a href="#">Machinery / </a>
+                                        <a href="#">Mechanical Parts / </a>
+                                        <a href="#">Tools</a>
+                                    </div>
+                                    <div class="categories-link">
+                                        <a href="#">Consumer Electronics / </a>
+                                        <a href="#">Home Appliances / </a>
+                                        <a href="#">Security</a>
+                                    </div>
+                                    <div class="categories-link">
+                                        <a href="#">Auto / </a>
+                                        <a href="#">Transportation / </a>
+                                        <a href="#">Apparel</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <div class="col-sm-6 col-md-6" id="nav-with-search">
+                            <form class="navbar-form" action="searchResult.php" role="search" id="top-search">
+                                <div class="input-group">
+                                    <input id="search-product-header" type="text" class="form-control" placeholder="Search" name="q"/>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" id="search-button" type="submit"><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-            </form>
-        </div>
-        <div class="col-md-1 no-padding text-center bg-white"><span class="fa fa-search general-search-icon"></span>
-        </div>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
 </div>
+<body>
+</html>
 
 
 

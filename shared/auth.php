@@ -7,8 +7,8 @@ if(file_exists("base_url.php")){
 define("ROLE_ADMIN","akheli_admin");
 define("ROLE_BUYER","akheli_buyer");
 define("ROLE_SELLER","akheli_seller");
-define ("CLIENT_DASHBOARD",BASE_URL."dashboard.php");
-define ("ADMIN_DASHBOARD",BASE_URL."admin.php");
+define ("DASHBOARD",BASE_URL."dashboard.php");
+//define ("ADMIN_DASHBOARD",BASE_URL."admin.php");
 define ("NOLOGIN_DASHBOARD",BASE_URL."index.php");
 define("ORDER_STATUS_REQUESTED","REQUESTED");
 define("ORDER_STATUS_PROCESSING","PROCESSING");
@@ -31,11 +31,8 @@ function isAdmin(){
 
 function redirectToDash(){
     if(isset($_SESSION["role"])){
-        if($_SESSION["role"] == ROLE_BUYER || $_SESSION["role"] == ROLE_SELLER){
-            header("Location:".CLIENT_DASHBOARD);
-            return;
-        }else if($_SESSION["role"] == ROLE_ADMIN){
-            header("Location:".ADMIN_DASHBOARD);
+        if($_SESSION["role"] == ROLE_BUYER || $_SESSION["role"] == ROLE_SELLER || $_SESSION["role"] == ROLE_ADMIN){
+            header("Location:".DASHBOARD);
             return;
         }
     }
