@@ -88,6 +88,59 @@ $productDetails_details = getProductDetails($conn, $_GET['id']);
                             <input type="submit" name="edit_product" value="Edit"/>
                             <input type="submit" name="delete_product" value="Delete"/>
                         </form>
+                        <br>
+                        <h3>Product Details</h3>
+                        <?php
+                            $product_infos=getProductAddInfo($conn,$_GET['id']);
+                            foreach ($product_infos as $product_info){
+                        ?>
+
+                                <div class="col-md-5">
+                                    <?php if(isset($_GET['edit_detail'])){ ?>
+                                    <form method="post" action="controller/product.php">
+                                        <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
+                                        <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
+                                        <div class="form-group col-md-4">
+                                            <label for="detail_name">Detail Name</label>
+                                            <input class="form-control" type="text" name="detail_name" value="<?php echo $product_info['field_name'] ?>">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="detail_value">Detail Value:</label>
+                                            <input class="form-control" type="text" name="detail_value" value="<?php echo $product_info['field_value'] ?>" >
+                                        </div>
+                                        <input type="submit" class="btn btn-primary pull-left margin-vertical col-sm-2" name="update_detail" value="Save">
+                                    </form>
+                                    <?php } else { ?>
+                                    <div class="field_name col-sm-4"><?php echo $product_info['field_name'] ?></div>
+                                    <div class="field_value col-sm-4"><?php echo $product_info['field_value'] ?></div>
+                                        <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&edit_detail=true" class="btn btn-success col-sm-2 ">Edit</a>
+
+                                        <form action="controller/product.php" method="post">
+                                            <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
+                                            <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
+                                            <button class="btn btn-success " name="delete_detail">Delete</button>
+                                        </form>
+
+                                    <?php } ?>
+                                </div>
+                         <?php } ?>
+<br>
+                        <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&add_detail=true" class="btn btn-default">Add more detail</a>
+                        <br>
+                        <?php if(isset($_GET['add_detail'])){ ?>
+                            <form method="post" action="controller/product.php">
+                                <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
+                                <div class="form-group col-md-6">
+                                    <label for="detail_name">Detail Name</label>
+                                    <input class="form-control" type="text" name="detail_name" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="detail_value">Detail Value:</label>
+                                    <input class="form-control" type="text" name="detail_value" >
+                                </div>
+                                <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_detail" value="Save">
+                            </form>
+                        <?php } ?>
                     <?php } ?>
                     <?php if (isBuyer()) { ?>
                         <div>

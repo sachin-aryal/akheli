@@ -353,5 +353,19 @@ function getAllMessages($conn,$user_id1,$user_id2){
     }
     return [];
 }
+function getProductAddInfo($conn,$id){
+
+    $stmt = $conn->prepare("SELECT *FROM akh_add_product_details WHERE product_id = ?");
+    $stmt->bind_param("i",$id);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+
+        if($result->num_rows > 0){
+
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return [];
+}
 
 
