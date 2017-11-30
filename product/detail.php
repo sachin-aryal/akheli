@@ -7,16 +7,71 @@ include_once "../_header.php";
 $product_info_details = getProductInfo($conn, $_GET['id']);
 $productDetails_details = getProductDetails($conn, $_GET['id']);
 ?>
-
+<?php
+if(isset($_GET['add_detail'])){
+    ?>
+    <script type="text/javascript">
+        $(function () {
+            $('html, body').animate({
+                scrollTop: $("#additional-details-form").offset().top
+            }, 2000);
+        })
+    </script>
+    <?php
+}
+?>
 <div class="container" style="width: 100%;margin: 0 auto">
-    <div class="row" style="padding: 20px;height: 420px">
-        <div id="outer-categories-slider">
+    <div class="row" style="padding: 20px;height: 100%">
+        <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
             <div class="col-md-10">
                 <div class="page-title">
-                    <h3><span class="fa fa-eye"></span> Product Detail
+                    <h3 style="display: inline-block"><span class="fa fa-eye"></span> Product Detail
                         <small>View detail and order produce</small>
                     </h3>
+                    <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
+                        <button style="float: right" type="button" class="btn btn-info" data-toggle="modal" data-target="#add-addition-detail-modal">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add More Detail
+                        </button>
+                        <form style="display: inline-block;float: right" method="post" action="controller/product.php">
+                            <input type="hidden" name="id" value="<?php echo $product_info_details['id'] ?>"/>
+                            <button class="btn btn-primary" name="edit_product">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit
+                            </button>
+                            <button class="btn btn-danger" name="delete_product">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete
+                            </button>&nbsp;
+                        </form>
+                        <div id="add-addition-detail-modal" class="modal fade col-md-12" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Add Product Detail</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="controller/product.php" id="additional-details-form">
+                                            <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
+                                            <div class="form-group">
+                                                <label for="detail_name">Detail Name</label>
+                                                <input class="form-control" type="text" name="detail_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="detail_value">Detail Value:</label>
+                                                <input class="form-control" type="text" name="detail_value" >
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-primary" name="save_detail" value="Save">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="row">
                     <div class="col-md-4 product-image-wrapper">
@@ -45,106 +100,88 @@ $productDetails_details = getProductDetails($conn, $_GET['id']);
                                 <h4 title="Category"><?php echo $product_info_details['min_order'] ?></h4>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="detail-component">
-                                <h6 class="title">Color</h6>
-                                <h4 title="Size">
-                                    <ol class="breadcrumb">
-                                        <li><?php
-                                            echo $productDetails_details['color'] ?>
-                                        </li>
-                                    </ol>
-                                </h4>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="detail-component">
-                                <h6 class="title">Size</h6>
-                                <h4 title="Size">
-                                    <ol class="breadcrumb">
-                                        <li><?php
-                                            echo $productDetails_details['size'] ?>
-                                        </li>
-                                    </ol>
-                                </h4>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="detail-component">
-                                <h6 class="title">Description</h6>
-                                <h4 title="Category"><?php echo $product_info_details['description'] ?></h4>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="detail-component">
+                            <h6 class="title">Color</h6>
+                            <h4 title="Size">
+                                <ol class="breadcrumb">
+                                    <li><?php
+                                        echo $productDetails_details['color'] ?>
+                                    </li>
+                                </ol>
+                            </h4>
                         </div>
                     </div>
 
-                    <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
-                        <form method="post" action="controller/product.php">
-                            <input type="hidden" name="id" value="<?php echo $product_info_details['id'] ?>"/>
-                            <input type="submit" name="edit_product" value="Edit"/>
-                            <input type="submit" name="delete_product" value="Delete"/>
-                        </form>
-                        <br>
-                        <h3>Product Details</h3>
-                        <?php
-                            $product_infos=getProductAddInfo($conn,$_GET['id']);
-                            foreach ($product_infos as $product_info){
+                    <div class="col-md-4">
+                        <div class="detail-component">
+                            <h6 class="title">Size</h6>
+                            <h4 title="Size">
+                                <ol class="breadcrumb">
+                                    <li><?php
+                                        echo $productDetails_details['size'] ?>
+                                    </li>
+                                </ol>
+                            </h4>
+                        </div>
+                    </div>
+                    <?php
+                    $product_infos=getProductAddInfo($conn,$_GET['id']);
+                    foreach ($product_infos as $product_info){
                         ?>
-
-                                <div class="col-md-5">
-                                    <?php if(isset($_GET['edit_detail'])){ ?>
-                                    <form method="post" action="controller/product.php">
+                        <div class="col-md-4">
+                            <?php if(isset($_GET['edit_detail'])){ ?>
+                                <form method="post" action="controller/product.php">
+                                    <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
+                                    <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
+                                    <div class="form-group col-md-4">
+                                        <label for="detail_name">Detail Name</label>
+                                        <input class="form-control" type="text" name="detail_name" value="<?php echo $product_info['field_name'] ?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="detail_value">Detail Value:</label>
+                                        <input class="form-control" type="text" name="detail_value" value="<?php echo $product_info['field_value'] ?>" >
+                                    </div>
+                                    <input type="submit" class="btn btn-primary pull-left margin-vertical col-sm-2" name="update_detail" value="Update">
+                                </form>
+                            <?php } else { ?>
+                                <div class="detail-component">
+                                    <h6 class="title"><?php echo $product_info['field_name'] ?></h6>
+                                    <h4 title="Size">
+                                        <ol class="breadcrumb">
+                                            <li><?php echo $product_info['field_value'] ?></li>
+                                        </ol>
+                                    </h4>
+                                </div>
+                                <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
+                                    <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&edit_detail=true" class="btn btn-primary col-sm-2 ">Edit</a>
+                                    <form action="controller/product.php" method="post">
                                         <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
                                         <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
-                                        <div class="form-group col-md-4">
-                                            <label for="detail_name">Detail Name</label>
-                                            <input class="form-control" type="text" name="detail_name" value="<?php echo $product_info['field_name'] ?>">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="detail_value">Detail Value:</label>
-                                            <input class="form-control" type="text" name="detail_value" value="<?php echo $product_info['field_value'] ?>" >
-                                        </div>
-                                        <input type="submit" class="btn btn-primary pull-left margin-vertical col-sm-2" name="update_detail" value="Save">
+                                        &nbsp;<button class="btn btn-danger" name="delete_detail">Delete</button>
                                     </form>
-                                    <?php } else { ?>
-                                    <div class="field_name col-sm-4"><?php echo $product_info['field_name'] ?></div>
-                                    <div class="field_value col-sm-4"><?php echo $product_info['field_value'] ?></div>
-                                        <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&edit_detail=true" class="btn btn-success col-sm-2 ">Edit</a>
-
-                                        <form action="controller/product.php" method="post">
-                                            <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
-                                            <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
-                                            <button class="btn btn-success " name="delete_detail">Delete</button>
-                                        </form>
-
-                                    <?php } ?>
-                                </div>
-                         <?php } ?>
-<br>
-                        <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&add_detail=true" class="btn btn-default">Add more detail</a>
-                        <br>
-                        <?php if(isset($_GET['add_detail'])){ ?>
-                            <form method="post" action="controller/product.php">
-                                <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
-                                <div class="form-group col-md-6">
-                                    <label for="detail_name">Detail Name</label>
-                                    <input class="form-control" type="text" name="detail_name" >
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="detail_value">Detail Value:</label>
-                                    <input class="form-control" type="text" name="detail_value" >
-                                </div>
-                                <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_detail" value="Save">
-                            </form>
-                        <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
                     <?php } ?>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="detail-component">
+                    <h6 class="title">Description</h6>
+                    <div style="margin-top: 10px" class="well" title="Category"><?php echo $product_info_details['description'] ?></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11"></div>
+                <div class="col-md-1">
                     <?php if (isBuyer()) { ?>
                         <div>
                             <form action="order/create.php" method="post">
                                 <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
-                                <button class="btn btn-primary order-button">Order</button>
+                                <button class="btn btn-success order-button">Order</button>
                             </form>
                         </div>
                     <?php } ?>

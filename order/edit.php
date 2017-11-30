@@ -62,7 +62,7 @@ include_once "../_header.php";
 </script>
 <div class="container" style="width: 100%;margin: 0 auto">
     <div class="row" style="padding: 20px;height: 420px">
-        <div id="outer-categories-slider">
+        <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
             <div class="col-md-10">
                 <img src="assets/images/<?php echo $order_product['image'] ?>" height="200" width="200">

@@ -17,7 +17,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
 ?>
 <div class="container" style="width: 100%;margin: 0 auto">
     <div class="row" style="padding: 20px;height: 420px">
-        <div id="outer-categories-slider">
+        <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "_dashsidebar.php"?>
             <div class="col-md-10">
                 <div class="page-title">
