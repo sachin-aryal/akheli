@@ -78,7 +78,7 @@ include_once "_header.php";
                             </ul>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="<?php echo $purl ?>">See more..</a>
+                                    <a href="<?php echo "product/index.php" ?>">See more..</a>
                                 </li>
                             </ul>
                         </div>

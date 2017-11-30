@@ -93,7 +93,7 @@ if(isset($_POST['save_detail'])){
         return;
     }
     $_SESSION["messageType"] = "error";
-    $_SESSION["message"] = "Error while creating new product.";
+    $_SESSION["message"] = "Error while adding new detail.";
     header("Location:../product/detail.php?id=$product_id");
     return;
 
@@ -108,12 +108,12 @@ if(isset($_POST['update_detail'])){
     $stmt->bind_param('ssi',$detail_name,$detail_value,$detail_id);
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
-        $_SESSION["message"] = "New Detail Created Successfully.";
+        $_SESSION["message"] = "Detail Updated Successfully.";
         header("Location:../product/detail.php?id=$product_id");
         return;
     }
     $_SESSION["messageType"] = "error";
-    $_SESSION["message"] = "Error while creating new product.";
+    $_SESSION["message"] = "Error while Updating product detail.";
     header("Location:../product/detail.php?id=$product_id");
     return;
 }

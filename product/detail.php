@@ -46,20 +46,6 @@ $productDetails_details = getProductDetails($conn, $_GET['id']);
                             </div>
                         </div>
 
-
-                        <div class="col-md-6">
-                            <div class="detail-component">
-                                <h6 class="title">Size</h6>
-                                <h4 title="Size">
-                                    <ol class="breadcrumb">
-                                        <li><?php
-                                            echo $productDetails_details['size'] ?>
-                                        </li>
-                                    </ol>
-                                </h4>
-                            </div>
-                        </div>
-
                         <div class="col-md-6">
                             <div class="detail-component">
                                 <h6 class="title">Color</h6>
@@ -73,6 +59,18 @@ $productDetails_details = getProductDetails($conn, $_GET['id']);
                             </div>
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="detail-component">
+                                <h6 class="title">Size</h6>
+                                <h4 title="Size">
+                                    <ol class="breadcrumb">
+                                        <li><?php
+                                            echo $productDetails_details['size'] ?>
+                                        </li>
+                                    </ol>
+                                </h4>
+                            </div>
+                        </div>
 
                         <div class="col-md-12">
                             <div class="detail-component">

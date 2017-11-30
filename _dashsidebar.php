@@ -22,8 +22,8 @@
                 <ul class="treeview-menu">
                     <li><a href="product/"><i class="fa fa-eye" aria-hidden="true"></i>All Products</a></li>
                     <?php if (isSeller()) {?>
-                        <li><a href="product/create.php">Add Product</a></li>
-                        <li><a href="product/index.php?category=myp">My Product</a></li>
+                        <li><a href="product/create.php"><i class="fa fa-plus" aria-hidden="true"></i>Add Product</a></li>
+                        <li><a href="product/index.php?category=myp"><i class="fa fa-user-circle" aria-hidden="true"></i>My Product</a></li>
                     <?php }?>
                 </ul>
             </li>

@@ -52,14 +52,6 @@ if (!isset($_SESSION)) {
 <?php
 
 $unique_categories = getDistinctCategory($conn);
-if(isLoggedIn()){
-    $purl = "product/index.php";
-    $pdetails = "product/detail.php";
-}else{
-    $purl = "products.php";
-    $pdetails = "products_details.php";
-
-}
 ?>
 <body>
 <div id="main-row">
