@@ -50,7 +50,8 @@ if (!isset($_SESSION)) {
     </script>
 </head>
 <?php
-include_once "shared/auth.php";
+
+$unique_categories = getDistinctCategory($conn);
 if(isLoggedIn()){
     $purl = "product/index.php";
     $pdetails = "product/detail.php";
@@ -151,21 +152,30 @@ if(isLoggedIn()){
                                     <i class="fa fa-caret-down category-icon" aria-hidden="true"></i>
                                 </div>
                                 <div id="categories-on-hover" class="hide">
-                                    <div class="categories-link">
-                                        <a href="#">Machinery / </a>
-                                        <a href="#">Mechanical Parts / </a>
-                                        <a href="#">Tools</a>
-                                    </div>
-                                    <div class="categories-link">
-                                        <a href="#">Consumer Electronics / </a>
-                                        <a href="#">Home Appliances / </a>
-                                        <a href="#">Security</a>
-                                    </div>
-                                    <div class="categories-link">
-                                        <a href="#">Auto / </a>
-                                        <a href="#">Transportation / </a>
-                                        <a href="#">Apparel</a>
-                                    </div>
+                                    <?php
+                                    $i=0;
+                                    foreach ($unique_categories as $category){
+                                        if($i == 0){
+                                            echo '<div class="categories-link">';
+                                        }
+                                        echo '<a href="#">'.$category["category"].'</a>';
+                                        if($i == 2){
+                                            echo "</div>";
+                                            $i=0;
+                                        }
+
+                                    }
+                                    ?>
+<!--                                    <div class="categories-link">-->
+<!--                                        <a href="#">Consumer Electronics / </a>-->
+<!--                                        <a href="#">Home Appliances / </a>-->
+<!--                                        <a href="#">Security</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="categories-link">-->
+<!--                                        <a href="#">Auto / </a>-->
+<!--                                        <a href="#">Transportation / </a>-->
+<!--                                        <a href="#">Apparel</a>-->
+<!--                                    </div>-->
                                 </div>
                             </a>
                         </li>
