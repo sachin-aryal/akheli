@@ -368,4 +368,10 @@ function getProductAddInfo($conn,$id){
     return [];
 }
 
-
+function getRandomCategory($conn){
+    $productCategory = $conn->query("SELECT distinct(category) as category from ".PRODUCT_TABLE." ORDER BY rand() limit 8");
+    if($productCategory->num_rows > 0){
+        return mysqli_fetch_all($productCategory,MYSQLI_ASSOC);
+    }
+    return [];
+}

@@ -1,5 +1,6 @@
 <?php
 include_once "_header.php";
+$random_category = getRandomCategory($conn);
 ?>
     <div class="container" style="width: 90%;margin: 0 auto">
         <div class="row" style="padding: 20px;height: 420px">
@@ -7,14 +8,11 @@ include_once "_header.php";
                 <div class="col-md-3">
                     <span><i style="font-size: 25px;" class="fa fa-shopping-cart fa-lg category-icon" aria-hidden="true"></i>MY MARKETS</span>
                     <ul id="my-market-li">
-                        <li><a href="">Consumer Electronics</a></li>
-                        <li><a href="">Machinery</a></li>
-                        <li><a href="">Automobile and Motorcycles</a></li>
-                        <li><a href="">Sport</a></li>
-                        <li><a href="">Entertainments</a></li>
-                        <li><a href="">Printing</a></li>
-                        <li><a href="">Internet Service</a></li>
-                        <li><a href="">Software Service</a></li>
+                        <?php
+                        foreach($random_category as $category){
+                            echo '<li><a href="product/index.php?category='.$category["category"].'">'.$category["category"].'</a></li>';
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="col-md-9">

@@ -70,9 +70,9 @@ $unique_categories = getDistinctCategory($conn);
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Contact Us</a></li>
                 <?php
-                    if(isLoggedIn()){
-                        echo "<li><a href='dashboard.php'>Dashboard</a></li>";
-                    }
+                if(isLoggedIn()){
+                    echo "<li><a href='dashboard.php'>Dashboard</a></li>";
+                }
                 ?>
             </ul>
             <ul class="nav navbar-right" id="top-head-li">
@@ -146,28 +146,22 @@ $unique_categories = getDistinctCategory($conn);
                                 <div id="categories-on-hover" class="hide">
                                     <?php
                                     $i=0;
-                                    foreach ($unique_categories as $category){
-                                        if($i == 0){
-                                            echo '<div class="categories-link">';
+                                    for ($j=0;$j<sizeof($unique_categories);$j++){
+                                        echo '<div class="categories-link">';
+                                        $category = $unique_categories[$j++]["category"];
+                                        echo '<a href="product/index.php?category='.$category.'">'.$category.'</a>';
+                                        if($unique_categories[$j]["category"]){
+                                            $category = $unique_categories[$j++]["category"];
+                                            echo ' / <a href="product/index.php?category='.$category.'">'.$category.'</a>';
                                         }
-                                        echo '<a href="#">'.$category["category"].'</a>';
-                                        if($i == 2){
-                                            echo "</div>";
-                                            $i=0;
+                                        if($unique_categories[$j]["category"]) {
+                                            $category = $unique_categories[$j]["category"];
+                                            echo ' / <a href="product/index.php?category='.$category.'">' . $category . '</a>';
                                         }
+                                        echo "</div>";
 
                                     }
                                     ?>
-<!--                                    <div class="categories-link">-->
-<!--                                        <a href="#">Consumer Electronics / </a>-->
-<!--                                        <a href="#">Home Appliances / </a>-->
-<!--                                        <a href="#">Security</a>-->
-<!--                                    </div>-->
-<!--                                    <div class="categories-link">-->
-<!--                                        <a href="#">Auto / </a>-->
-<!--                                        <a href="#">Transportation / </a>-->
-<!--                                        <a href="#">Apparel</a>-->
-<!--                                    </div>-->
                                 </div>
                             </a>
                         </li>
@@ -181,18 +175,6 @@ $unique_categories = getDistinctCategory($conn);
                                 </div>
                             </form>
                         </div>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </ul>
