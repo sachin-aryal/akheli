@@ -17,15 +17,17 @@ if(isset($_POST["message"]) && isset($_POST["receiver_id"])){
 } else if($_POST["fetch_message"]) {
     $other_user = $_POST["other_user"];
     $allMessages = getAllMessages($conn, $_SESSION['user_id'], $other_user);
-    $user2 = getUser($conn, "id=" . $_SESSION['user_id']);
+
+    $client1 = getClient($conn, $_SESSION['user_id']);
     $client2 = getClient($conn, $other_user);
+
     $messages = [];
     $index = 0;
     foreach ($allMessages as $message) {
-        if ($message["sender"] == $user2["id"]) {
-            $messages[$index++] = $client2["name"] . ": " . $message["message"];
+        if ($message["sender"] == $client1["user_id"]) {
+            $messages[$index++] = $client1["name"] . ": " . $message["message"];
         } else {
-            $messages[$index++] = $client["name"] . ": " . $message["message"];
+            $messages[$index++] = $client2["name"] . ": " . $message["message"];
         }
     }
     echo json_encode($messages);

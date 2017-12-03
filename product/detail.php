@@ -14,19 +14,9 @@ if(sizeof($product_info_details) == 0){
 $productDetails_details = getProductDetails($conn, $product_id);
 $otherProducts = getProductByUser($conn, $product_info_details["user_id"], 4);
 $detail_id = my_decrypt($_GET['detail_id']);
-?>
-<?php
-if(isset($_GET['add_detail'])){
-    ?>
-    <script type="text/javascript">
-        $(function () {
-            $('html, body').animate({
-                scrollTop: $("#additional-details-form").offset().top
-            }, 2000);
-        })
-    </script>
-    <?php
-}
+
+$client = getClient($conn, $product_info_details["user_id"]);
+
 ?>
     <div class="container" style="width: 100%;margin: 0 auto">
         <div class="row" style="padding: 20px;height: 100%">
@@ -190,9 +180,6 @@ if(isset($_GET['add_detail'])){
                                     </div>
                                 </div>
                                 <div id="company-profile" class="tab-pane fade">
-                                    <?php
-                                    $client = getClient($conn, $product_info_details["user_id"])
-                                    ?>
                                     <div class="col-md-12 profile">
                                         <h3 class="information-title">Basic Information</h3>
                                         <div class="col-md-4 product-image-wrapper">
@@ -258,6 +245,15 @@ if(isset($_GET['add_detail'])){
                                                             <button class="btn-link" name="product_by_user" value="view_products">View All Products</button>
                                                         </form>
                                                     </th>
+                                                    <th>
+                                                        <form action="product/chat.php" method="POST" class="view-product-by-user">
+                                                            <input type="hidden" name="identifier" id="identifier" value="<?php echo my_encrypt($client['user_id'])?>"/>
+                                                            <button class="btn-link" name="chat" value="start-chat">Talk with Product Owner</button>
+                                                        </form>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+
                                                 </tr>
                                                 </tbody>
                                             </table>

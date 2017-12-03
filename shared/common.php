@@ -519,3 +519,31 @@ function getFeaturedList($conn){
     }
     return[];
 }
+
+function getDistinctSender($conn, $user_id){
+    $query = "SELECT DISTINCT(sender) FROM ".CHAT_TABLE." where receiver = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    if ($stmt->execute()) {
+        $chats = $stmt->get_result();
+        if ($chats->num_rows > 0) {
+            return mysqli_fetch_all($chats,MYSQLI_ASSOC);
+
+        }
+    }
+    return [];
+}
+
+function getDistinctReceiver($conn, $user_id){
+    $query = "SELECT DISTINCT(receiver) FROM ".CHAT_TABLE." where sender = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    if ($stmt->execute()) {
+        $chats = $stmt->get_result();
+        if ($chats->num_rows > 0) {
+            return mysqli_fetch_all($chats,MYSQLI_ASSOC);
+
+        }
+    }
+    return [];
+}
