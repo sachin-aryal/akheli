@@ -72,7 +72,7 @@ if(isset($_POST['save_product'])) {
         }
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "New Product Created Successfully.";
-        header("Location:../product/detail.php?id=".my_encrypt($product_id));
+        header("Location:../product/detail.php?id=".$product_id);
         return;
     }
     $_SESSION["messageType"] = "error";
@@ -89,19 +89,19 @@ if(isset($_POST['save_detail'])){
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "New Detail Created Successfully.";
-        header("Location:../product/detail.php?id=".my_encrypt($product_id));
+        header("Location:../product/detail.php?id=".$product_id);
         return;
     }
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "Error while adding new detail.";
-    header("Location:../product/detail.php?id=".my_encrypt($product_id));
+    header("Location:../product/detail.php?id=".$product_id);
     return;
 
 
 }
 if(isset($_POST['update_detail'])){
-    $detail_id=$_POST['detail_id'];
-    $product_id=$_POST['product_id'];
+    $detail_id = my_decrypt($_POST['detail_id']);
+    $product_id = my_decrypt($_POST['product_id']);
     $detail_name=$_POST['detail_name'];
     $detail_value=$_POST['detail_value'];
     $stmt= $conn->prepare('Update akh_add_product_details set field_name=?,field_value=? where detail_id=?');
@@ -115,6 +115,11 @@ if(isset($_POST['update_detail'])){
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "Error while Updating product detail.";
     header("Location:../product/detail.php?id=".my_encrypt($product_id));
+    return;
+}
+if(isset($_POST['cancel_detail'])){
+    $product_id = $_POST["product_id"];
+    header("Location:../product/detail.php?id=".$product_id);
     return;
 }
 if(isset($_POST['edit_product'])){
@@ -148,8 +153,8 @@ if(isset($_POST['delete_product'])){
 }
 if(isset($_POST['delete_detail'])){
     redirectIfNotSeller();
-    $product_id=$_POST['product_id'];
-    $detail_id = $_POST['detail_id'];
+    $product_id = my_decrypt($_POST['product_id']);
+    $detail_id = my_decrypt($_POST['detail_id']);
 
     $stmt=$conn->prepare("Delete from akh_add_product_details where detail_id=?");
     $stmt->bind_param("i", $detail_id);
