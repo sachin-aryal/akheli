@@ -131,7 +131,7 @@ if(isset($_GET['add_detail'])){
                     foreach ($product_infos as $product_info){
                         ?>
                         <div class="col-md-4">
-                            <?php if(isset($_GET['edit_detail'])){ ?>
+                            <?php if(isset($_GET['edit_detail']) && $_GET['detail_id']==$product_info['detail_id']){ ?>
                                 <form method="post" action="controller/product.php">
                                     <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
                                     <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
@@ -155,7 +155,7 @@ if(isset($_GET['add_detail'])){
                                     </h4>
                                 </div>
                                 <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
-                                    <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&edit_detail=true" class="btn btn-primary col-sm-2 ">Edit</a>
+                                    <a href="product/detail.php?id=<?php echo $_GET['id'] ?>&detail_id=<?php echo $product_info['detail_id'] ?>&edit_detail=true" class="btn btn-primary col-sm-2 ">Edit</a>
                                     <form action="controller/product.php" method="post">
                                         <input type="hidden" name="product_id" value="<?php echo $product_info['product_id'] ?>"/>
                                         <input type="hidden" name="detail_id" value="<?php echo $product_info['detail_id'] ?>"/>
