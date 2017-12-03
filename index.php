@@ -30,7 +30,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                             <li data-target="#thumbnail-preview-indicators" data-slide-to="2">
                             </li>
                         </ol>
-                        <div class="carousel-inner">
+                        <div class="carousel-inner ">
                             <div class="item slides active">
                                 <div class="slide-1"></div>
                                 <div class="container">

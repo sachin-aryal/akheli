@@ -478,3 +478,18 @@ function getTotalProductCount($conn, $user_id){
     }
     return 0;
 }
+
+function getCategories($conn,$user_id){
+    $stmt= $conn->prepare("Select DISTINCT(category) FROM ".PRODUCT_TABLE." where user_id=?");
+    $stmt->bind_param("i", $user_id);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+
+        } else {
+            return [];
+        }
+    }
+    return [];
+}
