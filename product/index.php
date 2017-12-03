@@ -56,9 +56,43 @@ else {
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="text-center view-detail">
-                                        <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
-                                    </div>
+
+
+                                    <?php if(isAdmin()){ ?>
+                                        <div class="view-detail">
+                                            <table>
+                                                <td><a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a></td>
+
+                                                <?php
+                                                $feature=featured_Product($conn,$product['id']);
+                                                if($feature['product_id'] == $product['id']){
+
+                                                    ?>
+                                                    <td>
+
+                                                        <form method="post" action="controller/product.php" class="col-md-5">
+                                                            <input type="hidden" name="featured_id" value="<?php echo $feature['featured_id']?>">
+                                                            <button type="submit" class="btn btn-primary" name="remove_feature" >Remove Featured</button>
+                                                        </form>
+                                                    </td>
+
+                                                <?php }else{ ?>
+                                                    <td>
+                                                        <form method="post" action="controller/product.php" class="col-md-5" >
+                                                            <input type="hidden" name="product_id" value="<?php echo $product['id']?>">
+                                                            <button type="submit" class="btn btn-primary" name="set_feature" >Set Featured</button>
+                                                        </form>
+                                                    </td>
+                                                <?php } ?>
+                                            </table>
+                                        </div>
+                                    <?php }else{ ?>
+                                        <div class=" view-detail text-center ">
+                                            <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
+                                        </div>
+                                    <?php } ?>
+
+
                                     <div class="clearfix"></div>
                                 </div>
                             </article>

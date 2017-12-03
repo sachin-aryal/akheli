@@ -21,16 +21,22 @@ body{
     width: 100%;
     height: 30px;
 }
+
+
 option {
     height: 30px;
     line-height: 30px;
 }
+
 
 .editOption{
     width: 100%;
     position: relative;
     top: -30px
 
+}
+.view-detail a{
+    color: white !important;
 }
 
 .content-wrapper {
@@ -986,12 +992,12 @@ footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', s
 #top-head-li li{
     float: left;
 }
-a {
+li a {
     color: #333 !important;
     font-size: 14px !important;
     text-decoration: none !important;
 }
-a:hover {
+li a:hover {
     color: #fb741b !important;
     background-color: #ffffff !important;
     text-decoration: none !important;
@@ -1030,7 +1036,7 @@ a:hover {
     padding: 20px 6px 20px 20px;
 }
 #outer-categories-slider table a{
-    color: blue !important;
+    color: blue;
 }
 #register-form{
     background-color: #ffffff;

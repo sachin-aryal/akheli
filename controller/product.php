@@ -253,7 +253,52 @@ if(isset($_POST['update_product'])) {
     header("Location:../product/edit.php?id=$product_id");
     return;
 }
+if(isset($_POST['set_feature'])){
+    $product_id=$_POST['product_id'];
+    $stmt=$conn->prepare("Insert into ".FEATURED_TABLE."(product_id) Values(?)");
+    $stmt->bind_param('i',$product_id);
+    if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
+        $_SESSION["message"] = "Successfully as featured Image";
+        header("Location:../product/index.php");
+        return;
+    }
+    $_SESSION["messageType"] = "error";
+    $_SESSION["message"] = "Error while setting as Featured Image.";
+    header("Location:../product/index.php");
+    return;
+}
+if(isset($_POST['set_feature'])){
+    $product_id=$_POST['product_id'];
+    $stmt=$conn->prepare("delete from ".FEATURED_TABLE." where ");
+    $stmt->bind_param('i',$product_id);
+    if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
+        $_SESSION["message"] = "Successfully as featured Image";
+        header("Location:../product/index.php");
+        return;
+    }
+    $_SESSION["messageType"] = "error";
+    $_SESSION["message"] = "Error while setting as Featured Image.";
+    header("Location:../product/index.php");
+    return;
+}
+if(isset($_POST['remove_feature'])){
+    redirectIfNotAdmin();
+    $featured_id = $_POST['featured_id'];
+   $stmt=$conn->prepare("Delete from ".FEATURED_TABLE." where featured_id=?");
+   $stmt->bind_param('i',$featured_id);
+   if($stmt->execute()){
+       $_SESSION["messageType"] = "success";
+       $_SESSION["message"] = "Sucessfull Removed as featured Image.";
+   }else{
+       $_SESSION["messageType"] = "error";
+       $_SESSION["message"] = "Error while Removing Featured Image.";
+   }
 
+    header("Location:../product/index.php");
+
+}
 
 ?>
 

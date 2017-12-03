@@ -20,7 +20,7 @@
 <?php }?>
             <option class="editable" >Add Other Category</option>
         </select>
-        <input class="editOption form-control" name="category" style="display:none;">
+        <input class="editOption form-control"  style="display:none;">
     </div>
 
 
