@@ -1136,3 +1136,44 @@ div#second-nav-bar {
 .view-detail > a:hover{
     color: black !important;
 }
+.tab-content {
+    margin-top: 15px;
+}
+.profile
+{
+    min-height: 355px;
+    display: inline-block;
+}
+.information-title {
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #C8D1E1;
+}
+.content-table th {
+    width: 125px;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 6px 0;
+    text-align: left;
+    vertical-align: top;
+}
+.content-table caption, table, tbody, td, tfoot, th, thead, tr{
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+.col-value {
+    word-break: break-all;
+}
+.content-table td{
+    font-size: 12px;
+    line-height: 14px;
+    padding: 6px 0;
+    text-align: left;
+    vertical-align: top;
+}
+.breadcrumb > li{
+    font-size: 13px;
+}

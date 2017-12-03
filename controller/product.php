@@ -72,7 +72,7 @@ if(isset($_POST['save_product'])) {
         }
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "New Product Created Successfully.";
-        header("Location:../product/detail.php?id=$product_id");
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
         return;
     }
     $_SESSION["messageType"] = "error";
@@ -89,12 +89,12 @@ if(isset($_POST['save_detail'])){
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "New Detail Created Successfully.";
-        header("Location:../product/detail.php?id=$product_id");
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
         return;
     }
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "Error while adding new detail.";
-    header("Location:../product/detail.php?id=$product_id");
+    header("Location:../product/detail.php?id=".my_encrypt($product_id));
     return;
 
 
@@ -109,12 +109,12 @@ if(isset($_POST['update_detail'])){
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "Detail Updated Successfully.";
-        header("Location:../product/detail.php?id=$product_id");
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
         return;
     }
     $_SESSION["messageType"] = "error";
     $_SESSION["message"] = "Error while Updating product detail.";
-    header("Location:../product/detail.php?id=$product_id");
+    header("Location:../product/detail.php?id=".my_encrypt($product_id));
     return;
 }
 if(isset($_POST['edit_product'])){
@@ -160,7 +160,7 @@ if(isset($_POST['delete_detail'])){
         $_SESSION["messageType"] = "error";
         $_SESSION["message"] = "Error while deleting detail.";
     }
-    header("Location:../product/detail.php?id=$product_id");
+    header("Location:../product/detail.php?id=".my_encrypt($product_id));
 
 }
 

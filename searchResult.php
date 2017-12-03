@@ -32,7 +32,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                         <div class="col-sm-4">
                             <article class="col-item">
                                 <div class="photo">
-                                    <a href="product/detail.php?id=<?php echo $product['id'] ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
+                                    <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -56,7 +56,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <a href="product/detail.php?id=<?php echo $product['id'] ?>">View</a>
+                                        <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">View</a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

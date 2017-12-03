@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION)){session_start();} ;
-define("KEY",'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU=');
+define("KEY",'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
 
 function getUserList($conn){
     $users = $conn->query("SELECT *FROM ".USER_TABLE);
@@ -55,8 +55,6 @@ function checkUser($conn,$username,$password) {
         $user = $stmt->get_result();
         if ($user->num_rows > 0) {
             return $user;
-        } else {
-            return false;
         }
     }
     return false;
@@ -84,8 +82,6 @@ function getProductDetails($conn,$id){
         $product_details = $stmt->get_result();
         if ($product_details->num_rows > 0) {
             return mysqli_fetch_assoc($product_details)  ;
-        } else {
-            return [];
         }
     }
     return [];
@@ -99,8 +95,6 @@ function getProductInfo($conn,$id){
         $productInfo = $stmt->get_result();
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_assoc($productInfo);
-        } else {
-            return [];
         }
     }
     return [];
@@ -182,8 +176,6 @@ function getSellersOrders($conn){
                 }
             }
             return $data;
-        } else {
-            return [];
         }
     }
     return [];
@@ -207,8 +199,6 @@ function getSellersProducts($conn){
         $productInfo = $stmt->get_result();
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
-        } else {
-            return [];
         }
     }
     return [];
@@ -222,8 +212,6 @@ function getProductsByCategory($conn,$category){
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
 
-        } else {
-            return [];
         }
     }
     return [];
@@ -256,8 +244,8 @@ function getLatestProduct($conn,$limit= 0){
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC) ;
         }
-        return[];
     }
+    return[];
 }
 function getRandomProduct($conn,$limit=0){
     if($limit==0){
@@ -270,8 +258,8 @@ function getRandomProduct($conn,$limit=0){
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC) ;
         }
-        return[];
     }
+    return[];
 }
 function getMostOrderedProduct($conn,$limit=0){
     if($limit==0){
@@ -284,8 +272,8 @@ function getMostOrderedProduct($conn,$limit=0){
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC);
         }
-        return[];
     }
+    return[];
 }
 function getCategoryItems($conn){
     $stmt=$conn->prepare("Select count(category) as total_quantity,category,image from ".PRODUCT_TABLE." GROUP by category ORDER BY category DESC");
@@ -294,8 +282,8 @@ function getCategoryItems($conn){
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC);
         }
-        return[];
     }
+    return[];
 }
 
 
@@ -320,8 +308,6 @@ function getSearchProducts($conn,$product_name){
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
 
-        } else {
-            return [];
         }
     }
     return [];
@@ -348,8 +334,6 @@ function getAllMessages($conn,$user_id1,$user_id2){
         if ($chats->num_rows > 0) {
             return mysqli_fetch_all($chats,MYSQLI_ASSOC);
 
-        } else {
-            return [];
         }
     }
     return [];
@@ -390,8 +374,8 @@ function getTopCategories($conn, $limit = 0){
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC);
         }
-        return[];
     }
+    return[];
 
 }
 
@@ -403,12 +387,13 @@ function getTotalProductsByCategory($conn, $category){
         if($result->num_rows > 0){
             return mysqli_fetch_assoc($result)["total_count"];
         }
-        return 0;
     }
+    return 0;
 }
 
 function getTopSellerUsers($conn, $limit = 0){
     $query = "SELECT sum(".ORDER_TABLE.".quantity) as total_quantity,".PRODUCT_TABLE.".user_id from ".ORDER_TABLE." INNER JOIN ".PRODUCT_TABLE." on ".ORDER_TABLE.".product_id=".PRODUCT_TABLE.".id GROUP by ".PRODUCT_TABLE.".user_id ORDER BY total_quantity DESC";
+
     if($limit == 0){
         $stmt=$conn->prepare($query);
     }else{
@@ -420,20 +405,22 @@ function getTopSellerUsers($conn, $limit = 0){
         if($result->num_rows > 0){
             return mysqli_fetch_all($result,MYSQLI_ASSOC);
         }
-        return[];
     }
+    return[];
 }
 
-function getProductByUser($conn, $user_id){
-    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where user_id=?");
+function getProductByUser($conn, $user_id, $limit = 0){
+    $query = "SELECT *FROM ".PRODUCT_TABLE." where user_id=?";
+    if($limit != 0){
+        $query .= " LIMIT ".$limit;
+    }
+    $stmt= $conn->prepare($query);
     $stmt->bind_param("i", $user_id);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
         if ($productInfo->num_rows > 0) {
             return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
 
-        } else {
-            return [];
         }
     }
     return [];
@@ -443,11 +430,51 @@ function my_encrypt($data) {
     $encryption_key = base64_decode(KEY);
     $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
     $encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
-    return base64_encode($encrypted . '::' . $iv);
+    return base64_url_encode(base64_encode($encrypted . '::' . $iv));
+}
+
+function base64_url_encode($input) {
+    return strtr(base64_encode($input), '+/=', '._-');
+}
+
+function base64_url_decode($input) {
+    return base64_decode(strtr($input, '._-', '+/='));
 }
 
 function my_decrypt($data) {
     $encryption_key = base64_decode(KEY);
+    $data = base64_url_decode($data);
     list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
     return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
+}
+
+function getTopProductOfUser($conn, $user_id, $limit = 0){
+    $query = "Select sum(quantity) as total_quantity,product_id from ".ORDER_TABLE." INNER JOIN ".PRODUCT_TABLE." on ".ORDER_TABLE.".product_id=".PRODUCT_TABLE.".id WHERE ".PRODUCT_TABLE.".user_id=? GROUP by product_id ORDER BY total_quantity DESC";
+    if($limit == 0){
+        $stmt=$conn->prepare($query);
+    }else{
+        $query = $query." LIMIT ".$limit;
+        $stmt=$conn->prepare($query);
+    }
+    $stmt->bind_param("i",$user_id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return[];
+}
+
+function getTotalProductCount($conn, $user_id){
+    $query = "SELECT COUNT(*) as total_count FROM ".PRODUCT_TABLE." WHERE user_id = ?";
+    $stmt=$conn->prepare($query);
+    $stmt->bind_param("i",$user_id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result)["total_count"];
+        }
+    }
+    return 0;
 }

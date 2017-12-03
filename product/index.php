@@ -30,10 +30,10 @@ else {
                     <?php
                     foreach ($productList as $product) {
                         ?>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <article class="col-item">
                                 <div class="photo">
-                                    <a href="product/detail.php?id=<?php echo $product['id'] ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
+                                    <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -57,7 +57,7 @@ else {
                                         </div>
                                     </div>
                                     <div class="text-center view-detail">
-                                        <a class="btn btn-primary" href="product/detail.php?id=<?php echo $product['id'] ?>">Details</a>
+                                        <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
