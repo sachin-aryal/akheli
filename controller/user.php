@@ -236,8 +236,14 @@ if($_POST['changePassword']){
         header("Location:../user/reset_password.php");
         return;
     }
-}else if($_POST["logout"]){
-    session_destroy();
+}else if($_GET["l"]){
+    if(my_decrypt($_GET['l']) == 'pleaselogout'){
+        session_destroy();
+        header("Location:../index.php");
+        return;
+    }
+    $_SESSION["messageType"] = "error";
+    $_SESSION["message"] = "Invalid Request.";
     header("Location:../index.php");
     return;
 }else{

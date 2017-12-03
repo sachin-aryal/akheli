@@ -4,10 +4,10 @@ include_once 'base_url.php';
 include_once PROJECT_PATH."/shared/dbconnect.php";
 include_once PROJECT_PATH."/shared/common.php";
 include_once PROJECT_PATH."/shared/auth.php";
-ini_set('display_errors', 'Off');
-ini_set('error_reporting', E_ALL);
-define('WP_DEBUG', false);
-define('WP_DEBUG_DISPLAY', false);
+//ini_set('display_errors', 'Off');
+//ini_set('error_reporting', E_ALL);
+//define('WP_DEBUG', false);
+//define('WP_DEBUG_DISPLAY', false);
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -83,11 +83,7 @@ $unique_categories = getDistinctCategory($conn);
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["username"]  ?> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="user/profile.php">My Profile</a></li>
-                            <li>
-                                <form class="pull-right" action="controller/user.php" method="post">
-                                    <input class="btn-form-input" type="submit" name="logout" value="Logout"/>
-                                </form>
-                            </li>
+                            <li><a href="controller/user.php?l=<?php echo my_encrypt('pleaselogout')?>">Logout</a></li>
                         </ul>
                     </li>
                 <?php } else { ?>
@@ -97,29 +93,24 @@ $unique_categories = getDistinctCategory($conn);
                             Login
                         </a>
                         <ul class="dropdown-menu login-wrapper">
-                            <div>
-                                <h2 class="title">Akheli - Login</h2>
-                                <form method="post" action="controller/user.php">
-                                    <div class="form-group">
-                                        <label for="username">Email</label>
-                                        <div>
-                                            <input class="form-control" type="text" name="username" id="username"/>
-                                        </div>
+                            <h2 class="title">Akheli - Login</h2>
+                            <form method="post" action="controller/user.php">
+                                <div class="form-group">
+                                    <label for="username">Email</label>
+                                    <div>
+                                        <input class="form-control" type="text" name="username" id="username"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <div>
-                                            <input class="form-control" type="password" name="password" id="password"/>
-                                        </div>
-                                    </div>
-                                    <input class="btn btn-primary btn-login btn-block" type="submit" name="login" value="Login"/>
-                                </form>
-                                <div class="pull-left">
-                                    <a href="user/reset_password.php">Forgot Password</a>
                                 </div>
-                                <!--                                    <div class="pull-right">-->
-                                <!--                                        <a href="#">Register</a>-->
-                                <!--                                    </div>-->
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <div>
+                                        <input class="form-control" type="password" name="password" id="password"/>
+                                    </div>
+                                </div>
+                                <input class="btn btn-primary btn-login btn-block" type="submit" name="login" value="Login"/>
+                            </form>
+                            <div class="pull-left">
+                                <a href="user/reset_password.php">Forgot Password</a>
                             </div>
                         </ul>
                     </li>

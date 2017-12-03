@@ -27,6 +27,7 @@
                     <?php }?>
                 </ul>
             </li>
+            <li id="chat_li"><a href="product/chat.php"><i class="fa fa-comments"></i> <span><i></i>Chat</span></a></li>
         </ul>
     <?php } ?>
 </div>
