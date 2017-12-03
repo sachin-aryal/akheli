@@ -1,3 +1,8 @@
+<script>
+    $(function () {
+        $('#test').val('<?php echo $product['category']; ?>');
+    })
+</script>
 <div class="form-group">
     <label for="product_name">Product Name:</label>
     <input class="form-control" type="text" id="product_name" name="product_name" value="<?php echo $product['product_name'] ?>">
@@ -6,8 +11,21 @@
 
 <div class="form-group">
     <label for="category">Category:</label>
-    <input class="form-control" type="text" id="category" name="category" value="<?php echo $product['category'] ?>">
-    <span class="error_category" id="error_category"></span>
+    <div id="billdesc">
+        <select id="test" class="form-control" name="category">
+            <?php $categories=getCategories($conn,$_SESSION['user_id']);
+            foreach ($categories as $category){
+            ?>
+            <option class="non"><?php echo $category['category'] ?></option>
+<?php }?>
+            <option class="editable" >Add Other Category</option>
+        </select>
+        <input class="editOption form-control" name="category" style="display:none;">
+    </div>
+
+
+    <!--<input class="form-control" type="text" id="category" name="category" value="<?php /*echo $product['category'] */?>">
+    <span class="error_category" id="error_category"></span>-->
 </div>
 
 <div class="form-group">
@@ -56,9 +74,32 @@
 
 <div class="form-group">
     <label for="description">Description:</label>
-    <textarea name="description" id="description" cols="30" rows="10" value="<?php echo $product['description'] ?>"></textarea>
+    <textarea name="description" id="description" cols="30" rows="10" ><?php echo $product['description'] ?></textarea>
     <span class="error_description" id="error_description"></span>
 </div>
 
 <input type="file" name="product_image">
 <!--<button type="button" class="btn btn-primary" onclick="addMoreProductDetails()">Add Detail</button>-->
+<script>
+    var initialText = $('.editable').val();
+    $('.editOption').val(initialText);
+
+    $('#test').change(function(){
+        var selected = $('option:selected', this).attr('class');
+        var optionText = $('.editable').text();
+
+        if(selected == "editable"){
+            $('.editOption').show();
+
+
+            $('.editOption').keyup(function(){
+                var editText = $('.editOption').val();
+                $('.editable').val(editText);
+                $('.editable').html(editText);
+            });
+
+        }else{
+            $('.editOption').hide();
+        }
+    });
+</script>

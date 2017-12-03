@@ -451,3 +451,18 @@ function my_decrypt($data) {
     list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
     return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
 }
+
+function getCategories($conn,$user_id){
+    $stmt= $conn->prepare("Select DISTINCT(category) FROM ".PRODUCT_TABLE." where user_id=?");
+    $stmt->bind_param("i", $user_id);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_all($productInfo,MYSQLI_ASSOC);
+
+        } else {
+            return [];
+        }
+    }
+    return [];
+}
