@@ -21,7 +21,19 @@ foreach ($sender as $user){
         $users[$index++] = $user["sender"];
     }
 }
-?>
+if(isset($_POST["identifier"])){
+    $user_id = my_decrypt($_POST["identifier"]);
+    ?>
+    <script type="text/javascript">
+        $(function(){
+            $("#chat-wth-user").val(<?php echo $user_id ?>);
+            fetchMessage();
+        });
+    </script>
+    <?php
+        }
+    ?>
+
 <div class="container" style="width: 100%;margin: 0 auto">
     <div class="row" style="padding: 20px;height: 100%">
         <div id="outer-categories-slider" class="col-md-12">
@@ -96,7 +108,7 @@ foreach ($sender as $user){
                         </script>
                         <div class="page-title">
                             <h3 style="display: inline-block"><span class="fa fa-comment"></span> Conversation History
-                            <small style="color: green" id="loading-text"></small>
+                                <small style="color: green" id="loading-text"></small>
                             </h3>
                         </div>
                         <div id="messages_box">

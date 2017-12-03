@@ -245,14 +245,15 @@ $client = getClient($conn, $product_info_details["user_id"]);
                                                             <button class="btn-link" name="product_by_user" value="view_products">View All Products</button>
                                                         </form>
                                                     </th>
-                                                </tr>
-                                                <tr>
                                                     <th>
                                                         <form action="product/chat.php" method="POST" class="view-product-by-user">
                                                             <input type="hidden" name="identifier" id="identifier" value="<?php echo my_encrypt($client['user_id'])?>"/>
                                                             <button class="btn-link" name="chat" value="start-chat">Talk with Product Owner</button>
                                                         </form>
                                                     </th>
+                                                </tr>
+                                                <tr>
+
                                                 </tr>
                                                 </tbody>
                                             </table>
