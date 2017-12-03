@@ -1005,6 +1005,10 @@ a:hover {
     /*height: 700px;*/
     padding: 20px 6px 20px 20px;
 }
+.custom-wrapper{
+    background-color: #ffffff;
+    padding: 20px 6px 20px 20px;
+}
 #additional-product-details{
     background-color: #ffffff;
     padding: 20px 6px 20px 20px;
@@ -1084,4 +1088,51 @@ div#second-nav-bar {
 #my-market-li li a , #dashboard-li li a{
     display: block;
     padding: 10px 5px;
+}
+#home-tabes li.active{
+    border-top: 1px solid #ff6a00;
+}
+#home-tabes li a:hover{
+    border-top: 1px solid #ff6a00;
+    color: black !important;
+}
+.topic-head > h3:after {
+    content:"";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.2em;
+    border: 3px solid #DCDEE3;
+    border-radius: 3px;
+    z-index: -1;
+    background-color: #DCDEE3;
+    vertical-align: middle;
+}
+.topic-head > h3{
+    position: relative;
+}
+.topic-head > h3 > span{
+    background-color: #f2f3f8;
+    padding-right: 10px;
+}
+.label-line{
+    margin-top: 34px;
+    border: 3px solid #DCDEE3;
+    background-color: #DCDEE3;
+    border-radius: 3px;
+    overflow: hidden;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+
+.view-detail > a{
+    color: white !important;
+}
+
+.view-detail > a:hover{
+    color: black !important;
 }

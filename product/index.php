@@ -7,7 +7,11 @@ if (isset($_GET["category"])) {
     }else{
         $productList = getProductsByCategory($conn, $_GET["category"]);
     }
-} else {
+} elseif (isset($_POST["product_by_user"])){
+    $user_id = my_decrypt($_POST["identifier"]);
+    $productList = getProductByUser($conn, $user_id);
+}
+else {
     $productList = getProductList($conn);
 }
 
@@ -52,8 +56,8 @@ if (isset($_GET["category"])) {
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="text-center">
-                                        <a href="product/detail.php?id=<?php echo $product['id'] ?>">View</a>
+                                    <div class="text-center view-detail">
+                                        <a class="btn btn-primary" href="product/detail.php?id=<?php echo $product['id'] ?>">Details</a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
