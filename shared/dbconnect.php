@@ -5,6 +5,7 @@ define("USER_TABLE","akh_users");
 define("CLIENT_TABLE","akh_clients");
 define("ORDER_TABLE","akh_orders");
 define("PRODUCT_TABLE","akh_products");
+define("FEATURED_TABLE","akh_featured_products");
 define("PRODUCT_DETAIL_TABLE","akh_product_details");
 define("CHAT_TABLE","akh_chats");
 

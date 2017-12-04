@@ -493,6 +493,32 @@ function getCategories($conn,$user_id){
     }
     return [];
 }
+function featured_Product($conn,$product_id){
+    $query = "SELECT * from ".FEATURED_TABLE." where product_id = ?";
+    $stmt=$conn->prepare($query);
+    $stmt->bind_param('i',$product_id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return false;
+
+}
+function getFeaturedList($conn){
+
+    $limit=8;
+    $stmt=$conn->prepare("Select * from ".FEATURED_TABLE." limit $limit");
+
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_all($result,MYSQLI_ASSOC);
+        }
+    }
+    return[];
+}
 
 function getDistinctSender($conn, $user_id){
     $query = "SELECT DISTINCT(sender) FROM ".CHAT_TABLE." where receiver = ?";

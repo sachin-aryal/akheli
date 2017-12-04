@@ -75,7 +75,7 @@ include_once "../_header.php";
                         $product_info = getProductInfo($conn,$order["product_id"])
                         ?>
                         <tr>
-                            <td><a href="product/detail.php?id=<?php echo my_encrypt($product_info["id"]) ?>"><?php echo $product_info["product_name"] ?></a></td>
+                            <td><a style="color: blue;" href="product/detail.php?id=<?php echo my_encrypt($product_info["id"]) ?>"><?php echo $product_info["product_name"] ?></a></td>
                             <td><?php echo $product_info["category"] ?></td>
                             <td><?php echo $product_info["price"] ?></td>
                             <td><?php echo $order["created_at"] ?></td>

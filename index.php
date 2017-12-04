@@ -120,12 +120,14 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
         </div>
         <div class="row custom-wrapper" style="padding: 20px">
             <?php
-            foreach ($latestProduct as $product) {
+            $featured_Lists=getFeaturedList($conn);
+            foreach ($featured_Lists as $featured_List) {
+                $product_details=getProductInfo($conn,$featured_List['product_id']);
                 ?>
                 <div class="col-sm-3">
                     <article class="col-item">
                         <div class="photo">
-                            <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-thumbnail" alt="" /> </a>
+                            <a href="product/detail.php?id=<?php echo my_encrypt($product_details['id']) ?>"> <img src="assets/images/<?php echo $product_details['image'] ?>" class="img-thumbnail" alt="" /> </a>
                         </div>
                         <div class="info">
                             <div class="row">
@@ -133,7 +135,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                     <p class="details">
                                     <ol class="breadcrumb text-center">
                                         <?php
-                                        $productDetails_index = getProductDetails($conn, $product['id']);
+                                        $productDetails_index = getProductDetails($conn, $featured_List['product_id']);
                                         $sizeArray=explode(',',$productDetails_index['size']);
                                         foreach ($sizeArray as $size) {
                                             ?>
@@ -142,13 +144,13 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                         }
                                         ?>
                                     </ol>
-                                    <h4 class="text-center"><?php echo $product["product_name"] ?></h4>
+                                    <h4 class="text-center"><?php echo $product_details["product_name"] ?></h4>
                                     <p class="price-new">
-                                        <?php echo "Rs. ".$product["price"] ?>
+                                        <?php echo "Rs. ".$product_details["price"] ?>
                                     </p>
                                 </div>
                                 <div class="text-center view-detail">
-                                    <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
+                                    <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product_details['id']) ?>">Details</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
