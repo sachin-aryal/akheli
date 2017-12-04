@@ -63,7 +63,7 @@ $unique_categories = getDistinctCategory($conn);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand logo" href="#"><img src="assets/images/Alibaba-logo.png" height="40px" width="200px">
+            <a class="navbar-brand logo" href="#"><img src="assets/images/akheli_logo.jpg" height="40px" width="100px">
             </a>
             <ul class="nav navbar-left" id="top-head-left-li">
                 <li><a href="index.php">Home</a></li>

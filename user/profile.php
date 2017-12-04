@@ -8,9 +8,6 @@ include_once "../shared/dbconnect.php";
 redirectIfNotLoggedIn();
 
 $user_id = $_SESSION["user_id"];
-if(isset($_GET["user_id"])){
-    $user_id = $_GET["user_id"];
-}
 $user = getUser($conn, "id=" . $user_id);
 $client = getClient($conn, $user_id);
 include_once "../_header.php";
@@ -70,7 +67,7 @@ include_once "../_header.php";
 
                     </div>
                 </div>
-                <?php if($_SESSION["user_id"] == $user["id"]){ ?>
+                <?php if($_SESSION["user_id"] == $client["user_id"]){ ?>
                     <form method='post' action='user/edit.php'>
                         <input class="btn btn-primary btn-edit-profile" type='submit' value='Edit Profile'/>
                     </form>
