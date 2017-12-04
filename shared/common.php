@@ -325,10 +325,10 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-function getAllMessages($conn,$user_id1,$user_id2){
-    $query = "SELECT *FROM ".CHAT_TABLE." where (sender = ? and receiver = ?) or (sender = ?  and receiver = ?)";
+function getAllMessages($conn,$user_id1,$user_id2, $last_id){
+    $query = "SELECT *FROM ".CHAT_TABLE." where ((sender = ? and receiver = ?) or (sender = ?  and receiver = ?)) and id > ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iiii", $user_id1,$user_id2,$user_id2,$user_id1);
+    $stmt->bind_param("iiiii", $user_id1,$user_id2,$user_id2,$user_id1, $last_id);
     if ($stmt->execute()) {
         $chats = $stmt->get_result();
         if ($chats->num_rows > 0) {

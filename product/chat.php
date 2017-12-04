@@ -3,6 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 };
 include_once "../_header.php";
+redirectIfNotLoggedIn();
 
 $sender_id = $_SESSION["user_id"];
 $sender_user = getUser($conn, "id=" . $sender_id);
@@ -31,8 +32,8 @@ if(isset($_POST["identifier"])){
         });
     </script>
     <?php
-        }
-    ?>
+}
+?>
 
 <div class="container" style="width: 100%;margin: 0 auto">
     <div class="row" style="padding: 20px;height: 100%">
@@ -47,30 +48,38 @@ if(isset($_POST["identifier"])){
                         for ($i=0;$i<sizeof($users);$i++){
                             echo '..'.$users[$i];
                             $client = getClient($conn, $users[$i]);
-                            ?>
-                            <option value="<?php echo $client["user_id"] ?>"><?php echo $client["name"] ?></option>
-                            <?php
+                            if($client["name"] != ""){
+                                ?>
+                                <option value="<?php echo $client["user_id"] ?>"><?php echo $client["name"] ?></option>
+                                <?php
+                            }
                         }
                         $client = []
                         ?>
                     </select>
                 </div>
                 <div class="col-md-12">
-                    <div class="pre-scrollable">
+                    <div class="page-title">
+                        <h3 style="display: inline-block"><span class="fa fa-comment"></span> Conversation History
+                            <small style="color: green" id="loading-text"></small>
+                        </h3>
+                    </div>
+                    <div class="pre-scrollable" id="chat-box-wrapper">
                         <script type="text/javascript">
                             function sendMessage(){
                                 var message = $("#message").val();
                                 $("#message").val("");
                                 var receiver_id = $("#chat-wth-user").val();
                                 if(receiver_id){
-                                    var receiver_name = $("#list option[value="+receiver_id+"]").text();
                                     $.ajax({
                                         type: 'POST',
                                         url: 'controller/chat.php',
                                         data: {message:message,receiver_id:receiver_id},
                                         success:function(data){
                                             if(data === "success"){
-                                                $("#messages_box").append(receiver_name+":"+message+"<br>")
+                                                var chat_box_wrapper    = $('#chat-box-wrapper');
+                                                var height = chat_box_wrapper[0].scrollHeight;
+                                                chat_box_wrapper.scrollTop(height);
                                             }else{
                                                 $.notify('Error sending message','error');
                                             }
@@ -83,18 +92,25 @@ if(isset($_POST["identifier"])){
                             }
                         </script>
                         <script type="text/javascript">
+                            var first_time = true, last_id = -1;
                             function fetchMessage(){
                                 $("#loading-text").text("loading messages.....");
                                 setInterval(function(){
                                     $.ajax({
                                         type: 'POST',
                                         url: 'controller/chat.php',
-                                        data: {fetch_message: true,other_user: $("#chat-wth-user").val()},
+                                        data: {fetch_message: true,other_user: $("#chat-wth-user").val(), last_id: last_id},
                                         success:function(data){
-                                            $("#messages_box").empty();
                                             var json_data = $.parseJSON(data);
-                                            for (var i = 0; i < json_data.length; i++) {
+                                            for (var i = 0; i < json_data.length-1; i++) {
                                                 $("#messages_box").append(json_data[i]+"<br>");
+                                            }
+                                            last_id = json_data[json_data.length-1];
+                                            if(first_time === true){
+                                                var chat_box_wrapper    = $('#chat-box-wrapper');
+                                                var height = chat_box_wrapper[0].scrollHeight;
+                                                chat_box_wrapper.scrollTop(height);
+                                                first_time = false;
                                             }
                                         },error:function(err){
                                             $.notify('Error sending message','error');
@@ -103,20 +119,15 @@ if(isset($_POST["identifier"])){
                                         }
 
                                     })
-                                }, 3000);
+                                }, 1000);
                             }
                         </script>
-                        <div class="page-title">
-                            <h3 style="display: inline-block"><span class="fa fa-comment"></span> Conversation History
-                                <small style="color: green" id="loading-text"></small>
-                            </h3>
-                        </div>
                         <div id="messages_box">
                         </div>
-                        <div id="chat_field" style="margin-top: 10px">
-                            <textarea name="messsage" id="message" class="form-control"></textarea><br>
-                            <button class="btn btn-success" onclick="sendMessage()">Send Message</button>
-                        </div>
+                    </div>
+                    <div id="chat_field" style="margin-top: 20px">
+                        <textarea name="messsage" id="message" class="form-control"></textarea><br>
+                        <button class="btn btn-success" onclick="sendMessage()">Send Message</button>
                     </div>
                 </div>
             </div>

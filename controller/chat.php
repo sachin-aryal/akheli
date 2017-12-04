@@ -16,8 +16,8 @@ if(isset($_POST["message"]) && isset($_POST["receiver_id"])){
    }
 } else if($_POST["fetch_message"]) {
     $other_user = $_POST["other_user"];
-    $allMessages = getAllMessages($conn, $_SESSION['user_id'], $other_user);
-
+    $last_id = $_POST["last_id"];
+    $allMessages = getAllMessages($conn, $_SESSION['user_id'], $other_user, $last_id);
     $client1 = getClient($conn, $_SESSION['user_id']);
     $client2 = getClient($conn, $other_user);
 
@@ -29,7 +29,9 @@ if(isset($_POST["message"]) && isset($_POST["receiver_id"])){
         } else {
             $messages[$index++] = $client2["name"] . ": " . $message["message"];
         }
+        $last_id = $message["id"];
     }
+    $messages[$index] = $last_id;
     echo json_encode($messages);
 }
 else{
