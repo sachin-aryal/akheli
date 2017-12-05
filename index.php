@@ -11,7 +11,15 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
         <div class="row" style="padding: 20px;height: 100%">
             <div id="outer-categories-slider" class="col-md-12">
                 <div class="col-md-3">
-                    <span><i style="font-size: 25px;" class="fa fa-shopping-cart fa-lg category-icon" aria-hidden="true"></i>MY MARKETS</span>
+                    <span id="my-market"><i style="font-size: 25px;" class="fa fa-shopping-cart fa-lg category-icon" aria-hidden="true"></i>MY MARKETS</span>
+                    <button id="my-market-mobile" data-toggle="collapse" data-target="#my-market-li-device"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    <ul id="my-market-li-device" class="collapse" style="background-color: white;">
+                        <?php
+                        foreach($random_category as $category){
+                            echo '<li style="background-color: #6b9dbb"><a style="color: whitesmoke !important;" href="product/index.php?category='.$category["category"].'">'.$category["category"].'</a></li>';
+                        }
+                        ?>
+                    </ul>
                     <ul id="my-market-li">
                         <?php
                         foreach($random_category as $category){
@@ -93,7 +101,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                     <span>
                                         <?php
                                         echo '<p>'.$client["shop_name"].'</p>';
-                                        echo '<p style="font-size: 12px">'.$client["location"]. ' / ' .$client["phone_no"].'</p>';
+                                        echo '<p style="font-size:12px">'.$client["location"]. ' / ' .$client["phone_no"].'</p>';
                                         ?>
                                     </span>
                                     <form action="product/index.php" method="POST">

@@ -1011,13 +1011,14 @@ li a:hover {
 }
 #search-product-header{
     border: none;
-    width: 472px;
+    width: 100%;
 }
 #search-button{
     background-color: #ff6a00;
     border-radius: 0!important;
     color: white;
     border: none;
+    padding: 7px;
 }
 #nav-with-search{
     margin-left: 77px;
@@ -1198,4 +1199,41 @@ div#second-nav-bar {
 }
 .breadcrumb > li{
     font-size: 13px;
+}
+@media screen and (max-device-width: 640px){
+    .custom-button{
+        padding-left: 0;
+    }
+    #my-market{
+        display: none;
+    }
+    #my-market-mobile{
+        display: inline-block;
+    }
+    #my-market-li{
+        display: none;
+    }
+}
+@media screen and (min-device-width: 640px) {
+    #my-market{
+        display: inline-block;
+    }
+    #my-market-mobile{
+        display: none;
+    }
+    #my-market-li{
+        display: block;
+    }
+    #my-market-li-device{
+        display: none;
+    }
+}
+#my-market-li-device{
+    padding: 10px 0 10px 0;
+}
+#my-market-li-device a {
+    line-height: 20px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
 }
