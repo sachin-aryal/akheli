@@ -19,7 +19,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
     <div class="row" style="padding: 20px;height: 420px">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "_dashsidebar.php"?>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="page-title">
                     <h3><span class="fa fa-tag"></span> Product List
                         <small>Available products</small>
@@ -32,7 +32,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                         <div class="col-sm-4">
                             <article class="col-item">
                                 <div class="photo">
-                                    <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
+                                    <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
                                 </div>
                                 <div class="info">
                                     <div class="row">
@@ -56,7 +56,7 @@ if (isset($_POST['search']) && !empty($_POST['search'])) {
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">View</a>
+                                        <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">View</a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

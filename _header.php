@@ -32,6 +32,7 @@ if (!isset($_SESSION)) {
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script src="assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="public/dist/js/adminlte.min.js"></script>
+    <script src="assets/js/app.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>

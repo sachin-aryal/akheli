@@ -506,11 +506,13 @@ function featured_Product($conn,$product_id){
     return false;
 
 }
-function getFeaturedList($conn){
+function getFeaturedList($conn, $limit = 0){
 
-    $limit=8;
-    $stmt=$conn->prepare("Select * from ".FEATURED_TABLE." limit $limit");
-
+    $query = "SELECT * from ".FEATURED_TABLE." ORDER BY featured_id DESC";
+    if($limit != 0){
+        $query.=" LIMIT $limit";
+    }
+    $stmt=$conn->prepare($query);
     if($stmt->execute()){
         $result=$stmt->get_result();
         if($result->num_rows > 0){

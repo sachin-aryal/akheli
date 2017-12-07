@@ -16,14 +16,18 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                     <ul id="my-market-li-device" class="collapse" style="background-color: white;">
                         <?php
                         foreach($random_category as $category){
-                            echo '<li style="background-color: #6b9dbb"><a style="color: whitesmoke !important;" href="product/index.php?category='.$category["category"].'">'.$category["category"].'</a></li>';
+                            if($category != ""){
+                                echo '<li style="background-color: #6b9dbb"><a style="color: whitesmoke !important;" href="product/index.php?category='.$category["category"].'">'.$category["category"].'</a></li>';
+                            }
                         }
                         ?>
                     </ul>
                     <ul id="my-market-li">
                         <?php
                         foreach($random_category as $category){
-                            echo '<li><a href="product/index.php?category='.$category["category"].'">'.$category["category"].'</a></li>';
+                            if($category != ""){
+                                echo '<li><a href="product/index.php?category='.$category["category"].'">'.$category["category"].'</a></li>';
+                            }
                         }
                         ?>
                     </ul>
@@ -128,14 +132,14 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
         </div>
         <div class="row custom-wrapper" style="padding: 20px">
             <?php
-            $featured_Lists=getFeaturedList($conn);
+            $featured_Lists=getFeaturedList($conn, 8);
             foreach ($featured_Lists as $featured_List) {
                 $product_details=getProductInfo($conn,$featured_List['product_id']);
                 ?>
                 <div class="col-sm-3">
                     <article class="col-item">
                         <div class="photo">
-                            <a href="product/detail.php?id=<?php echo my_encrypt($product_details['id']) ?>"> <img src="assets/images/<?php echo $product_details['image'] ?>" class="img-thumbnail" alt="" /> </a>
+                            <a href="product/detail.php?name=<?php echo $product_details["product_name"] ?>&id=<?php echo my_encrypt($product_details['id']) ?>"> <img src="assets/images/<?php echo $product_details['image'] ?>" class="img-thumbnail" alt="" /> </a>
                         </div>
                         <div class="info">
                             <div class="row">
@@ -158,7 +162,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                     </p>
                                 </div>
                                 <div class="text-center view-detail">
-                                    <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product_details['id']) ?>">Details</a>
+                                    <a class="btn btn-primary" href="product/detail.php?name=<?php echo $product_details["product_name"] ?>&id=<?php echo my_encrypt($product_details['id']) ?>">Details</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -184,7 +188,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                 <div class="col-sm-3">
                     <article class="col-item">
                         <div class="photo">
-                            <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-thumbnail" alt="" /> </a>
+                            <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-thumbnail" alt="" /> </a>
                         </div>
                         <div class="info">
                             <div class="row">
@@ -207,7 +211,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                     </p>
                                 </div>
                                 <div class="text-center view-detail">
-                                    <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
+                                    <a class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -234,7 +238,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                 <div class="col-sm-3">
                     <article class="col-item">
                         <div class="photo">
-                            <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-thumbnail" alt="" /> </a>
+                            <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-thumbnail" alt="" /> </a>
                         </div>
                         <div class="info">
                             <div class="row">
@@ -257,7 +261,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                     </p>
                                 </div>
                                 <div class="text-center view-detail">
-                                    <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
+                                    <a class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>

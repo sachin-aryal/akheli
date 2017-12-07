@@ -27,7 +27,7 @@ if (isset($_GET["category"])) {
             <div class="col-sm-4">
                 <article class="col-item">
                     <div class="photo">
-                        <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
+                        <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
                     </div>
                     <div class="info">
                         <div class="row">
@@ -51,7 +51,7 @@ if (isset($_GET["category"])) {
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">View</a>
+                            <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">View</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>

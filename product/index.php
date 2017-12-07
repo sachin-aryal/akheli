@@ -1,18 +1,24 @@
 <?php
 include_once "../_header.php";
+$product_chain = "N/A";
 if (isset($_GET["category"])) {
     $category = $_GET["category"];
     if($category == "myp" && isSeller()){
         $productList = getSellersProducts($conn);
+        $product_chain = "My Products";
     }else{
         $productList = getProductsByCategory($conn, $_GET["category"]);
+        $product_chain = $_GET["category"];
     }
 } elseif (isset($_POST["product_by_user"])){
     $user_id = my_decrypt($_POST["identifier"]);
+    $client = getClient($conn, $user_id);
     $productList = getProductByUser($conn, $user_id);
+    $product_chain = $client["shop_name"];
 }
 else {
     $productList = getProductList($conn);
+    $product_chain = "All Products";
 }
 
 ?>
@@ -20,25 +26,32 @@ else {
     <div class="row" style="padding: 20px;height: 420px">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="page-title">
                     <h3><span class="fa fa-tag"></span> Product List
                         <small>Available products</small>
                     </h3>
                 </div>
                 <div class="row">
+                    <div class="col-md-12" style="margin-bottom: 15px">
+                        <div class="product-chain"><ul>
+                                <li class=""><a href="index.php" title="Home">Home</a></li>
+                                <li class=""><a href="product/index.php" title="Products">Products</a></li>
+                                <li class="last-child"><?php echo $product_chain ?></li>
+                            </ul>
+                        </div>
+                    </div>
                     <?php
                     foreach ($productList as $product) {
                         ?>
                         <div class="col-sm-3">
                             <article class="col-item">
                                 <div class="photo">
-                                    <a href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
+                                    <a href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>"> <img src="assets/images/<?php echo $product['image'] ?>" class="img-responsive" alt="" /> </a>
                                 </div>
                                 <div class="info">
                                     <div class="row">
                                         <div class="price-details col-md-6">
-                                            <p class="details">
                                             <ol class="breadcrumb text-center">
                                                 <?php
                                                 $productDetails_index = getProductDetails($conn, $product['id']);
@@ -61,7 +74,7 @@ else {
                                     <?php if(isAdmin()){ ?>
                                         <div class="view-detail">
                                             <table>
-                                                <td><a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a></td>
+                                                <td><a style="margin-left: 8px;" class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a></td>
 
                                                 <?php
                                                 $feature=featured_Product($conn,$product['id']);
@@ -70,17 +83,21 @@ else {
                                                     ?>
                                                     <td>
 
-                                                        <form method="post" action="controller/product.php" class="col-md-5">
+                                                        <form method="post" action="controller/product.php" style="margin-left: 1px">
                                                             <input type="hidden" name="featured_id" value="<?php echo $feature['featured_id']?>">
-                                                            <button type="submit" class="btn btn-primary" name="remove_feature" >Remove Featured</button>
+                                                            <button title="Remove from Featured" type="submit" class="btn btn-danger" name="remove_feature" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Featured
+                                                            </button>
                                                         </form>
                                                     </td>
 
                                                 <?php }else{ ?>
                                                     <td>
-                                                        <form method="post" action="controller/product.php" class="col-md-5" >
+                                                        <form method="post" action="controller/product.php" style="margin-left: 1px">
                                                             <input type="hidden" name="product_id" value="<?php echo $product['id']?>">
-                                                            <button type="submit" class="btn btn-primary" name="set_feature" >Set Featured</button>
+                                                            <button title="Remove from Featured" type="submit" class="btn btn-info" name="set_feature" >
+                                                                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;Featured
+                                                            </button>
                                                         </form>
                                                     </td>
                                                 <?php } ?>
@@ -88,7 +105,7 @@ else {
                                         </div>
                                     <?php }else{ ?>
                                         <div class=" view-detail text-center ">
-                                            <a class="btn btn-primary" href="product/detail.php?id=<?php echo my_encrypt($product['id']) ?>">Details</a>
+                                            <a class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
                                         </div>
                                     <?php } ?>
 
@@ -104,4 +121,7 @@ else {
         </div>
     </div>
 </div>
+<?php
+include_once "../_footer.php";
+?>
 

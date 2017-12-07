@@ -25,7 +25,7 @@ include_once "../_header.php";
     <div class="row" style="padding: 20px;height: 420px">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="page-title">
                     <h3><span class="fa fa-pencil-square-o"></span> Edit Product Detail
                         <small>Edit product details here</small>
@@ -42,3 +42,6 @@ include_once "../_header.php";
         </div>
     </div>
 </div>
+<?php
+include_once "../_footer.php";
+?>
