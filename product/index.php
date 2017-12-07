@@ -2,7 +2,7 @@
 include_once "../_header.php";
 $product_chain = "N/A";
 $pagination = array();
-$limit = 1;
+$limit = 16;
 $page = 0;
 $offset = 0;
 if(isset($_GET["page"])){
