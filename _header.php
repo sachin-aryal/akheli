@@ -11,6 +11,7 @@ include_once PROJECT_PATH."/shared/auth.php";
 if (!isset($_SESSION)) {
     session_start();
 }
+$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,6 +109,7 @@ $unique_categories = getDistinctCategory($conn);
                                         <input class="form-control" type="password" name="password" id="password"/>
                                     </div>
                                 </div>
+                                <input type="hidden" name="redirect_to" value="<?php echo $actual_link ?>"/>
                                 <input class="btn btn-primary btn-login btn-block" type="submit" name="login" value="Login"/>
                             </form>
                             <div class="pull-left">

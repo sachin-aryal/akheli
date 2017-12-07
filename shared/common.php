@@ -580,7 +580,7 @@ function featured_Product($conn,$product_id){
 }
 function getFeaturedList($conn, $limit = 0){
 
-    $query = "SELECT * from ".FEATURED_TABLE." ORDER BY featured_id DESC";
+    $query = "SELECT * from ".FEATURED_TABLE." ORDER BY rand()";
     if($limit != 0){
         $query.=" LIMIT $limit";
     }

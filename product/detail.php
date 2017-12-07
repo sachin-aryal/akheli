@@ -27,6 +27,12 @@ $client = getClient($conn, $product_info_details["user_id"]);
                         <h3 style="display: inline-block"><span class="fa fa-eye"></span> Product Detail
                             <small>View detail and order produce</small>
                         </h3>
+                        <?php if (isBuyer()) { ?>
+                            <form style="display: inline-block;float: right" action="order/create.php" method="post">
+                                <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
+                                <button class="btn btn-primary order-button">Order</button>
+                            </form>
+                        <?php } ?>
                         <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
                             <button style="float: right" type="button" class="btn btn-info" data-toggle="modal" data-target="#add-addition-detail-modal">
                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add More Detail
@@ -296,19 +302,6 @@ $client = getClient($conn, $product_info_details["user_id"]);
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-11"></div>
-                        <div class="col-md-1">
-                            <?php if (isBuyer()) { ?>
-                                <div>
-                                    <form action="order/create.php" method="post">
-                                        <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
-                                        <button class="btn btn-success order-button">Order</button>
-                                    </form>
-                                </div>
-                            <?php } ?>
                         </div>
                     </div>
                 </div>

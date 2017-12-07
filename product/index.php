@@ -180,19 +180,19 @@ else {
                     <?php }
                     ?>
                 </div>
+                <?php if(sizeof($pagination) > 1){ ?>
                 <div class="row">
                     <div class="custom-pagination col-md-12" style="float: right">
                         <hr>
                         <?php
-                        if(sizeof($pagination) > 1){
-                            foreach ($pagination as $page){
-                                echo $page;
-                            }
+                        foreach ($pagination as $page){
+                            echo $page;
                         }
                         ?>
                         <hr>
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>

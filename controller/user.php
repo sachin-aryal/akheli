@@ -212,7 +212,11 @@ if (isset($_POST["register"])) {
         $_SESSION["username"] = $user["email"];
         $_SESSION["role"] = $user["role"];
         $_SESSION["user_id"] = $user["id"];
-        redirectToDash();
+        if($_POST["redirect_to"]){
+            header("Location:".$_POST["redirect_to"]);
+        }else{
+            redirectToDash();
+        }
         return;
     }
     $_SESSION["messageType"] = "error";

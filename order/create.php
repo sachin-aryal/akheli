@@ -58,9 +58,6 @@ include_once "../_header.php";
                             </div>
                         </div>
 
-
-
-
                         <div class="col-md-12">
                             <div class="detail-component">
                                 <h6 class="title">Description</h6>
