@@ -1298,3 +1298,15 @@ div#second-nav-bar {
     color: #202020 !important;
     font-weight: 700;
 }
+
+.custom-pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.custom-pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}

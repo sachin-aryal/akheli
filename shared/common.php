@@ -67,14 +67,30 @@ function getRandomString($l = 15){
     }
     return $result;
 }
-function getProductList($conn){
-
-    $products = $conn->query("SELECT * FROM ".PRODUCT_TABLE);
+function getProductList($conn, $limit, $offset){
+    $query = "SELECT * FROM ".PRODUCT_TABLE;
+    if($limit != 0){
+        $query .= " LIMIT ".$limit;
+    }
+    if($offset != 0){
+        $query.=" OFFSET $offset";
+    }
+    $products = $conn->query($query);
     if ($products->num_rows > 0) {
         return mysqli_fetch_all($products,MYSQLI_ASSOC);
     }
     return [];
 }
+
+function getProductListCount($conn){
+
+    $products = $conn->query("SELECT COUNT(id) as total_count FROM ".PRODUCT_TABLE);
+    if ($products->num_rows > 0) {
+        return mysqli_fetch_assoc($products)["total_count"];
+    }
+    return 0;
+}
+
 function getProductDetails($conn,$id){
     $stmt=$conn->prepare("SELECT *FROM ".PRODUCT_DETAIL_TABLE." where product_id=?");
     $stmt->bind_param("i", $id);
@@ -192,8 +208,15 @@ function getAllOrders($conn){
     return [];
 }
 
-function getSellersProducts($conn){
-    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where user_id=?");
+function getSellersProducts($conn, $limit =0, $offset=0){
+    $query = "Select *FROM ".PRODUCT_TABLE." where user_id=?";
+    if($limit != 0){
+        $query.=" LIMIT $limit";
+    }
+    if($offset != 0){
+        $query.=" OFFSET $offset";
+    }
+    $stmt= $conn->prepare($query);
     $stmt->bind_param("i", $_SESSION["user_id"]);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -204,8 +227,27 @@ function getSellersProducts($conn){
     return [];
 }
 
-function getProductsByCategory($conn,$category){
-    $stmt= $conn->prepare("Select *FROM ".PRODUCT_TABLE." where category=?");
+function getSellersProductsCount($conn){
+    $stmt= $conn->prepare("Select COUNT(id) as total_count FROM ".PRODUCT_TABLE." where user_id=?");
+    $stmt->bind_param("i", $_SESSION["user_id"]);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_assoc($productInfo)["total_count"];
+        }
+    }
+    return 0;
+}
+
+function getProductsByCategory($conn,$category,$limit=0,$offset=0){
+    $query = "Select *FROM ".PRODUCT_TABLE." where category=?";
+    if($limit != 0){
+        $query.=" LIMIT $limit";
+    }
+    if($offset != 0){
+        $query.=" OFFSET $offset";
+    }
+    $stmt= $conn->prepare($query);
     $stmt->bind_param("s", $category);
     if ($stmt->execute()) {
         $productInfo = $stmt->get_result();
@@ -216,6 +258,20 @@ function getProductsByCategory($conn,$category){
     }
     return [];
 }
+
+function getProductsByCategoryCount($conn,$category){
+    $stmt= $conn->prepare("Select COUNT(id) as total_count FROM ".PRODUCT_TABLE." where category=?");
+    $stmt->bind_param("s", $category);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_assoc($productInfo)["total_count"];
+
+        }
+    }
+    return 0;
+}
+
 function changeViewStatus($conn,$id){
     $stmt=$conn->prepare('Update '.ORDER_TABLE.' set view=? where id=?');
     $stmt->bind_param('ii',1,$id);
@@ -409,10 +465,13 @@ function getTopSellerUsers($conn, $limit = 0){
     return[];
 }
 
-function getProductByUser($conn, $user_id, $limit = 0){
+function getProductByUser($conn, $user_id, $limit = 0, $offset=0){
     $query = "SELECT *FROM ".PRODUCT_TABLE." where user_id=?";
     if($limit != 0){
         $query .= " LIMIT ".$limit;
+    }
+    if($offset != 0){
+        $query.=" OFFSET $offset";
     }
     $stmt= $conn->prepare($query);
     $stmt->bind_param("i", $user_id);
@@ -424,6 +483,19 @@ function getProductByUser($conn, $user_id, $limit = 0){
         }
     }
     return [];
+}
+
+function getProductByUserCount($conn, $user_id){
+    $query = "SELECT COUNT(id) as total_count FROM ".PRODUCT_TABLE." where user_id=?";
+    $stmt= $conn->prepare($query);
+    $stmt->bind_param("i", $user_id);
+    if ($stmt->execute()) {
+        $productInfo = $stmt->get_result();
+        if ($productInfo->num_rows > 0) {
+            return mysqli_fetch_assoc($productInfo)["total_count"];
+        }
+    }
+    return 0;
 }
 
 function my_encrypt($data) {

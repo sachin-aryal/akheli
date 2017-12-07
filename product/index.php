@@ -1,24 +1,87 @@
 <?php
 include_once "../_header.php";
 $product_chain = "N/A";
+$pagination = array();
+$limit = 1;
+$page = 0;
+$offset = 0;
+if(isset($_GET["page"])){
+    $page = $_GET["page"];
+}
+if($page > 1){
+    $offset = ($page*$limit)-$limit;
+}
 if (isset($_GET["category"])) {
     $category = $_GET["category"];
     if($category == "myp" && isSeller()){
-        $productList = getSellersProducts($conn);
+        $productList = getSellersProducts($conn, $limit, $offset);
+        $product_count = getSellersProducts($conn);
         $product_chain = "My Products";
+        $total_pages = ceil($product_count/$limit);
+        for($i=1;$i<=$total_pages;$i++){
+            if($page == $i){
+                $class="active";
+            }
+            array_push($pagination,"<a class='$class' href='product/index.php?page=$i&category=myp'>$i</a>");
+            $class = "";
+        }
     }else{
-        $productList = getProductsByCategory($conn, $_GET["category"]);
+        $category = $_GET["category"];
+        $productList = getProductsByCategory($conn, $category,$limit,$offset);
+        $product_count = getProductsByCategoryCount($conn, $category);
         $product_chain = $_GET["category"];
+        $total_pages = ceil($product_count/$limit);
+        for($i=1;$i<=$total_pages;$i++){
+            if($page == $i){
+                $class="active";
+            }
+            array_push($pagination,"<a class='$class' href='product/index.php?page=$i&category=$category'>$i</a>");
+            $class = "";
+        }
     }
 } elseif (isset($_POST["product_by_user"])){
-    $user_id = my_decrypt($_POST["identifier"]);
+    $identifier = $_POST["identifier"];
+    $user_id = my_decrypt($identifier);
     $client = getClient($conn, $user_id);
-    $productList = getProductByUser($conn, $user_id);
+    $productList = getProductByUser($conn, $user_id,$limit,$offset);
+    $product_count = getProductByUserCount($conn, $user_id);
     $product_chain = $client["shop_name"];
+    $total_pages = ceil($product_count/$limit);
+    for($i=1;$i<=$total_pages;$i++){
+        if($page == $i){
+            $class="active";
+        }
+        array_push($pagination,"<a class='$class' href='product/index.php?page=$i&u_identifier=$identifier'>$i</a>");
+        $class = "";
+    }
+}elseif(isset($_GET["u_identifier"])){
+    $identifier = $_GET["u_identifier"];
+    $user_id = my_decrypt($identifier);
+    $client = getClient($conn, $user_id);
+    $productList = getProductByUser($conn, $user_id,$limit,$offset);
+    $product_count = getProductByUserCount($conn, $user_id);
+    $product_chain = $client["shop_name"];
+    $total_pages = ceil($product_count/$limit);
+    for($i=1;$i<=$total_pages;$i++){
+        if($page == $i){
+            $class="active";
+        }
+        array_push($pagination,"<a class='$class' href='product/index.php?page=$i&u_identifier=$identifier'>$i</a>");
+        $class = "";
+    }
 }
 else {
-    $productList = getProductList($conn);
+    $productList = getProductList($conn,$limit,$offset);
+    $product_count = getProductListCount($conn);
     $product_chain = "All Products";
+    $total_pages = ceil($product_count/$limit);
+    for($i=1;$i<=$total_pages;$i++){
+        if($page == $i){
+            $class="active";
+        }
+        array_push($pagination,"<a class='$class' href='product/index.php?page=$i'>$i</a>");
+        $class = "";
+    }
 }
 
 ?>
@@ -116,6 +179,17 @@ else {
                         </div>
                     <?php }
                     ?>
+                </div>
+                <div class="row">
+                    <div class="custom-pagination col-md-12" style="float: right">
+                        <hr>
+                        <?php
+                        foreach ($pagination as $page){
+                            echo $page;
+                        }
+                        ?>
+                        <hr>
+                    </div>
                 </div>
             </div>
         </div>
