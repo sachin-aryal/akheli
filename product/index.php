@@ -184,8 +184,10 @@ else {
                     <div class="custom-pagination col-md-12" style="float: right">
                         <hr>
                         <?php
-                        foreach ($pagination as $page){
-                            echo $page;
+                        if(sizeof($pagination) > 1){
+                            foreach ($pagination as $page){
+                                echo $page;
+                            }
                         }
                         ?>
                         <hr>
