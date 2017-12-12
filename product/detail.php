@@ -75,7 +75,6 @@ $client = getClient($conn, $product_info_details["user_id"]);
                         <div class="col-md-12">
                             <ul class="nav nav-tabs" id="home-tabes">
                                 <li class="active"><a data-toggle="tab" href="#product-details">Product Details</a></li>
-                                <li><a data-toggle="tab" href="#company-profile">Company Profile</a></li>
                             </ul>
 
                             <div class="tab-content">
