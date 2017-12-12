@@ -24,7 +24,7 @@ include_once "../_header.php";
             $order_product = getProductInfo($conn,$productId);
             $order_product_details = getProductDetails($conn,$order_product["id"]);
             ?>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="page-title">
                     <h3><span class="fa fa-eye"></span>Order Product
                         <small>View detail and order produce</small>
@@ -58,9 +58,6 @@ include_once "../_header.php";
                             </div>
                         </div>
 
-
-
-
                         <div class="col-md-12">
                             <div class="detail-component">
                                 <h6 class="title">Description</h6>
@@ -83,3 +80,6 @@ include_once "../_header.php";
         </div>
     </div>
 </div>
+<?php
+include_once "../_footer.php";
+?>

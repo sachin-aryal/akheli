@@ -11,6 +11,7 @@ include_once PROJECT_PATH."/shared/auth.php";
 if (!isset($_SESSION)) {
     session_start();
 }
+$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@ if (!isset($_SESSION)) {
     <script src="assets/js/notify.min.js" type="text/javascript"></script>
     <script src="assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="public/dist/js/adminlte.min.js"></script>
+    <script src="assets/js/app.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             <?php if(isset($_SESSION["message"])){?>
@@ -107,6 +109,7 @@ $unique_categories = getDistinctCategory($conn);
                                         <input class="form-control" type="password" name="password" id="password"/>
                                     </div>
                                 </div>
+                                <input type="hidden" name="redirect_to" value="<?php echo $actual_link ?>"/>
                                 <input class="btn btn-primary btn-login btn-block" type="submit" name="login" value="Login"/>
                             </form>
                             <div class="pull-left">
@@ -156,11 +159,13 @@ $unique_categories = getDistinctCategory($conn);
                                 </div>
                             </a>
                         </li>
-                        <div class="col-sm-6 col-md-6" id="nav-with-search">
-                            <form class="navbar-form" action="searchResult.php" role="search" id="top-search">
-                                <div class="input-group">
-                                    <input id="search-product-header" type="text" class="form-control" placeholder="Search" name="q"/>
-                                    <div class="input-group-btn">
+                        <div class="col-sm-8 col-md-8" id="nav-with-search">
+                            <form action="searchResult.php" role="search">
+                                <div class="row">
+                                    <div class="col-md-8" id="top-search">
+                                        <input id="search-product-header" type="text" class="form-control" placeholder="Search" name="q"/>
+                                    </div>
+                                    <div class="col-md-2 custom-button">
                                         <button class="btn btn-default" id="search-button" type="submit"><i class="glyphicon glyphicon-search"></i>&nbsp;&nbsp;Search</button>
                                     </div>
                                 </div>

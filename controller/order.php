@@ -8,8 +8,12 @@ include_once "../shared/common.php";
 if(isset($_POST['save_order'])){
     redirectIfNotBuyer();
     $description = $_POST["description"];
-    $size = implode(",",$_POST["size"]);
-    $color = implode(",",$_POST["color"]);
+    if($_POST["size"]){
+        $size = implode(",",$_POST["size"]);
+    }
+    if($_POST["color"]) {
+        $color = implode(",", $_POST["color"]);
+    }
     $quantity = $_POST["quantity"];
     $product_id = $_POST["product_id"];
     $user_id = $_SESSION["user_id"];

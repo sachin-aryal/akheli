@@ -38,7 +38,7 @@ include_once "../_header.php";
     <div class="row" style="padding: 20px;height: 420px">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="page-title">
                     <h3><span class="fa fa-shopping-basket"></span> Order List
                         <?php
@@ -56,11 +56,8 @@ include_once "../_header.php";
                     <thead>
                     <tr>
                         <th>Product Name</th>
-                        <th>Category</th>
                         <th>Price</th>
                         <th>Ordered Date</th>
-                        <th>Size</th>
-                        <th>Color</th>
                         <th>Status</th>
                         <th>Quantity</th>
                         <th>Total Price(NRs)</th>
@@ -75,12 +72,18 @@ include_once "../_header.php";
                         $product_info = getProductInfo($conn,$order["product_id"])
                         ?>
                         <tr>
-                            <td><a style="color: blue;" href="product/detail.php?id=<?php echo my_encrypt($product_info["id"]) ?>"><?php echo $product_info["product_name"] ?></a></td>
-                            <td><?php echo $product_info["category"] ?></td>
+                            <td><a style="color: blue;" href="product/detail.php?name=<?php echo $product_info["product_name"] ?>&id=<?php echo my_encrypt($product_info["id"]) ?>">
+                                    <?php
+                                    if(strlen($product_info["product_name"]) > 9){
+                                    echo substr($product_info["product_name"],0 , 9)."...";
+                                    }else{
+                                        echo $product_info["product_name"];
+                                    }
+                                    ?>
+                                </a>
+                            </td>
                             <td><?php echo $product_info["price"] ?></td>
                             <td><?php echo $order["created_at"] ?></td>
-                            <td><?php echo $order["size"] ?></td>
-                            <td><?php echo $order["color"] ?></td>
                             <td><?php echo $order["status"] ?></td>
                             <td><?php echo $order["quantity"] ?></td>
                             <td><?php echo $order["quantity"]*$product_info["price"] ?></td>
@@ -109,3 +112,6 @@ include_once "../_header.php";
         </div>
     </div>
 </div>
+<?php
+include_once "../_footer.php";
+?>

@@ -255,31 +255,16 @@ if(isset($_POST['update_product'])) {
 }
 if(isset($_POST['set_feature'])){
     $product_id=$_POST['product_id'];
-    $stmt=$conn->prepare("Insert into ".FEATURED_TABLE."(product_id) Values(?)");
+    $stmt=$conn->prepare("INSERT into ".FEATURED_TABLE."(product_id) VALUES(?)");
     $stmt->bind_param('i',$product_id);
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
-        $_SESSION["message"] = "Successfully as featured Image";
+        $_SESSION["message"] = "Successfully marked as Featured Product.";
         header("Location:../product/index.php");
         return;
     }
     $_SESSION["messageType"] = "error";
-    $_SESSION["message"] = "Error while setting as Featured Image.";
-    header("Location:../product/index.php");
-    return;
-}
-if(isset($_POST['set_feature'])){
-    $product_id=$_POST['product_id'];
-    $stmt=$conn->prepare("delete from ".FEATURED_TABLE." where ");
-    $stmt->bind_param('i',$product_id);
-    if($stmt->execute()){
-        $_SESSION["messageType"] = "success";
-        $_SESSION["message"] = "Successfully as featured Image";
-        header("Location:../product/index.php");
-        return;
-    }
-    $_SESSION["messageType"] = "error";
-    $_SESSION["message"] = "Error while setting as Featured Image.";
+    $_SESSION["message"] = "Error while setting as Featured Product.";
     header("Location:../product/index.php");
     return;
 }
@@ -290,10 +275,10 @@ if(isset($_POST['remove_feature'])){
    $stmt->bind_param('i',$featured_id);
    if($stmt->execute()){
        $_SESSION["messageType"] = "success";
-       $_SESSION["message"] = "Sucessfull Removed as featured Image.";
+       $_SESSION["message"] = "Successfully Removed from featured Product.";
    }else{
        $_SESSION["messageType"] = "error";
-       $_SESSION["message"] = "Error while Removing Featured Image.";
+       $_SESSION["message"] = "Error while Removing Featured Product.";
    }
 
     header("Location:../product/index.php");

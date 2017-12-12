@@ -27,7 +27,16 @@ if(isset($_POST["identifier"])){
     ?>
     <script type="text/javascript">
         $(function(){
-            $("#chat-wth-user").val(<?php echo $user_id ?>);
+            var chat_with_user = $('#chat-wth-user');
+            console.log(chat_with_user.has('option').length);
+            if(chat_with_user.has('option').length === 1 ) {
+                <?php
+                    $chat_with_user = getClient($conn, $user_id);
+                    $option = '<option value='.$chat_with_user["user_id"].'>'.$chat_with_user["name"].'</option>';
+                ?>
+                chat_with_user.append("<?php echo $option ?>");
+            }
+            chat_with_user.val(<?php echo $user_id ?>);
             fetchMessage();
         });
     </script>
@@ -39,7 +48,7 @@ if(isset($_POST["identifier"])){
     <div class="row" style="padding: 20px;height: 100%">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="col-md-4">
                     <label for="chat-wth-user">Select User</label>
                     <select class="form-control" id="chat-wth-user" onchange="fetchMessage()">
@@ -134,3 +143,6 @@ if(isset($_POST["identifier"])){
         </div>
     </div>
 </div>
+<?php
+include_once "../_footer.php";
+?>
