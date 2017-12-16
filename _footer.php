@@ -14,7 +14,7 @@
                 <ul class="footer-ul">
                     <li><a href="#"> Career</a></li>
                     <li><a href="#"> Privacy Policy</a></li>
-                    <li><a href="#"> Terms & Conditions</a></li>
+                    <li><a href="terms.php"> Terms & Conditions</a></li>
                     <li><a href="#"> Client Gateway</a></li>
                     <li><a href="#"> Frequently Ask Questions</a></li>
                 </ul>
