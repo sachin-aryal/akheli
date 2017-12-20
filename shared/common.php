@@ -67,7 +67,7 @@ function getRandomString($l = 15){
     }
     return $result;
 }
-function getProductList($conn, $limit, $offset){
+function getProductList($conn, $limit=0, $offset=0){
     $query = "SELECT * FROM ".PRODUCT_TABLE;
     if($limit != 0){
         $query .= " LIMIT ".$limit;
