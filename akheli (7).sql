@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2017 at 04:19 PM
+-- Generation Time: Dec 21, 2017 at 02:11 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -41,7 +41,29 @@ CREATE TABLE `akh_add_product_details` (
 
 INSERT INTO `akh_add_product_details` (`detail_id`, `field_name`, `field_value`, `product_id`) VALUES
 (1, 'afdsasdfadsfasdfasdfasdfdfa', 'fsadfasd', 5),
-(2, 'fasdfasfasdf', 'fasdf', 5);
+(2, 'fasdfasfasdf', 'fasdf', 5),
+(3, 'adsf', 'asdf', 4),
+(4, 'fasdfasfasdf', 'fasdfasd', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_add_product_image`
+--
+
+CREATE TABLE `akh_add_product_image` (
+  `image_id` int(11) NOT NULL,
+  `product_image` varchar(200) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akh_add_product_image`
+--
+
+INSERT INTO `akh_add_product_image` (`image_id`, `product_image`, `product_id`) VALUES
+(1, 'To6x3fiSH26eMzPlcU8i4hvqf.jpg', 4),
+(2, '2mTGWZWGHCj4u7Uh2cnMshkxL.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -76,7 +98,7 @@ INSERT INTO `akh_chats` (`id`, `sender`, `receiver`, `message`, `send_date`) VAL
 CREATE TABLE `akh_clients` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shop_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_no` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `location` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -89,12 +111,28 @@ CREATE TABLE `akh_clients` (
 -- Dumping data for table `akh_clients`
 --
 
-INSERT INTO `akh_clients` (`id`, `name`, `shop_name`, `phone_no`, `location`, `user_id`, `user_image`, `created_at`, `updated_at`) VALUES
+INSERT INTO `akh_clients` (`id`, `name`, `last_name`, `phone_no`, `location`, `user_id`, `user_image`, `created_at`, `updated_at`) VALUES
 (11, 'Buyer Name', 'Test Shop', '9861676916', 'Kathmandu', 15, 'RirfeKdHZxdb9CnZiFf5kWJpg.jpg', '2017-08-30 17:14:39', '2017-08-31 17:02:49'),
 (12, 'Seller Name', 'Test Admin', '9861676916', 'Pokhara', 16, 'vF8kds10a4BaoXeTLQNeRS9Kc.jpg', '2017-08-30 17:47:27', '2017-08-31 17:02:57'),
 (13, 'admin', 'admin', 'admin', 'admin', 23, 'test.jpg', '2017-08-30 18:48:33', '2017-08-30 18:48:33'),
 (14, 'Ashish', 'ashish shop', '9860721568', 'Pokhara', 24, 'Hp63D6ff9VkXKf3kxixv1d8RI.jpg', '2017-11-29 06:27:28', '2017-11-29 06:27:28'),
 (15, 'Ashish', 'askl', '9851239812', 'pokhara', 25, 'cDZTfww9CU17JXSI97EXASAUT.jpg', '2017-12-03 10:29:42', '2017-12-03 10:29:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akh_delivery_location`
+--
+
+CREATE TABLE `akh_delivery_location` (
+  `location_id` int(11) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `city` varchar(200) NOT NULL,
+  `province` varchar(200) NOT NULL,
+  `postal_code` varchar(200) NOT NULL,
+  `country` varchar(200) NOT NULL,
+  `order_id` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -122,7 +160,7 @@ INSERT INTO `akh_featured_products` (`featured_id`, `product_id`) VALUES
 --
 
 CREATE TABLE `akh_orders` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` varchar(50) NOT NULL,
   `color` varchar(50) NOT NULL,
@@ -224,8 +262,8 @@ INSERT INTO `akh_users` (`id`, `email`, `password`, `role`, `enabled`, `created_
 (15, 'buyers@example.com', '0e0e53f7c8fca96819ad752bcf86c13ccad02efac0cd307982bf6821a74dcdc8', 'akheli_buyer', 1, '2017-08-30 17:14:39', '2017-08-30 18:17:53'),
 (16, 'sellers@example.com', 'ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'akheli_seller', 1, '2017-08-30 17:47:27', '2017-08-30 18:08:50'),
 (23, 'iamadmin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'akheli_admin', 1, '2017-08-30 18:48:33', '2017-08-30 18:48:33'),
-(24, 'bikram.ashish@gmail.com', '2ae3aed1c7e9cf81377d6a476153c3c23064f1f1d455dfcb4f2027255d251dcc', 'akheli_seller', 1, '2017-11-29 06:27:28', '2017-12-03 10:31:46'),
-(25, 'bikram@gmail.com', '2ae3aed1c7e9cf81377d6a476153c3c23064f1f1d455dfcb4f2027255d251dcc', 'akheli_buyer', 1, '2017-12-03 10:29:42', '2017-12-03 10:29:42');
+(24, 'bikram.ashish@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'akheli_seller', 1, '2017-11-29 06:27:28', '2017-12-16 06:54:34'),
+(25, 'bikram@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'akheli_buyer', 1, '2017-12-03 10:29:42', '2017-12-16 06:54:40');
 
 --
 -- Indexes for dumped tables
@@ -236,6 +274,13 @@ INSERT INTO `akh_users` (`id`, `email`, `password`, `role`, `enabled`, `created_
 --
 ALTER TABLE `akh_add_product_details`
   ADD PRIMARY KEY (`detail_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `akh_add_product_image`
+--
+ALTER TABLE `akh_add_product_image`
+  ADD PRIMARY KEY (`image_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
@@ -250,6 +295,13 @@ ALTER TABLE `akh_chats`
 ALTER TABLE `akh_clients`
   ADD PRIMARY KEY (`id`),
   ADD KEY `clients_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `akh_delivery_location`
+--
+ALTER TABLE `akh_delivery_location`
+  ADD PRIMARY KEY (`location_id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexes for table `akh_featured_products`
@@ -294,7 +346,12 @@ ALTER TABLE `akh_users`
 -- AUTO_INCREMENT for table `akh_add_product_details`
 --
 ALTER TABLE `akh_add_product_details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `akh_add_product_image`
+--
+ALTER TABLE `akh_add_product_image`
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `akh_chats`
 --
@@ -306,6 +363,11 @@ ALTER TABLE `akh_chats`
 ALTER TABLE `akh_clients`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
+-- AUTO_INCREMENT for table `akh_delivery_location`
+--
+ALTER TABLE `akh_delivery_location`
+  MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `akh_featured_products`
 --
 ALTER TABLE `akh_featured_products`
@@ -314,7 +376,7 @@ ALTER TABLE `akh_featured_products`
 -- AUTO_INCREMENT for table `akh_orders`
 --
 ALTER TABLE `akh_orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `akh_products`
 --
@@ -341,10 +403,22 @@ ALTER TABLE `akh_add_product_details`
   ADD CONSTRAINT `akh_add_product_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `akh_products` (`id`);
 
 --
+-- Constraints for table `akh_add_product_image`
+--
+ALTER TABLE `akh_add_product_image`
+  ADD CONSTRAINT `akh_add_product_image_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `akh_products` (`id`);
+
+--
 -- Constraints for table `akh_clients`
 --
 ALTER TABLE `akh_clients`
   ADD CONSTRAINT `clients_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `akh_users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `akh_delivery_location`
+--
+ALTER TABLE `akh_delivery_location`
+  ADD CONSTRAINT `akh_delivery_location_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `akh_orders` (`id`);
 
 --
 -- Constraints for table `akh_featured_products`
