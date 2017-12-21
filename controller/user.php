@@ -242,7 +242,9 @@ if($_POST['changePassword']){
     }
 }else if($_GET["l"]){
     if(my_decrypt($_GET['l']) == 'pleaselogout'){
-        session_destroy();
+        unset($_SESSION["username"]);
+        unset($_SESSION["role"]);
+        unset($_SESSION["user_id"]);
         header("Location:../index.php");
         return;
     }
