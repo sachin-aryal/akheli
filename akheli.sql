@@ -112,7 +112,7 @@ CREATE TABLE `akh_products` (
   `product_name` varchar(50) NOT NULL,
   `category` varchar(191) DEFAULT NULL,
   `description` text,
-  `min_order` varchar(191) DEFAULT NULL,
+  `weight` varchar(191) DEFAULT NULL,
   `price` varchar(20) NOT NULL,
   `image` varchar(191) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -124,7 +124,7 @@ CREATE TABLE `akh_products` (
 -- Dumping data for table `akh_products`
 --
 
-INSERT INTO `akh_products` (`id`, `product_name`, `category`, `description`, `min_order`, `price`, `image`, `created_at`, `updated_at`, `user_id`) VALUES
+INSERT INTO `akh_products` (`id`, `product_name`, `category`, `description`, `weight`, `price`, `image`, `created_at`, `updated_at`, `user_id`) VALUES
 (3, 'Kurta', 'Ladies', 'General Description.', '10', '200', 'wlISBXpP5mWQLmDWMxv1HCybg.jpg', '2017-08-30 18:08:11', '2017-08-30 18:08:11', 16);
 
 -- --------------------------------------------------------

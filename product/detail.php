@@ -6,6 +6,7 @@ if (!isset($_SESSION)) {
 include_once "../_header.php";
 
 $product_id = my_decrypt($_GET['id']);
+
 $product_info_details = getProductInfo($conn, $product_id);
 if(sizeof($product_info_details) == 0){
     $product_id = $_GET['id'];
@@ -23,7 +24,7 @@ $client = getClient($conn, $product_info_details["user_id"]);
             <div id="outer-categories-slider" class="col-md-12">
                 <?php include_once "../_dashsidebar.php"?>
                 <div class="col-md-9">
-                    <div class="page-title">
+                    <div class="page-title clearfix">
                         <h3 style="display: inline-block"><span class="fa fa-eye"></span> Product Detail
                             <small>View detail and order produce</small>
                         </h3>
@@ -34,10 +35,13 @@ $client = getClient($conn, $product_info_details["user_id"]);
                             </form>
                         <?php } ?>
                         <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
-                            <button style="float: right" type="button" class="btn btn-info" data-toggle="modal" data-target="#add-addition-detail-modal">
+                            <button style="float: right;margin-left: 10px" type="button" class="btn btn-info clearfix" data-toggle="modal" data-target="#add-addition-detail-modal">
                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add More Detail
                             </button>
-                            <form style="display: inline-block;float: right" method="post" action="controller/product.php">
+                            <button style="float: right" type="button" class="btn btn-info clearfix" data-toggle="modal" data-target="#add-addition-image-modal">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add More Image
+                            </button>
+                            <form style="display: inline-block;float: right" method="post" action="controller/product.php" class="clearfix">
                                 <input type="hidden" name="id" value="<?php echo $product_info_details['id'] ?>"/>
                                 <button class="btn btn-primary" name="edit_product">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit
@@ -75,6 +79,33 @@ $client = getClient($conn, $product_info_details["user_id"]);
 
                                 </div>
                             </div>
+
+
+                            <div id="add-addition-image-modal" class="modal fade col-md-12" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Add Product Image</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" action="controller/product.php" id="additional-details-form" enctype="multipart/form-data" >
+                                                <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
+                                                <div class="form-group">
+                                                    <label for="image">Image:</label>
+                                                    <input type="file" name="product_image">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-primary" name="save_image" value="Save">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         <?php } ?>
                     </div>
                     <div class="row">
@@ -94,10 +125,53 @@ $client = getClient($conn, $product_info_details["user_id"]);
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 product-image-wrapper">
-                                        <img src="assets/images/<?php echo $product_info_details['image'] ?>">
-                                    </div>
+                                    <div class="col-md-4 product-image-wrapper clearfix">
+                                     <!--   <?php /*if(isset($_GET['image_id'])){
+                                            $image_id=my_decrypt($_GET['image_id']);
+                                            $view_image=getViewImage($conn,$image_id);
+                                            */?>
+                                            <img src="assets/images/<?php /*echo $view_image['product_image'] */?>">
+                                            --><?php /*}else{ */?>
+                                            <img src="assets/images/<?php echo $product_info_details['image'] ?>">
+                                         <?php /*} */?>
+                                        <div class="small-images">
+                                            <img class="thumbnail img-responsive" src="assets/images/<?php echo $product_info_details['image'] ?>">
+                                           <!--  <img src="assets/images/<?php /*echo $product_info_details['image'] */?>" class="image-class">-->
+                                        </div>
+                                        <?php
+                                        $images_List=getImages($conn);
+                                        foreach ($images_List as $image){
+                                        ?>
+                                        <div class="small-images clearfix">
+                                            <img class="thumbnail img-responsive" src="assets/images/<?php echo $image['product_image'] ?>">
+                                             <!--<img src="assets/images/<?php /*echo $image['product_image'] */?>" class="image-class">-->
+                                            <?php if(isSeller()){ ?>
+                                            <form method="post" action="controller/product.php" >
+                                                <input type="hidden" name="product_id" value="<?php echo my_encrypt($image['product_id']) ?>">
+                                                <input type="hidden" name="image_id" value="<?php echo my_encrypt($image['image_id']) ?>">
+                                                &nbsp;<button class="btn btn-danger" name="delete_image">Delete</button>
 
+                                            </form>
+                                            <?php } ?>
+                                        </div>
+                                        <?php } ?>
+                                        <div tabindex="-1" class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button class="close" type="button" data-dismiss="modal">×</button>
+
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="detail-space"></div>
                                     <div class="col-md-8">
 
                                         <div class="col-lg-4">
@@ -128,11 +202,11 @@ $client = getClient($conn, $product_info_details["user_id"]);
 
                                         <div class="col-lg-4">
                                             <div class="detail-component">
-                                                <h6 class="title">Minimum Order</h6>
+                                                <h6 class="title">Weight</h6>
                                                 <h4 title="Category">
                                                     <ol class="breadcrumb">
                                                         <li>
-                                                            <?php echo $product_info_details['category'] ?>
+                                                            <?php echo $product_info_details['weight'] ?> kg
                                                         </li>
                                                     </ol>
                                                 </h4>
@@ -358,6 +432,18 @@ $client = getClient($conn, $product_info_details["user_id"]);
             </div>
         </div>
     </div>
+<script>
+
+    $(document).ready(function() {
+        $('.thumbnail').click(function(){
+            $('.modal-body').empty();
+            var title = $(this).parent('a').attr("title");
+            $('.modal-title').html(title);
+            $($(this).parents('div').html()).appendTo('.modal-body');
+            $('#myModal').modal({show:true});
+        });
+    });
+</script>
 <?php
 include_once "../_footer.php";
 ?>

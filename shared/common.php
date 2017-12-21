@@ -621,3 +621,23 @@ function getDistinctReceiver($conn, $user_id){
     }
     return [];
 }
+function getImages($conn){
+    $stmt=$conn->prepare("Select * from ".PRODUCT_IMAGE_TABLE);
+    if($stmt->execute()){
+        $images=$stmt->get_result();
+        if($images->num_rows>0){
+            return mysqli_fetch_all($images,MYSQLI_ASSOC);
+        }
+    }
+}
+function getViewImage($conn,$image_id){
+    $stmt=$conn->prepare("Select * from ".PRODUCT_IMAGE_TABLE." where image_id=?");
+    $stmt->bind_param("i",$image_id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return false;
+}

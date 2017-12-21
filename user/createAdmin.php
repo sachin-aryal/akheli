@@ -18,7 +18,7 @@ echo $password;
 $role = ROLE_ADMIN;
 $enabled = 1;
 $name = "admin";
-$shop_name = "admin";
+$last_name = "admin";
 $phone_no = "admin";
 $location = "admin";
 $imageName = "test.jpg";

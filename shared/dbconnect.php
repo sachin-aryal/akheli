@@ -7,6 +7,7 @@ define("ORDER_TABLE","akh_orders");
 define("PRODUCT_TABLE","akh_products");
 define("FEATURED_TABLE","akh_featured_products");
 define("PRODUCT_DETAIL_TABLE","akh_product_details");
+define("PRODUCT_IMAGE_TABLE","akh_add_product_image");
 define("CHAT_TABLE","akh_chats");
 
 error_reporting( ~E_DEPRECATED & ~E_NOTICE );

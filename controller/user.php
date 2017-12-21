@@ -21,7 +21,7 @@ if (isset($_POST["register"])) {
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
-    $shop_name=$_POST['shop_name'];
+    $last_name=$_POST['last_name'];
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
     $password = hash('sha256', $password);
@@ -82,8 +82,8 @@ if (isset($_POST["register"])) {
     $stmt->bind_param('sssi', $email,$password,$role,$enabled);
     if($stmt->execute()){
         $user_id = $conn->insert_id;
-        $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,shop_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("ssssis",$name,$shop_name,$phone_no,$location,$user_id,$imageName);
+        $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,last_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
+        $stmt->bind_param("ssssis",$name,$last_name,$phone_no,$location,$user_id,$imageName);
         if($stmt->execute()){
             header("Location:../index.php");
         }else{
@@ -116,7 +116,7 @@ if (isset($_POST["register"])) {
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
-    $shop_name=$_POST['shop_name'];
+    $last_name=$_POST['last_name'];
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
 
@@ -171,8 +171,8 @@ if (isset($_POST["register"])) {
     $stmt = $conn->prepare("UPDATE ".USER_TABLE." SET email = ?, password = ? WHERE id = ?");
     $stmt->bind_param('ssi',$email,$password,$user_id);
     if($stmt->execute()){
-        $stmt = $conn->prepare("UPDATE ".CLIENT_TABLE." set name = ?, shop_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
-        $stmt->bind_param("sssssi",$name,$shop_name,$phone_no,$location,$imageName,$_SESSION["user_id"]);
+        $stmt = $conn->prepare("UPDATE ".CLIENT_TABLE." set name = ?, last_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
+        $stmt->bind_param("sssssi",$name,$last_name,$phone_no,$location,$imageName,$_SESSION["user_id"]);
         if($stmt->execute()){
             $_SESSION["messageType"] = "success";
             $_SESSION["message"] = "User information updated successfully.";

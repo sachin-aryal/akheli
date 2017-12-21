@@ -19,7 +19,7 @@ if(isset($_POST['save_product'])) {
     $size = $_POST['size'];
     $color = $_POST['color'];
     $description = $_POST['description'];
-    $min_order = $_POST['min_order'];
+    $weight = $_POST['weight'];
     $price = $_POST['price'];
     $imageName = "Not Available";
     $errorMessage = "no error";
@@ -59,8 +59,8 @@ if(isset($_POST['save_product'])) {
         return;
     }
 
-    $stmt= $conn->prepare('Insert into '.PRODUCT_TABLE.'(product_name,category,description,min_order,image,price,user_id) VALUES (?,?,?,?,?,?,?)');
-    $stmt->bind_param('ssssssi', $product_name,$category,$description,$min_order,$imageName,$price,$user_id);
+    $stmt= $conn->prepare('Insert into '.PRODUCT_TABLE.'(product_name,category,description,weight,image,price,user_id) VALUES (?,?,?,?,?,?,?)');
+    $stmt->bind_param('ssssssi', $product_name,$category,$description,$weight,$imageName,$price,$user_id);
     if($stmt->execute()){
         $product_id = $conn->insert_id;
         $length = count($_POST['size']);
@@ -180,7 +180,7 @@ if(isset($_POST['update_product'])) {
     }
     $category= $_POST['category'];
     $description = $_POST['description'];
-    $min_order = $_POST['min_order'];
+    $weight = $_POST['weight'];
     $imageName = $imageLocation['image'];
     $price = $_POST['price'];
     $errorMessage = "no error";
@@ -228,8 +228,8 @@ if(isset($_POST['update_product'])) {
         }
     }
 
-    $stmt= $conn->prepare('Update '.PRODUCT_TABLE.' set product_name = ?, category=?, description=?, min_order=?, image=?, price = ? WHERE id= ?');
-    $stmt->bind_param('ssssssi', $product_name,$category,$description,$min_order,$imageName,$price,$product_id);
+    $stmt= $conn->prepare('Update '.PRODUCT_TABLE.' set product_name = ?, category=?, description=?, weight=?, image=?, price = ? WHERE id= ?');
+    $stmt->bind_param('ssssssi', $product_name,$category,$description,$weight,$imageName,$price,$product_id);
 
     if($stmt->execute()) {
 
@@ -284,6 +284,82 @@ if(isset($_POST['remove_feature'])){
     header("Location:../product/index.php");
 
 }
+if(isset($_POST['save_image'])){
+
+    redirectIfNotSeller();
+    $product_id=$_POST['product_id'];
+
+    $imageName = "Not Available";
+    $errorMessage = "no error";
+    $user_id = $_SESSION["user_id"];
+    if (isset($_FILES['product_image'])) {
+        $target_dir = "../assets/images/";
+
+        $uploadOk = 1;
+        $imageName = getRandomString(25).".jpg";
+        $target_file = $target_dir.$imageName;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        if (file_exists($target_file)) {
+            $errorMessage =  "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        if ($_FILES["product_image"]["size"] > 1000000) {
+            $errorMessage =  "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            $errorMessage =  "Sorry, your file was not uploaded.";
+
+        } else {
+            if (!move_uploaded_file($_FILES["product_image"]["tmp_name"], $target_file)) {
+                $errorMessage =  "Sorry, there was an error uploading your file.";
+            }
+        }
+
+    } else {
+        $errorMessage = "Image not found";
+    }
+    if($errorMessage !="no error"){
+        $_SESSION["messageType"] = "error";
+        $_SESSION["message"] = $errorMessage;
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
+
+        return;
+    }
+    $stmt=$conn->prepare("INSERT into ".PRODUCT_IMAGE_TABLE."(product_image,product_id) VALUES(?,?)");
+    $stmt->bind_param('si',$imageName,$product_id);
+    if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
+        $_SESSION["message"] = "Successfully marked as Featured Product.";
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
+        return;
+    }
+    $_SESSION["messageType"] = "error";
+    $_SESSION["message"] = "Error while setting as Featured Product.";
+    header("Location:../product/detail.php?id=".my_encrypt($product_id));
+
+    return;
+}
+if(isset($_POST['delete_image'])){
+    redirectIfNotSeller();
+    $product_id=my_decrypt($_POST['product_id']);
+    $image_id=my_decrypt($_POST['image_id']);
+    $stmt=$conn->prepare("Delete from ".PRODUCT_IMAGE_TABLE." where image_id=?");
+    $stmt->bind_param('i',$image_id);
+    if($stmt->execute()){
+        $_SESSION["messageType"] = "success";
+        $_SESSION["message"] = "Successfully Removed Image from Product.";
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
+    }else{
+        $_SESSION["messageType"] = "error";
+        $_SESSION["message"] = "Error while Removing Image.";
+        header("Location:../product/detail.php?id=".my_encrypt($product_id));
+    }
+
+    header("Location:../product/detail.php?id=".my_encrypt($product_id));
+}
+
 
 ?>
 

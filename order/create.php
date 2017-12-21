@@ -53,8 +53,8 @@ include_once "../_header.php";
 
                         <div class="col-lg-4">
                             <div class="detail-component">
-                                <h6 class="title">Minimum Order</h6>
-                                <h4 title="Category"><?php echo $order_product['min_order'] ?></h4>
+                                <h6 class="title">Weight</h6>
+                                <h4 title="Category"><?php echo $order_product['weight'] ?></h4>
                             </div>
                         </div>
 
