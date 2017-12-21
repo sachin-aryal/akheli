@@ -53,7 +53,6 @@ include_once "../_header.php";
                     <tr>
                         <th>Email</th>
                         <th>Name</th>
-                        <th>Shop Name</th>
                         <th>Phone No</th>
                         <th>Action</th>
                     </tr>
@@ -65,8 +64,7 @@ include_once "../_header.php";
                         ?>
                         <tr>
                             <td><?php echo $user["email"] ?></td>
-                            <td><?php echo $clientList[$i]["name"] ?></td>
-                            <td><?php echo $clientList[$i]["shop_name"] ?></td>
+                            <td><?php echo $clientList[$i]["name"] ?> <?php echo $clientList[$i]["last_name"] ?></td>
                             <td><?php echo $clientList[$i++]["phone_no"] ?></td>
                             <td><span class="fa fa-pencil-square-o"></span> &nbsp; <span class="fa fa-user-times"></span></td>
                         </tr>

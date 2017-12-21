@@ -68,59 +68,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                 </div>
             </div>
         </div>
-        <div class="row" style="padding: 20px;">
-            <div class="custom-wrapper col-md-12">
-                <div class="col-md-3">
-                    <img class="img-thumbnail" src="assets/images/5rWajm6tgfofQldsMHUI9XOkm.jpg"/>
-                </div>
-                <div class="col-md-9">
-                    <ul class="nav nav-tabs" id="home-tabes">
-                        <li class="active"><a data-toggle="tab" href="#new-arrival">Top Categories</a></li>
-                        <li><a data-toggle="tab" href="#top-sellers">Top Sellers</a></li>
-                    </ul>
 
-                    <div class="tab-content">
-                        <div id="new-arrival" class="tab-pane fade in active">
-                            <?php
-                            foreach ($topCategories as $category){
-                                ?>
-                                <div class="well col-md-3" style="text-align: center;margin: 10px 4px 0 0;width: 24%;">
-                                    <a style="color: #337ab7 !important;" href="product/index.php?category=<?php echo $category["category"] ?>"/> <?php echo $category["category"] ?></a>
-                                    <br><span>Total Products:
-                                        <?php
-                                        echo getTotalProductsByCategory($conn, $category["category"])
-                                        ?>
-                                    </span>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                        </div>
-                        <div id="top-sellers" class="tab-pane fade">
-                            <?php
-                            foreach ($topSellers as $sellers){
-                                $client = getClient($conn, $sellers["user_id"]);
-                                ?>
-                                <div class="well col-md-3" style="text-align: center;margin: 10px 20px 0 0;width: 22%">
-                                    <span>
-                                        <?php
-                                        echo '<p>'.$client["shop_name"].'</p>';
-                                        echo '<p style="font-size:12px">'.$client["location"]. ' / ' .$client["phone_no"].'</p>';
-                                        ?>
-                                    </span>
-                                    <form action="product/index.php" method="POST">
-                                        <input type="hidden" name="identifier" id="identifier" value="<?php echo my_encrypt($client['user_id'])?>"/>
-                                        <button class="btn btn-primary" name="product_by_user" value="view_products">View Products</button>
-                                    </form>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row" style="padding: 20px">
             <div class="col-md-5">
                 <h3 style="font-weight: bold;">

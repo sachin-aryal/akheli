@@ -29,9 +29,9 @@
 </div>
 
 <div class="form-group">
-    <label for="min_order">Min-order:</label>
-    <input class="form-control" type="number" id="min_order" name="min_order" value="<?php echo $product['min_order'] ?>">
-    <span class="error_min_order" id="error_min_order"></span>
+    <label for="weight">Weight:</label>
+    <input class="form-control" type="number" id="weight" name="weight" value="<?php echo $product['weight'] ?>">
+    <span class="error_weight" id="error_weight"></span>
 </div>
 
 <div class="form-group">

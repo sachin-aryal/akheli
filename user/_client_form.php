@@ -1,10 +1,16 @@
 
 <div class="form-group">
-    <label>Name:</label>
+    <label>First Name:</label>
     <input class="form-control" type="text" name="name" id="name" required value="<?php echo $client["name"] ?>"/>
     <span class="error_name" id="error_name"></span>
 </div>
 
+<div class="form-group">
+    <label>Last Name:</label>
+    <input class="form-control" type="text" name="last_name" id="last_name" required
+           value="<?php echo $client["last_name"] ?>"/>
+    <span id="error_shop"></span>
+</div>
 <div class="form-group">
     <label>Email:</label>
     <input class="form-control" type="Email" name="email" id="email" required value="<?php echo $user["email"] ?>"/>
@@ -18,12 +24,7 @@
 </div>
 
 
-<div class="form-group">
-    <label>Shop Name:</label>
-    <input class="form-control" type="text" name="shop_name" id="shop_name" required
-           value="<?php echo $client["shop_name"] ?>"/>
-    <span id="error_shop"></span>
-</div>
+
 
 <div class="form-group">
     <label>Contact Number:</label>

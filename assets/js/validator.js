@@ -170,15 +170,15 @@ function validateProduct(){
         }
     });
 
-    $('#min_order').on('input', function() {
+    $('#weight').on('input', function() {
 
         var input=$(this);
         var is_val = input.val();
 
         if(is_val ===''){
-            $("#error_min_order").text("Please enter minimum order").addClass("valid");
+            $("#error_weight").text("Please enter minimum order").addClass("valid");
         }else{
-            $("#error_min_order").text("");
+            $("#error_weight").text("");
         }
     });
 
@@ -248,13 +248,13 @@ function validateProduct(){
             $("#error_category").text("");
         }
 
-        input=$('#min_order');
+        input=$('#weight');
         is_val = input.val();
         if(is_val ===''){
-            $("#error_min_order").text("Please enter minimum order").addClass("valid");
+            $("#error_weight").text("Please enter minimum order").addClass("valid");
             return false;
         }else{
-            $("#error_min_order").text("");
+            $("#error_weight").text("");
         }
 
         input=$('#price');

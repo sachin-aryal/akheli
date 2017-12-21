@@ -31,8 +31,7 @@ include_once "../_header.php";
                                 <img src="assets/upload/<?php echo $client['user_image'] ?>" style="width: 300px;height: 250px">
                             </div>
                             <div class="col-md-4">
-                                <h1><?php echo $client[name]; ?></h1>
-                                <p class="title"><?php echo $client[shop_name]; ?></p>
+                                <h1><?php echo $client[name]; ?> <?php echo $client[last_name]; ?> </h1>
                                 <p><?php echo $client[location]; ?></p>
                                 <p><?php echo $client[email]; ?></p>
                                 <p><?php echo $client[phone_no]; ?></p>
