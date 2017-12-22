@@ -73,6 +73,9 @@ $unique_categories = getDistinctCategory($conn);
                 <li><a href="#">Contact Us</a></li>
                 <li><a href="order/cart.php">Cart</a></li>
                 <?php
+                if(isAdmin()){
+                    echo "<li><a href='rate/rate.php'>Rate</a></li>";
+                }
                 if(isLoggedIn()){
                     echo "<li><a href='dashboard.php'>Dashboard</a></li>";
                 }

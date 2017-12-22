@@ -1387,3 +1387,6 @@ div#second-nav-bar {
     height: 500px;
 }
 .thumbnail {margin-bottom:6px;}
+#add_location{
+    display: none;
+}

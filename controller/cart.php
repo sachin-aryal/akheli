@@ -23,4 +23,23 @@ elseif(isset($_POST["remove_from_cart"]) && isset($_POST["pid"])){
 elseif (isset($_POST["update_quantity"]) && isset($_POST["product_id"]) && $_POST["quantity"]){
     $product_id = my_decrypt($_POST["product_id"]);
     $_SESSION["cart_items"][$product_id] = $_POST["quantity"];
+}elseif(isset($_POST['update_location'])){
+    if(isset($_POST['address'])){
+        $_SESSION["cart_items"]["address"]=$_POST['address'];
+    }
+    if(isset($_POST['city'])){
+        $_SESSION["cart_items"]["city"]=$_POST['city'];
+    }
+    if(isset($_POST['province'])){
+        $_SESSION["cart_items"]["province"]=$_POST['province'];
+    }
+    if(isset($_POST['postal_code'])){
+        $_SESSION["cart_items"]["postal_code"]=$_POST['postal_code'];
+    }
+    if(isset($_POST['country'])){
+        $_SESSION["cart_items"]["country"]=$_POST['country'];
+    }
+    return;
+
+
 }

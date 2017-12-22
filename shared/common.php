@@ -641,3 +641,14 @@ function getViewImage($conn,$image_id){
     }
     return false;
 }
+function getRate($conn,$id){
+    $stmt=$conn->prepare("Select * from ".RATE_TABLE." where rate_id=?");
+    $stmt->bind_param("i",$id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return false;
+}
