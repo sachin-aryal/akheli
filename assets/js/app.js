@@ -74,3 +74,23 @@ function updateQuantity(product_id, quantity) {
         }
     });
 }
+function saveLocation() {
+    var address=$('#address').val();
+    var city=$('#city').val();
+    var province=$('#province').val();
+    var postal_code=$('#postal_code').val();
+    var country=$('#country').val();
+    $.ajax({
+        method: "POST",
+        url: "controller/cart.php",
+        data: {address: address, city: city, province: province, postal_code:postal_code, country:country, update_location: true},
+        success: function (data) {
+            window.location = "order/checkout.php";
+        },error: function (err) {
+
+        }
+    })
+
+
+
+}

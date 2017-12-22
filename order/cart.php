@@ -101,15 +101,17 @@ include_once "../_header.php";
                     <tfoot>
                     <tr>
                         <td colspan="0">
-                         <button type="submit" id="location">
-                             Add Location
-                         </button>
-                            <form action="controller/location.php" id="add_location" class="custom-form"  method="post" >
-                                <?php
-                                include_once "../location/_location_form.php";
-                                ?>
-                                <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_location" value="Save">
-                            </form>
+                            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#demo">Shipping Details</button>
+
+                            <div id="demo" class="collapse">
+
+                                    <?php
+                                    include_once "../location/_location_form.php";
+                                    ?>
+
+                            </div>
+
+
                         </td>
                     </tr>
 
@@ -120,7 +122,7 @@ include_once "../_header.php";
                         <td class="hidden-xs text-center"><strong id="total-price">Rs. <?php echo $total ?></strong></td>
                         <td>
                             <?php if(isLoggedIn()){ ?>
-                            <a id="checkout-link" href="order/checkout.php" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a>
+                            <a id="checkout-link" href="#" class="btn btn-success btn-block" onclick="saveLocation()">Checkout <i class="fa fa-angle-right"></i></a>
                             <?php }else{?>
                                 <p style="color: red;">Please login to order items. Cart items will be stored for 24 hours.</p>
                             <?php }?>

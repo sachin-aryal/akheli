@@ -1,35 +1,31 @@
 <script>
     $(function () {
-        $('#test').val('<?php echo $location['country']; ?>');
+        $('#test').val('<?php echo  $_SESSION["cart_items"]["country"] ?>');
     })
 </script>
 <div class="form-group">
     <label>Address:</label>
-    <input class="form-control" type="text" name="address" id="address" required value="<?php echo $location["address"] ?>"/>
+    <input class="form-control" type="text" name="address" id="address" required value="<?php echo $_SESSION["cart_items"]["address"] ?>"/>
     <span class="error_address" id="error_address"></span>
 </div>
 
 <div class="form-group">
     <label>City:</label>
     <input class="form-control" type="text" name="city" id="city" required
-           value="<?php echo $location["city"] ?>"/>
+           value="<?php echo $_SESSION["cart_items"]["city"] ?>"/>
     <span id="error_city"></span>
 </div>
 <div class="form-group">
     <label>Province:</label>
-    <input class="form-control" type="text" name="province" id="province" required value="<?php echo $location["province"] ?>"/>
+    <input class="form-control" type="text" name="province" id="province" required value="<?php echo $_SESSION["cart_items"]["province"] ?>"/>
     <span class="error_province" id="error_province"></span>
 </div>
 
 <div class="form-group">
     <label>Postal/Zip Code:</label>
-    <input class="form-control" type="text" name="postal_code" id="postal_code"/>
+    <input class="form-control" type="text" name="postal_code" id="postal_code" value="<?php echo $_SESSION["cart_items"]["postal_code"] ?>"/>
     <span id="error_postal"></span>
 </div>
-
-
-
-
 <div class="form-group">
     <label>Country:</label>
     <select class="form-control" id="country" name="country">
