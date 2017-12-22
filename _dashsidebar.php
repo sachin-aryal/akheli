@@ -61,8 +61,10 @@
                                     <?php echo "Rs. ".$product["price"] ?>
                                 </p>
                                 <p class="price-new">
-                                    <a class="btn btn-primary text-center" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
-                                </p>
+                                    <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+<!--
+                                    <a class="btn btn-primary text-center" href="product/detail.php?name=<?php /*echo $product["product_name"] */?>&id=<?php /*echo my_encrypt($product['id']) */?>">Details</a>
+-->                                </p>
                             </div>
                         </div>
                 </article>
@@ -102,8 +104,10 @@
                                     <?php echo "Rs. ".$product["price"] ?>
                                 </p>
                                 <p class="price-new">
-                                    <a class="btn btn-primary text-center" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
-                                </p>
+                                    <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+
+                                    <!--<a class="btn btn-primary text-center" href="product/detail.php?name=<?php /*echo $product["product_name"] */?>&id=<?php /*echo my_encrypt($product['id']) */?>">Details</a>
+                                --></p>
                             </div>
                         </div>
                 </article>

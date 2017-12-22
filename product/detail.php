@@ -420,8 +420,10 @@ $client = getClient($conn, $product_info_details["user_id"]);
                                         </p>
                                     </div>
                                     <div class="text-center view-detail">
-                                        <a class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
-                                    </div>
+                                        <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+
+                                        <!--<a class="btn btn-primary" href="product/detail.php?name=<?php /*echo $product["product_name"] */?>&id=<?php /*echo my_encrypt($product['id']) */?>">Details</a>
+                                    --></div>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
