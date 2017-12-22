@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2017 at 02:11 PM
+-- Generation Time: Dec 22, 2017 at 05:06 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -241,6 +241,24 @@ INSERT INTO `akh_product_details` (`id`, `size`, `color`, `product_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `akh_rates`
+--
+
+CREATE TABLE `akh_rates` (
+  `rate_id` int(11) NOT NULL,
+  `doller_rate` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akh_rates`
+--
+
+INSERT INTO `akh_rates` (`rate_id`, `doller_rate`) VALUES
+(1, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `akh_users`
 --
 
@@ -332,6 +350,12 @@ ALTER TABLE `akh_product_details`
   ADD KEY `product_id` (`product_id`);
 
 --
+-- Indexes for table `akh_rates`
+--
+ALTER TABLE `akh_rates`
+  ADD PRIMARY KEY (`rate_id`);
+
+--
 -- Indexes for table `akh_users`
 --
 ALTER TABLE `akh_users`
@@ -387,6 +411,11 @@ ALTER TABLE `akh_products`
 --
 ALTER TABLE `akh_product_details`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT for table `akh_rates`
+--
+ALTER TABLE `akh_rates`
+  MODIFY `rate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `akh_users`
 --
