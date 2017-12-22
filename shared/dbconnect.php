@@ -9,6 +9,8 @@ define("FEATURED_TABLE","akh_featured_products");
 define("PRODUCT_DETAIL_TABLE","akh_product_details");
 define("PRODUCT_IMAGE_TABLE","akh_add_product_image");
 define("CHAT_TABLE","akh_chats");
+define("RATE_TABLE","akh_rates");
+define("LOCATION_TABLE","akh_delivery_location");
 
 error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 // but I strongly suggest you to use PDO or MySQLi.
