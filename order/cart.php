@@ -10,8 +10,8 @@ include_once "../_header.php";
     <div class="row" style="padding: 20px;height: 420px">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
-            <div class="col-md-9">
-                <div class="page-title">
+            <div class="col-md-9 clearfix">
+                <div class="page-title clearfix">
                     <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Items in Cart
                     </h3>
                 </div>
@@ -67,7 +67,7 @@ include_once "../_header.php";
                             ?>
                             <tr>
                                 <td data-th="Product">
-                                    <div class="row">
+                                    <div class="row clearfix">
                                         <div class="col-sm-2 hidden-xs"><img src="assets/images/<?php echo $product_info['image'] ?>"
                                                                              class="img-responsive"/></div>
                                         <div class="col-sm-10">
@@ -95,9 +95,26 @@ include_once "../_header.php";
                     }
                     }
                     ?>
+
                     </tbody>
+
                     <tfoot>
                     <tr>
+                        <td colspan="0">
+                         <button type="submit" id="location">
+                             Add Location
+                         </button>
+                            <form action="controller/location.php" id="add_location" class="custom-form"  method="post" >
+                                <?php
+                                include_once "../location/_location_form.php";
+                                ?>
+                                <input type="submit" class="btn btn-primary pull-left margin-vertical" name="save_location" value="Save">
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+
                         <td><a id="continue-shopping" href="product/index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                         <td colspan="2" class="hidden-xs"></td>
                         <td class="hidden-xs text-center"><strong id="total-price">Rs. <?php echo $total ?></strong></td>
@@ -115,6 +132,16 @@ include_once "../_header.php";
         </div>
     </div>
 </div>
+<script>
+
+    $(function () {
+        $('#location').click(function () {
+            $('#add_location').show();
+        })
+
+    })
+</script>
+
 <?php
 include_once "../_footer.php";
 ?>
