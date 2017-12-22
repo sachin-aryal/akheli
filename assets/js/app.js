@@ -58,4 +58,19 @@ function calculateAmount(productId) {
         total_price+=parseInt($(this).text());
     });
     $("#total-price").text("Rs."+total_price);
+    updateQuantity(productId, quantity);
+
+}
+
+function updateQuantity(product_id, quantity) {
+    $.ajax({
+       method: "POST",
+       url: "controller/cart.php",
+       data: {product_id: product_id, quantity: quantity, update_quantity: true},
+       success: function (data) {
+
+       },error: function (err) {
+
+        }
+    });
 }
