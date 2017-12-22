@@ -26,9 +26,9 @@ if(isset($_SESSION["cart_items"])){
     foreach ($_SESSION["cart_items"] as $product_id=>$quantity){
         $product_info = getProductInfo($conn, $product_id);
         if($product_info){
-            $price = $product_info["price"]*100; //todo: Replace with dynamic dollar rate.
+            $price = $product_info["price"]/100; //todo: Replace with dynamic dollar rate.
             $sub_total+=($price*$quantity);
-            $weight+=$product_info["weight"];
+            $weight+=($product_info["weight"]*$quantity);
             $item = new Item();
             $item->setName($product_info["product_name"])
                 ->setCurrency('USD')

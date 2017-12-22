@@ -15,35 +15,6 @@ include_once "../_header.php";
                     <h3><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Items in Cart
                     </h3>
                 </div>
-                <!--                <table id="orderList" class="table table-responsive table-bordered custom-table bg-white shadow">-->
-                <!--                    <thead>-->
-                <!--                    <tr>-->
-                <!--                        <th>Shopping Cart</th>-->
-                <!--                        <th>Price</th>-->
-                <!--                        <th>Quantity</th>-->
-                <!--                    </tr>-->
-                <!--                    </thead>-->
-                <!--                    <tbody>-->
-                <!--                    --><?php
-                //                    foreach ($_SESSION["cart_items"] as $cart_item){
-                //                        $product_info = getProductInfo($conn, $cart_item);
-                //                        if($product_info){
-                //                    ?>
-                <!--                    <tr>-->
-                <!--                        <td>-->
-                <!--                            --><?php //echo $product_info["product_name"] ?>
-                <!--                        </td>-->
-                <!--                        <td>--><?php //echo $product_info["price"] ?><!--</td>-->
-                <!--                        <td>-->
-                <!--                            <form method="post" action="controller/cart.php">-->
-                <!--                                <input type="hidden" name="pid" value="--><?php //echo my_encrypt($product_info['id']) ?><!--"/>-->
-                <!--                                <button class="btn btn-danger" name="remove_from_cart">Remove</button>-->
-                <!--                            </form>-->
-                <!--                        </td>-->
-                <!--                    </tr>-->
-                <!--                    --><?php //}} ?>
-                <!--                    </tbody>-->
-                <!--                </table>-->
                 <table id="cart" class="table table-hover table-condensed">
                     <thead>
                     <tr>
