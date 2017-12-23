@@ -1,29 +1,29 @@
 <script>
     $(function () {
-        $('#test').val('<?php echo  $_SESSION["cart_items"]["country"] ?>');
+        $('#country').val('<?php echo  $_SESSION["shipping_address"]["country"] ?>');
     })
 </script>
 <div class="form-group">
     <label>Address:</label>
-    <input class="form-control" type="text" name="address" id="address" required value="<?php echo $_SESSION["cart_items"]["address"] ?>"/>
+    <input class="form-control" type="text" name="address" id="address" required value="<?php echo $_SESSION["shipping_address"]["address"] ?>"/>
     <span class="error_address" id="error_address"></span>
 </div>
 
 <div class="form-group">
     <label>City:</label>
     <input class="form-control" type="text" name="city" id="city" required
-           value="<?php echo $_SESSION["cart_items"]["city"] ?>"/>
+           value="<?php echo $_SESSION["shipping_address"]["city"] ?>"/>
     <span id="error_city"></span>
 </div>
 <div class="form-group">
     <label>Province:</label>
-    <input class="form-control" type="text" name="province" id="province" required value="<?php echo $_SESSION["cart_items"]["province"] ?>"/>
+    <input class="form-control" type="text" name="province" id="province" required value="<?php echo $_SESSION["shipping_address"]["province"] ?>"/>
     <span class="error_province" id="error_province"></span>
 </div>
 
 <div class="form-group">
     <label>Postal/Zip Code:</label>
-    <input class="form-control" type="text" name="postal_code" id="postal_code" value="<?php echo $_SESSION["cart_items"]["postal_code"] ?>"/>
+    <input class="form-control" type="text" name="postal_code" id="postal_code" value="<?php echo $_SESSION["shipping_address"]["postal_code"] ?>"/>
     <span id="error_postal"></span>
 </div>
 <div class="form-group">
@@ -179,7 +179,7 @@
         <option value="Myanmar">Myanmar</option>
         <option value="Namibia">Namibia</option>
         <option value="Nauru">Nauru</option>
-        <option value="Nepal" selected>Nepal</option>
+        <option selected value="Nepal">Nepal</option>
         <option value="Netherlands">Netherlands</option>
         <option value="Netherlands Antilles">Netherlands Antilles</option>
         <option value="New Caledonia">New Caledonia</option>

@@ -52,6 +52,10 @@ function addToCart(item_id) {
 function calculateAmount(productId) {
     var price = $("#price-"+productId).text();
     var quantity = $("#quantity-"+productId).val();
+    if(quantity < 1){
+        $("#quantity-"+productId).val(1);
+        quantity = 1;
+    }
     $("#subtotal-"+productId).text(price*quantity);
     var total_price = 0;
     $(".subtotal").each(function (i) {
@@ -85,11 +89,11 @@ function saveLocation() {
         url: "controller/cart.php",
         data: {address: address, city: city, province: province, postal_code:postal_code, country:country, update_location: true},
         success: function (data) {
-            window.location = "order/checkout.php";
+            $("#order-form").submit();
         },error: function (err) {
 
         }
-    })
+    });
 
 
 

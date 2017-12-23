@@ -29,9 +29,11 @@ include_once "../_header.php";
                     <?php
                     $total = 0;
                     if(isset($_SESSION["cart_items"])){
+                        $show = false;
                     foreach ($_SESSION["cart_items"] as $cart_item=>$val){
                         $product_info = getProductInfo($conn, $cart_item);
                         if($product_info) {
+                            $show = true;
                             $id = my_encrypt($product_info['id']);
                             $sub_total = $product_info['price']*$val;
                             $total+=$sub_total;
@@ -64,56 +66,57 @@ include_once "../_header.php";
                             <?php
                         }
                     }
-                    }
+                    if($show){
                     ?>
-
+                    <tr>
+                        <td colspan="4" class="hidden-xs text-center"><strong id="total-price">Total: Rs. <?php echo $total ?></strong></td>
+                    </tr>
                     </tbody>
 
                     <tfoot>
                     <tr>
-                        <td colspan="0">
+                        <td colspan="4">
                             <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#demo">Shipping Details</button>
+                            <div id="demo" class="collapse" style="margin-top: 15px">
 
-                            <div id="demo" class="collapse">
-
-                                    <?php
-                                    include_once "../location/_location_form.php";
-                                    ?>
+                                <?php
+                                include_once "../location/_location_form.php";
+                                ?>
 
                             </div>
 
-
                         </td>
                     </tr>
-
                     <tr>
-
+                        <td colspan="4">
+                            <form action="order/checkout.php" method="post" id="order-form">
+                                <label for="order-note">Order Note</label>
+                                <textarea name="order_note" id="order-note" cols="110" rows="5"></textarea>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><a id="continue-shopping" href="product/index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                         <td colspan="2" class="hidden-xs"></td>
-                        <td class="hidden-xs text-center"><strong id="total-price">Rs. <?php echo $total ?></strong></td>
                         <td>
                             <?php if(isLoggedIn()){ ?>
-                            <a id="checkout-link" href="#" class="btn btn-success btn-block" onclick="saveLocation()">Checkout <i class="fa fa-angle-right"></i></a>
+                                <a id="checkout-link" href="#" class="btn btn-success btn-block" onclick="saveLocation()">Checkout <i class="fa fa-angle-right"></i></a>
                             <?php }else{?>
                                 <p style="color: red;">Please login to order items. Cart items will be stored for 24 hours.</p>
                             <?php }?>
                         </td>
                     </tr>
                     </tfoot>
+                    <?php
+                    }else{
+                        echo "<tr><td style='text-align: center' colspan='4'>No Items in cart.</td></tr>";
+                    }}
+                    ?>
                 </table>
             </div>
         </div>
     </div>
 </div>
-<script>
-
-    $(function () {
-        $('#location').click(function () {
-            $('#add_location').show();
-        })
-
-    })
-</script>
 
 <?php
 include_once "../_footer.php";

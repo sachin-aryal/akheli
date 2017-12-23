@@ -17,11 +17,10 @@ if(isset($_POST['save_order'])){
     $quantity = $_POST["quantity"];
     $product_id = $_POST["product_id"];
     $user_id = $_SESSION["user_id"];
-    $viewed = 0;
     $status = ORDER_STATUS_REQUESTED;
-    $stmt = $conn->prepare("INSERT INTO ".ORDER_TABLE."(description,size,color,quantity,user_id,status,viewed,product_id) 
+    $stmt = $conn->prepare("INSERT INTO ".ORDER_TABLE."(description,size,color,quantity,user_id,status,product_id) 
                           VALUES(?,?,?,?,?,?,?,?) ");
-    $stmt->bind_param("ssssisii",$description,$size,$color,$quantity,$user_id,$status,$viewed,$product_id);
+    $stmt->bind_param("ssssisi",$description,$size,$color,$quantity,$user_id,$status,$product_id);
     if($stmt->execute()){
         $_SESSION["messageType"] = "success";
         $_SESSION["message"] = "Ordered Successfully.";
@@ -81,5 +80,27 @@ if(isset($_POST['save_order'])){
         $_SESSION["message"] = "Error while ordering.";
         header("Location:../order/edit.php?order_id=$order_id");
         return;
+    }
+} elseif(isset($_POST['save_order_ajax'])){
+    redirectIfNotBuyer();
+    $description = $_POST["description"];
+    $size = "Not Selected";
+    if($_POST["size"]){
+        $size = implode(",",$_POST["size"]);
+    }
+    $color = "Not Selected";
+    if($_POST["color"]) {
+        $color = implode(",", $_POST["color"]);
+    }
+    $quantity = $_POST["quantity"];
+    $product_id = $_POST["product_id"];
+    $user_id = $_SESSION["user_id"];
+    $status = ORDER_STATUS_REQUESTED;
+    $query = "INSERT INTO ".ORDER_TABLE."(description,size,color,quantity,user_id,status,product_id) 
+                          VALUES('$description','$size','$color','$quantity',$user_id,'$status',$product_id)";
+    if($conn->query($query)){
+        return "success";
+    }else{
+        return "error";
     }
 }
