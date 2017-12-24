@@ -55,6 +55,7 @@ include_once "../_header.php";
                 <table id="orderList" class="table table-responsive table-bordered custom-table bg-white shadow">
                     <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>Ordered Date</th>
@@ -72,6 +73,12 @@ include_once "../_header.php";
                         $product_info = getProductInfo($conn,$order["product_id"])
                         ?>
                         <tr>
+                            <td>
+                                <form action="order/detail.php" method="post">
+                                    <input type="hidden" name="order_id" value="<?php echo $order['id'] ?>"/>
+                                    <input class="btn-link" type="submit" value="<?php echo $order['id'] ?>"/>
+                                </form>
+                            </td>
                             <td><a style="color: blue;" href="product/detail.php?name=<?php echo $product_info["product_name"] ?>&id=<?php echo my_encrypt($product_info["id"]) ?>">
                                     <?php
                                     if(strlen($product_info["product_name"]) > 9){

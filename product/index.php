@@ -137,7 +137,10 @@ else {
                                     <?php if(isAdmin()){ ?>
                                         <div class="view-detail">
                                             <table>
-                                                <td><a style="margin-left: 8px;" class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a></td>
+                                                <td>
+                                                    <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+                                                    <!--<a style="margin-left: 8px;" class="btn btn-primary" href="product/detail.php?name=--><?php //echo $product["product_name"] ?><!--&id=--><?php //echo my_encrypt($product['id']) ?><!--">Details</a>-->
+                                                </td>
 
                                                 <?php
                                                 $feature=featured_Product($conn,$product['id']);
@@ -168,7 +171,8 @@ else {
                                         </div>
                                     <?php }else{ ?>
                                         <div class=" view-detail text-center ">
-                                            <a class="btn btn-primary" href="product/detail.php?name=<?php echo $product["product_name"] ?>&id=<?php echo my_encrypt($product['id']) ?>">Details</a>
+                                            <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+                                            <!--                                            <a class="btn btn-primary" href="product/detail.php?name=--><?php //echo $product["product_name"] ?><!--&id=--><?php //echo my_encrypt($product['id']) ?><!--">Details</a>-->
                                         </div>
                                     <?php } ?>
 

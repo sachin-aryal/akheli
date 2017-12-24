@@ -21,7 +21,7 @@ include_once "../_header.php";
                         <th style="width:50%">Product</th>
                         <th style="width:10%">Price</th>
                         <th style="width:8%">Quantity</th>
-                        <th style="width:22%" class="text-center">Subtotal(Rs.)</th>
+                        <th style="width:22%" class="text-center">Subtotal(NRs.)</th>
                         <th style="width:10%"></th>
                     </tr>
                     </thead>
@@ -69,7 +69,8 @@ include_once "../_header.php";
                     if($show){
                     ?>
                     <tr>
-                        <td colspan="4" class="hidden-xs text-center"><strong id="total-price">Total: Rs. <?php echo $total ?></strong></td>
+                        <td colspan="2" style="text-align: center">Total (NRs.)</td>
+                        <td colspan="3" class="hidden-xs text-center"><strong id="total-price"><?php echo $total ?></strong></td>
                     </tr>
                     </tbody>
 

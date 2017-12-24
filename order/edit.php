@@ -15,6 +15,7 @@ $edit_order = getOrder($conn,$order_id);
 $productId = $edit_order["product_id"];
 $order_product = getProductInfo($conn,$productId);
 $order_product_details = getProductDetails($conn,$order_product["id"]);
+$shipping_details = getShippingDetails($conn, $order_id);
 
 if(isAdmin()){
     redirectToDash();
@@ -59,6 +60,10 @@ include_once "../_header.php";
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
             <div class="col-md-9">
+                <div class="page-title clearfix">
+                    <h3 style="display: inline-block"><span class="fa fa-shopping-bag"></span> Edit Order
+                    </h3>
+                </div>
                 <?php if (isBuyer()){?>
                     <div class="col-md-12" style="padding-left: 0">
                         <div class="col-md-4" style="padding-left: 0">
@@ -151,100 +156,21 @@ include_once "../_header.php";
                         </div>
                     </div>
                 <?php } ?>
-            </div>
-            <div class="col-md-offset-3 col-md-9">
-                <div class="col-md-12 text-center">
-                    <h2>Product Details</h2>
-                </div>
-                <div class="col-md-4 product-image-wrapper">
-                    <img class="img-thumbnail" src="assets/images/<?php echo $order_product['image'] ?>">
-                </div>
-                <div class="col-md-8">
-
-                    <div class="col-lg-4">
-                        <div class="detail-component">
-                            <h6 class="title">Price</h6>
-                            <h4 title="Name">
-                                <ol class="breadcrumb">
-                                    <li>
-                                        Rs. <?php echo $order_product['price'] ?>
-                                    </li>
-                                </ol>
-                            </h4>
+                <?php if(isBuyer()){ ?>
+                    <div class="col-md-12" style="margin-top: 15px">
+                        <div class="page-title clearfix">
+                            <h3 style="display: inline-block"><span class="fa fa-shopping-bag"></span> Edit Shipping Details
+                            </h3>
+                        </div>
+                        <div class="col-md-12">
+                            <form action="controller/order.php" method="post">
+                                <?php include_once "../location/db_location_form.php"?>
+                                <input type="hidden" name="order_id" value="<?php echo $order_id ?>"/>
+                                <input class="btn btn-primary" type="submit" name="edit_order_shipping" value="Update"/>
+                            </form>
                         </div>
                     </div>
-
-                    <div class="col-lg-4">
-                        <div class="detail-component">
-                            <h6 class="title">Category</h6>
-                            <h4 title="Category">
-                                <ol class="breadcrumb">
-                                    <li>
-                                        <?php echo $order_product['category'] ?>
-                                    </li>
-                                </ol>
-                            </h4>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="detail-component">
-                            <h6 class="title">Minimum Order</h6>
-                            <h4 title="Category">
-                                <ol class="breadcrumb">
-                                    <li>
-                                        <?php echo $order_product['category'] ?>
-                                    </li>
-                                </ol>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-component">
-                            <h6 class="title">Color</h6>
-                            <h4 title="Color">
-                                <ol class="breadcrumb">
-                                    <li><?php
-                                        echo $order_product_details['color'] ?>
-                                    </li>
-                                </ol>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-component">
-                            <h6 class="title">Size</h6>
-                            <h4 title="Size">
-                                <ol class="breadcrumb">
-                                    <li><?php
-                                        echo $order_product_details['size'] ?>
-                                    </li>
-                                </ol>
-                            </h4>
-                        </div>
-                    </div>
-                    <?php
-                    $products_info = getProductAddInfo($conn,$productId);
-                    foreach ($products_info as $product_info){
-                    ?>
-                    <div class="col-md-4">
-                        <div class="detail-component">
-                            <h6 class="title"><?php echo $product_info['field_name'] ?></h6>
-                            <h4 title="Size">
-                                <ol class="breadcrumb">
-                                    <li><?php echo $product_info['field_value'] ?></li>
-                                </ol>
-                            </h4>
-                        </div>
-                        <?php } ?>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="detail-component">
-                        <h6 class="title">Description</h6>
-                        <div style="margin-top: 10px" class="well" title="Category"><?php echo $order_product['description'] ?></div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>

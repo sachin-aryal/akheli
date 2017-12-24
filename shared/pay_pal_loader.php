@@ -2,7 +2,7 @@
 
 require_once "../vendor/autoload.php";
 $head_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-$site_url = "http://localhost/~sachin/akheli/order/pay.php";
+$site_url = BASE_URL."order/pay.php";
 define('SITE_URL', $site_url);
 define('SHIPPING_COST', 18);
 $pay_pal = new \PayPal\Rest\ApiContext(

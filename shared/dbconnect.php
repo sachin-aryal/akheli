@@ -11,13 +11,14 @@ define("PRODUCT_IMAGE_TABLE","akh_add_product_image");
 define("CHAT_TABLE","akh_chats");
 define("RATE_TABLE","akh_rates");
 define("LOCATION_TABLE","akh_delivery_location");
+define("PAYPAL_TABLE","akh_paypal");
 
 error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 // but I strongly suggest you to use PDO or MySQLi.
 define('DBHOST', 'localhost');
 if ($_SERVER["HTTP_HOST"] == "localhost"){
     define('DBUSER', 'root');
-    define('DBPASS', '');
+    define('DBPASS', 'root');
     define('DBNAME', 'akheli');
 }else{
     define('DBUSER', 'akhely_production_user');

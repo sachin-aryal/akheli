@@ -652,3 +652,93 @@ function getRate($conn,$id){
     }
     return false;
 }
+
+function insertIntoOrder($conn, $details){
+    $description = $details["description"];
+    $size = "Not Selected";
+    if($details["size"]){
+        $size = implode(",",$_POST["size"]);
+    }
+    $color = "Not Selected";
+    if($details["color"]) {
+        $color = implode(",", $_POST["color"]);
+    }
+    $quantity = $details["quantity"];
+    $product_id = $details["product_id"];
+    $user_id = $_SESSION["user_id"];
+    $status = ORDER_STATUS_REQUESTED;
+    $query = "INSERT INTO ".ORDER_TABLE."(description,size,color,quantity,user_id,status,product_id) 
+                          VALUES('$description','$size','$color','$quantity',$user_id,'$status',$product_id)";
+    if($conn->query($query)){
+        $order_id = $conn->insert_id;
+        if(insertIntoDeliveryLocation($conn, $order_id)){
+            return $order_id;
+        }else{
+            removeOrder($conn, $order_id);
+            return false;
+        }
+    }
+    return false;
+}
+
+function insertIntoDeliveryLocation($conn, $order_id){
+    $query = "INSERT INTO ".LOCATION_TABLE."(address, city, province, postal_code, country, order_id) VALUES (?,?,?,?,?,?)";
+    $stmt = $conn->prepare($query);
+    $address = $_SESSION["shipping_address"]["address"];
+    $city = $_SESSION["shipping_address"]["city"];
+    $province = $_SESSION["shipping_address"]["province"];
+    $postal_code = $_SESSION["shipping_address"]["postal_code"];
+    $country = $_SESSION["shipping_address"]["country"];
+
+    $stmt->bind_param("sssssi", $address, $city, $province, $postal_code, $country, $order_id);
+    if($stmt->execute()){
+        return true;
+    }
+    return false;
+
+}
+
+function removeOrder($conn, $order_id){
+    removeDeliveryLocation($conn, $order_id);
+    $query = "DELETE FROM ".ORDER_TABLE." WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $order_id);
+    if($stmt->execute()){
+        return true;
+    }
+    return false;
+}
+
+function removeDeliveryLocation($conn, $order_id){
+    $query = "DELETE FROM ".LOCATION_TABLE." WHERE order_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $order_id);
+    if($stmt->execute()){
+        return true;
+    }
+    return false;
+}
+
+function insertIntoPaypal($conn, $details){
+    $query = 'INSERT INTO '.PAYPAL_TABLE.'(payment_id, payer_id, order_id) VALUES(?, ?, ?)';
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ssi", $details["payment_id"], $details["payer_id"], $details["order_id"]);
+    if($stmt->execute()){
+        return true;
+    }
+    return false;
+}
+
+function getShippingDetails($conn, $order_id){
+    $query = "SELECT *FROM ".LOCATION_TABLE. " WHERE order_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $order_id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+    }
+    return false;
+
+}

@@ -29,10 +29,11 @@ $client = getClient($conn, $product_info_details["user_id"]);
                             <small>View detail and order produce</small>
                         </h3>
                         <?php if (isBuyer()) { ?>
-                            <form style="display: inline-block;float: right" action="order/create.php" method="post">
-                                <input type="hidden" name="product_id" value="<?php echo $product_info_details['id'] ?>"/>
-                                <button class="btn btn-primary order-button">Order</button>
-                            </form>
+<!--                            <form style="display: inline-block;float: right" action="order/create.php" method="post">-->
+<!--                                <input type="hidden" name="product_id" value="--><?php //echo $product_info_details['id'] ?><!--"/>-->
+<!--                                <button class="btn btn-primary order-button">Order</button>-->
+<!--                            </form>-->
+                            <button style="display: inline-block;float: right" class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
                         <?php } ?>
                         <?php if (isSeller() && $product_info_details["user_id"] == $_SESSION['user_id']) { ?>
                             <button style="float: right;margin-left: 10px" type="button" class="btn btn-info clearfix" data-toggle="modal" data-target="#add-addition-detail-modal">
@@ -420,7 +421,9 @@ $client = getClient($conn, $product_info_details["user_id"]);
                                         </p>
                                     </div>
                                     <div class="text-center view-detail">
-                                        <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+                                        <?php if (isBuyer()) { ?>
+                                            <button style="display: inline-block;float: right" class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
+                                        <?php } ?>
 
                                         <!--<a class="btn btn-primary" href="product/detail.php?name=<?php /*echo $product["product_name"] */?>&id=<?php /*echo my_encrypt($product['id']) */?>">Details</a>
                                     --></div>
