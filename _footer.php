@@ -1,10 +1,11 @@
+
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-6 footer-col">
-                <div class="logofooter"> Akheli</div>
+                <div class="logofooter"> Akhely</div>
                 <p><i class="fa fa-home"></i> Samakhusi, Kathmandu</p>
-                <p><i class="fa fa-phone"></i> Phone (Nepal) :  +977 9812 345 648</p>
+                <p><i class="fa fa-phone"></i> Phone (Nepal) :  +977 01 4020 141</p>
                 <p><i class="fa fa-envelope"></i> E-mail : info@akhely.com</p>
 
             </div>
@@ -13,7 +14,6 @@
                 <ul class="footer-ul">
                     <li><a href="about.php"> About Us</a></li>
                     <li><a href="privacy.php"> Privacy Policy</a></li>
-                    <li><a href="terms.php"> Terms & Conditions</a></li>
                     <li><a href="return.php"> Return Policy</a></li>
                     <li><a href="#"> Frequently Ask Questions</a></li>
                 </ul>

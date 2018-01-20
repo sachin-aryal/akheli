@@ -742,3 +742,15 @@ function getShippingDetails($conn, $order_id){
     return false;
 
 }
+function getUserAvailable($conn,$user_id){
+    $stmt=$conn->prepare('select * from '.USER_TABLE.' where facebook_id=?');
+    $stmt->bind_param('i',$user_id);
+    if($stmt->execute()){
+        $result=$stmt->get_result();
+        if($result->num_rows > 0){
+            return mysqli_fetch_assoc($result);
+        }
+
+    }
+    return false;
+}

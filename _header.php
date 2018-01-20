@@ -11,6 +11,7 @@ define('WP_DEBUG_DISPLAY', false);
 if (!isset($_SESSION)) {
     session_start();
 }
+require_once 'php-graph-sdk-5.x/src/Facebook/autoload.php';
 $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 <!DOCTYPE html>
@@ -69,8 +70,7 @@ $unique_categories = getDistinctCategory($conn);
             </a>
             <ul class="nav navbar-left" id="top-head-left-li">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="terms.php"> Terms & Conditions</a></li>
                 <li><a href="order/cart.php">Cart</a></li>
                 <?php
                 if(isAdmin()){
@@ -99,7 +99,7 @@ $unique_categories = getDistinctCategory($conn);
                             Login
                         </a>
                         <ul class="dropdown-menu login-wrapper">
-                            <h2 class="title">Akheli - Login</h2>
+                            <h2 class="title">Akhely - Login</h2>
                             <form method="post" action="controller/user.php">
                                 <div class="form-group">
                                     <label for="username">Email</label>
@@ -119,6 +119,75 @@ $unique_categories = getDistinctCategory($conn);
                             <div class="pull-left">
                                 <a href="user/reset_password.php">Forgot Password</a>
                             </div>
+                            <br>
+                            <?php
+                            $fb=new Facebook\Facebook([
+                                'app_id'=>'1528184763897930',
+                                'app_secret'=>'8439c6e14b5df2efdc2449ef536d752e',
+                                'default_graph_version'=>'v2.5'
+
+                            ]);
+                            $redirect='http://localhost/akheli/index.php';
+
+                            $helper= $fb->getRedirectLoginHelper();
+                            try{
+                                $access_token=$helper->getAccessToken();
+                            }catch (\Facebook\Exceptions\FacebookResponseException $e){
+                                echo 'Faceboook SDK returned an error: '.$e->getMessage();
+                                exit;
+                            }
+                            if(!isset($access_token)){
+                                $permission=['email'];
+                                $loginurl=$helper->getLoginUrl($redirect,$permission);
+                                echo '<a href="'.$loginurl.'">Login with Facebook</a>';
+                            }else{
+                                $fb->setDefaultAccessToken($access_token);
+                                $response=$fb->get('/me?fields=email,name,first_name,last_name');
+                                $usernode=$response->getGraphUser();
+
+                                $user_id=$usernode->getId();
+                                $username=$usernode->getName();
+                                $name=$usernode->getFirstName();
+                                $lastname=$usernode->getLastName();
+                                $email=$usernode->getField('email');
+                                $user_id1=(string)$user_id;
+
+                                    if(getUserAvailable($conn,$user_id)== false){
+                                        $role = ROLE_BUYER;
+                                        $enabled = 1;
+                                        $stmt = $conn->prepare('INSERT INTO '.USER_TABLE.'(role,enabled,facebook_id) VALUES (?,?,?)');
+                                        $stmt->bind_param('sis', $role,$enabled,$user_id1);
+                                        if($stmt->execute()){
+                                            echo 'ahs';
+                                            $id = $conn->insert_id;
+                                            $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,last_name,user_id) VALUES (?,?,?)");
+                                            $stmt->bind_param("ssi",$name,$lastname,$id);
+                                            if($stmt->execute()){
+                                                $_SESSION["username"] = $name;
+                                                $_SESSION["role"] =ROLE_BUYER;
+                                                $_SESSION["user_id"] = $id;
+                                                if($actual_link != ''){
+                                                    header("Location:".$actual_link);
+                                                }else{
+                                                    redirectToDash();
+                                                }
+                                                return;
+                                            }
+                                        }
+                                    }else{
+                                        $user=getUserAvailable($conn,$user_id);
+
+                                        $_SESSION["username"] = $name;
+                                        $_SESSION["role"] =ROLE_BUYER;
+                                        $_SESSION["user_id"] = $user['id'];
+
+                                        header("Location:".$actual_link);
+
+                                        return;
+                                    }
+
+                            }
+                            ?>
                         </ul>
                     </li>
                     <li>
@@ -182,7 +251,7 @@ $unique_categories = getDistinctCategory($conn);
     </div>
 </div>
 <body>
-</html>
+
 
 
 

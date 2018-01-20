@@ -30,7 +30,7 @@
 
 <div class="form-group">
     <label for="weight">Weight:</label>
-    <input class="form-control" type="number" id="weight" name="weight" value="<?php echo $product['weight'] ?>">
+    <input class="form-control" type="number" step="0.001" id="weight" name="weight" value="<?php echo $product['weight'] ?>">
     <span class="error_weight" id="error_weight"></span>
 </div>
 
@@ -81,25 +81,5 @@
 <input type="file" name="product_image">
 <!--<button type="button" class="btn btn-primary" onclick="addMoreProductDetails()">Add Detail</button>-->
 <script>
-    var initialText = $('.editable').val();
-    $('.editOption').val(initialText);
 
-    $('#test').change(function(){
-        var selected = $('option:selected', this).attr('class');
-        var optionText = $('.editable').text();
-
-        if(selected == "editable"){
-            $('.editOption').show();
-
-
-            $('.editOption').keyup(function(){
-                var editText = $('.editOption').val();
-                $('.editable').val(editText);
-                $('.editable').html(editText);
-            });
-
-        }else{
-            $('.editOption').hide();
-        }
-    });
 </script>

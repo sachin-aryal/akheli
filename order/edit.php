@@ -55,7 +55,7 @@ include_once "../_header.php";
         <?php } ?>
     });
 </script>
-<div class="container" style="width: 100%;margin: 0 auto">
+<div class="container" style="width: 100%;height:100%;margin: 0 auto">
     <div class="row" style="padding: 20px;height: 420px">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>

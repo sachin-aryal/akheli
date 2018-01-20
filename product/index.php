@@ -15,7 +15,7 @@ if (isset($_GET["category"])) {
     $category = $_GET["category"];
     if($category == "myp" && isSeller()){
         $productList = getSellersProducts($conn, $limit, $offset);
-        $product_count = getSellersProducts($conn);
+        $product_count = getProductsByCategoryCount($conn, $category);
         $product_chain = "My Products";
         $total_pages = ceil($product_count/$limit);
         for($i=1;$i<=$total_pages;$i++){
@@ -85,8 +85,8 @@ else {
 }
 
 ?>
-<div class="container" style="width: 100%;margin: 0 auto">
-    <div class="row" style="padding: 20px;height: 420px">
+<div class="container" style="width: 95%;margin: 0 auto;height: 100%">
+    <div class="row" style="padding: 20px;height: auto">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
             <div class="col-md-9">
@@ -170,11 +170,12 @@ else {
                                             </table>
                                         </div>
                                     <?php }else{ ?>
+                                        <?php if(!isSeller()){ ?>
                                         <div class=" view-detail text-center ">
                                             <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
                                             <!--                                            <a class="btn btn-primary" href="product/detail.php?name=--><?php //echo $product["product_name"] ?><!--&id=--><?php //echo my_encrypt($product['id']) ?><!--">Details</a>-->
                                         </div>
-                                    <?php } ?>
+                                    <?php } } ?>
 
 
                                     <div class="clearfix"></div>

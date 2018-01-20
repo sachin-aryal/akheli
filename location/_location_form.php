@@ -1,6 +1,16 @@
 <script>
     $(function () {
         $('#country').val('<?php echo  $_SESSION["shipping_address"]["country"] ?>');
+
+            $("#country").change(function () {
+                var country=$('#country').val();
+                if(country == 'Nepal'){
+                    $('#country-content').show();
+                }else{
+                    $('#country-content').hide();
+                }
+            });
+
     })
 </script>
 <div class="form-group">
@@ -28,7 +38,7 @@
 </div>
 <div class="form-group">
     <label>Country:</label>
-    <select class="form-control" id="country" name="country">
+    <select class="form-control" id="country" name="country" >
         <option value="Afghanistan">Afghanistan</option>
         <option value="Albania">Albania</option>
         <option value="Algeria">Algeria</option>
@@ -271,4 +281,10 @@
     </select>
     <span id="error_country"></span>
 </div>
+<div class="country-content" id="country-content" style="display: none">
+    <p>Rs 150 will be added for delivery outside the valley and Rs 50 will be add as delivery charge inside kathmandu</p>
+</div>
 
+<script>
+
+</script>

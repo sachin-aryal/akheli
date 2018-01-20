@@ -7,7 +7,7 @@ include_once "../_header.php";
 ?>
 <link href="assets/css/cart.css" type="text/css" rel="stylesheet"/>
 <div class="container" style="width: 100%;margin: 0 auto">
-    <div class="row" style="padding: 20px;height: 420px">
+    <div class="row" style="padding: 20px;height: auto">
         <div id="outer-categories-slider" class="col-md-12">
             <?php include_once "../_dashsidebar.php"?>
             <div class="col-md-9 clearfix">
