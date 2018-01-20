@@ -699,21 +699,31 @@ function insertIntoDeliveryLocation($conn, $order_id){
 }
 
 function removeOrder($conn, $order_id){
-    removeDeliveryLocation($conn, $order_id);
-    $query = "DELETE FROM ".ORDER_TABLE." WHERE id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $order_id);
-    if($stmt->execute()){
+    if(removeDeliveryLocation($conn, $order_id) === false){
+        return false;
+    }
+    if(removeFromPaypal($conn, $order_id) === false){
+        return false;
+    }
+    $query = "DELETE FROM ".ORDER_TABLE." WHERE id = $order_id";
+    if($conn->query($query)){
+        return true;
+    }
+    echo $conn->error;
+    return false;
+}
+
+function removeDeliveryLocation($conn, $order_id){
+    $query = "DELETE FROM ".LOCATION_TABLE." WHERE order_id = $order_id";
+    if($conn->query($query)){
         return true;
     }
     return false;
 }
 
-function removeDeliveryLocation($conn, $order_id){
-    $query = "DELETE FROM ".LOCATION_TABLE." WHERE order_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $order_id);
-    if($stmt->execute()){
+function removeFromPaypal($conn, $order_id){
+    $query = "DELETE FROM ".PAYPAL_TABLE." WHERE order_id = $order_id";
+    if($conn->query($query)){
         return true;
     }
     return false;
