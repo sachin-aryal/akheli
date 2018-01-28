@@ -38,8 +38,8 @@
     <input class="form-control" type="text" name="location" required value="<?php echo $client["location"] ?>"/>
     <span id="error_location"></span>
 </div>
-<!--
-<?php /*if ($createUser) {*/?>
+
+<?php if ($createUser) {?>
     <div class="form-group">
         <label>User Type:</label>
         <select name="role" class="form-control">
@@ -48,7 +48,7 @@
         </select>
         <span id="error"></span>
     </div>
---><?php /*} */?>
+<?php } ?>
 <div class="form-group">
     <label>Image:</label>
     <input type="file" name="user_image">

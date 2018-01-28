@@ -24,7 +24,6 @@ if (isset($_POST["register"])) {
     $last_name=$_POST['last_name'];
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
-    $role='C';
     $password = hash('sha256', $password);
     if($role == "S"){
         $role = ROLE_SELLER;
