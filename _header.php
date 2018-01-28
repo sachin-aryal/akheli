@@ -70,7 +70,6 @@ $unique_categories = getDistinctCategory($conn);
             </a>
             <ul class="nav navbar-left" id="top-head-left-li">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="terms.php"> Terms & Conditions</a></li>
                 <li><a href="order/cart.php">Cart</a></li>
                 <?php
                 if(isAdmin()){
