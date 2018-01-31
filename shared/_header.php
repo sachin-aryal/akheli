@@ -10,7 +10,7 @@ include_once "../shared/auth.php";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Akheli</title>
+    <title>Akhely</title>
     <link href="https://fonts.googleapis.com/css?family=Cagliostro|Open+Sans+Condensed:300" rel="stylesheet">
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
@@ -61,7 +61,7 @@ include_once "../shared/auth.php";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Akheli</a>
+            <a class="navbar-brand" href="#">Akhely</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">

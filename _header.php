@@ -18,7 +18,7 @@ $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Akheli</title>
+    <title>Akhely</title>
     <base href="<?php echo BASE_URL ?>"/>
     <link href="https://fonts.googleapis.com/css?family=Cagliostro|Open+Sans+Condensed:300" rel="stylesheet"
           type="text/css">
@@ -70,7 +70,6 @@ $unique_categories = getDistinctCategory($conn);
             </a>
             <ul class="nav navbar-left" id="top-head-left-li">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="terms.php"> Terms & Conditions</a></li>
                 <li><a href="order/cart.php">Cart</a></li>
                 <?php
                 if(isAdmin()){

@@ -100,9 +100,11 @@ include_once "../_header.php";
                         <td><a id="continue-shopping" href="product/index.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                         <td colspan="2" class="hidden-xs"></td>
                         <td>
-                            <?php if(isLoggedIn()){ ?>
-                                <a id="checkout-link" href="#" class="btn btn-success btn-block" onclick="saveLocation()">Checkout <i class="fa fa-angle-right"></i></a>
-                            <?php }else{?>
+                            <?php if(isLoggedIn()){
+                                if(isBuyer()){
+                                ?>
+                                <button id="checkout-link" class="btn btn-success btn-block" onclick="saveLocation()">Checkout <i class="fa fa-angle-right"></i></button>
+                            <?php }}else{?>
                                 <p style="color: red;">Please login to order items. Cart items will be stored for 24 hours.</p>
                             <?php }?>
                         </td>

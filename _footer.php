@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-6 footer-col">
                 <div class="logofooter"> Akhely</div>
-                <p><i class="fa fa-home"></i> Samakhusi, Kathmandu</p>
+                <p><i class="fa fa-home"></i> Machapokhari 16 Kathmandu Nepal </p>
                 <p><i class="fa fa-phone"></i> Phone (Nepal) :  +977 01 4020 141</p>
                 <p><i class="fa fa-envelope"></i> E-mail : info@akhely.com</p>
 
@@ -15,6 +15,7 @@
                     <li><a href="about.php"> About Us</a></li>
                     <li><a href="privacy.php"> Privacy Policy</a></li>
                     <li><a href="return.php"> Return Policy</a></li>
+                    <li><a href="terms.php"> Terms & Conditions</a></li>
                     <li><a href="#"> Frequently Ask Questions</a></li>
                 </ul>
             </div>

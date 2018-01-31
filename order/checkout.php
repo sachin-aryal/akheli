@@ -101,7 +101,7 @@ if(isset($_SESSION["cart_items"])){
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
-            ->setDescription("Akheli Product Payment.")
+            ->setDescription("Akhely Product Payment.")
             ->setInvoiceNumber(uniqid());
 
         $redirectUrls = new RedirectUrls();
@@ -125,6 +125,7 @@ if(isset($_SESSION["cart_items"])){
             return;
         }
         header("Location:".$payment->getApprovalLink());
+        return;
     }
 
 }else{
