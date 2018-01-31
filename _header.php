@@ -18,7 +18,7 @@ $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Akheli</title>
+    <title>Akhely</title>
     <base href="<?php echo BASE_URL ?>"/>
     <link href="https://fonts.googleapis.com/css?family=Cagliostro|Open+Sans+Condensed:300" rel="stylesheet"
           type="text/css">

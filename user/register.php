@@ -1,5 +1,6 @@
 <?php
 include_once "../_header.php";
+redirectIfLoggedIn();
 ?>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -8,7 +9,7 @@ include_once "../_header.php";
 </script>
 <div class="container" style="width: 50%;margin: 0 auto">
     <div class="row" id="register-form">
-        <h2 class="title">Create new account - Akheli</h2>
+        <h2 class="title">Create new account - Akhely</h2>
         <hr>
         <form class="custom-form" method="post" id="user_form_1" action="controller/user.php" enctype="multipart/form-data">
             <?php
