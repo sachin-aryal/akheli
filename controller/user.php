@@ -11,29 +11,25 @@ include_once "../shared/auth.php";
 
 include_once '../shared/dbconnect.php';
 include_once '../shared/common.php';
-
 if (isset($_POST["register"])) {
     redirectIfLoggedIn();
     if(!isset($_POST["name"])){
         header("Location:../user/register.php");
         return;
     }
+    $role=$_POST['role'];
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
     $last_name=$_POST['last_name'];
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
+    $pan_number=$_POST['pan_number'];
     $password = hash('sha256', $password);
     if($role == "S"){
         $role = ROLE_SELLER;
     }else if($_POST["role"] == 'C'){
         $role = ROLE_BUYER;
-    }else{
-        $_SESSION["messageType"] = "error";
-        $_SESSION["message"] = "Do not try to change the role.";
-        header("Location:../user/register.php");
-        return;
     }
     $enabled = 1;
     if(checkEmail($conn,$email)){
@@ -82,10 +78,10 @@ if (isset($_POST["register"])) {
     $stmt->bind_param('sssi', $email,$password,$role,$enabled);
     if($stmt->execute()){
         $user_id = $conn->insert_id;
-        $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,last_name,phone_no,location,user_id,user_image) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("ssssis",$name,$last_name,$phone_no,$location,$user_id,$imageName);
+        $stmt = $conn->prepare("INSERT INTO ".CLIENT_TABLE."(name,last_name,phone_no,location,pan_number,user_id,user_image) VALUES (?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssis",$name,$last_name,$phone_no,$location,$pan_number,$user_id,$imageName);
         if($stmt->execute()){
-            header("Location:../index.php");
+            header("Location:../user/index.php");
         }else{
             $stmt = $conn->prepare("DELETE FROM ".USER_TABLE." WHERE email = ?");
             $stmt->bind_param('s',$email);
@@ -240,7 +236,7 @@ if($_POST['changePassword']){
         header("Location:../user/reset_password.php");
         return;
     }
-}else if($_GET["l"]){
+}/*else if($_GET["l"]){
     if(my_decrypt($_GET['l']) == 'pleaselogout'){
         unset($_SESSION["username"]);
         unset($_SESSION["role"]);
@@ -254,7 +250,7 @@ if($_POST['changePassword']){
     return;
 }else{
     header("Location:../user/index.php");
-}
+}*/
 
 
 ?>

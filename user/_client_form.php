@@ -42,14 +42,29 @@
 <?php if ($createUser) {?>
     <div class="form-group">
         <label>User Type:</label>
-        <select name="role" class="form-control">
+        <select name="role" class="form-control" id="role" onchange="selectRole()">
             <option value="C">Buyer</option>
             <option value="S">Seller</option>
         </select>
         <span id="error"></span>
     </div>
 <?php } ?>
+<div class="form-group" id="pan_div" style="display: none">
+    <label for="pan_number">Pan Number</label>
+    <input type="text" class="form-control" name="pan_number" id="pan_number">
+</div>
 <div class="form-group">
     <label>Image:</label>
     <input type="file" name="user_image">
 </div>
+<script>
+    function selectRole() {
+
+        if($('#role').val()=="S"){
+            $('#pan_div').show();
+        }else{
+            $('#pan_div').hide();
+        }
+    }
+
+</script>
