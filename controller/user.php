@@ -109,12 +109,14 @@ if (isset($_POST["register"])) {
         header("Location:../index.php");
         return;
     }
+
     $name=$_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
     $last_name=$_POST['last_name'];
     $phone_no=$_POST['phone_no'];
     $location=$_POST['location'];
+    $pan_number=$_POST['pan_number'];
 
     if(checkEmailEdit($conn,$email,$user_id)){
         $_SESSION["messageType"] = "error";
@@ -167,8 +169,8 @@ if (isset($_POST["register"])) {
     $stmt = $conn->prepare("UPDATE ".USER_TABLE." SET email = ?, password = ? WHERE id = ?");
     $stmt->bind_param('ssi',$email,$password,$user_id);
     if($stmt->execute()){
-        $stmt = $conn->prepare("UPDATE ".CLIENT_TABLE." set name = ?, last_name = ?, phone_no = ?, location = ?, user_image = ? WHERE user_id = ?");
-        $stmt->bind_param("sssssi",$name,$last_name,$phone_no,$location,$imageName,$_SESSION["user_id"]);
+        $stmt = $conn->prepare("UPDATE ".CLIENT_TABLE." set name = ?, last_name = ?, phone_no = ?, location = ?, user_image = ?,pan_number=? WHERE user_id = ?");
+        $stmt->bind_param("sssssi",$name,$last_name,$phone_no,$location,$imageName,$pan_number,$_SESSION["user_id"]);
         if($stmt->execute()){
             $_SESSION["messageType"] = "success";
             $_SESSION["message"] = "User information updated successfully.";
@@ -236,7 +238,7 @@ if($_POST['changePassword']){
         header("Location:../user/reset_password.php");
         return;
     }
-}/*else if($_GET["l"]){
+}else if($_GET["l"]){
     if(my_decrypt($_GET['l']) == 'pleaselogout'){
         unset($_SESSION["username"]);
         unset($_SESSION["role"]);
@@ -250,7 +252,7 @@ if($_POST['changePassword']){
     return;
 }else{
     header("Location:../user/index.php");
-}*/
+}
 
 
 ?>

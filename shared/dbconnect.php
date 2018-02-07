@@ -12,7 +12,7 @@ define("CHAT_TABLE","akh_chats");
 define("RATE_TABLE","akh_rates");
 define("LOCATION_TABLE","akh_delivery_location");
 define("PAYPAL_TABLE","akh_paypal");
-
+define("REQUEST_QUOTATION","akh_request_quotation");
 error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 // but I strongly suggest you to use PDO or MySQLi.
 define('DBHOST', 'localhost');

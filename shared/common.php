@@ -9,7 +9,20 @@ function getUserList($conn){
     }
     return [];
 }
-
+function getQuotationList($conn){
+    $users = $conn->query("SELECT *FROM ".REQUEST_QUOTATION);
+    if ($users->num_rows > 0) {
+        return mysqli_fetch_all($users,MYSQLI_ASSOC);
+    }
+    return [];
+}
+function getQuotation($conn,$id){
+    $quotation = $conn->query("SELECT *FROM ".REQUEST_QUOTATION." WHERE id = $id");
+    if($quotation->num_rows > 0){
+        return mysqli_fetch_assoc($quotation);
+    }
+    return [];
+}
 function getClient($conn,$user_id){
     $client = $conn->query("SELECT *FROM ".CLIENT_TABLE." WHERE user_id = $user_id");
     if($client->num_rows > 0){
@@ -117,7 +130,7 @@ function getProductInfo($conn,$id){
 }
 
 function deleteProduct($conn,$id){
-    echo $id;
+
     $product= getProductInfo($conn,$id);
     $imageName = $product['image'];
 
@@ -132,6 +145,7 @@ function deleteProduct($conn,$id){
     return false;
 
 }
+
 
 function getDistinctCategory($conn, $limit = 0){
     if($limit == 0){

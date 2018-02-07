@@ -111,7 +111,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                 </div>
                                 <div class="text-center view-detail">
                                     <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product_details["id"]) ?>')">Add to Cart</button>
-<!--                                    <a class="btn btn-primary" href="product/detail.php?name=--><?php //echo $product_details["product_name"] ?><!--&id=--><?php //echo my_encrypt($product_details['id']) ?><!--">Details</a>-->
+                                    <!--                                    <a class="btn btn-primary" href="product/detail.php?name=--><?php //echo $product_details["product_name"] ?><!--&id=--><?php //echo my_encrypt($product_details['id']) ?><!--">Details</a>-->
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -120,6 +120,38 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                 </div>
             <?php }
             ?>
+        </div>
+        <div class="row " style="padding: 20px">
+            <div class="col-md-5">
+                <h3 style="font-weight: bold;">
+                    <span>Request for Quotation<small>Customize Products</span>
+                </h3>
+            </div>
+            <div class="col-md-7 label-line">
+            </div>
+        </div>
+        <div class="row custom-wrapper" style="padding: 20px">
+                <div class="col-md-6">
+                    <img style="width: 100%" src="assets/images/TB1wECTkGagSKJjy0FbXXa.mVXa-1060-376.jpg">
+                </div>
+                <div class="col-md-6">
+                    <form method="post" action="controller/request.php" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product_name">Product Name</label>
+                            <input type="text" class="form-control" name="product_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Product Image:</label>
+                            <input type="file" name="uploads" class="form-control">
+                        </div>
+                        <button type="submit" name="Submit"  class="btn btn-primary">Save</button>
+
+                    </form>
+                </div>
         </div>
         <div class="row " style="padding: 20px">
             <div class="col-md-5">
@@ -162,7 +194,7 @@ $topOrderedProducts = getMostOrderedProduct($conn, 8);
                                 <div class="text-center view-detail">
                                     <button class="btn btn-primary" onclick="addToCart('<?php echo my_encrypt($product["id"]) ?>')">Add to Cart</button>
 
-                                   <!-- <a class="btn btn-primary" href="product/detail.php?name=<?php /*echo $product["product_name"] */?>&id=<?php /*echo my_encrypt($product['id']) */?>">Details</a>
+                                    <!-- <a class="btn btn-primary" href="product/detail.php?name=<?php /*echo $product["product_name"] */?>&id=<?php /*echo my_encrypt($product['id']) */?>">Details</a>
                               -->  </div>
                             </div>
                             <div class="clearfix"></div>
